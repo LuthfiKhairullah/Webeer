@@ -15,16 +15,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Muhamadfajaryh12/Webeer/issues"
-  },
-<<<<<<< HEAD
-  "homepage": "https://github.com/Muhamadfajaryh12/Webeer#readme",
-  "dependencies": {
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.1",
-    "webpack-merge": "^5.8.0"
   }
-=======
-  "homepage": "https://github.com/Muhamadfajaryh12/Webeer#readme"
->>>>>>> 324b4d9c4e868640f2d508132a43ddcff1b2d42c
 }
