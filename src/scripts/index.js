@@ -1,8 +1,12 @@
 import 'regenerator-runtime';
 import '../styles/style.css';
 import '../styles/login.css';
+import '../styles/jobs.css';
+import '../styles/modalOtp.css';
 import './views/components/appBar';
 import './views/components/footer';
+import './views/components/searchBar';
+import './views/components/otp';
 import Main from './views/main';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';

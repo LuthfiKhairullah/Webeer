@@ -1,0 +1,43 @@
+#container-page-jobs{
+    max-width: 1200px;
+    margin:  auto;
+}
+.container-jobs{
+    display: flex;
+    justify-content: center;
+}
+.item-jobs{
+    width: 400px;
+    height: 600px;
+    margin-right: 50px;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+.detail-jobs{
+    width: 600px;
+    height: 600px;
+    background-color: #F4F9F9;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+.card-item{
+    width: 350px;
+    height: 250px;
+    background-color: #F4F9F9;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+.detail-jobs .card{
+margin: 50px auto;
+text-align: center;
+background-color: transparent;
+border: 0px;
+}
+.search{
+    padding: 10px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.search input, .search button{
+    border-radius: 20px;
+}
