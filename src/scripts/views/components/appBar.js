@@ -22,6 +22,10 @@ class AppBar extends HTMLElement {
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#/jobs">Jobs</a>
+          </li>
         </ul>
       </div>
     </div>
