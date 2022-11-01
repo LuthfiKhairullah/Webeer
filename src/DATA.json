@@ -1,0 +1,34 @@
+{
+    "discussions": [
+        {
+            "id": "",
+            "idUser": "",
+            "date": "",
+            "title": "",
+            "categories": [
+                {
+                    "name": ""
+                }
+            ],
+            "discussion": "",
+            "pictureId": "",
+            "userReply": [
+                {
+                    "name": "",
+                    "date": "",
+                    "reply": "",
+                    "pictureId": ""
+                }
+            ],
+            "isValid": ""
+        }
+    ],
+    "users": [
+        {
+            "id": "",
+            "name": "",
+            "bio": "",
+            "pictureId": ""
+        }
+    ]
+}
