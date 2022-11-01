@@ -1,4 +1,4 @@
-import { createDiscussionItemTemplate } from '../templates/templateCreator';
+import { createDiscussionItemTemplate } from '../templates/template-creator';
 
 class DiscussionItem extends HTMLElement {
   constructor() {

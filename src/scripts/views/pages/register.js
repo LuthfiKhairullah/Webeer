@@ -1,4 +1,3 @@
-
 const Register = {
   async render() {
     return `
@@ -81,11 +80,11 @@ const Register = {
         );
     }
     const modal = document.querySelector('.modal-otp');
-    
+
     form.addEventListener('click', () => {
       SendEmail();
       modal.classList.toggle('hide');
-      console.log(modal)
+      console.log(modal);
     });
     const inputs = document.querySelectorAll('.otp input');
 
@@ -132,22 +131,19 @@ const Register = {
         input.disabled = true;
         input.classList.add('disable');
       });
-      if(otp === data){
-        alert('berhasil')
-        let intervalModal = setInterval(()=>{
+      if (otp === data) {
+        alert('berhasil');
+        const intervalModal = setInterval(() => {
           modal.classList.toggle('hide');
-        },3000)
-        setTimeout(()=>{
-          clearInterval(intervalModal)
+        }, 3000);
+        setTimeout(() => {
+          clearInterval(intervalModal);
           modal.classList.add('hide');
-        },1000)
-        
-      }
-      else{
-        alert('salah')
+        }, 1000);
+      } else {
+        alert('salah');
       }
     }
-  
   },
 };
 
