@@ -3,6 +3,7 @@ import '../styles/style.css';
 import './views/components/appBar';
 import Main from './views/main';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle';
 
 const main = new Main({
   button: document.querySelector('.navbar-toggler'),
