@@ -1,0 +1,25 @@
+#container-login{
+    display: flex;
+    justify-content: center;
+}
+.card{
+    width: 300px;
+    margin-top: 50px;
+}
+#form-login{
+    padding: 15px;
+    text-align: center;
+}
+#form-login p{
+    font-size: 10px;
+}
+.pwdProgress.hide{
+    display: none;
+}
+.pwdProgress{
+    color: white;
+    display: block;
+    border-radius: 15px;
+    height: 15px;
+    margin-top: 10px;
+}
