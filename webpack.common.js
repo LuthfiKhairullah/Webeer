@@ -23,6 +23,13 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(gif|png|jpg|jpeg|svg)$/i,
+        loader: 'file-loader',
+        options: {
+          name: 'image/[name].[ext]',
+        },
+      },
     ],
   },
   plugins: [

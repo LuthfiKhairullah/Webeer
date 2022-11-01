@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.2.2",
+    "file-loader": "^6.2.0",
     "regenerator-runtime": "^0.13.10"
   }
 }
