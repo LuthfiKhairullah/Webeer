@@ -1,13 +1,14 @@
 const Register = {
   async render() {
     return `
-         <div id="container-login">
+         <div id="container-register">
           <div class ="card">
+          <img src="./asset/hero-login.png">
             <form id="form-login">
               <div class="mb-4">
                 <input type="email" class="form-control" id="emailUser" placeholder="Masukkan Email Anda">
               </div>
-              <div class="mb-4">
+              <div class="mb-4 password-container">
                 <input type="password" class="form-control" id="pwdUser" placeholder="Masukkan Password Anda">
                     <div class="pwdProgress hide">
                             <p class="textProgress"></p>
