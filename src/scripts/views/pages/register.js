@@ -1,6 +1,8 @@
+
 const Register = {
   async render() {
     return `
+    <modal-otp></modal-otp>
          <div id="container-register">
           <div class ="card">
           <img src="./asset/hero-login.png">
@@ -75,12 +77,77 @@ const Register = {
         Body: `Kode OTP :${data}`,
       })
         .then(
-          (message) => alert(message),
+          (message) => console.log(message),
         );
     }
+    const modal = document.querySelector('.modal-otp');
+    
     form.addEventListener('click', () => {
       SendEmail();
+      modal.classList.toggle('hide');
+      console.log(modal)
     });
+    const inputs = document.querySelectorAll('.otp input');
+
+    inputs.forEach((input, index) => {
+      input.dataset.index = index;
+      input.addEventListener('paste', handleOnPasteOtp);
+      input.addEventListener('keyup', handleOtp);
+    });
+
+    function handleOnPasteOtp(e) {
+      const data = e.clipboardData.getData('text');
+      const value = data.split('');
+
+      if (value.length === inputs.length) {
+        inputs.forEach((input, index) => (input.value = value[index]));
+        submit();
+      }
+    }
+
+    function handleOtp(e) {
+      const input = e.target;
+      const { value } = input;
+      input.value = '';
+      input.value = value ? value[0] : '';
+
+      const fieldIndex = input.dataset.index;
+      if (value.length > 0 && fieldIndex < inputs.length - 1) {
+        input.nextElementSibling.focus();
+      }
+
+      if (e.key === 'Backspace' && fieldIndex > 0) {
+        input.perviousElementSibling.focus();
+      }
+
+      if (fieldIndex == inputs.length - 1) {
+        submit();
+      }
+    }
+
+    function submit() {
+      let otp = '';
+      inputs.forEach((input) => {
+        otp += input.value;
+        input.disabled = true;
+        input.classList.add('disable');
+      });
+      if(otp === data){
+        alert('berhasil')
+        let intervalModal = setInterval(()=>{
+          modal.classList.toggle('hide');
+        },3000)
+        setTimeout(()=>{
+          clearInterval(intervalModal)
+          modal.classList.add('hide');
+        },1000)
+        
+      }
+      else{
+        alert('salah')
+      }
+    }
+  
   },
 };
 
