@@ -1,6 +1,7 @@
 import 'regenerator-runtime';
 import '../styles/style.css';
 import '../styles/login.css';
+import '../styles/addDiscussion.css';
 import './views/components/appBar';
 import './views/components/footer';
 import Main from './views/main';
