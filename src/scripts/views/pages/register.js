@@ -7,16 +7,16 @@ const Register = {
           <img src="./asset/hero-login.png">
             <form id="form-login">
               <div class="mb-4">
-                <input type="email" class="form-control" id="emailUser" placeholder="Masukkan Email Anda">
+                <input type="email" class="form-control" id="emailUser" placeholder="Masukkan Email Anda" required>
               </div>
               <div class="mb-4 password-container">
-                <input type="password" class="form-control" id="pwdUser" placeholder="Masukkan Password Anda">
+                <input type="password" class="form-control" id="pwdUser" placeholder="Masukkan Password Anda" required>
                     <div class="pwdProgress hide">
                             <p class="textProgress"></p>
                     </div>
               </div>
               <div class="mb-4">
-              <input type="password" class="form-control" id="RepwdUser" placeholder="Masukkan Password Ulang Anda">
+              <input type="password" class="form-control" id="RepwdUser" placeholder="Masukkan Password Ulang Anda" required>
             </div>
               <p>Kamu sudah memiliki akun? <span> <a href="#/login">Login Sekarang</a> </span> </p>
               <button type="submit" class="btn btn-primary mb-3" id="submit">Register</button>
@@ -30,8 +30,6 @@ const Register = {
     const getPwd = document.querySelector('#pwdUser');
     const progress = document.querySelector('.pwdProgress');
     const progressText = document.querySelector('.textProgress');
-    const email = document.querySelector('#emailUser');
-    const getEmail = email.value;
     const form = document.querySelector('#submit');
     getPwd.addEventListener('input', () => {
       const valuePwd = getPwd.value;
@@ -82,7 +80,7 @@ const Register = {
     const modal = document.querySelector('.modal-otp');
 
     form.addEventListener('click', () => {
-      SendEmail();
+      // SendEmail();
       modal.classList.toggle('hide');
       const minute = 5;
       let time = minute * 60;
@@ -160,6 +158,7 @@ const Register = {
           clearInterval(intervalModal);
           modal.classList.add('hide');
           message.classList.toggle('success');
+          location.reload();
         }, 1000);
       } else {
         alert('salah');
