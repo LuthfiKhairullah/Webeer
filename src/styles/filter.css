@@ -8,7 +8,7 @@
     filter-list {
         z-index: 10;
         background-color: #CCF2F4;
-        width: 100%;
+        width: 90%;
         position: absolute;
         -webkit-transform: translate(-100%, 0);
         transform: translate(-100%, 0);
@@ -16,7 +16,10 @@
     }
 
     .open-filter {
+        background-color: #CCF2F4;
         -webkit-transform: translate(0, 0);
-        transform: translate(0, 0);
+        transform: translate(100%, 0);
+        transition: transform 1s ease;
+        
     }
 }
