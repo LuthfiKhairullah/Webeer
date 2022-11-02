@@ -2,7 +2,7 @@ import DrawerInitiator from '../utils/drawer-initiator';
 import UrlParser from '../routes/urlParser';
 import routes from '../routes/routes';
 
-class App {
+class Main {
   constructor({ button, drawer, content }) {
     this._button = button;
     this._drawer = drawer;
@@ -27,4 +27,4 @@ class App {
   }
 }
 
-export default App;
+export default Main;
