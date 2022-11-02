@@ -9,9 +9,9 @@ const DetailJobsSkeleton = (count) => {
 };
 
 const createDiscussionItemTemplate = (discussion) => `
-  <div class="mx-5 mb-3">
-    <a href="/#/${discussion.id}" class="btn border-0 text-start">
-      <div class="card w-100">
+  <div class="mb-2">
+    <a href="/#/${discussion.id}" class="border-0 text-start text-decoration-none text-dark w-100">
+      <div class="card w-100 m-0">
         <div class="card-body">
           <div class="card-title d-flex justify-content-between">
             <h5>${discussion.title}</h5>
@@ -40,8 +40,48 @@ const createAddDiscussionTemplate = () => `
   <a href="/#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
 `;
 
+const createFilterListTemplate = () => `
+  <div class="container-fluid mt-2">
+    <div class="d-flex">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 18px;"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 416c0-17.7 14.3-32 32-32l54.7 0c12.3-28.3 40.5-48 73.3-48s61 19.7 73.3 48L480 384c17.7 0 32 14.3 32 32s-14.3 32-32 32l-246.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 448c-17.7 0-32-14.3-32-32zm192 0c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32zM384 256c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32zm-32-80c32.8 0 61 19.7 73.3 48l54.7 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-54.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l246.7 0c12.3-28.3 40.5-48 73.3-48zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32s-14.3-32-32-32zm73.3 0L480 64c17.7 0 32 14.3 32 32s-14.3 32-32 32l-214.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 128C14.3 128 0 113.7 0 96S14.3 64 32 64l86.7 0C131 35.7 159.2 16 192 16s61 19.7 73.3 48z"/></svg>
+      <h2 class="ms-2">Filter</h2>
+    </div>
+    <div class="my-2">
+      <h3>Sort</h3>
+      <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
+      <label class="btn btn-light mb-1" for="option1">Latest</label>
+      <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+      <label class="btn btn-light mb-1" for="option2">Latest</label>
+      <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
+      <label class="btn btn-light" mb-1 for="option3">Latest</label>
+      <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
+      <label class="btn btn-light mb-1" for="option4">Latest</label>
+    </div>
+    <div class="my-2">
+      <h3>Category</h3>
+      <input type="checkbox" class="btn-check" id="html" autocomplete="off">
+      <label class="btn btn-light mb-1" for="html">HTML</label>
+      <input type="checkbox" class="btn-check" id="javascript" autocomplete="off">
+      <label class="btn btn-light mb-1" for="javascript">JavaScript</label>
+      <input type="checkbox" class="btn-check" id="css" autocomplete="off">
+      <label class="btn btn-light mb-1" for="css">CSS</label>
+      <input type="checkbox" class="btn-check" id="php" autocomplete="off">
+      <label class="btn btn-light mb-1" for="php">PHP</label>
+      <input type="checkbox" class="btn-check" id="java" autocomplete="off">
+      <label class="btn btn-light mb-1" for="java">Java</label>
+      <input type="checkbox" class="btn-check" id="python" autocomplete="off">
+      <label class="btn btn-light mb-1" for="python">python</label>
+    </div>
+    <div>
+      <button type="button" class="btn btn-danger">Reset</button>
+      <button type="submit" class="btn btn-dark">Filter</button>
+    </div>
+  </div>
+`;
+
 export {
   DetailJobsSkeleton,
   createDiscussionItemTemplate,
   createAddDiscussionTemplate,
+  createFilterListTemplate,
 };

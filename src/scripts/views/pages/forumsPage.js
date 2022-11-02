@@ -1,12 +1,20 @@
 import DataSource from '../../data/dataSource';
 import '../components/discussionList';
 import '../components/searchBar';
+import '../components/filterList';
 
 const Discussion = {
   async render() {
     return `
-      <search-bar></search-bar>
-      <discussion-list></discussion-list>
+      <div class="container-md">
+        <div class="d-flex">
+          <filter-list></filter-list>
+          <div class="container-fluid">
+            <search-bar></search-bar>
+            <discussion-list></discussion-list>
+          </div>
+        </div>
+      </div>
     `;
   },
 
