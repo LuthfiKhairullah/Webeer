@@ -22,8 +22,8 @@ const Register = {
               <button type="submit" class="btn btn-primary mb-3" id="submit">Register</button>
             </form>
           </div>
-         </div>
-         
+          </div>
+          <message-container></message-container>
           `;
   },
   async afterRender() {
@@ -56,7 +56,7 @@ const Register = {
     });
     function generatePassword() {
       const length = 5;
-      const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      const charset = '0123456789';
       let retVal = '';
       for (let i = 0, n = charset.length; i < length; ++i) {
         retVal += charset.charAt(Math.floor(Math.random() * n));
@@ -82,10 +82,30 @@ const Register = {
     const modal = document.querySelector('.modal-otp');
 
     form.addEventListener('click', () => {
-      SendEmail();
+      // SendEmail();
       modal.classList.toggle('hide');
-      console.log(modal);
-    });
+      const minute = 5;
+    let time = minute * 60;
+    const count = document.querySelector('.count');
+    let timer;
+    clearInterval(timer)
+    timer = setInterval(Countdown,1000)
+    
+    function Countdown(){
+      
+      const minutes = Math.floor(time/60);
+      let seconds = time % 60;
+
+      seconds = seconds <10 ? '0'+seconds:seconds;
+
+      count.innerHTML=`${minutes}:${seconds}`;
+      time--;
+    }
+    
+    console.log(modal)
+  });
+  
+    
     const inputs = document.querySelectorAll('.otp input');
 
     inputs.forEach((input, index) => {
@@ -123,7 +143,8 @@ const Register = {
         submit();
       }
     }
-
+    const message = document.querySelector('.message');
+    const messageText = document.querySelector('.message-text');
     function submit() {
       let otp = '';
       inputs.forEach((input) => {
@@ -131,17 +152,34 @@ const Register = {
         input.disabled = true;
         input.classList.add('disable');
       });
+<<<<<<< HEAD
       if (otp === data) {
         alert('berhasil');
         const intervalModal = setInterval(() => {
+=======
+      if(otp === data){
+        message.classList.add('success');
+        messageText.innerHTML="Sukses";
+        let intervalModal = setInterval(()=>{
+>>>>>>> 1693edef273f54946ff4aa3bf8b749c8f5d6c97d
           modal.classList.toggle('hide');
         }, 3000);
         setTimeout(() => {
           clearInterval(intervalModal);
           modal.classList.add('hide');
+<<<<<<< HEAD
         }, 1000);
       } else {
         alert('salah');
+=======
+          message.classList.toggle('success');
+          location.reload();
+        },1000)
+        
+      }
+      else{
+        alert('salah')
+>>>>>>> 1693edef273f54946ff4aa3bf8b749c8f5d6c97d
       }
     }
   },
