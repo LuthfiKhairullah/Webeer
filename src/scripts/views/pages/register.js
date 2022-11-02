@@ -1,4 +1,3 @@
-
 const Register = {
   async render() {
     return `
@@ -81,32 +80,30 @@ const Register = {
         );
     }
     const modal = document.querySelector('.modal-otp');
-    
+
     form.addEventListener('click', () => {
-      // SendEmail();
+      SendEmail();
       modal.classList.toggle('hide');
       const minute = 5;
-    let time = minute * 60;
-    const count = document.querySelector('.count');
-    let timer;
-    clearInterval(timer)
-    timer = setInterval(Countdown,1000)
-    
-    function Countdown(){
-      
-      const minutes = Math.floor(time/60);
-      let seconds = time % 60;
+      let time = minute * 60;
+      const count = document.querySelector('.count');
+      let timer;
+      clearInterval(timer);
+      timer = setInterval(Countdown, 1000);
 
-      seconds = seconds <10 ? '0'+seconds:seconds;
+      function Countdown() {
+        const minutes = Math.floor(time / 60);
+        let seconds = time % 60;
 
-      count.innerHTML=`${minutes}:${seconds}`;
-      time--;
-    }
-    
-    console.log(modal)
-  });
-  
-    
+        seconds = seconds < 10 ? `0${seconds}` : seconds;
+
+        count.innerHTML = `${minutes}:${seconds}`;
+        time--;
+      }
+
+      console.log(modal);
+    });
+
     const inputs = document.querySelectorAll('.otp input');
 
     inputs.forEach((input, index) => {
@@ -153,25 +150,21 @@ const Register = {
         input.disabled = true;
         input.classList.add('disable');
       });
-      if(otp === data){
+      if (otp === data) {
         message.classList.add('success');
-        messageText.innerHTML="Sukses";
-        let intervalModal = setInterval(()=>{
+        messageText.innerHTML = 'Sukses';
+        const intervalModal = setInterval(() => {
           modal.classList.toggle('hide');
-        },3000)
-        setTimeout(()=>{
-          clearInterval(intervalModal)
+        }, 3000);
+        setTimeout(() => {
+          clearInterval(intervalModal);
           modal.classList.add('hide');
           message.classList.toggle('success');
-          location.reload();
-        },1000)
-        
-      }
-      else{
-        alert('salah')
+        }, 1000);
+      } else {
+        alert('salah');
       }
     }
-  
   },
 };
 
