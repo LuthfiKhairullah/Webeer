@@ -79,8 +79,9 @@ const Register = {
     }
     const modal = document.querySelector('.modal-otp');
 
-    form.addEventListener('click', () => {
-      // SendEmail();
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      SendEmail();
       modal.classList.toggle('hide');
       const minute = 5;
       let time = minute * 60;
@@ -158,7 +159,6 @@ const Register = {
           clearInterval(intervalModal);
           modal.classList.add('hide');
           message.classList.toggle('success');
-          location.reload();
         }, 1000);
       } else {
         alert('salah');

@@ -1,6 +1,7 @@
 import 'regenerator-runtime';
 import '../styles/style.css';
 import '../styles/login.css';
+import '../styles/addDiscussion.css';
 import '../styles/jobs.css';
 import '../styles/modalOtp.css';
 import '../styles/message.css';

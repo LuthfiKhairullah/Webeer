@@ -1,16 +1,38 @@
 {
     "discussions": [
         {
-            "id": "",
-            "idUser": "",
-            "date": "",
-            "title": "",
+            "id": "123",
+            "idUser": "1234",
+            "date": "16 Desember 2022",
+            "title": "Test",
             "categories": [
                 {
-                    "name": ""
+                    "name": "HTML"
                 }
             ],
-            "discussion": "",
+            "discussion": "lorem ipsum dolor",
+            "pictureId": "",
+            "userReply": [
+                {
+                    "name": "",
+                    "date": "",
+                    "reply": "",
+                    "pictureId": ""
+                }
+            ],
+            "isValid": ""
+        },
+        {
+            "id": "123",
+            "idUser": "1234",
+            "date": "16 Desember 2022",
+            "title": "Coba",
+            "categories": [
+                {
+                    "name": "HTML"
+                }
+            ],
+            "discussion": "lorem ipsum dolor",
             "pictureId": "",
             "userReply": [
                 {

@@ -5,12 +5,12 @@ class searchBar extends HTMLElement {
 
   render() {
     this.innerHTML = `
-    <div class="search">
-    <form class="d-flex">
-    <input class="form-control me-2" type="search" placeholder="Masukkan pekerjaan yang sedang kamu cari" aria-label="Search">
-    <button class="btn btn-dark" type="submit">Search</button>
-  </form>
-  </div>
+      <div class="search">
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Masukkan pekerjaan yang sedang kamu cari" aria-label="Search">
+          <button class="btn btn-dark" type="submit">Search</button>
+        </form>
+      </div>
     `;
   }
 }
