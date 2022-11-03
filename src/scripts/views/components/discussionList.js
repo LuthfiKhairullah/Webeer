@@ -1,4 +1,4 @@
-import { createAddDiscussionTemplate } from '../templates/template-creator';
+import { createAddDiscussionButtonTemplate } from '../templates/template-creator';
 import './discussionItem';
 
 class DiscussionList extends HTMLElement {
@@ -25,7 +25,7 @@ class DiscussionList extends HTMLElement {
       discussionItemElement.discussion = discussion;
       this.appendChild(discussionItemElement);
     });
-    this.innerHTML += createAddDiscussionTemplate();
+    this.innerHTML += createAddDiscussionButtonTemplate();
   }
 }
 

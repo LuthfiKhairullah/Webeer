@@ -1,12 +1,14 @@
 import HomePage from '../views/pages/homepage';
-import Discussion from '../views/pages/forumsPage';
 import Login from '../views/pages/login';
 import Register from '../views/pages/register';
 import jobsPage from '../views/pages/jobsPage';
+import ForumsPage from '../views/pages/forumsPage';
+import AddDiscussionPage from '../views/pages/addDiscussionPage';
 
 const routes = {
-  '/': Discussion,
-  '/homepage': HomePage,
+  '/': HomePage,
+  '/adddiscussion': AddDiscussionPage,
+  '/forums': ForumsPage,
   '/login': Login,
   '/register': Register,
   '/jobs': jobsPage,

@@ -2,21 +2,27 @@
     #filter {
         display: none;
     }
+
+    #close-filter {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 750px) {
     filter-list {
-        z-index: 10;
         background-color: #CCF2F4;
-        width: 100%;
         position: absolute;
-        -webkit-transform: translate(-100%, 0);
         transform: translate(-100%, 0);
-        transition: transform 1s ease;
+        width: 100%;
+        z-index: 10;
+        -webkit-transform: translate(-100%, 0);
     }
 
     .open-filter {
         -webkit-transform: translate(0, 0);
-        transform: translate(0, 0);
+        background-color: #CCF2F4;
+        height: 100vh;
+        transform: translate(100%, 0);
+        transition: transform 1s ease;
     }
 }

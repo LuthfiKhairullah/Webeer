@@ -18,7 +18,7 @@ class AppBar extends HTMLElement {
       <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#/homepage">Homepage</a>
+            <a class="nav-link active" aria-current="page" href="#/forums">Forums</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#/login">Login</a>
