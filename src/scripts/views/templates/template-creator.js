@@ -2,11 +2,21 @@ const DetailJobsSkeleton = (count) => {
   let template = '';
   for (let i = 0; i < count; i += 1) {
     template += `
-    <div class= "card-item">
+    <div class="card-item">
     </div>`;
   }
   return template;
 };
+
+const createDetailJobsTemplate = (job) => `
+    <div class="card-item">
+      <div class="card-body">
+        <div class="card-title">
+          <h5>${job.jobTitle}</h5>
+        </div>
+      </div>
+    </div>;
+`;
 
 const createDiscussionItemTemplate = (discussion) => `
   <div class="mb-2">
@@ -108,6 +118,7 @@ const createProfileTemplate = (user) => `
 
 export {
   DetailJobsSkeleton,
+  createDetailJobsTemplate,
   createDiscussionItemTemplate,
   createAddDiscussionButtonTemplate,
   createFilterListTemplate,

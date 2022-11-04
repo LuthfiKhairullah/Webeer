@@ -1,4 +1,4 @@
-import { DetailJobsSkeleton } from '../templates/template-creator';
+import { createDetailJobsTemplate, DetailJobsSkeleton } from '../templates/template-creator';
 import JobSource from '../../data/jobSource';
 
 const jobsPage = {
@@ -23,6 +23,11 @@ const jobsPage = {
   async afterRender() {
     const jobs = await JobSource.getJobs();
     console.log(jobs);
+    const itemjobsElement = document.querySelector('.item-jobs');
+    itemjobsElement.innerHTML = '';
+    jobs.forEach((job) => {
+      itemjobsElement.innerHTML += createDetailJobsTemplate(job);
+    });
   },
 };
 export default jobsPage;
