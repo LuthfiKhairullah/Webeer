@@ -1,4 +1,5 @@
 import { DetailJobsSkeleton } from '../templates/template-creator';
+import JobSource from '../../data/jobSource';
 
 const jobsPage = {
   async render() {
@@ -19,6 +20,9 @@ const jobsPage = {
         </div>
         `;
   },
-
+  async afterRender() {
+    const jobs = await JobSource.getJobs();
+    console.log(jobs);
+  },
 };
 export default jobsPage;
