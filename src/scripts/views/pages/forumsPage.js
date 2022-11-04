@@ -33,7 +33,7 @@ const ForumsPage = {
       filter: document.querySelector('#filter-drawer'),
       content: document.querySelector('#close-filter'),
     });
-    const discussions = await DataSource.getData();
+    const discussions = await DataSource.discussions();
     const discussionListElement = document.querySelector('discussion-list');
     discussionListElement.discussions = discussions;
   },

@@ -2,10 +2,20 @@
 import data from '../../DATA.json';
 
 class DataSource {
-  static getData() {
+  static discussions() {
     return new Promise((resolve, reject) => {
       if (resolve) {
         resolve(data.discussions);
+      } else {
+        reject('Data is not found');
+      }
+    });
+  }
+
+  static users() {
+    return new Promise((resolve, reject) => {
+      if (resolve) {
+        resolve(data.users);
       } else {
         reject('Data is not found');
       }
