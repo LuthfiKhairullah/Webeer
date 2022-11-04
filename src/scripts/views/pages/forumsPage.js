@@ -39,4 +39,5 @@ const ForumsPage = {
   },
 
 };
+
 export default ForumsPage;

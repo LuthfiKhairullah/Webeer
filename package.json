@@ -1,7 +1,6 @@
 {
   "name": "webeer",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start-dev": "webpack-dev-server --config webpack.dev.js",
@@ -39,5 +38,6 @@
     "bootstrap": "^5.2.2",
     "file-loader": "^6.2.0",
     "regenerator-runtime": "^0.13.10"
-  }
+  },
+  "description": ""
 }
