@@ -9,10 +9,11 @@ const DetailJobsSkeleton = (count) => {
 };
 const createItemJob = (jobs) => `
 <div class = "card-item">
-<h4>${jobs.perusahaan}</h4>
-<h4>${jobs.pekerjaan}</h4>
-<h4>${jobs.deskripsi}</h4>
-<button value=${jobs._id} class="btn-detail">lihat</button>
+<img src="${jobs.image}" class="card-image">
+<h5>${jobs.perusahaan}</h5>
+<h6>${jobs.pekerjaan}</h6>
+<p>${jobs.deskripsi}</p>
+<button value=${jobs._id} class="btn btn-primary fw-bold btn-detail">LIHAT</button>
 </div>
 `;
 

@@ -36,12 +36,12 @@ const jobsPage = {
     const search = document.querySelector('.searchBar');
     const inputSearch = document.querySelector('#searchInput');
     search.addEventListener('submit', async (event) => {
-      event.preventDefault;
+      event.preventDefault();
       const getInputSearch = inputSearch.value;
       console.log(getInputSearch);
       const getSearch = await JobSource.getJobsSearch(getInputSearch);
       console.log(getSearch);
-      jobItemContainer.innerHTML=''
+      jobItemContainer.innerHTML = '';
       getSearch.data.data.forEach((jobs) => {
         jobItemContainer.innerHTML += createItemJob(jobs);
         const btn = document.querySelectorAll('.btn-detail');
