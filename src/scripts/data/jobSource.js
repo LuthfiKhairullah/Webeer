@@ -19,5 +19,14 @@ class JobSource {
       return console.log(error);
     }
   }
+
+  static async getJobsSearch(keyword) {
+    try {
+      const responseJson = axios.get(API_ENDPOINT.JOB_SEARCH(keyword));
+      return responseJson;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
 }
 export default JobSource;

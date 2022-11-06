@@ -1,6 +1,9 @@
-import { DetailJobsSkeleton, createItemJob, createDetailJob } from '../templates/template-creator';
+import {
+  DetailJobsSkeleton,
+  createItemJob,
+  createDetailJob,
+} from '../templates/template-creator';
 import JobSource from '../../data/jobSource';
-import UrlParser from '../../routes/urlParser';
 
 const jobsPage = {
   async render() {
@@ -28,6 +31,21 @@ const jobsPage = {
     job.data.data.forEach((jobs) => {
       jobItemContainer.innerHTML += createItemJob(jobs);
     });
+    console.log(job.data.data);
+
+    const search = document.querySelector('.searchBar');
+    const inputSearch = document.querySelector('#searchInput');
+    search.addEventListener('submit', async (event) => {
+      event.preventDefault;
+      const getInputSearch = inputSearch.value;
+      console.log(getInputSearch);
+      const getSearch = await JobSource.getJobsSearch(getInputSearch);
+      console.log(getSearch);
+      getSearch.data.data.forEach((jobs) => {
+        jobItemContainer.innerHTML += createItemJob(jobs);
+      });
+    });
+
     const btn = document.querySelectorAll('.btn-detail');
     console.log(btn);
     for (let i = 0; i < btn.length; i++) {
@@ -40,8 +58,6 @@ const jobsPage = {
         jobDetailContainer.innerHTML = createDetailJob(detail.data.data);
       });
     }
-
-    console.log(job.data.data);
   },
 };
 export default jobsPage;

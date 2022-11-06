@@ -15,6 +15,7 @@ const createItemJob = (jobs) => `
 <button value=${jobs._id} class="btn-detail">lihat</button>
 </div>
 `;
+
 const createDetailJob = (detail) => `
 <div class = "card-item">
 <h4>${detail.perusahaan}</h4>
