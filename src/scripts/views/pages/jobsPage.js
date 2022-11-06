@@ -41,8 +41,21 @@ const jobsPage = {
       console.log(getInputSearch);
       const getSearch = await JobSource.getJobsSearch(getInputSearch);
       console.log(getSearch);
+      jobItemContainer.innerHTML=''
       getSearch.data.data.forEach((jobs) => {
         jobItemContainer.innerHTML += createItemJob(jobs);
+        const btn = document.querySelectorAll('.btn-detail');
+        console.log(btn);
+        for (let i = 0; i < btn.length; i++) {
+          btn[i].addEventListener('click', async () => {
+            const test = btn[i].value;
+            console.log(test);
+            const detail = await JobSource.getJobsDetail(test);
+            console.log(detail);
+            const jobDetailContainer = document.querySelector('.card');
+            jobDetailContainer.innerHTML = createDetailJob(detail.data.data);
+          });
+        }
       });
     });
 
