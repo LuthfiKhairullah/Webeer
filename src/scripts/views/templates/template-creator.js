@@ -12,7 +12,7 @@ const createItemJob = (jobs) => `
 <h4>${jobs.perusahaan}</h4>
 <h4>${jobs.pekerjaan}</h4>
 <h4>${jobs.deskripsi}</h4>
-<button value=${jobs._id} id="btn-detail">lihat</button>
+<button value=${jobs._id} class="btn-detail">lihat</button>
 </div>
 `;
 const createDetailJob = (detail) => `

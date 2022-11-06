@@ -28,19 +28,19 @@ const jobsPage = {
     job.data.data.forEach((jobs) => {
       jobItemContainer.innerHTML += createItemJob(jobs);
     });
-    const btn = document.getElementById('btn-detail');
+    const btn = document.querySelectorAll('.btn-detail');
     console.log(btn);
-    btn.addEventListener('click', async () => {
-      const test = btn.value;
-      console.log(test);
-      const detail = await JobSource.getJobsDetail(test);
-      console.log(detail);
-      const jobDetailContainer = document.querySelector('.card');
-      jobDetailContainer.innerHTML = createDetailJob(detail.data.data);
-      console.log(url);
-    });
-    const url = UrlParser.parseActiveUrlWithoutCombiner();
-    // const detail = await JobSource.getJobsDetail(url._id);
+    for (let i = 0; i < btn.length; i++) {
+      btn[i].addEventListener('click', async () => {
+        const test = btn[i].value;
+        console.log(test);
+        const detail = await JobSource.getJobsDetail(test);
+        console.log(detail);
+        const jobDetailContainer = document.querySelector('.card');
+        jobDetailContainer.innerHTML = createDetailJob(detail.data.data);
+      });
+    }
+
     console.log(job.data.data);
   },
 };
