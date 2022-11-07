@@ -41,3 +41,9 @@ border: 0px;
 .search input, .search button{
     border-radius: 20px;
 }
+.card-item{
+    padding: 15px;
+}
+.card-image{
+    width: 100px;
+}
