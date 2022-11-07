@@ -7,7 +7,23 @@ const DetailJobsSkeleton = (count) => {
   }
   return template;
 };
+const createItemJob = (jobs) => `
+<div class = "card-item">
+<img src="${jobs.image}" class="card-image">
+<h5>${jobs.perusahaan}</h5>
+<h6>${jobs.pekerjaan}</h6>
+<p>${jobs.deskripsi}</p>
+<button value=${jobs._id} class="btn btn-primary fw-bold btn-detail">LIHAT</button>
+</div>
+`;
 
+const createDetailJob = (detail) => `
+<div class = "card-item">
+<h4>${detail.perusahaan}</h4>
+<h4>${detail.pekerjaan}</h4>
+<h4>${detail.deskripsi}</h4>
+</div>
+`;
 const createDiscussionItemTemplate = (discussion) => `
   <div class="mb-2">
     <a href="/#/${discussion.id}" class="border-0 text-start text-decoration-none text-dark w-100">
@@ -90,4 +106,6 @@ export {
   createDiscussionItemTemplate,
   createAddDiscussionButtonTemplate,
   createFilterListTemplate,
+  createItemJob,
+  createDetailJob,
 };
