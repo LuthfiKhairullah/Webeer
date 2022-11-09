@@ -46,7 +46,6 @@ const jobsPage = {
     search.addEventListener('submit', async (event) => {
       event.preventDefault();
       const getInputSearch = inputSearch.value;
-      console.log(getInputSearch);
       const getSearch = await JobSource.getJobsSearch(getInputSearch);
       console.log(getSearch);
       jobItemContainer.innerHTML = '';
@@ -55,13 +54,20 @@ const jobsPage = {
         const btn = document.querySelectorAll('.btn-detail');
         console.log(btn);
         for (let i = 0; i < btn.length; i++) {
+          // eslint-disable-next-line no-loop-func
           btn[i].addEventListener('click', async () => {
             const test = btn[i].value;
             console.log(test);
             const detail = await JobSource.getJobsDetail(test);
             console.log(detail);
-            const jobDetailContainer = document.querySelector('.card');
+            const jobDetailContainer = document.querySelector('#detail');
             jobDetailContainer.innerHTML = createDetailJob(detail.data.data);
+            const coba = document.querySelector('.test');
+            detail.data.data.details.qualification.forEach((item) => {
+              const li = document.createElement('li');
+              li.innerText = item;
+              coba.appendChild(li);
+            });
           });
         }
       });
