@@ -1,8 +1,12 @@
+<<<<<<< HEAD
+import { createDetailJobsTemplate, DetailJobsSkeleton } from '../templates/template-creator';
+=======
 import {
   DetailJobsSkeleton,
   createItemJob,
   createDetailJob,
 } from '../templates/template-creator';
+>>>>>>> fa59cb29c34dddf5060f15d8839742e9dd203e8d
 import JobSource from '../../data/jobSource';
 
 const jobsPage = {
@@ -25,6 +29,15 @@ const jobsPage = {
         `;
   },
   async afterRender() {
+<<<<<<< HEAD
+    const jobs = await JobSource.getJobs();
+    console.log(jobs);
+    const itemjobsElement = document.querySelector('.item-jobs');
+    itemjobsElement.innerHTML = '';
+    jobs.forEach((job) => {
+      itemjobsElement.innerHTML += createDetailJobsTemplate(job);
+    });
+=======
     const job = await JobSource.getJobs();
     const jobItemContainer = document.querySelector('.item-jobs');
     jobItemContainer.innerHTML = '';
@@ -78,6 +91,7 @@ const jobsPage = {
         });
       });
     }
+>>>>>>> fa59cb29c34dddf5060f15d8839742e9dd203e8d
   },
 };
 export default jobsPage;

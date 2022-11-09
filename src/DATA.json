@@ -47,8 +47,10 @@
     ],
     "users": [
         {
-            "id": "",
-            "name": "",
+            "id": "12345",
+            "name": "Anonym",
+            "email": "anonym@gmail.com",
+            "contact": "081234567890",
             "bio": "",
             "pictureId": ""
         }

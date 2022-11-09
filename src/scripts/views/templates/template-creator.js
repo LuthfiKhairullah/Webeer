@@ -4,7 +4,7 @@ const DetailJobsSkeleton = (count) => {
   let template = '';
   for (let i = 0; i < count; i += 1) {
     template += `
-    <div class= "card-item">
+    <div class="card-item">
     </div>`;
   }
   return template;
@@ -139,6 +139,27 @@ const createFilterListTemplate = () => `
   </div>
 `;
 
+const createProfileTemplate = (user) => `
+  <div class="container pt-2">
+    <div class="card w-100 border-0">
+      <div class="card-body p-5">
+        <h1 class="text-center">Profil Pengguna</h1>
+        <div class="container-img d-flex justify-content-center align-items-center">
+          <img src="./asset/user-solid.svg" alt="Picture Profile" class="picture-profile">
+        </div>
+        <h2>Nama</h2>
+        <p>${user.name}</p>
+        <h2>Email</h2>
+        <p>${user.email}</p>
+        <h2>Kontak</h2>
+        <p>${user.contact}</p>
+        <button class="btn btn-light border-dark">Perbarui Profil</button>
+        <button class="btn btn-danger border-dark">Hapus Akun</button>
+      </div>
+    </div>
+  </div>
+`;
+
 export {
   DetailJobsSkeleton,
   createDiscussionItemTemplate,
@@ -146,4 +167,5 @@ export {
   createFilterListTemplate,
   createItemJob,
   createDetailJob,
+  createProfileTemplate,
 };
