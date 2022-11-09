@@ -16,16 +16,63 @@
 .detail-jobs{
     width: 600px;
     height: 600px;
-    background-color: #F4F9F9;
+    background-color: white;
     margin-top: 20px;
     border-radius: 10px;
+    overflow-y: auto;
+}
+.detail-container{
+    padding:5px
+}
+.header-detail{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.description-detail, .kualifikasi-detail{
+    text-align: justify;
+    font-size: 12px;
+    padding: 10px;
+}
+.work-detail{
+    display: flex;
+}
+.work-detail p{
+    margin: 0;
+}
+.work-1{
+    margin-right: 10px;
+}
+.footer-detail{
+    position: sticky;
+    bottom: 0;
+    background-color: gray;
+    text-align: center;
+}
+.detail-link{
+    margin: 5px;
+}
+.image-detail img{
+    width: 150px;
+    margin-right: 20px;
+}
+.title-detail{
+    width: 100%;
+}
+.title-detail p{
+    margin: 0;
+    font-size: 13px;
 }
 .card-item{
     width: 350px;
     height: 250px;
-    background-color: #F4F9F9;
+    background-color: white;
     margin: 10px auto;
     border-radius: 10px;
+}
+.card-item p{
+    font-size:12px;
+    margin: 2px;
 }
 .detail-jobs .card{
 margin: 50px auto;
