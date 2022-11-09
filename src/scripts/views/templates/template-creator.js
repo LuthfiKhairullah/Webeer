@@ -1,3 +1,5 @@
+import { showFormattedDate } from '../utils/formate-date';
+
 const DetailJobsSkeleton = (count) => {
   let template = '';
   for (let i = 0; i < count; i += 1) {
@@ -10,20 +12,56 @@ const DetailJobsSkeleton = (count) => {
 const createItemJob = (jobs) => `
 <div class = "card-item">
 <img src="${jobs.image}" class="card-image">
-<h5>${jobs.perusahaan}</h5>
-<h6>${jobs.pekerjaan}</h6>
-<p>${jobs.deskripsi}</p>
-<button value=${jobs._id} class="btn btn-primary fw-bold btn-detail">LIHAT</button>
+<h6 class="fw-bold">${jobs.company}</h6>
+<h6>${jobs.profession}</h6>
+<p>${showFormattedDate(jobs.createdAt)}</p>
+<p class="fw-bold">${jobs.address}</p>
+<button value=${jobs._id} class="btn btn-primary fw-bold btn-detail btn-sm">LIHAT</button>
 </div>
 `;
 
 const createDetailJob = (detail) => `
-<div class = "card-item">
-<h4>${detail.perusahaan}</h4>
-<h4>${detail.pekerjaan}</h4>
-<h4>${detail.deskripsi}</h4>
+<div class="detail-container">
+  <div class="header-detail">
+    <div class="image-detail">
+      <img src="${detail.image}">
+    </div>
+    <div class="title-detail">
+      <h4>${detail.company}</h4>
+      <p>${detail.address}</p>
+      <p>${showFormattedDate(detail.createdAt)}</p>
+    </div>
+  </div>
+  <div class="description-detail">
+  <h6>Information</h6>
+  <p>${detail.details.descriptionCompany}</p>
+    <div class="work-detail">
+      <div class="work-1">
+        <p class="fw-bold">Salary</p>
+        <p>${detail.details.salary}</p>
+        <p class="fw-bold">Level</p>
+        <p>${detail.details.level}</p>
+      </div>
+      <div class="work-2">
+        <p class="fw-bold">Work from</p>
+        <p>${detail.details.workplace}</p>
+        <p class="fw-bold">Time</p>
+        <p>${detail.details.timeWork}</p>
+      </div>
+    </div>
+  </div>
+  <div class="kualifikasi-detail">
+    <h6>Requirement</h6>
+    <p>${detail.details.descriptionProfession}</p>
+    <ul class="test"><ul>
+  </div>
+  <div class="footer-detail">
+  <a href="${detail.details.link}"><button type="button" class="detail-link btn btn-primary btn-sm">Apply</button></a>
+  </div>
+
 </div>
 `;
+
 const createDiscussionItemTemplate = (discussion) => `
   <div class="mb-2">
     <a href="/#/${discussion.id}" class="border-0 text-start text-decoration-none text-dark w-100">

@@ -32,9 +32,9 @@ const jobsPage = {
       jobItemContainer.innerHTML += createItemJob(jobs);
     });
     console.log(job.data.data);
-
     const search = document.querySelector('.searchBar');
     const inputSearch = document.querySelector('#searchInput');
+
     search.addEventListener('submit', async (event) => {
       event.preventDefault();
       const getInputSearch = inputSearch.value;
@@ -62,13 +62,20 @@ const jobsPage = {
     const btn = document.querySelectorAll('.btn-detail');
     console.log(btn);
     for (let i = 0; i < btn.length; i++) {
+      // eslint-disable-next-line no-loop-func
       btn[i].addEventListener('click', async () => {
         const test = btn[i].value;
         console.log(test);
         const detail = await JobSource.getJobsDetail(test);
         console.log(detail);
-        const jobDetailContainer = document.querySelector('.card');
+        const jobDetailContainer = document.querySelector('#detail');
         jobDetailContainer.innerHTML = createDetailJob(detail.data.data);
+        const coba = document.querySelector('.test');
+        detail.data.data.details.qualification.forEach((item) => {
+          const li = document.createElement('li');
+          li.innerText = item;
+          coba.appendChild(li);
+        });
       });
     }
   },
