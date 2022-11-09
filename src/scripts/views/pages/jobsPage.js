@@ -3,6 +3,10 @@ import {
   createItemJob,
   createDetailJob,
 } from '../templates/template-creator';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 21f13b0155781079d20412508df373c882a1eb72
 import JobSource from '../../data/jobSource';
 
 const jobsPage = {
@@ -25,6 +29,16 @@ const jobsPage = {
         `;
   },
   async afterRender() {
+<<<<<<< HEAD
+=======
+    const jobs = await JobSource.getJobs();
+    console.log(jobs);
+    const itemjobsElement = document.querySelector('.item-jobs');
+    itemjobsElement.innerHTML = '';
+    jobs.data.data.forEach((job) => {
+      itemjobsElement.innerHTML += createDetailJob(job);
+    });
+>>>>>>> 21f13b0155781079d20412508df373c882a1eb72
     const job = await JobSource.getJobs();
     const jobItemContainer = document.querySelector('.item-jobs');
     jobItemContainer.innerHTML = '';
@@ -32,9 +46,9 @@ const jobsPage = {
       jobItemContainer.innerHTML += createItemJob(jobs);
     });
     console.log(job.data.data);
-
     const search = document.querySelector('.searchBar');
     const inputSearch = document.querySelector('#searchInput');
+
     search.addEventListener('submit', async (event) => {
       event.preventDefault();
       const getInputSearch = inputSearch.value;
@@ -62,13 +76,20 @@ const jobsPage = {
     const btn = document.querySelectorAll('.btn-detail');
     console.log(btn);
     for (let i = 0; i < btn.length; i++) {
+      // eslint-disable-next-line no-loop-func
       btn[i].addEventListener('click', async () => {
         const test = btn[i].value;
         console.log(test);
         const detail = await JobSource.getJobsDetail(test);
         console.log(detail);
-        const jobDetailContainer = document.querySelector('.card');
+        const jobDetailContainer = document.querySelector('#detail');
         jobDetailContainer.innerHTML = createDetailJob(detail.data.data);
+        const coba = document.querySelector('.test');
+        detail.data.data.details.qualification.forEach((item) => {
+          const li = document.createElement('li');
+          li.innerText = item;
+          coba.appendChild(li);
+        });
       });
     }
   },
