@@ -31,6 +31,12 @@ const Login = {
         email: idUser.value,
         password: pwUser.value,
       });
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        document.location = '#/profile';
+        window.location.reload();
+      }
     });
   },
 };
