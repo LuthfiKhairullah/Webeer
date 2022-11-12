@@ -1,3 +1,5 @@
+import User from '../../data/loginSource';
+
 const Login = {
   async render() {
     return `
@@ -18,6 +20,18 @@ const Login = {
         </div>
        </div>
         `;
+  },
+  afterRender() {
+    const formLogin = document.querySelector('#form-login');
+    const idUser = document.querySelector('#emailUser');
+    const pwUser = document.querySelector('#pwdUser');
+    formLogin.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const data = await User.Login({
+        email: idUser.value,
+        password: pwUser.value,
+      });
+    });
   },
 };
 export default Login;

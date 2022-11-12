@@ -30,7 +30,7 @@ const Register = {
     const getPwd = document.querySelector('#pwdUser');
     const progress = document.querySelector('.pwdProgress');
     const progressText = document.querySelector('.textProgress');
-    const form = document.querySelector('#submit');
+    const form = document.querySelector('#form-login');
     getPwd.addEventListener('input', () => {
       const valuePwd = getPwd.value;
       if (valuePwd.length <= 0) {
@@ -66,10 +66,10 @@ const Register = {
     function SendEmail() {
       Email.send({
         Host: 'smtp.elasticemail.com',
-        Username: 'webeerid@gmail.com',
-        Password: '04FF56911EF483E93000C9ED024FAAE0092A',
-        To: document.querySelector('#emailUser').value,
-        From: 'webeerid@gmail.com',
+        Username: 'webeer12345@gmail.com',
+        Password: '366E2719256599563B5C9F73B106A419D8BA',
+        To: 'akunbaru120802@gmail.com',
+        From: 'webeer12345@gmail.com',
         Subject: 'Sending Email using javascript',
         Body: `Kode OTP :${data}`,
       })

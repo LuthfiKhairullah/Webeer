@@ -22,17 +22,11 @@ const jobsPage = {
                     </div>
                 </div>
             </div>
+            <a class="btn-open-job" href="#/addjobs"><button class="btn btn-primary">Membuka Lowongan</button></a>
         </div>
         `;
   },
   async afterRender() {
-    const jobs = await JobSource.getJobs();
-    console.log(jobs);
-    const itemjobsElement = document.querySelector('.item-jobs');
-    itemjobsElement.innerHTML = '';
-    jobs.data.data.forEach((job) => {
-      itemjobsElement.innerHTML += createDetailJob(job);
-    });
     const job = await JobSource.getJobs();
     const jobItemContainer = document.querySelector('.item-jobs');
     jobItemContainer.innerHTML = '';
@@ -56,6 +50,7 @@ const jobsPage = {
         for (let i = 0; i < btn.length; i++) {
           // eslint-disable-next-line no-loop-func
           btn[i].addEventListener('click', async () => {
+            event.preventDefault();
             const test = btn[i].value;
             console.log(test);
             const detail = await JobSource.getJobsDetail(test);
@@ -77,7 +72,8 @@ const jobsPage = {
     console.log(btn);
     for (let i = 0; i < btn.length; i++) {
       // eslint-disable-next-line no-loop-func
-      btn[i].addEventListener('click', async () => {
+      btn[i].addEventListener('click', async (event) => {
+        event.preventDefault();
         const test = btn[i].value;
         console.log(test);
         const detail = await JobSource.getJobsDetail(test);
