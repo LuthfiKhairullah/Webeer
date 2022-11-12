@@ -14,10 +14,36 @@
     bottom:50px;
     transition: all 0.3s;
 }
+
+.message.error{
+    left: 80px;
+    bottom:50px;
+    transition: all 0.3s;
+}
+.container-bar.hide{
+    display: none;
+}
+.message.error .message-text{
+    color: red;
+    font-weight: bold;
+    }
 .message.success .message-text{
-color: green;
+color: #54B435;
 font-weight: bold;
 }
 .message p{
     padding: 10px;
 }
+#container-bar {
+    width: 80%;
+    background-color: grey;
+    margin: 0 auto;
+    border-radius: 30px;
+  }
+  
+  #progress-bar {
+    width: 1%;
+    height: 10px;
+    background-color: #54B435;
+    border-radius: 30px;
+  }

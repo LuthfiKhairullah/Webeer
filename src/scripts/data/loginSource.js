@@ -21,7 +21,28 @@ class User {
       );
       return response;
     } catch (err) {
-      console.log(err);
+      return { error: err.response.data.message || err.message };
+    }
+  }
+
+  static async Logout() {
+    try {
+      const jwt = localStorage.getItem('token').replaceAll('"', '');
+      const response = await axios({
+        url: `${API_ENDPOINT.LOGOUT}`,
+        method: 'POST',
+        headers: {
+          auth: `${jwt}`,
+        },
+      });
+      if (response.statusText !== 'OK') {
+        throw new Error(response.data.message);
+      }
+      localStorage.removeItem('token');
+      window.location.reload();
+      return response.data;
+    } catch (err) {
+      return { error: err.response.data.message || err.message };
     }
   }
 }
