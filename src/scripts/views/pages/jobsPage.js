@@ -3,10 +3,6 @@ import {
   createItemJob,
   createDetailJob,
 } from '../templates/template-creator';
-<<<<<<< HEAD
-=======
-
->>>>>>> 21f13b0155781079d20412508df373c882a1eb72
 import JobSource from '../../data/jobSource';
 
 const jobsPage = {
@@ -29,8 +25,6 @@ const jobsPage = {
         `;
   },
   async afterRender() {
-<<<<<<< HEAD
-=======
     const jobs = await JobSource.getJobs();
     console.log(jobs);
     const itemjobsElement = document.querySelector('.item-jobs');
@@ -38,7 +32,6 @@ const jobsPage = {
     jobs.data.data.forEach((job) => {
       itemjobsElement.innerHTML += createDetailJob(job);
     });
->>>>>>> 21f13b0155781079d20412508df373c882a1eb72
     const job = await JobSource.getJobs();
     const jobItemContainer = document.querySelector('.item-jobs');
     jobItemContainer.innerHTML = '';
