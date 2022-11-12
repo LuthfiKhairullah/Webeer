@@ -6,7 +6,10 @@ class message extends HTMLElement {
   render() {
     this.innerHTML = `
     <div class="message">
-    <p> Register <span class="message-text"></span> </p>
+      <span class="message-text"></span>
+      <div id="container-bar" class="container-bar">
+        <div id="progress-bar"></div>
+      </div>
     </div>`;
   }
 }

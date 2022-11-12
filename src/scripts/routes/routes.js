@@ -5,6 +5,7 @@ import jobsPage from '../views/pages/jobsPage';
 import ForumsPage from '../views/pages/forumsPage';
 import AddDiscussionPage from '../views/pages/addDiscussionPage';
 import ProfilePage from '../views/pages/profilepage';
+import addJobPage from '../views/pages/addJobPage';
 
 const routes = {
   '/': HomePage,
@@ -14,6 +15,7 @@ const routes = {
   '/profile': ProfilePage,
   '/register': Register,
   '/jobs': jobsPage,
+  '/addjobs': addJobPage,
 };
 
 export default routes;
