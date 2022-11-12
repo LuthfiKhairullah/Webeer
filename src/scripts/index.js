@@ -7,6 +7,7 @@ import '../styles/jobs.css';
 import '../styles/modalOtp.css';
 import '../styles/message.css';
 import '../styles/profile.css';
+import '../styles/addjobs.css';
 import './views/components/appBar';
 import './views/components/footer';
 import './views/components/searchBar';
