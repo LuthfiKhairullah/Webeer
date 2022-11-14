@@ -3,6 +3,7 @@ import User from '../../data/loginSource';
 const Login = {
   async render() {
     return `
+    <modal-not-login></modal-not-login>
        <div id="container-login">
         <div class ="card">
         <img src="./asset/hero-login.png">
@@ -22,6 +23,17 @@ const Login = {
         `;
   },
   afterRender() {
+    // modal
+    const modal = document.querySelector('.modal-error');
+    const verify = localStorage.getItem('login');
+    console.log(verify);
+    if (verify != null) {
+      modal.classList.add('show');
+      setTimeout(() => {
+        modal.classList.toggle('show');
+        localStorage.removeItem('login');
+      }, 3000);
+    }
     const formLogin = document.querySelector('#form-login');
     const idUser = document.querySelector('#emailUser');
     const pwUser = document.querySelector('#pwdUser');

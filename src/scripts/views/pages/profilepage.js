@@ -3,6 +3,14 @@ import '../components/userProfile';
 
 const ProfilePage = {
   async render() {
+    const getToken = localStorage.getItem('token');
+    console.log(getToken);
+    if (getToken === null) {
+      document.location = '#/login';
+      localStorage.setItem('login', 'false');
+      window.reload();
+    }
+
     return `
         <user-profile></user-profile>
     `;

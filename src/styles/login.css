@@ -5,7 +5,7 @@
 }
 .card{
     width: 300px;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 #form-login{
     padding: 15px;
@@ -31,4 +31,7 @@
 #container-register{
     display: flex;
     justify-content: center;
+}
+#submit{
+    margin-top: 15px;
 }

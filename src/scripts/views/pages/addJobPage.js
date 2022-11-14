@@ -1,5 +1,12 @@
 const addJobPage = {
   async render() {
+    const getToken = localStorage.getItem('token');
+    console.log(getToken);
+    if (getToken === null) {
+      document.location = '#/login';
+      localStorage.setItem('login', 'false');
+      window.reload();
+    }
     return `
     <div class="container-add-job">
         <form>
