@@ -15,52 +15,34 @@ const Login = {
               <input type="password" class="form-control" id="pwdUser" placeholder="Masukkan Password Anda">
             </div>
             <p>Kamu belum memiliki akun? <span> <a href="#/register">Daftar Sekarang</a> </span> </p>
-            <button type="submit" class="btn btn-primary mb-3">Login</button>
+            <button type="submit" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
           </form>
+        </div>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title " id="exampleModalLabel"></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
         </div>
         </div>
         <message-container></message-container>
         `;
   },
   afterRender() {
-    // modal
-    const modal = document.querySelector('.modal-error');
-    const verify = localStorage.getItem('login');
-    console.log(verify);
-    if (verify != null) {
-      modal.classList.add('show');
-      setTimeout(() => {
-        modal.classList.toggle('show');
-        localStorage.removeItem('login');
-      }, 3000);
-    }
     const formLogin = document.querySelector('#form-login');
     const idUser = document.querySelector('#emailUser');
     const pwUser = document.querySelector('#pwdUser');
-    const messageText = document.querySelector('.message-text');
-    const message = document.querySelector('.message');
-    const bar = document.querySelector('.container-bar');
-    let i = 0;
-
-    // BAR
-    const move = () => {
-      if (i == 0) {
-        i = 1;
-        const elem = document.getElementById('progress-bar');
-        let width = 100;
-        const id = setInterval(frame, 10);
-        // eslint-disable-next-line no-inner-declarations
-        function frame() {
-          if (width <= 0) {
-            clearInterval(id);
-            i = 0;
-          } else {
-            width--;
-            elem.style.width = `${width}%`;
-          }
-        }
-      }
-    };
+    const messageText = document.querySelector('.modal-body');
+    const message = document.querySelector('.modal-title');
 
     // FORM LOGIN
     console.log(message);
@@ -72,18 +54,13 @@ const Login = {
       });
       if (data.error) {
         messageText.innerHTML = `${data.error}`;
-        message.classList.add('error');
-        bar.classList.add('hide');
-        setTimeout(() => {
-          message.classList.toggle('error');
-          bar.classList.toggle('hide');
-        }, 1500);
+        message.innerHTML = 'WARNING';
+        message.classList.add('text-warning');
       } else {
         messageText.innerHTML = `${data.data.message}`;
-        message.classList.add('success');
-        move();
+        message.innerHTML = 'SUCCESS';
+        message.classList.add('text-success');
         setTimeout(() => {
-          message.classList.toggle('success');
           document.location = '#/profile';
           window.location.reload();
         }, 1500);

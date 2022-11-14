@@ -1,6 +1,7 @@
 #container-page-jobs{
     max-width: 1200px;
     margin:  auto;
+    margin-top: 50px;
 }
 .container-jobs{
     display: flex;
@@ -81,7 +82,7 @@ background-color: transparent;
 border: 0px;
 }
 .search{
-    padding: 10px;
+    padding: 30px;
     max-width: 1000px;
     margin: 0 auto;
 }

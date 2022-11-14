@@ -8,13 +8,12 @@ import '../styles/modalOtp.css';
 import '../styles/message.css';
 import '../styles/profile.css';
 import '../styles/addjobs.css';
-import '../styles/modalNotLogin.css';
+import '../styles/discussion.css'
 import './views/components/appBar';
 import './views/components/footer';
 import './views/components/searchBar';
 import './views/components/message';
 import './views/components/otp';
-import './views/components/modalNotLogin';
 import Main from './views/main';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';

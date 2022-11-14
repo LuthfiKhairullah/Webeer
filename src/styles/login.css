@@ -1,11 +1,10 @@
 #container-login{
     display: flex;
     justify-content: center;
-    background-color: #CCF2F4;
 }
 .card{
     width: 300px;
-    margin-top: 50px;
+    margin-top: 100px;
 }
 #form-login{
     padding: 15px;

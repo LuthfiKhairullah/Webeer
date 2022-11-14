@@ -1,5 +1,6 @@
 import DataSource from '../../data/dataSource';
 import '../components/userProfile';
+import { UserDiscussionSkeleton } from '../templates/template-creator';
 
 const ProfilePage = {
   async render() {
@@ -13,6 +14,9 @@ const ProfilePage = {
 
     return `
         <user-profile></user-profile>
+        <div class = "container-user-discussion">
+        ${UserDiscussionSkeleton(10)}
+        </div>
     `;
   },
 
