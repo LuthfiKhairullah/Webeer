@@ -31,7 +31,7 @@ const AddDiscussionPage = {
                     <h3 class="card-text">Diskusi</h3>
                     <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" placeholder="Masukkan Judul Diskusi">
                     <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
-                    placeholder=""></textarea>
+                    placeholder="Masukkan diskusi"></textarea>
                     <button class="btn btn-light border">Kembali</button>
                     <button type="submit" class="btn btn-dark">Kirim</button>
                 </form>

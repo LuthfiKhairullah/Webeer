@@ -2,6 +2,7 @@ import '../components/discussionDetail';
 import '../components/discussionReply';
 import DiscussionSource from '../../data/discussionSource';
 import UrlParser from '../../routes/urlParser';
+import User from '../../data/loginSource';
 
 const DetailDiscussionPage = {
   async render() {
@@ -22,8 +23,11 @@ const DetailDiscussionPage = {
     const discussions = await DiscussionSource.getDiscussion(url.id);
     const discussionListElement = document.querySelector('discussion-detail');
     discussionListElement.discussion = discussions;
-    console.log(discussions);
-
+    const user = await User.getUser();
+    const userOnlyElement = document.querySelector('#user-only');
+    if (user._id !== discussions.userid) {
+      userOnlyElement.classList.add('d-none');
+    }
     const discussionReply = await DiscussionSource.getDiscussionReply(url.id);
     const discussionReplyListElement = document.querySelector('discussion-reply');
     discussionReply.forEach((reply) => {

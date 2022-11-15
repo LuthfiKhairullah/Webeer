@@ -32,6 +32,21 @@ class DiscussionSource {
     }
   }
 
+  static async getUserDiscussion() {
+    try {
+      const jwt = localStorage.getItem('token').replaceAll('"', '');
+      const responseJson = await axios({
+        url: `${API_ENDPOINT.DISCUSSION_USER}`,
+        headers: {
+          auth: `${jwt}`,
+        },
+      });
+      return responseJson.data.data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+
   static async addDiscussion(discussion) {
     try {
       const jwt = localStorage.getItem('token').replaceAll('"', '');

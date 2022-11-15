@@ -46,6 +46,21 @@ class User {
     }
   }
 
+  static async getUser() {
+    try {
+      const jwt = localStorage.getItem('token').replaceAll('"', '');
+      const responseJson = await axios({
+        url: `${API_ENDPOINT.USER}`,
+        headers: {
+          auth: `${jwt}`,
+        },
+      });
+      return responseJson.data.data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+
   static async Logout() {
     try {
       const jwt = localStorage.getItem('token').replaceAll('"', '');

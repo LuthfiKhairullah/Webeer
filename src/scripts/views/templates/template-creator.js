@@ -80,11 +80,9 @@ const createDiscussionItemTemplate = (discussion) => {
               <h5>${discussion.title}</h5>
               <div class="text-end">
                 <span>${discussion.username}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="height: 20px;">
-                  <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                  <path
-                    d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
-                </svg>
+                <div class="container-img-discussion d-inline">
+                  <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion">
+                </div>
               </div>
             </div>
             <small class="card-subtitle mb-2 text-muted">${discussion.date}</small>
@@ -117,15 +115,53 @@ const createDiscussionDetailTemplate = (discussion) => {
     discussion.isSolved = 'Solved';
   }
   return `
-    <div class="container bg-white pt-5">
-      <h1>${discussion.title}</h1>
+    <div class="container bg-white padding rounded">
+      <div class="d-flex justify-content-between">
+        <h1>${discussion.title}</h1>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn btn-warning fw-bold" id="user-only">Ubah</button>
+        <div class="modal fade" id="modal-edit">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5">Ubah Diskusi</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <h3 class="card-text">Kategori</h3>
+                <select name="kategori" id="kategori" class="form-select mb-2">
+                  <option selected>Pilih kategori...</option>
+                  <option value="html">HTML</option>
+                  <option value="javascript">JavaScript</option>
+                  <option value="php">PHP</option>
+                </select>
+                <select name="kategoris" id="kategoris" class="form-select mb-2">
+                  <option selected>Pilih kategori...</option>
+                  <option value="html">HTML</option>
+                  <option value="javascript">JavaScript</option>
+                  <option value="php">PHP</option>
+                </select>
+                <h3 class="card-text">Diskusi</h3>
+                <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" value="${discussion.title}" placeholder="Masukkan Judul Diskusi">
+                <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
+                placeholder="Masukkan Diskusi">${discussion.discussion}</textarea>
+                <input class="form-check-input" type="checkbox" id="invalidCheck">
+                <label class="form-check-label" for="invalidCheck">
+                  Solved
+                </label>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Simpan</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="${isSolvedClass} px-2 rounded d-inline-block">${discussion.isSolved}</div>
       <div class="d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="height: 16px;">
-          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-          <path
-            d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
-        </svg>
+        <div class="container-img-discussion">
+          <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion">
+        </div>
         <h2 class="ms-2" style="font-size: 24px">${discussion.username}</h2>
       </div>
       <h3 class="mb-2 text-muted" style="font-size: 16px">${discussion.date}</h3>
@@ -148,6 +184,9 @@ const createDiscussionDetailTemplate = (discussion) => {
 const createDiscussionReplyTemplate = (discussion) => `
   <div class="container bg-white pt-3">
       <div class="d-flex align-items-top p-2">
+        <div class="container-img-reply">
+          <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-reply">
+        </div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="height: 30px;">
           <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
           <path
@@ -212,30 +251,45 @@ const createFilterListTemplate = () => `
   </div>
 `;
 
-const createProfileTemplate = (user) => `
-  <div class="container pt-1">
-    <div class="card w-100 border-0">
-      <div class="card-body p-5">
-        <h1 class="text-center">Profil Pengguna</h1>
-        <div class="d-flex flex-row">
-        <div class="container-img d-flex justify-content-center align-items-center">
-          <img src="./asset/user-solid.svg" alt="Picture Profile" class="picture-profile">
+const createProfileTemplate = (user) => {
+  if (user.bio === undefined) {
+    user.bio = '-';
+  }
+  if (user.contact === undefined) {
+    user.contact = '-';
+  }
+  if (user.profession === undefined) {
+    user.profession = '-';
+  }
+  return `
+    <div class="container pt-1">
+      <div class="card w-100 border-0">
+        <div class="card-body p-5">
+          <h1 class="text-center">Profil Pengguna</h1>
+          <div class="d-flex flex-row">
+            <div class="container-img">
+              <img src="${user.image}" alt="Picture Profile" class="picture-profile">
+            </div>
+            <div class="container">
+              <h2>Nama</h2>
+              <p>${user.username}</p>
+              <h2>Email</h2>
+              <p>${user.email}</p>
+              <h2>Profesi</h2>
+              <p>${user.profession}</p>
+              <h2>Kontak</h2>
+              <p>${user.contact}</p>
+            </div>
+          </div>
+          <h2>Bio</h2>
+          <p>${user.bio}</p>
+          <button class="btn btn-light border-dark">Perbarui Profil</button>
+          <button class="btn btn-danger border-dark">Hapus Akun</button>
         </div>
-        <div class="container">
-        <h2>Nama</h2>
-        <p>${user.name}</p>
-        <h2>Pekerjaan</h2>
-        <p>${user.email}</p>
-        <h2>Kontak</h2>
-        <p>${user.contact}</p>
-        </div>
-        </div>
-        <button class="btn btn-light border-dark">Perbarui Profil</button>
-        <button class="btn btn-danger border-dark">Hapus Akun</button>
       </div>
     </div>
-  </div>
-`;
+  `;
+};
 
 const createNavbarTemplateBeforeLogin = () => `
 <nav class="navbar fixed-top navbar-expand-lg  ">
