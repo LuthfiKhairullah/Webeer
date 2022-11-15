@@ -79,7 +79,7 @@ const createDiscussionItemTemplate = (discussion) => {
             <div class="card-title d-flex justify-content-between">
               <h5>${discussion.title}</h5>
               <div class="text-end">
-                <span>${discussion.name}</span>
+                <span>${discussion.username}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="height: 20px;">
                   <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
                   <path
@@ -126,7 +126,7 @@ const createDiscussionDetailTemplate = (discussion) => {
           <path
             d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
         </svg>
-        <h2 class="ms-2" style="font-size: 24px">${discussion.name}</h2>
+        <h2 class="ms-2" style="font-size: 24px">${discussion.username}</h2>
       </div>
       <h3 class="mb-2 text-muted" style="font-size: 16px">${discussion.date}</h3>
       <p class="text-justify">${discussion.discussion}</p>
@@ -168,7 +168,7 @@ const createAddDiscussionButtonTemplate = () => `
 `;
 
 const createFilterListTemplate = () => `
-  <div id="filter-drawer" class="container-fluid mt-2">
+  <div id="filter-drawer" class="container-fluid">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 18px;">
