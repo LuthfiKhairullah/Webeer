@@ -140,19 +140,23 @@ const createFilterListTemplate = () => `
 `;
 
 const createProfileTemplate = (user) => `
-  <div class="container pt-2">
+  <div class="container pt-1">
     <div class="card w-100 border-0">
       <div class="card-body p-5">
         <h1 class="text-center">Profil Pengguna</h1>
+        <div class="d-flex flex-row">
         <div class="container-img d-flex justify-content-center align-items-center">
           <img src="./asset/user-solid.svg" alt="Picture Profile" class="picture-profile">
         </div>
+        <div class="container">
         <h2>Nama</h2>
         <p>${user.name}</p>
-        <h2>Email</h2>
+        <h2>Pekerjaan</h2>
         <p>${user.email}</p>
         <h2>Kontak</h2>
         <p>${user.contact}</p>
+        </div>
+        </div>
         <button class="btn btn-light border-dark">Perbarui Profil</button>
         <button class="btn btn-danger border-dark">Hapus Akun</button>
       </div>
@@ -161,22 +165,22 @@ const createProfileTemplate = (user) => `
 `;
 
 const createNavbarTemplateBeforeLogin = () => `
-<nav class="navbar navbar-expand-lg bg-light ">
+<nav class="navbar fixed-top navbar-expand-lg  ">
 <div class="container-fluid">
-  <a class="navbar-brand" href="#">Webeer</a>
+  <a class="navbar-brand text-light fw-bold" href="#">WEBEER</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#/forums">Forums</a>
+        <a class="nav-link text-light" aria-current="page" href="#/forums">Forums</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#/jobs">Jobs</a>
+        <a class="nav-link text-light" href="#/jobs">Jobs</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#/login">Login</a>
+        <a class="nav-link text-light" href="#/login">Login</a>
       </li>
     </ul>
   </div>
@@ -184,30 +188,39 @@ const createNavbarTemplateBeforeLogin = () => `
 </nav>`;
 
 const createNavbarTemplateAfterLogin = () => `
-<nav class="navbar navbar-expand-lg bg-light ">
+<nav class="navbar fixed-top navbar-expand-lg ">
 <div class="container-fluid">
-  <a class="navbar-brand" href="#">Webeer</a>
+  <a class="navbar-brand text-light fw-bold" href="#">Webeer</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#/profile">Profile</a>
+        <a class="nav-link text-light " aria-current="page" href="#/profile">Profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#/forums">Forums</a>
+        <a class="nav-link text-light " aria-current="page" href="#/forums">Forums</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#/jobs">Jobs</a>
+        <a class="nav-link text-light " href="#/jobs">Jobs</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" id="logout">Logout</a>
+        <a class="nav-link text-light " href="#" id="logout">Logout</a>
       </li>
     </ul>
   </div>
 </div>
 </nav>`;
+const UserDiscussionSkeleton = (count) => {
+  let template = '';
+  for (let i = 0; i < count; i += 1) {
+    template += `
+    <div class="card-item-discussion-user">
+    </div>`;
+  }
+  return template;
+};
 export {
   DetailJobsSkeleton,
   createDiscussionItemTemplate,
@@ -218,4 +231,5 @@ export {
   createProfileTemplate,
   createNavbarTemplateAfterLogin,
   createNavbarTemplateBeforeLogin,
+  UserDiscussionSkeleton,
 };

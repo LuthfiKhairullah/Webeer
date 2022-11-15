@@ -1,5 +1,12 @@
 const AddDiscussionPage = {
   async render() {
+    const getToken = localStorage.getItem('token');
+    console.log(getToken);
+    if (getToken === null) {
+      document.location = '#/login';
+      localStorage.setItem('login', 'false');
+      window.reload();
+    }
     return `
     <div class="container pt-2">
         <div class="card w-100 border-0">
