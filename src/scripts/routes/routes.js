@@ -6,11 +6,13 @@ import ForumsPage from '../views/pages/forumsPage';
 import AddDiscussionPage from '../views/pages/addDiscussionPage';
 import ProfilePage from '../views/pages/profilepage';
 import addJobPage from '../views/pages/addJobPage';
+import DetailDiscussionPage from '../views/pages/detailDiscussionPage';
 
 const routes = {
   '/': HomePage,
   '/adddiscussion': AddDiscussionPage,
   '/forums': ForumsPage,
+  '/detail/:id': DetailDiscussionPage,
   '/login': Login,
   '/profile': ProfilePage,
   '/register': Register,

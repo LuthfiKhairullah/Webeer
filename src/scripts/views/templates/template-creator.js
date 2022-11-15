@@ -62,31 +62,104 @@ const createDetailJob = (detail) => `
 </div>
 `;
 
-const createDiscussionItemTemplate = (discussion) => `
-  <div class="mb-2">
-    <a href="/#/${discussion.id}" class="border-0 text-start text-decoration-none text-dark w-100">
-      <div class="card w-100 m-0">
-        <div class="card-body">
-          <div class="card-title d-flex justify-content-between">
-            <h5>${discussion.title}</h5>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="height: 20px;">
-              <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-              <path
-                d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
-            </svg>
+const createDiscussionItemTemplate = (discussion) => {
+  let isSolvedClass = '';
+  if (discussion.isSolved === false) {
+    isSolvedClass = 'text-bg-danger';
+    discussion.isSolved = 'Not Solved';
+  } else {
+    isSolvedClass = 'text-bg-success';
+    discussion.isSolved = 'Solved';
+  }
+  return `
+    <div class="mb-2">
+      <a href="/#/detail/${discussion._id}" class="border-0 text-start text-decoration-none text-dark w-100">
+        <div class="card w-100 m-0">
+          <div class="card-body">
+            <div class="card-title d-flex justify-content-between">
+              <h5>${discussion.title}</h5>
+              <div class="text-end">
+                <span>${discussion.name}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="height: 20px;">
+                  <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                  <path
+                    d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                </svg>
+              </div>
+            </div>
+            <small class="card-subtitle mb-2 text-muted">${discussion.date}</small>
+            <p class="card-text">${discussion.discussion}</p>
           </div>
-          <small class="card-subtitle mb-2 text-muted">${discussion.date}</small>
-          <p class="card-text">${discussion.discussion}</p>
+          <div class="card-footer bg-white d-flex justify-content-between">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
+                <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path
+                  d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
+              </svg>
+              <span>${discussion.reply.length}</span>
+            </div>
+            <div class="${isSolvedClass} px-2 rounded">${discussion.isSolved}</div>
+          </div>
         </div>
-        <div class="card-footer bg-white">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-            <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-            <path
-              d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-          </svg>
+      </a>
+    </div>
+  `;
+};
+
+const createDiscussionDetailTemplate = (discussion) => {
+  let isSolvedClass = '';
+  if (discussion.isSolved === false) {
+    isSolvedClass = 'text-bg-danger';
+    discussion.isSolved = 'Not Solved';
+  } else {
+    isSolvedClass = 'text-bg-success';
+    discussion.isSolved = 'Solved';
+  }
+  return `
+    <div class="container bg-white pt-5">
+      <h1>${discussion.title}</h1>
+      <div class="${isSolvedClass} px-2 rounded d-inline-block">${discussion.isSolved}</div>
+      <div class="d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="height: 16px;">
+          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+          <path
+            d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+        </svg>
+        <h2 class="ms-2" style="font-size: 24px">${discussion.name}</h2>
+      </div>
+      <h3 class="mb-2 text-muted" style="font-size: 16px">${discussion.date}</h3>
+      <p class="text-justify">${discussion.discussion}</p>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
+        <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+        <path
+          d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
+      </svg>
+      <span>${discussion.reply.length}</span>
+      <form id="form-discussion-reply" class="my-2">
+        <input type="text" name="inputReply" id="inputReply" class="form-control mb-2" placeholder="Masukkan Jawaban Anda">
+        <button type="submit" class="btn btn-dark">Kirim</button>
+      </form>
+      <hr class="m-0">
+    </div>
+  `;
+};
+
+const createDiscussionReplyTemplate = (discussion) => `
+  <div class="container bg-white pt-3">
+      <div class="d-flex align-items-top p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="height: 30px;">
+          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+          <path
+            d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+        </svg>
+        <div class="ms-2">
+          <h2 style="font-size: 20px">${discussion.name}</h2>
+          <h3 class="mb-2 text-muted" style="font-size: 14px">${discussion.date}</h3>
+          <p style="font-size: 18px">${discussion.reply}</p>
         </div>
       </div>
-    </a>
+      <hr class="my-2">
   </div>
 `;
 
@@ -211,8 +284,10 @@ const createNavbarTemplateAfterLogin = () => `
 export {
   DetailJobsSkeleton,
   createDiscussionItemTemplate,
+  createDiscussionDetailTemplate,
   createAddDiscussionButtonTemplate,
   createFilterListTemplate,
+  createDiscussionReplyTemplate,
   createItemJob,
   createDetailJob,
   createProfileTemplate,

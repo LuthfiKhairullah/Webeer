@@ -1,8 +1,8 @@
-import DataSource from '../../data/dataSource';
 import '../components/discussionList';
 import '../components/searchBar';
 import '../components/filterList';
 import FilterInitiator from '../../utils/filter-initiator';
+import DiscussionSource from '../../data/discussionSource';
 
 const ForumsPage = {
   async render() {
@@ -33,7 +33,8 @@ const ForumsPage = {
       filter: document.querySelector('#filter-drawer'),
       content: document.querySelector('#close-filter'),
     });
-    const discussions = await DataSource.discussions();
+    const discussions = await DiscussionSource.getAllDiscussion();
+    console.log(discussions.data);
     const discussionListElement = document.querySelector('discussion-list');
     discussionListElement.discussions = discussions;
   },

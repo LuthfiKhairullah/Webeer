@@ -17,7 +17,9 @@ class DiscussionList extends HTMLElement {
 
   render() {
     this.innerHTML = '';
+    console.log(this._discussions);
     this._discussions.forEach((discussion) => {
+      console.log(discussion);
       // const search = document.querySelector('search-bar').value;
       const discussionItemElement = document.createElement('discussion-item');
       // const discussionTitle = discussion.title.toLowerCase();
