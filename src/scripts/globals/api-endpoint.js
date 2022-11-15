@@ -7,6 +7,7 @@ const API_ENDPOINT = {
   JOB_ITEM: `${CONFIG.BASE_URL}/jobs/all`,
   JOB_DETAIL: (_id) => `${CONFIG.BASE_URL}/jobs/detail/${_id}`,
   JOB_SEARCH: (keyword) => `${CONFIG.BASE_URL}/jobs?profession=${keyword}`,
+  REGISTER: `${CONFIG.BASE_URL}/users/register`,
   LOGIN: `${CONFIG.BASE_URL}/users/login`,
   LOGOUT: `${CONFIG.BASE_URL}/users/logout`,
 };

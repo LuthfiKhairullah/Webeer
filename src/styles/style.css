@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 main{
-    height: 800px;
-    background-color: #CCF2F4;
+    height: 1200px;
+    background-color:#607EAA;
+}
+
+.navbar{
+    
+    background-color: #1C3879;
 }
