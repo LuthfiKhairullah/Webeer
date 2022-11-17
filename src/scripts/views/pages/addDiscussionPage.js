@@ -68,9 +68,9 @@ const AddDiscussionPage = {
       console.log(addDiscussion);
 
       if (addDiscussion.error) {
-        alert('Success');
-      } else {
         alert('Failed');
+      } else {
+        alert('Success');
       }
     });
   },
