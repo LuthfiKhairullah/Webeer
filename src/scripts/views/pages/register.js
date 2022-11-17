@@ -23,18 +23,34 @@ const Register = {
               </div>
               
             <p>Mendaftar sebagai</p>
-
-            <button type="submit" class="btn btn-primary mb-3" id="submit">Register</button>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="role-user" >
+            <option value="1">Programmer</option>
+            <option value="2">Company</option>
+            </select>
+            <button type="submit" class="btn btn-primary mb-3"data-bs-toggle="modal" data-bs-target="#exampleModal" id="submit">Register</button>
             </form>
           </div>
           </div>
-          <message-container></message-container>
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title " id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+          </div>
           `;
   },
   async afterRender() {
     // const progress = document.querySelector('.pwdProgress');
-    // const progressText = document.querySelector('.textProgress');
-    // const message = document.querySelector('.message');
+
     const getPwd = document.querySelector('#pwdUser');
     // const messageText = document.querySelector('.message-text');
     // getPwd.addEventListener('input', () => {
@@ -63,28 +79,33 @@ const Register = {
     const form = document.querySelector('#form-login');
     const Username = document.querySelector('#Username');
     const email = document.querySelector('#emailUser');
-
-    // const chooseRole = document.querySelector('#option1');
-
+    const selected = document.getElementById('role-user');
+    const title = document.querySelector('.modal-title');
+    const message = document.querySelector('.modal-body');
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      // const getRole = chooseRole.checked;
-      // let Role = 'developer';
-      // if (!getRole) {
-      //   Role = 'company';
-      // }
-      console.log(Username.value, email.value, getPwd.value);
+      const { text } = selected.options[selected.selectedIndex];
       const data = await User.Register({
         username: Username.value,
         email: email.value,
         password: getPwd.value,
+        role: text,
       });
       if (data.error) {
         console.log(data.error);
+        title.innerText = 'WARNING';
+        message.innerText = data.error;
+        title.classList.add('text-warning');
       } else {
-        console.log(data.data.message);
+        console.log(data);
+        title.innerText = 'SUCCESS';
+        message.innerText = 'Selamat registrasi anda berhasil, silahkan verifikasi';
+        title.classList.add('text-success');
+        localStorage.setItem('email', JSON.stringify(data.email));
+        localStorage.setItem('idUser', JSON.stringify(data.idUser));
+        document.location = '#/verification';
+        window.location.reload();
       }
-      // console.log(Username.value,email.value,getPwd.value,Role);
     });
     // const modal = document.querySelector('.modal-otp');
 
