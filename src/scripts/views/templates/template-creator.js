@@ -254,7 +254,7 @@ const createFilterListTemplate = () => `
         <div class="filterCategory"></div>
       </div>
       <div>
-        <button type="button" class="btn btn-danger">Reset</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
         <button type="submit" class="btn btn-dark">Filter</button>
       </div>
     </form>
