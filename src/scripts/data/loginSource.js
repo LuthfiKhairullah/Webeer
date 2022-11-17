@@ -3,7 +3,7 @@ import API_ENDPOINT from '../globals/api-endpoint';
 
 class User {
   static async Register({
-    username, email, password,
+    username, email, password, role,
   }) {
     try {
       const url = `${API_ENDPOINT.REGISTER}`;
@@ -11,9 +11,10 @@ class User {
         username,
         email,
         password,
+        role,
       };
       const response = await axios.post(url, data);
-      if (response.statusText !== 201) {
+      if (response.statusText !== 'OK') {
         throw new Error(response.data.message);
       }
       console.log(response);
@@ -77,6 +78,40 @@ class User {
       localStorage.removeItem('token');
       window.location.reload();
       return response.data;
+    } catch (err) {
+      return { error: err.response.data.message || err.message };
+    }
+  }
+
+  static async Resend({ idUser, email }) {
+    try {
+      const url = `${API_ENDPOINT.RESEND}`;
+      const data = {
+        idUser,
+        email,
+      };
+      const response = await axios.post(url, data);
+      if (response.statusText !== 'OK') {
+        throw new Error(response.data.message);
+      }
+      return response;
+    } catch (err) {
+      return { error: err.response.data.message || err.message };
+    }
+  }
+
+  static async Verification({ idUser, OTP }) {
+    try {
+      const url = `${API_ENDPOINT.VERIFICATION}`;
+      const data = {
+        idUser,
+        OTP,
+      };
+      const response = await axios.post(url, data);
+      if (response.statusText !== 'OK') {
+        throw new Error(response.data.message);
+      }
+      return response;
     } catch (err) {
       return { error: err.response.data.message || err.message };
     }

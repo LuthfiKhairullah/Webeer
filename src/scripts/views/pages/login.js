@@ -34,7 +34,6 @@ const Login = {
           </div>
         </div>
         </div>
-        <message-container></message-container>
         `;
   },
   afterRender() {
