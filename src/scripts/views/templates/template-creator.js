@@ -66,10 +66,10 @@ const createDiscussionItemTemplate = (discussion) => {
   let isSolvedClass = '';
   if (discussion.isSolved === false) {
     isSolvedClass = 'text-bg-danger';
-    discussion.isSolved = 'Not Solved';
+    discussion.isSolved = 'Belum Terjawab';
   } else {
     isSolvedClass = 'text-bg-success';
-    discussion.isSolved = 'Solved';
+    discussion.isSolved = 'Terjawab';
   }
   return `
     <div class="mb-2">
@@ -85,6 +85,7 @@ const createDiscussionItemTemplate = (discussion) => {
                 </div>
               </div>
             </div>
+            <div class="categoryDiscussion">${createCategoryDiscussionTemplate(discussion.categories)}</div>
             <small class="card-subtitle mb-2 text-muted">${discussion.date}</small>
             <p class="card-text">${discussion.discussion}</p>
           </div>
@@ -97,7 +98,9 @@ const createDiscussionItemTemplate = (discussion) => {
               </svg>
               <span>${discussion.reply.length}</span>
             </div>
-            <div class="${isSolvedClass} px-2 rounded">${discussion.isSolved}</div>
+            <div>
+              <span class="${isSolvedClass} p-1 rounded">${discussion.isSolved}</span>
+            </div>
           </div>
         </div>
       </a>
@@ -109,16 +112,16 @@ const createDiscussionDetailTemplate = (discussion) => {
   let isSolvedClass = '';
   if (discussion.isSolved === false) {
     isSolvedClass = 'text-bg-danger';
-    discussion.isSolved = 'Not Solved';
+    discussion.isSolved = 'Belum Terjawab';
   } else {
     isSolvedClass = 'text-bg-success';
-    discussion.isSolved = 'Solved';
+    discussion.isSolved = 'Terjawab';
   }
   return `
     <div class="container bg-white padding rounded">
       <div class="d-flex justify-content-between">
         <h1>${discussion.title}</h1>
-        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn btn-warning fw-bold" id="user-only">Ubah</button>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn btn-warning fw-bold d-none" id="user-only">Ubah</button>
         <div class="modal fade" id="modal-edit">
           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
@@ -145,9 +148,7 @@ const createDiscussionDetailTemplate = (discussion) => {
                 <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
                 placeholder="Masukkan Diskusi">${discussion.discussion}</textarea>
                 <input class="form-check-input" type="checkbox" id="invalidCheck">
-                <label class="form-check-label" for="invalidCheck">
-                  Solved
-                </label>
+                <label class="form-check-label" for="invalidCheck">Terjawab</label>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -157,7 +158,8 @@ const createDiscussionDetailTemplate = (discussion) => {
           </div>
         </div>
       </div>
-      <div class="${isSolvedClass} px-2 rounded d-inline-block">${discussion.isSolved}</div>
+      <div>${createCategoryDiscussionTemplate(discussion.categories)}</div>
+      <div class="${isSolvedClass} my-2 px-2 rounded d-inline-block">${discussion.isSolved}</div>
       <div class="d-flex align-items-center">
         <div class="container-img-discussion">
           <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion">
@@ -179,6 +181,23 @@ const createDiscussionDetailTemplate = (discussion) => {
       <hr class="m-0">
     </div>
   `;
+};
+
+const createCategoryDiscussionTemplate = (categories) => {
+  let categoryElement = '';
+  if ((typeof (categories)).includes('object')) {
+    categories.forEach((category) => {
+      categoryElement += `
+        <span class="badge bg-secondary">${category}</span>
+      `;
+    });
+  } else {
+    categoryElement += `
+      <span class="badge bg-secondary">${category}</span>
+    `;
+  }
+
+  return categoryElement;
 };
 
 const createDiscussionReplyTemplate = (discussion) => `
@@ -207,7 +226,7 @@ const createAddDiscussionButtonTemplate = () => `
 `;
 
 const createFilterListTemplate = () => `
-  <div id="filter-drawer" class="container-fluid">
+  <div id="filter-drawer" class="container-fluid text-light">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 18px;">
@@ -216,39 +235,35 @@ const createFilterListTemplate = () => `
         </svg>
         <h2 class="ms-2">Filter</h2>
       </div>
-      <button id="close-filter" class="btn fw-bold">X</button>
+      <button id="close-filter" class="btn fw-bold text-light">X</button>
     </div>
-    <div class="my-2">
-      <h3>Sort</h3>
-      <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
-      <label class="btn btn-light mb-1" for="option1">Latest</label>
-      <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-      <label class="btn btn-light mb-1" for="option2">Latest</label>
-      <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
-      <label class="btn btn-light" mb-1 for="option3">Latest</label>
-      <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
-      <label class="btn btn-light mb-1" for="option4">Latest</label>
-    </div>
-    <div class="my-2">
-      <h3>Category</h3>
-      <input type="checkbox" class="btn-check" id="html" autocomplete="off">
-      <label class="btn btn-light mb-1" for="html">HTML</label>
-      <input type="checkbox" class="btn-check" id="javascript" autocomplete="off">
-      <label class="btn btn-light mb-1" for="javascript">JavaScript</label>
-      <input type="checkbox" class="btn-check" id="css" autocomplete="off">
-      <label class="btn btn-light mb-1" for="css">CSS</label>
-      <input type="checkbox" class="btn-check" id="php" autocomplete="off">
-      <label class="btn btn-light mb-1" for="php">PHP</label>
-      <input type="checkbox" class="btn-check" id="java" autocomplete="off">
-      <label class="btn btn-light mb-1" for="java">Java</label>
-      <input type="checkbox" class="btn-check" id="python" autocomplete="off">
-      <label class="btn btn-light mb-1" for="python">python</label>
-    </div>
-    <div>
-      <button type="button" class="btn btn-danger">Reset</button>
-      <button type="submit" class="btn btn-dark">Filter</button>
-    </div>
+    <form id="form-filter">
+      <div class="my-2">
+        <h3>Sort</h3>
+        <input type="radio" class="btn-check" name="sort" id="terbaru" autocomplete="off" checked>
+        <label class="btn btn-light mb-1" for="terbaru">Terbaru</label>
+        <input type="radio" class="btn-check" name="sort" id="terdahulu" autocomplete="off">
+        <label class="btn btn-light mb-1" for="terdahulu">Terdahulu</label>
+        <input type="radio" class="btn-check" name="sort" id="solved" autocomplete="off">
+        <label class="btn btn-light mb-1" for="solved">Terjawab</label>
+        <input type="radio" class="btn-check" name="sort" id="notsolved" autocomplete="off">
+        <label class="btn btn-light mb-1" for="notsolved">Belum Terjawab</label>
+      </div>
+      <div class="my-2">
+        <h3>Category</h3>
+        <div class="filterCategory"></div>
+      </div>
+      <div>
+        <button type="button" class="btn btn-danger">Reset</button>
+        <button type="submit" class="btn btn-dark">Filter</button>
+      </div>
+    </form>
   </div>
+`;
+
+const createFilterCategoryTemplate = (category) => `
+  <input type="checkbox" class="btn-check" name="categoryFilter" id="${category.name}" value="${category.name}" autocomplete="off">
+  <label class="btn btn-light mb-1" for="${category.name}">${category.name}</label>
 `;
 
 const createProfileTemplate = (user) => {
@@ -354,6 +369,7 @@ export {
   createDiscussionDetailTemplate,
   createAddDiscussionButtonTemplate,
   createFilterListTemplate,
+  createFilterCategoryTemplate,
   createDiscussionReplyTemplate,
   createItemJob,
   createDetailJob,

@@ -25,8 +25,8 @@ const DetailDiscussionPage = {
     discussionListElement.discussion = discussions;
     const user = await User.getUser();
     const userOnlyElement = document.querySelector('#user-only');
-    if (user._id !== discussions.userid) {
-      userOnlyElement.classList.add('d-none');
+    if (user._id === discussions.userid) {
+      userOnlyElement.classList.replace('d-none', 'd-block');
     }
     const discussionReply = await DiscussionSource.getDiscussionReply(url.id);
     const discussionReplyListElement = document.querySelector('discussion-reply');

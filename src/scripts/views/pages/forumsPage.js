@@ -3,6 +3,7 @@ import '../components/searchBar';
 import '../components/filterList';
 import FilterInitiator from '../../utils/filter-initiator';
 import DiscussionSource from '../../data/discussionSource';
+import { createFilterCategoryTemplate } from '../templates/template-creator';
 
 const ForumsPage = {
   async render() {
@@ -28,15 +29,46 @@ const ForumsPage = {
   },
 
   async afterRender() {
+    const discussions = await DiscussionSource.getAllDiscussion();
+    console.log(discussions);
+    const discussionListElement = document.querySelector('discussion-list');
+    discussionListElement.discussions = discussions;
+    const filterList = await DiscussionSource.getDiscussionCategory();
+    const filterListElement = document.querySelector('.filterCategory');
+    filterListElement.innerHTML = '';
+    filterList.forEach((category) => {
+      filterListElement.innerHTML += createFilterCategoryTemplate(category);
+    });
     FilterInitiator.init({
       button: document.querySelector('#filter'),
       filter: document.querySelector('#filter-drawer'),
       content: document.querySelector('#close-filter'),
     });
-    const discussions = await DiscussionSource.getAllDiscussion();
-    console.log(discussions.data);
-    const discussionListElement = document.querySelector('discussion-list');
-    discussionListElement.discussions = discussions;
+    const filterButton = document.querySelector('#form-filter');
+    filterButton.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const arrcategory = [];
+      const checked = document.getElementsByName('categoryFilter');
+      checked.forEach((c) => {
+        if (c.checked) {
+          arrcategory.push(c.value);
+        }
+      });
+      console.log(arrcategory);
+      let discussion = '';
+      if (arrcategory.length >= 1) {
+        let formatcategory = '';
+        arrcategory.forEach((category) => {
+          formatcategory += `category=${category}&`;
+        });
+        console.log(formatcategory);
+        discussion = await DiscussionSource.getAllDiscussion(formatcategory);
+      } else {
+        discussion = await DiscussionSource.getAllDiscussion();
+      }
+      console.log(discussion);
+      discussionListElement.discussions = discussion;
+    });
   },
 
 };

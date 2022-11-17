@@ -3,6 +3,10 @@
         display: none;
     }
 
+    #filter-drawer {
+        padding-top: 80px;
+    }
+
     #close-filter {
         display: none;
     }

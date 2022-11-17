@@ -2,11 +2,11 @@ import axios from 'axios';
 import API_ENDPOINT from '../globals/api-endpoint';
 
 class DiscussionSource {
-  static async getAllDiscussion() {
+  static async getAllDiscussion(keyword) {
     try {
       const jwt = localStorage.getItem('token').replaceAll('"', '');
       const responseJson = await axios({
-        url: `${API_ENDPOINT.DISCUSSION}`,
+        url: `${API_ENDPOINT.DISCUSSION(keyword)}`,
         headers: {
           auth: `${jwt}`,
         },
@@ -57,9 +57,9 @@ class DiscussionSource {
           'Content-Type': 'application/json',
           auth: `${jwt}`,
         },
-        body: JSON.stringify(discussion),
+        data: JSON.stringify(discussion),
       });
-      return responseJson;
+      return responseJson.data.data;
     } catch (error) {
       return console.log(error);
     }
@@ -70,6 +70,21 @@ class DiscussionSource {
       const jwt = localStorage.getItem('token').replaceAll('"', '');
       const responseJson = await axios({
         url: `${API_ENDPOINT.DISCUSSION_REPLY(id)}`,
+        headers: {
+          auth: `${jwt}`,
+        },
+      });
+      return responseJson.data.data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+
+  static async getDiscussionCategory() {
+    try {
+      const jwt = localStorage.getItem('token').replaceAll('"', '');
+      const responseJson = await axios({
+        url: `${API_ENDPOINT.DISCUSSION_CATEGORY}`,
         headers: {
           auth: `${jwt}`,
         },
