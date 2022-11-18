@@ -16,5 +16,6 @@ const API_ENDPOINT = {
   LOGOUT: `${CONFIG.BASE_URL}/users/logout`,
   VERIFICATION: `${CONFIG.BASE_URL}/users/verifikasiOTP`,
   RESEND: `${CONFIG.BASE_URL}/users/resendOTP`,
+  EDIT: (_id) => `${CONFIG.BASE_URL}/users/edit/${_id}`,
 };
 export default API_ENDPOINT;

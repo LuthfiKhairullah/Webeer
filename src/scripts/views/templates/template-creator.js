@@ -1,4 +1,5 @@
 import { showFormattedDate } from '../utils/formate-date';
+import '../components/discussionList';
 
 const DetailJobsSkeleton = (count) => {
   let template = '';
@@ -277,31 +278,31 @@ const createProfileTemplate = (user) => {
     user.profession = '-';
   }
   return `
-    <div class="container pt-1">
-      <div class="card w-100 border-0">
-        <div class="card-body p-5">
-          <h1 class="text-center">Profil Pengguna</h1>
-          <div class="d-flex flex-row">
-            <div class="container-img">
-              <img src="${user.image}" alt="Picture Profile" class="picture-profile">
-            </div>
-            <div class="container">
-              <h2>Nama</h2>
-              <p>${user.username}</p>
-              <h2>Email</h2>
-              <p>${user.email}</p>
-              <h2>Profesi</h2>
-              <p>${user.profession}</p>
-              <h2>Kontak</h2>
-              <p>${user.contact}</p>
-            </div>
-          </div>
-          <h2>Bio</h2>
-          <p>${user.bio}</p>
-          <button class="btn btn-light border-dark">Perbarui Profil</button>
-          <button class="btn btn-danger border-dark">Hapus Akun</button>
-        </div>
+    <div class="container-profile">
+      <div class="card profile">
+      <img src="${user.image}" class="card-img-top">
+      <div class="card-body text-center">
+      <p>${user.username}</p>
+      <h6> Diskusi Anda </h6>
+      <p class="length-disscussion-user"></p>
+      <a class=" btn btn-primary" href="#/editprofile/${user._id}">Perbarui Profile</a>
       </div>
+      </div>
+      <div class="container-about">
+       <div class="card about">
+       <h6>Profession</h6>
+       <p>${user.profesi}</p>
+        <h6>Country</h6>
+        <p>${user.email}</p>
+        <h6>Contact</h6>
+        <p>${user.contact}</p>
+        <h6>Tentang Anda</h6>
+        <p>${user.bio}</p>
+       </div>
+       <div class="container-discussion-user">
+       <discussion-list></discussion-list>
+       </div>
+       </div>
     </div>
   `;
 };
@@ -328,7 +329,56 @@ const createNavbarTemplateBeforeLogin = () => `
   </div>
 </div>
 </nav>`;
-
+const createProfileEditTemplate = (user) => {
+  if (user.bio === undefined) {
+    user.bio = '-';
+  }
+  if (user.contact === undefined) {
+    user.contact = '-';
+  }
+  if (user.profession === undefined) {
+    user.profession = '-';
+  }
+  return `
+    <div class="container pt-1">
+      <div class="card w-100 border-0">
+        <div class="card-body p-5">
+          <h1 class="text-center">Profil Pengguna</h1>
+          <div class="d-flex flex-row">
+            <div class="container-img">
+              <img src="${user.image}" alt="Picture Profile" class="picture-profile">
+            </div>
+            <div class="container">
+            <form id= "edit-user">
+            <div class="mb-4">
+              <h2>Nama</h2>
+              <input type="text" class="form-control" id="edit-username" placeholder="${user.username}" required>
+             </div>
+             <div class="mb-4">
+             <h2>Email</h2>
+             <input type="email" class="form-control" id="edit-email" placeholder="${user.email}" required></input>
+            </div>
+           <div class="mb-4">
+           <h2>Contact</h2>
+           <input type="text" class="form-control" id="edit-contact" placeholder="${user.contact}" required></input>
+            </div>
+            <div class="mb-4">
+           <h2>Profesi</h2>
+           <input type="text" class="form-control" id="edit-profesi" placeholder="${user.profesi}" required></input>
+            </div>
+            <div class="mb-4">
+            <h2>Bio</h2>
+            <textarea class="form-control" id="edit-bio" placeholder="${user.bio}" required></textarea>
+            </div>
+            <button class="btn btn-light border-dark" id="edit-simpan" data-bs-toggle="modal" data-bs-target="#exampleModal">Simpan Perubahan</button>  
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+};
 const createNavbarTemplateAfterLogin = () => `
 <nav class="navbar fixed-top navbar-expand-lg ">
 <div class="container-fluid">
@@ -377,4 +427,5 @@ export {
   createNavbarTemplateAfterLogin,
   createNavbarTemplateBeforeLogin,
   UserDiscussionSkeleton,
+  createProfileEditTemplate,
 };

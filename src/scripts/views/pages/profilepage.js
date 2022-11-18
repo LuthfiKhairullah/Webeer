@@ -1,8 +1,8 @@
 import DiscussionSource from '../../data/discussionSource';
 import User from '../../data/loginSource';
-import '../components/discussionList';
+
 import '../components/userProfile';
-import { UserDiscussionSkeleton } from '../templates/template-creator';
+// import { UserDiscussionSkeleton } from '../templates/template-creator';
 
 const ProfilePage = {
   async render() {
@@ -16,11 +16,6 @@ const ProfilePage = {
 
     return `
         <user-profile></user-profile>
-        <div class = "container-user-discussion container py-2">
-          <discussion-list>
-            ${UserDiscussionSkeleton(10)}
-          </discussion-list>
-        </div>
     `;
   },
 
@@ -30,7 +25,8 @@ const ProfilePage = {
     const userProfileElement = document.querySelector('user-profile');
     userProfileElement.user = userProfile;
     const userDiscussion = await DiscussionSource.getUserDiscussion();
-    console.log(userDiscussion);
+    const test = document.querySelector('.length-disscussion-user');
+    test.innerHTML= userDiscussion.length
     const userDiscussionElement = document.querySelector('discussion-list');
     userDiscussionElement.discussions = userDiscussion;
   },
