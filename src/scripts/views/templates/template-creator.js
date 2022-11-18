@@ -78,9 +78,9 @@ const createDiscussionItemTemplate = (discussion) => {
           <div class="card-body">
             <div class="card-title d-flex justify-content-between">
               <h5>${discussion.title}</h5>
-              <div class="text-end">
+              <div class="d-flex align-items-center text-end">
                 <span>${discussion.username}</span>
-                <div class="container-img-discussion d-inline">
+                <div class="container-img-discussion ms-1 d-flex justify-content-center align-items-center">
                   <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion">
                 </div>
               </div>
@@ -160,11 +160,11 @@ const createDiscussionDetailTemplate = (discussion) => {
       </div>
       <div>${createCategoryDiscussionTemplate(discussion.categories)}</div>
       <div class="${isSolvedClass} my-2 px-2 rounded d-inline-block">${discussion.isSolved}</div>
-      <div class="d-flex align-items-center">
-        <div class="container-img-discussion">
+      <div class="d-flex align-items-baseline">
+        <div class="container-img-discussion d-flex justify-content-center align-items-center">
           <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion">
         </div>
-        <h2 class="ms-2" style="font-size: 24px">${discussion.username}</h2>
+        <h2 class="ms-1 m-0" style="font-size: 30px">${discussion.username}</h2>
       </div>
       <h3 class="mb-2 text-muted" style="font-size: 16px">${discussion.date}</h3>
       <p class="text-justify">${discussion.discussion}</p>
