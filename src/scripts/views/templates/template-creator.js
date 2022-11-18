@@ -121,7 +121,7 @@ const createDiscussionDetailTemplate = (discussion) => {
       <div class="d-flex justify-content-between">
         <div class="d-flex align-items-center">
           <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion">
-          <span class="ms-1 username">${discussion.username}</span>
+          <a href="#/detailprofile/${discussion.userid}"><span class="ms-1 username">${discussion.username}</span></a>
         </div>
         <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn btn-warning fw-bold d-none" id="user-only">Edit</button>
         <div class="modal fade" id="modal-edit">

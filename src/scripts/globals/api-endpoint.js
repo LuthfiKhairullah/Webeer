@@ -17,5 +17,7 @@ const API_ENDPOINT = {
   VERIFICATION: `${CONFIG.BASE_URL}/users/verifikasiOTP`,
   RESEND: `${CONFIG.BASE_URL}/users/resendOTP`,
   EDIT: (_id) => `${CONFIG.BASE_URL}/users/edit/${_id}`,
+  USER_DETAIL: (_id) => `${CONFIG.BASE_URL}/users/${_id}`,
+  USER_DISCUSSION_DETAIL: (_id) => `${CONFIG.BASE_URL}/discussions/user/${_id}`,
 };
 export default API_ENDPOINT;
