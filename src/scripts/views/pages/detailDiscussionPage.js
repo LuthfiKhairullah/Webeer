@@ -24,8 +24,16 @@ const DetailDiscussionPage = {
     const discussionListElement = document.querySelector('discussion-detail');
     discussionListElement.discussion = discussions;
     const lengthReply = document.querySelector('.lengthReply');
-    console.log(lengthReply);
     lengthReply.innerText = discussions.reply.length;
+    const categoriesDiscussion = await DiscussionSource.getDiscussionCategory();
+    const categoriesListElement = document.querySelector('#categoryList');
+    categoriesDiscussion.forEach((category) => {
+      if (discussions.categories.toString() === category.name.toString()) {
+        categoriesListElement.innerHTML += `<option value="${category.name}" selected>${category.name}</option>`;
+      } else {
+        categoriesListElement.innerHTML += `<option value="${category.name}">${category.name}</option>`;
+      }
+    });
     const user = await User.getUser();
     const userOnlyElement = document.querySelector('#user-only');
     if (user._id === discussions.userid) {

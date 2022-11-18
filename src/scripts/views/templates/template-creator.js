@@ -131,25 +131,22 @@ const createDiscussionDetailTemplate = (discussion) => {
                 <h1 class="modal-title fs-5">Edit Discussion</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
-                <h3 class="card-text">Category</h3>
-                <select name="kategori" id="kategori" class="form-select mb-2">
-                  <option selected>Pilih kategori...</option>
-                  <option value="html">HTML</option>
-                  <option value="javascript">JavaScript</option>
-                  <option value="php">PHP</option>
-                </select>
-                <h3 class="card-text">Discussion</h3>
-                <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" value="${discussion.title}" placeholder="Masukkan Judul Diskusi">
-                <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
-                placeholder="Masukkan Diskusi">${discussion.discussion}</textarea>
-                <input class="form-check-input" type="checkbox" id="invalidCheck">
-                <label class="form-check-label" for="invalidCheck">Terjawab</label>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
-              </div>
+              <form id="form-edit-discussion">
+                <div class="modal-body">
+                  <h3 class="card-text">Category</h3>
+                  <select name="categoryList" id="categoryList" class="form-select mb-2"></select>
+                  <h3 class="card-text">Discussion</h3>
+                  <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" value="${discussion.title}" placeholder="Masukkan Judul Diskusi">
+                  <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
+                  placeholder="Masukkan Diskusi">${discussion.discussion}</textarea>
+                  <input class="form-check-input" type="checkbox" id="invalidCheck">
+                  <label class="form-check-label" for="invalidCheck">Solved</label>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
