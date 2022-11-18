@@ -1,4 +1,5 @@
 import { showFormattedDate } from '../utils/formate-date';
+import '../components/discussionList';
 
 const DetailJobsSkeleton = (count) => {
   let template = '';
@@ -282,9 +283,12 @@ const createProfileTemplate = (user) => {
       <img src="${user.image}" class="card-img-top">
       <div class="card-body text-center">
       <p>${user.username}</p>
+      <h6> Diskusi Anda </h6>
+      <p class="length-disscussion-user"></p>
       <a class=" btn btn-primary" href="#/editprofile/${user._id}">Perbarui Profile</a>
       </div>
       </div>
+      <div class="container-about">
        <div class="card about">
        <h6>Profession</h6>
        <p>${user.profesi}</p>
@@ -294,6 +298,10 @@ const createProfileTemplate = (user) => {
         <p>${user.contact}</p>
         <h6>Tentang Anda</h6>
         <p>${user.bio}</p>
+       </div>
+       <div class="container-discussion-user">
+       <discussion-list></discussion-list>
+       </div>
        </div>
     </div>
   `;
