@@ -116,5 +116,34 @@ class User {
       return { error: err.response.data.message || err.message };
     }
   }
+
+  static async Edit(_id, {
+    username, email, contact, profesi, bio,
+  }) {
+    try {
+      const jwt = localStorage.getItem('token').replaceAll('"', '');
+      const response = await axios({
+        url: `${API_ENDPOINT.EDIT(_id)}`,
+        method: 'PUT',
+        headers: {
+          auth: `${jwt}`,
+        },
+        data: {
+          username,
+          email,
+          contact,
+          profesi,
+          bio,
+        },
+      });
+      if (response.statusText !== 'Created') {
+        throw new Error(response.data.message);
+      }
+      return response;
+    } catch (err) {
+      console.log(err);
+      return { error: err.response.data.message || err.message };
+    }
+  }
 }
 export default User;
