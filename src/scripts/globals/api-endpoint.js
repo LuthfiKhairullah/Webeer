@@ -1,7 +1,8 @@
 import CONFIG from './config';
 
 const API_ENDPOINT = {
-  DISCUSSION: (keyword) => `${CONFIG.BASE_URL}/discussions?${keyword}`,
+  DISCUSSION: `${CONFIG.BASE_URL}/discussions/`,
+  DISCUSSION_SEARCH: (keyword) => `${CONFIG.BASE_URL}/discussions?${keyword}`,
   DISCUSSION_DETAIL: (id) => `${CONFIG.BASE_URL}/discussions/${id}`,
   DISCUSSION_USER: `${CONFIG.BASE_URL}/discussions/user`,
   DISCUSSION_REPLY: (id) => `${CONFIG.BASE_URL}/discussions/reply/${id}`,

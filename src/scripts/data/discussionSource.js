@@ -6,7 +6,7 @@ class DiscussionSource {
     try {
       const jwt = localStorage.getItem('token').replaceAll('"', '');
       const responseJson = await axios({
-        url: `${API_ENDPOINT.DISCUSSION(keyword)}`,
+        url: `${API_ENDPOINT.DISCUSSION_SEARCH(keyword)}`,
         headers: {
           auth: `${jwt}`,
         },
