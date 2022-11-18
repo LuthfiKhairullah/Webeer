@@ -23,6 +23,9 @@ const DetailDiscussionPage = {
     const discussions = await DiscussionSource.getDiscussion(url.id);
     const discussionListElement = document.querySelector('discussion-detail');
     discussionListElement.discussion = discussions;
+    const lengthReply = document.querySelector('.lengthReply');
+    console.log(lengthReply);
+    lengthReply.innerText = discussions.reply.length;
     const user = await User.getUser();
     const userOnlyElement = document.querySelector('#user-only');
     if (user._id === discussions.userid) {
@@ -48,6 +51,8 @@ const DetailDiscussionPage = {
           alert('Added reply failed');
         } else {
           alert('Added reply successfully');
+          const updateDiscussions = await DiscussionSource.getDiscussion(url.id);
+          lengthReply.innerHTML = updateDiscussions.reply.length;
           const updateDiscussionReply = await DiscussionSource.getDiscussionReply(url.id);
           discussionReplyListElement.innerHTML = '';
           updateDiscussionReply.forEach((reply) => {

@@ -26,7 +26,7 @@ const ProfilePage = {
     userProfileElement.user = userProfile;
     const userDiscussion = await DiscussionSource.getUserDiscussion();
     const test = document.querySelector('.length-disscussion-user');
-    test.innerHTML= userDiscussion.length
+    test.innerHTML = userDiscussion.length;
     const userDiscussionElement = document.querySelector('discussion-list');
     userDiscussionElement.discussions = userDiscussion;
   },

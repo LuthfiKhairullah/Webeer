@@ -8,9 +8,8 @@ import { createFilterCategoryTemplate } from '../templates/template-creator';
 const ForumsPage = {
   async render() {
     return `
-      <div class="container-fluid">
         <div class="d-flex">
-          <filter-list></filter-list>
+          <filter-list class="m-0"></filter-list>
           <div class="container-fluid">
             <div class="d-flex">
               <button id="filter" aria-label="filter list button" class="btn p-0 mb-2 me-1">
@@ -24,7 +23,6 @@ const ForumsPage = {
             <discussion-list></discussion-list>
           </div>
         </div>
-      </div>
     `;
   },
 

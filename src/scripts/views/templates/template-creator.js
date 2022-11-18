@@ -119,7 +119,10 @@ const createDiscussionDetailTemplate = (discussion) => {
   return `
     <div class="container bg-white padding rounded">
       <div class="d-flex justify-content-between">
-        <h1>${discussion.title}</h1>
+        <div class="d-flex align-items-center">
+          <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion">
+          <span class="ms-1 username">${discussion.username}</span>
+        </div>
         <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn btn-warning fw-bold d-none" id="user-only">Edit</button>
         <div class="modal fade" id="modal-edit">
           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -153,18 +156,16 @@ const createDiscussionDetailTemplate = (discussion) => {
       </div>
       <div>${createCategoryDiscussionTemplate(discussion.categories)}</div>
       <div class="${isSolvedClass} my-2 px-2 rounded d-inline-block">${discussion.isSolved}</div>
-      <div class="d-flex align-items-center">
-        <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion">
-        <span class="ms-1 username">${discussion.username}</span>
-      </div>
-      <h3 class="mb-2 text-muted" style="font-size: 16px">${discussion.date}</h3>
-      <p class="text-justify">${discussion.discussion}</p>
+      <h1>${discussion.title}</h1>
+      <h3 class="mb-2 text-muted" style="font-size: 16px;">${discussion.date}</h3>
+      <p class="text-justify" style="border-top: 1px solid rgba(0,0,0, 0.2); border-bottom: 1px solid rgba(0,0,0,0.2);">${discussion.discussion}</p>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
         <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
         <path
           d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
       </svg>
-      <span>${discussion.reply.length}</span>
+      <span class="lengthReply">0</span>
+      <i class="fa fa-user-circle-o fa-x" aria-hidden="true"></i>
       <form id="form-discussion-reply" class="my-2 d-flex">
         <input type="text" name="inputReply" id="inputReply" class="form-control" placeholder="Type your reply here">
         <button type="submit" class="btn btn-dark ms-1">Kirim</button>
@@ -215,11 +216,7 @@ const createFilterListTemplate = () => `
   <div id="filter-drawer" class="container-fluid text-light">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 18px;">
-          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-          <path d="M0 416c0-17.7 14.3-32 32-32l54.7 0c12.3-28.3 40.5-48 73.3-48s61 19.7 73.3 48L480 384c17.7 0 32 14.3 32 32s-14.3 32-32 32l-246.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 448c-17.7 0-32-14.3-32-32zm192 0c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32zM384 256c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32zm-32-80c32.8 0 61 19.7 73.3 48l54.7 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-54.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l246.7 0c12.3-28.3 40.5-48 73.3-48zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32s-14.3-32-32-32zm73.3 0L480 64c17.7 0 32 14.3 32 32s-14.3 32-32 32l-214.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 128C14.3 128 0 113.7 0 96S14.3 64 32 64l86.7 0C131 35.7 159.2 16 192 16s61 19.7 73.3 48z"/>
-        </svg>
-        <h2 class="ms-2">Filter</h2>
+        <h2>Filter</h2>
       </div>
       <button id="close-filter" class="btn fw-bold text-light">X</button>
     </div>
@@ -227,11 +224,11 @@ const createFilterListTemplate = () => `
       <div class="my-2">
         <h3>Sort</h3>
         <input type="radio" class="btn-check" name="sort" id="latest" autocomplete="off" checked>
-        <label class="btn btn-light mb-1" for="latest">Latest</label>
+        <label class="btn btn-success mb-1" for="latest">Latest</label>
         <input type="radio" class="btn-check" name="sort" id="solved" autocomplete="off">
-        <label class="btn btn-light mb-1" for="solved">Solved</label>
+        <label class="btn btn-success mb-1" for="solved">Solved</label>
         <input type="radio" class="btn-check" name="sort" id="unsolved" autocomplete="off">
-        <label class="btn btn-light mb-1" for="unsolved">Unsolved</label>
+        <label class="btn btn-success mb-1" for="unsolved">Unsolved</label>
       </div>
       <div class="my-2">
         <h3>Category</h3>

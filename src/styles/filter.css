@@ -4,7 +4,7 @@
     }
 
     #filter-drawer {
-        padding-top: 80px;
+        margin-top: 80px;
     }
 
     #close-filter {
@@ -15,7 +15,7 @@
 @media screen and (max-width: 750px) {
     filter-list {
         background-color: #607EAA;
-        padding-top: 50px;
+        top: 56px;
         position: absolute;
         transform: translate(-100%, 0);
         width: 100%;
