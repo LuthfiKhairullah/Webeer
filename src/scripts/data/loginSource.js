@@ -145,5 +145,25 @@ class User {
       return { error: err.response.data.message || err.message };
     }
   }
+
+  static async getDetailUser(_id) {
+    try {
+      const jwt = localStorage.getItem('token').replaceAll('"', '');
+      const response = await axios({
+        url: `${API_ENDPOINT.USER_DETAIL(_id)}`,
+        method: 'GET',
+        headers: {
+          auth: `${jwt}`,
+        },
+      });
+      if (response.statusText !== 'OK') {
+        throw new Error(response.data.message);
+      }
+      return response.data.data;
+    } catch (err) {
+      console.log(err);
+      return { error: err.response.data.message || err.message };
+    }
+  }
 }
 export default User;
