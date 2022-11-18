@@ -33,7 +33,31 @@ const DetailDiscussionPage = {
     discussionReply.forEach((reply) => {
       discussionReplyListElement.replies = reply;
     });
-    console.log(discussionReply);
+    const replyButton = document.querySelector('#form-discussion-reply');
+    replyButton.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const inputReply = document.getElementById('inputReply').value;
+      if (inputReply !== '') {
+        const addDiscussionReply = await DiscussionSource.addDiscussionReply(
+          url.id,
+          {
+            reply: inputReply,
+          },
+        );
+        if (addDiscussionReply.error) {
+          alert('Added reply failed');
+        } else {
+          alert('Added reply successfully');
+          const updateDiscussionReply = await DiscussionSource.getDiscussionReply(url.id);
+          discussionReplyListElement.innerHTML = '';
+          updateDiscussionReply.forEach((reply) => {
+            discussionReplyListElement.replies = reply;
+          });
+        }
+      } else {
+        alert('Type your reply first');
+      }
+    });
   },
 
 };

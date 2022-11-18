@@ -6,7 +6,7 @@ class SearchDiscussion extends HTMLElement {
   render() {
     this.innerHTML = `
       <form class="d-flex mb-2" id="form-searchDiscussion">
-        <input class="form-control" id="searchDiscussion" type="search" placeholder="Masukkan judul diskusi" aria-label="Search">
+        <input class="form-control" id="searchDiscussion" type="search" placeholder="Search by title" aria-label="Search">
         <button class="btn btn-dark ms-1" type="submit">Search</button>
       </form>
     `;

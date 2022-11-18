@@ -80,6 +80,24 @@ class DiscussionSource {
     }
   }
 
+  static async addDiscussionReply(id, reply) {
+    try {
+      const jwt = localStorage.getItem('token').replaceAll('"', '');
+      const responseJson = await axios({
+        url: `${API_ENDPOINT.DISCUSSION_REPLY(id)}`,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          auth: `${jwt}`,
+        },
+        data: JSON.stringify(reply),
+      });
+      return responseJson.data.data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+
   static async getDiscussionCategory() {
     try {
       const jwt = localStorage.getItem('token').replaceAll('"', '');

@@ -7,8 +7,7 @@ class DiscussionReply extends HTMLElement {
   }
 
   render() {
-    console.log(this._replies);
-    this.innerHTML = createDiscussionReplyTemplate(this._replies);
+    this.innerHTML += createDiscussionReplyTemplate(this._replies);
   }
 }
 

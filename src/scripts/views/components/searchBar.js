@@ -7,7 +7,7 @@ class searchBar extends HTMLElement {
     this.innerHTML = `
       <div class="search">
         <form class="d-flex searchBar">
-          <input class="form-control me-2" id="searchInput" type="search" placeholder="Masukkan pekerjaan yang sedang kamu cari" aria-label="Search">
+          <input class="form-control me-2" id="searchInput" type="search" placeholder="Search by job" aria-label="Search">
           <button class="btn btn-dark" type="submit">Search</button>
         </form>
       </div>
