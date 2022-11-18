@@ -54,8 +54,9 @@ const verificationPage = {
         message.innerText = `${data.error}`;
         title.classList.add('text-warning');
       } else {
+        console.log(data);
         title.innerText = 'SUCCESS';
-        message.innerText = `${data}`;
+        message.innerText = `${data.data.message}`;
         title.classList.add('text-success');
       }
     });
@@ -73,8 +74,11 @@ const verificationPage = {
         title.classList.add('text-warning');
       } else {
         title.innerText = 'SUCCESS';
-        message.innerText = `${data}`;
+        message.innerText = `${data.data.message}`;
         title.classList.add('text-success');
+        localStorage.removeItem('idUser');
+        localStorage.removeItem('email');
+        document.location = ('#/login');
       }
     });
   },

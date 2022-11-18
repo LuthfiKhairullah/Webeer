@@ -8,6 +8,7 @@ import ProfilePage from '../views/pages/profilepage';
 import addJobPage from '../views/pages/addJobPage';
 import DetailDiscussionPage from '../views/pages/detailDiscussionPage';
 import verificationPage from '../views/pages/verification';
+import ProfileEditPage from '../views/pages/editProfilePage';
 
 const routes = {
   '/': HomePage,
@@ -20,6 +21,7 @@ const routes = {
   '/jobs': jobsPage,
   '/addjobs': addJobPage,
   '/verification': verificationPage,
+  '/editprofile/:id': ProfileEditPage,
 };
 
 export default routes;

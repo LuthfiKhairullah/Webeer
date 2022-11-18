@@ -1,17 +1,15 @@
-.container-img {
-    border: 1px solid black;
-    border-radius: 50%;
-    height: 200px;
-    width: 200px;
+.container-profile{
+    display: flex;
+    justify-content: center;
 }
-
-.picture-profile {
-    border-radius: 50%;
+.card.profile{
+    margin-right: 10px;
+}
+.card.about{
+    width: 600px;
     padding: 10px;
-    height: 200px;
-    width: 200px;
+    height: 100%;
 }
-
 .card-item-discussion-user {
     background-color: white;
     max-width: 1200px;
