@@ -4,19 +4,26 @@
     }
 
     #filter-drawer {
+        border-radius: 10px;
         margin-top: 80px;
+        padding: 20px;
     }
 
     #close-filter {
         display: none;
+    }
+
+    filter-list {
+        margin-left: 12px;
     }
 }
 
 @media screen and (max-width: 750px) {
     filter-list {
         background-color: #607EAA;
-        top: 56px;
+        margin: 0;
         position: absolute;
+        top: 56px;
         transform: translate(-100%, 0);
         width: 100%;
         z-index: 10;
@@ -28,7 +35,7 @@
     }
 
     #filter-drawer {
-        padding-top: 30px;
+        padding: 30px;
     }
 
     .open-filter {

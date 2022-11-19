@@ -74,7 +74,7 @@ const createDiscussionItemTemplate = (discussion) => {
   }
   return `
     <div class="mb-2">
-      <a href="/#/detail/${discussion._id}" class="border-0 text-start text-decoration-none text-dark w-100">
+      <a href="/#/detaildiscussion/${discussion._id}" class="border-0 text-start text-decoration-none text-dark w-100">
         <div class="card w-100 m-0">
           <div class="card-body">
             <div class="card-title d-flex justify-content-between">
@@ -210,12 +210,12 @@ const createAddDiscussionButtonTemplate = () => `
 `;
 
 const createFilterListTemplate = () => `
-  <div id="filter-drawer" class="container-fluid text-light">
+  <div id="filter-drawer" class="bg-white">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
         <h2>Filter</h2>
       </div>
-      <button id="close-filter" class="btn fw-bold text-light">X</button>
+      <button id="close-filter" class="btn fw-bold">X</button>
     </div>
     <form id="form-filter">
       <div class="my-2">

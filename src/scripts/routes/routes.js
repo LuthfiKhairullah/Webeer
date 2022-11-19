@@ -15,7 +15,7 @@ const routes = {
   '/': HomePage,
   '/adddiscussion': AddDiscussionPage,
   '/forums': ForumsPage,
-  '/detail/:id': DetailDiscussionPage,
+  '/detaildiscussion/:id': DetailDiscussionPage,
   '/login': Login,
   '/profile': ProfilePage,
   '/register': Register,
