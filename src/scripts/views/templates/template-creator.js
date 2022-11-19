@@ -1,6 +1,13 @@
 import { showFormattedDate } from '../utils/formate-date';
 import '../components/discussionList';
 
+const truncateString = (str, num) => {
+  if (str?.length > num) {
+    return `${str.slice(0, num)}...`;
+  }
+
+  return str;
+};
 const DetailJobsSkeleton = (count) => {
   let template = '';
   for (let i = 0; i < count; i += 1) {
@@ -66,44 +73,44 @@ const createDetailJob = (detail) => `
 const createDiscussionItemTemplate = (discussion) => {
   let isSolvedClass = '';
   if (discussion.isSolved === false) {
-    isSolvedClass = 'text-bg-danger';
-    discussion.isSolved = 'Unsolved';
+    isSolvedClass = 'text-secondary';
+    discussion.isSolved = '<i class="fa fa-check-circle-o fa-3x" aria-hidden="true"></i>';
   } else {
-    isSolvedClass = 'text-bg-success';
-    discussion.isSolved = 'Solved';
+    isSolvedClass = 'text-success';
+    discussion.isSolved = '<i class="fa fa-check-circle-o fa-3x" aria-hidden="true"></i>';
   }
   return `
-    <div class="mb-2">
-      <a href="/#/detaildiscussion/${discussion._id}" class="border-0 text-start text-decoration-none text-dark w-100">
-        <div class="card w-100 m-0">
-          <div class="card-body">
-            <div class="card-title d-flex justify-content-between">
-              <h5>${discussion.title}</h5>
-              <div class="d-flex align-items-center text-end">
-                <span>${discussion.username}</span>
-                <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion ms-1">
+<div class="container-item-discussion">
+  <a href="/#/detaildiscussion/${discussion._id}" class="border-0 text-start text-decoration-none text-dark w-100 test">
+    <div class="card w-100 m-0">
+      <div class="card-body">
+        <div class="main-container">
+          <div class="categoryDiscussion">${createCategoryDiscussionTemplate(discussion.categories)}</div>
+            <h5>${discussion.title}</h5>
+            <p class="card-text">${truncateString(discussion?.discussion, 200)}</p>
+          </div>
+      
+
+        <div class="sub-container">
+          <div class="container-reply text-center">
+            <i class="fa fa-commenting-o fa-2x" aria-hidden="true"></i>
+            <span>${discussion.reply.length}</span>
+              <p>Reply</p>
+          </div>
+          <div class="container-discussion-profile d-flex">
+            <img src="${discussion.userimage}" class="img-profile-discussion">
+              <div class"sub-profile">
+                <p class="fw-bold">${discussion.username}</p>
+                <p class="fw-light">${discussion.date}</p>
               </div>
-            </div>
-            <div class="categoryDiscussion">${createCategoryDiscussionTemplate(discussion.categories)}</div>
-            <small class="card-subtitle mb-2 text-muted">${discussion.date}</small>
-            <p class="card-text">${discussion.discussion}</p>
           </div>
-          <div class="card-footer bg-white d-flex justify-content-between">
-            <div>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-                <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                <path
-                  d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-              </svg>
-              <span>${discussion.reply.length}</span>
-            </div>
-            <div>
-              <span class="${isSolvedClass} p-1 rounded">${discussion.isSolved}</span>
-            </div>
-          </div>
-        </div>
-      </a>
+          <span class="${isSolvedClass} p-1 rounded indicator-solved">${discussion.isSolved}</span>
+        </div>  
+
+      </div>
     </div>
+  </a>
+</div>
   `;
 };
 
