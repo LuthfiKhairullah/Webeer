@@ -94,7 +94,19 @@ const addJobPage = {
            </div>
            <button class="btn btn-primary"> Submit </button>
         </form>
+        <form id="test-form">
+            <textarea class="test"></textarea>
+            <button>test</button>
+        </form>
     </div>`;
+  },
+
+  async afterRender() {
+    const test = document.querySelector('#test-form');
+    test.addEventListener('submit', (e) => {
+      e.preventDefault();
+      console.log(document.querySelector('.test').value);
+    });
   },
 
 };

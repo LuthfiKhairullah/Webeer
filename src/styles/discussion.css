@@ -25,8 +25,8 @@
     border: 1px solid black;
     margin:0 auto;
 }
-.sub-profile p {
-color: red;
+.username {
+margin: 0;
 }
 .container-reply{
     width: 80px;
