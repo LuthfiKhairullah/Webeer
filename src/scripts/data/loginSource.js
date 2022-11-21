@@ -165,5 +165,32 @@ class User {
       return { error: err.response.data.message || err.message };
     }
   }
+
+  static async changePwdUser(_id, {
+    oldPassword, newPassword, confirmPassword,
+  }) {
+    try {
+      const jwt = localStorage.getItem('token').replaceAll('"', '');
+      const response = await axios({
+        url: `${API_ENDPOINT.USER_CHANGEPWD(_id)}`,
+        method: 'PUT',
+        headers: {
+          auth: `${jwt}`,
+        },
+        data: {
+          oldPassword,
+          newPassword,
+          confirmPassword,
+        },
+      });
+      if (response.statusText !== 'OK') {
+        throw new Error(response.data.message);
+      }
+      return response.data;
+    } catch (err) {
+      return { error: err.response.data.message || err.message };
+    }
+  }
 }
+
 export default User;

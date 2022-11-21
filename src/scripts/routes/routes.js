@@ -10,6 +10,7 @@ import DetailDiscussionPage from '../views/pages/detailDiscussionPage';
 import verificationPage from '../views/pages/verification';
 import ProfileEditPage from '../views/pages/editProfilePage';
 import DetailProfilePage from '../views/pages/detailUserPage';
+import PasswordEditPage from '../views/pages/editPasswordPage';
 
 const routes = {
   '/': HomePage,
@@ -24,6 +25,7 @@ const routes = {
   '/verification': verificationPage,
   '/editprofile/:id': ProfileEditPage,
   '/detailprofile/:id': DetailProfilePage,
+  '/changepwd/:id': PasswordEditPage,
 };
 
 export default routes;

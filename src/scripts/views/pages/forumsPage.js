@@ -10,7 +10,7 @@ const ForumsPage = {
     return `
       <div class="d-flex">
         <filter-list></filter-list>
-        <div class="container-fluid">
+        <div class="container-fluid forum">
           <div class="d-flex">
             <button id="filter" aria-label="filter list button" class="btn p-0 mb-2 me-1">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 26px;">

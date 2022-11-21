@@ -1,6 +1,13 @@
 import { showFormattedDate } from '../utils/formate-date';
 import '../components/discussionList';
 
+const truncateString = (str, num) => {
+  if (str?.length > num) {
+    return `${str.slice(0, num)}...`;
+  }
+
+  return str;
+};
 const DetailJobsSkeleton = (count) => {
   let template = '';
   for (let i = 0; i < count; i += 1) {
@@ -66,62 +73,63 @@ const createDetailJob = (detail) => `
 const createDiscussionItemTemplate = (discussion) => {
   let isSolvedClass = '';
   if (discussion.isSolved === false) {
-    isSolvedClass = 'text-bg-danger';
-    discussion.isSolved = 'Unsolved';
+    isSolvedClass = 'text-secondary';
+    discussion.isSolved = '<i class="fa fa-check-circle-o fa-3x" aria-hidden="true"></i>';
   } else {
-    isSolvedClass = 'text-bg-success';
-    discussion.isSolved = 'Solved';
+    isSolvedClass = 'text-success';
+    discussion.isSolved = '<i class="fa fa-check-circle-o fa-3x" aria-hidden="true"></i>';
   }
   return `
-    <div class="mb-2">
-      <a href="/#/detaildiscussion/${discussion._id}" class="border-0 text-start text-decoration-none text-dark w-100">
-        <div class="card w-100 m-0">
-          <div class="card-body">
-            <div class="card-title d-flex justify-content-between">
-              <h5>${discussion.title}</h5>
-              <div class="d-flex align-items-center text-end">
-                <span>${discussion.username}</span>
-                <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion ms-1">
+<div class="container-item-discussion fluid">
+  <a href="/#/detaildiscussion/${discussion._id}" class="border-0 text-start text-decoration-none text-dark w-100 test">
+    <div class="card w-100 m-0">
+      <div class="card-body">
+        <div class="main-container">
+          <div class="categoryDiscussion">${createCategoryDiscussionTemplate(discussion.categories)}</div>
+            <h5>${discussion.title}</h5>
+            <p class="card-text">${truncateString(discussion?.discussion, 200)}</p>
+          </div>
+        <div class="sub-container">
+          <div class="container-reply text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
+          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+          <path
+            d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
+        </svg>
+            <span>${discussion.reply.length}</span>
+          </div>
+          <div class="container-discussion-profile d-flex">
+            <img src="${discussion.userimage}" class="img-profile-discussion">
+              <div class"sub-profile">
+                <p class="fw-bold username fs-6">${discussion.username}</p>
+                <p class="fw-light fs-6">${discussion.date}</p>
               </div>
-            </div>
-            <div class="categoryDiscussion">${createCategoryDiscussionTemplate(discussion.categories)}</div>
-            <small class="card-subtitle mb-2 text-muted">${discussion.date}</small>
-            <p class="card-text">${discussion.discussion}</p>
           </div>
-          <div class="card-footer bg-white d-flex justify-content-between">
-            <div>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-                <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                <path
-                  d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-              </svg>
-              <span>${discussion.reply.length}</span>
-            </div>
-            <div>
-              <span class="${isSolvedClass} p-1 rounded">${discussion.isSolved}</span>
-            </div>
-          </div>
-        </div>
-      </a>
+          <span class="${isSolvedClass} p-1 rounded indicator-solved">${discussion.isSolved}</span>
+        </div>  
+
+      </div>
     </div>
+  </a>
+</div>
   `;
 };
 
 const createDiscussionDetailTemplate = (discussion) => {
   let isSolvedClass = '';
   if (discussion.isSolved === false) {
-    isSolvedClass = 'text-bg-danger';
-    discussion.isSolved = 'Unsolved';
+    isSolvedClass = 'text-secondary';
+    discussion.isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>';
   } else {
-    isSolvedClass = 'text-bg-success';
-    discussion.isSolved = 'Solved';
+    isSolvedClass = 'text-success';
+    discussion.isSolved = '<i class="fa fa-check-circle-o fa-2x " aria-hidden="true"></i>';
   }
   return `
-    <div class="container bg-white padding rounded">
+    <div class="container bg-white padding ">
       <div class="d-flex justify-content-between">
         <div class="d-flex align-items-center">
           <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion">
-          <a href="#/detailprofile/${discussion.userid}"><span class="ms-1 username">${discussion.username}</span></a>
+          <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;"><span class="ms-1 username fw-bolder font-monospace text-body">${discussion.username}</span></a>
         </div>
         <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn btn-warning fw-bold d-none" id="user-only">Edit</button>
         <div class="modal fade" id="modal-edit">
@@ -138,7 +146,7 @@ const createDiscussionDetailTemplate = (discussion) => {
                   <h3 class="card-text">Discussion</h3>
                   <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" value="${discussion.title}" placeholder="Masukkan Judul Diskusi">
                   <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
-                  placeholder="Masukkan Diskusi">${discussion.discussion}</textarea>
+                  placeholder="Masukkan Diskusi">${discussion.discussion.replace(/(?:\r\n|\r|\n)/g, '<br>')}</textarea>
                   <input class="form-check-input" type="checkbox" id="invalidCheck">
                   <label class="form-check-label" for="invalidCheck">Solved</label>
                 </div>
@@ -151,23 +159,24 @@ const createDiscussionDetailTemplate = (discussion) => {
           </div>
         </div>
       </div>
-      <div>${createCategoryDiscussionTemplate(discussion.categories)}</div>
-      <div class="${isSolvedClass} my-2 px-2 rounded d-inline-block">${discussion.isSolved}</div>
+      <div class="text-capitalize">${createCategoryDiscussionTemplate(discussion.categories)}</div>
       <h1>${discussion.title}</h1>
-      <h3 class="mb-2 text-muted" style="font-size: 16px;">${discussion.date}</h3>
-      <p class="text-justify" style="border-top: 1px solid rgba(0,0,0, 0.2); border-bottom: 1px solid rgba(0,0,0,0.2);">${discussion.discussion}</p>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
+      <div class="d-flex" style="align-items:center;">
+      <h3 class="text-muted fs-6 font-monospace pt-1 mx-1" >${discussion.date}</h3>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
         <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
         <path
           d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-      </svg>
-      <span class="lengthReply">0</span>
-      <i class="fa fa-user-circle-o fa-x" aria-hidden="true"></i>
-      <form id="form-discussion-reply" class="my-2 d-flex">
-        <input type="text" name="inputReply" id="inputReply" class="form-control" placeholder="Type your reply here">
-        <button type="submit" class="btn btn-dark ms-1">Kirim</button>
+        </svg>
+      <span class="lengthReply mx-1">0</span>
+      <div class="${isSolvedClass}">${discussion.isSolved}</div>
+      </div>
+      <p class="text-justify border-top border-bottom my-lg-2">${discussion.discussion.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+      <form id="form-discussion-reply" class="my-2 ">
+        <p> Your Answer </p>
+        <textarea  name="inputReply" id="inputReply" class="form-control"  rows="5"></textarea>
+        <button type="submit" class="btn btn-dark ms-1 my-1">Submit Answer</button>
       </form>
-      <hr class="m-0">
     </div>
   `;
 };
@@ -190,7 +199,8 @@ const createCategoryDiscussionTemplate = (categories) => {
 };
 
 const createDiscussionReplyTemplate = (discussion) => `
-  <div class="container bg-white pt-3 my-2">
+  <div class="container bg-white border-top">
+  <p>Answer from</p>
       <div class="d-flex align-items-top p-2">
         <div class="container-img-reply">
           <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-reply">
@@ -198,10 +208,9 @@ const createDiscussionReplyTemplate = (discussion) => `
         <div class="ms-2">
           <h2 style="font-size: 20px">${discussion.username}</h2>
           <h3 class="mb-2 text-muted" style="font-size: 14px">${discussion.date}</h3>
-          <p style="font-size: 18px">${discussion.reply}</p>
+          <p style="font-size: 18px">${discussion.reply.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
         </div>
       </div>
-      <hr class="my-2">
   </div>
 `;
 
@@ -263,6 +272,7 @@ const createProfileTemplate = (user) => {
       <h6> Diskusi Anda </h6>
       <p class="length-disscussion-user"></p>
       <a class=" btn btn-primary" href="#/editprofile/${user._id}">Perbarui Profile</a>
+      <a class=" btn btn-primary" href="#/changepwd/${user._id}">Change Password</a>
       </div>
       </div>
       <div class="container-about">
@@ -390,6 +400,30 @@ const UserDiscussionSkeleton = (count) => {
   }
   return template;
 };
+
+const changePasswordTemplate = () => `
+<div class="container-change-page">
+  <div class="change-page">
+    <div class="header-change-page">
+      <img src="./asset/hero-changepwd.png">
+    </div>
+    <form id="form-changepwd">
+    <div class="mb-3">
+      <input type="password" class="form-control" id="oldPwd" placeholder="Masukkan password lama" required>
+      </div>
+      <div class="mb-3">
+      <input type="password" class="form-control" id="newPwd" placeholder="Masukkan password baru" required>
+      </div>
+      <div class="mb-3">
+      <input type="password" class="form-control" id="confirmPwd" placeholder="Konfirmasi Password baru" required>
+      </div>
+      <a href= "#/profile" class="btn btn-dark">Kembali</a>
+      <button type="submit"data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary"> Submit </button>
+    </form>
+
+  </div>
+</div>
+`;
 export {
   DetailJobsSkeleton,
   createDiscussionItemTemplate,
@@ -405,4 +439,5 @@ export {
   createNavbarTemplateBeforeLogin,
   UserDiscussionSkeleton,
   createProfileEditTemplate,
+  changePasswordTemplate,
 };
