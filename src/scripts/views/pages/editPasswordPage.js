@@ -32,13 +32,16 @@ const PasswordEditPage = {
         confirmPassword: document.querySelector('#confirmPwd').value,
       });
       if (data.error) {
-        messageText.innerHTML = `${data.error}`;
-        message.innerHTML = 'WARNING';
+        console.log(data.error);
+        messageText.innerText = `${data.error}`;
+        message.innerText = 'WARNING';
         message.classList.add('text-warning');
+      } else {
+        console.log(data);
+        messageText.innerText = `${data.message}`;
+        message.innerText = 'SUCCESS';
+        message.classList.add('text-success');
       }
-      messageText.innerHTML = `${data.message}`;
-      message.innerHTML = 'SUCCESS';
-      message.classList.add('text-success');
     });
   },
 };
