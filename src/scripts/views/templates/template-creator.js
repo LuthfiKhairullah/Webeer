@@ -319,15 +319,15 @@ const createProfileTemplate = (user) => {
         <img src="${user.image}" class="card-img-top">
           <div class="card-body text-center">
             <p>${user.username}</p>
-            <h6> Diskusi Anda </h6>
+            <h6> Your Discussion</h6>
             <p class="length-disscussion-user"></p>
-            <a class=" btn btn-primary" href="#/editprofile/${user._id}">Perbarui Profile</a>
+            <a class=" btn btn-primary" href="#/editprofile/${user._id}">Change Profile</a>
             <a class=" btn btn-primary" href="#/changepwd/${user._id}">Change Password</a>
           </div>
       </div>
-        <div class="card" style="margin-top:50px;">
-        <button class="btn btn-primary" id="btn-discussion">Discussion</button>
-        <button class="btn btn-secondary" id="btn-bookmark">Bookmark</button>
+        <div class="card" style="margin-top:50px; padding:10px;">
+        <button class="btn btn-primary  btn-sm" id="btn-discussion">Discussion</button>
+        <button class="btn btn-secondary  btn-sm" id="btn-bookmark">Bookmark</button>
         </div>
         </div>
       <div class="container-about">

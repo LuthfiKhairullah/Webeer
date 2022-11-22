@@ -29,6 +29,8 @@ const DetailProfilePage = {
     const userDiscussion = await DiscussionSource.getUserOtherDisscussion(url.id);
     const test = document.querySelector('.length-disscussion-user');
     test.innerHTML = userDiscussion.length;
+    const content = document.querySelector('.container-discussion-user');
+    content.innerHTML = '<discussion-list></discussion-list>';
     const userDiscussionElement = document.querySelector('discussion-list');
     userDiscussionElement.discussions = userDiscussion;
   },
