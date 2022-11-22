@@ -35,7 +35,6 @@ const jobsPage = {
     console.log(job.data.data);
     const search = document.querySelector('.searchBar');
     const inputSearch = document.querySelector('#searchInput');
-
     search.addEventListener('submit', async (event) => {
       event.preventDefault();
       const getInputSearch = inputSearch.value;
@@ -80,6 +79,7 @@ const jobsPage = {
         const jobDetailContainer = document.querySelector('#detail');
         jobDetailContainer.innerHTML = createDetailJob(detail.data.data);
         const coba = document.querySelector('.test');
+        console.log('rest', new Date(detail.data.data.createdAt).getTime());
         detail.data.data.details.qualification.forEach((item) => {
           const li = document.createElement('li');
           li.innerText = item;

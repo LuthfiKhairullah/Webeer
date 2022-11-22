@@ -1,6 +1,10 @@
 import { showFormattedDate } from '../utils/formate-date';
 import '../components/discussionList';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
 
+TimeAgo.addDefaultLocale(en);
+const timeAgo = new TimeAgo('en-US');
 const truncateString = (str, num) => {
   if (str?.length > num) {
     return `${str.slice(0, num)}...`;
@@ -22,6 +26,7 @@ const createItemJob = (jobs) => `
 <img src="${jobs.image}" class="card-image">
 <h6 class="fw-bold">${jobs.company}</h6>
 <h6>${jobs.profession}</h6>
+<p>${timeAgo.format(Date.now() - Math.floor(new Date(jobs.createdAt).getTime() / 1000))}</p>
 <p>${showFormattedDate(jobs.createdAt)}</p>
 <p class="fw-bold">${jobs.address}</p>
 <button value=${jobs._id} class="btn btn-primary fw-bold btn-detail btn-sm">LIHAT</button>
@@ -111,7 +116,50 @@ const createDiscussionItemTemplate = (discussion) => {
 </div>
   `;
 };
+const createBookmarkItemTemplate = (bookmark) => {
+  let isSolvedClass = '';
+  if (bookmark.isSolved === false) {
+    isSolvedClass = 'text-secondary';
+    bookmark.isSolved = '<i class="fa fa-check-circle-o fa-3x" aria-hidden="true"></i>';
+  } else {
+    isSolvedClass = 'text-success';
+    bookmark.isSolved = '<i class="fa fa-check-circle-o fa-3x" aria-hidden="true"></i>';
+  }
+  return `
+<div class="container-item-discussion fluid">
+  <a href="/#/detaildiscussion/${bookmark.id}" class="border-0 text-start text-decoration-none text-dark w-100 test">
+    <div class="card w-100 m-0">
+      <div class="card-body">
+        <div class="main-container">
+          <div class="categoryDiscussion">${createCategoryDiscussionTemplate(bookmark.categories)}</div>
+            <h5>${bookmark.title}</h5>
+            <p class="card-text">${truncateString(bookmark?.discussion, 200)}</p>
+          </div>
+        <div class="sub-container">
+          <div class="container-reply text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
+          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+          <path
+            d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
+        </svg>
+            <span>${bookmark.reply.length}</span>
+          </div>
+          <div class="container-discussion-profile d-flex">
+            <img src="${bookmark.userimage}" class="img-profile-discussion">
+              <div class"sub-profile">
+                <p class="fw-bold username fs-6">${bookmark.username}</p>
+                <p class="fw-light fs-6">${bookmark.date}</p>
+              </div>
+          </div>
+          <span class="${isSolvedClass} p-1 rounded indicator-solved">${bookmark.isSolved}</span>
+        </div>  
 
+      </div>
+    </div>
+  </a>
+</div>
+  `;
+};
 const createDiscussionDetailTemplate = (discussion) => {
   let isSolvedClass = '';
   let isSolved = '';
@@ -265,30 +313,34 @@ const createProfileTemplate = (user) => {
   }
   return `
     <div class="container-profile">
+    <div class="container-profile-main">
       <div class="card profile">
-      <img src="${user.image}" class="card-img-top">
-      <div class="card-body text-center">
-      <p>${user.username}</p>
-      <h6> Diskusi Anda </h6>
-      <p class="length-disscussion-user"></p>
-      <a class=" btn btn-primary" href="#/editprofile/${user._id}">Perbarui Profile</a>
-      <a class=" btn btn-primary" href="#/changepwd/${user._id}">Change Password</a>
+        <img src="${user.image}" class="card-img-top">
+          <div class="card-body text-center">
+            <p>${user.username}</p>
+            <h6> Diskusi Anda </h6>
+            <p class="length-disscussion-user"></p>
+            <a class=" btn btn-primary" href="#/editprofile/${user._id}">Perbarui Profile</a>
+            <a class=" btn btn-primary" href="#/changepwd/${user._id}">Change Password</a>
+          </div>
       </div>
-      </div>
+        <div class="card" style="margin-top:50px;">
+        <button class="btn btn-primary" id="btn-discussion">Discussion</button>
+        <button class="btn btn-secondary" id="btn-bookmark">Bookmark</button>
+        </div>
+        </div>
       <div class="container-about">
-       <div class="card about">
-       <h6>Profession</h6>
-       <p>${user.profesi}</p>
-        <h6>Country</h6>
-        <p>${user.email}</p>
-        <h6>Contact</h6>
-        <p>${user.contact}</p>
-        <h6>About</h6>
-        <p>${user.bio}</p>
-       </div>
+        <div class="card about">
+            <h6>Profession</h6>
+            <p>${user.profesi}</p>
+            <h6>Country</h6>
+            <p>${user.email}</p>
+            <h6>Contact</h6>
+            <p>${user.contact}</p>
+            <h6>About</h6>
+            <p>${user.bio}</p>
+        </div>
        <div class="container-discussion-user">
-       <discussion-list></discussion-list>
-       </div>
        </div>
     </div>
   `;
@@ -453,4 +505,5 @@ export {
   changePasswordTemplate,
   createSaveDiscussionButtonTemplate,
   createUnsaveDiscussionButtonTemplate,
+  createBookmarkItemTemplate,
 };
