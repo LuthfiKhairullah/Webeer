@@ -1,4 +1,5 @@
 import DiscussionSource from '../../data/discussionSource';
+import { createFilterCategoryTemplate } from '../templates/template-creator';
 
 const AddDiscussionPage = {
   async render() {
@@ -10,34 +11,20 @@ const AddDiscussionPage = {
       window.reload();
     }
 
-    const discussionCategory = await DiscussionSource.getDiscussionCategory();
-    const categories = () => {
-      let categories = '';
-      discussionCategory.forEach((category) => {
-        categories += `
-          <option value="${category.name}">${category.name}</option>
-        `;
-      });
-      return categories;
-    };
-
     return `
     <div class="container pt-2">
         <div class="card w-100 border-0">
             <div class="card-body">
                 <form id="form-discussion" method="POST" enctype="multipart/form-data">
-                    <h2 class="card-title text-center">Tambah Diskusi</h2>
-                    <h3 class="card-text">Kategori</h3>
-                    <select name="categorySelect" id="categorySelect" class="form-select mb-2">
-                        <option value="0" selected>Pilih kategori...</option>
-                        ${categories()}
-                    </select>
-                    <h3 class="card-text">Diskusi</h3>
-                    <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" placeholder="Masukkan Judul Diskusi">
+                    <h2 class="card-title text-center">Add Dicussion</h2>
+                    <h3 class="card-text">Category</h3>
+                    <div id="listCategoryForSelected"></div>
+                    <h3 class="card-text">Dicussion</h3>
+                    <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" placeholder="Type your title discussion here">
                     <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
-                    placeholder="Masukkan diskusi"></textarea>
-                    <button type="button" class="btn btn-light border" id="closeButton">Kembali</button>
-                    <button type="submit" class="btn btn-dark">Kirim</button>
+                    placeholder="Type your discussion here"></textarea>
+                    <button type="button" class="btn btn-secondary border" id="closeButton">Back</button>
+                    <button type="submit" class="btn btn-primary">Send</button>
                 </form>
             </div>
         </div>
@@ -51,26 +38,39 @@ const AddDiscussionPage = {
     closeButton.addEventListener('click', () => {
       document.location = '#/forums';
     });
-    const category = document.querySelector('#categorySelect');
-    const arrcategory = [];
-    category.addEventListener('change', () => {
-      arrcategory.push(category.value);
+    const discussionCategory = await DiscussionSource.getDiscussionCategory();
+    const categoryList = document.querySelector('#listCategoryForSelected');
+    discussionCategory.forEach((categoryitem) => {
+      categoryList.innerHTML += createFilterCategoryTemplate(categoryitem);
     });
+    const categorySelect = document.getElementsByName('categoryFilter');
+    console.log(categorySelect);
     addDiscussionButton.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const inputTitle = document.getElementById('inputTitle').value;
-      const inputDiscussion = document.getElementById('inputDiscussion').value;
-      const addDiscussion = await DiscussionSource.addDiscussion({
-        title: inputTitle,
-        categories: arrcategory,
-        discussion: inputDiscussion,
+      const arrcategory = [];
+      categorySelect.forEach((c) => {
+        if (c.checked) {
+          arrcategory.push(c.value);
+        }
       });
-      console.log(addDiscussion);
-
-      if (addDiscussion.error) {
-        alert('Failed');
+      if (arrcategory.length === 0) {
+        alert('Error! Please choose one category first!');
       } else {
-        alert('Success');
+        const inputTitle = document.getElementById('inputTitle').value;
+        const inputDiscussion = document.getElementById('inputDiscussion').value;
+        const addDiscussion = await DiscussionSource.addDiscussion({
+          title: inputTitle,
+          categories: arrcategory,
+          discussion: inputDiscussion,
+        });
+        console.log(addDiscussion);
+
+        if (addDiscussion.error) {
+          alert('Failed');
+        } else {
+          alert('Success');
+          document.location = '#/forums';
+        }
       }
     });
   },

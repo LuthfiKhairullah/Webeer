@@ -77,12 +77,13 @@ const createDetailJob = (detail) => `
 
 const createDiscussionItemTemplate = (discussion) => {
   let isSolvedClass = '';
+  let isSolved = '';
   if (discussion.isSolved === false) {
     isSolvedClass = 'text-secondary';
-    discussion.isSolved = '<i class="fa fa-check-circle-o fa-3x" aria-hidden="true"></i>';
+    isSolved = '<i class="fa fa-check-circle-o fa-3x" aria-hidden="true"></i>';
   } else {
     isSolvedClass = 'text-success';
-    discussion.isSolved = '<i class="fa fa-check-circle-o fa-3x" aria-hidden="true"></i>';
+    isSolved = '<i class="fa fa-check-circle-o fa-3x" aria-hidden="true"></i>';
   }
   return `
 <div class="container-item-discussion fluid">
@@ -96,11 +97,7 @@ const createDiscussionItemTemplate = (discussion) => {
           </div>
         <div class="sub-container">
           <div class="container-reply text-center">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-          <path
-            d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-        </svg>
+            <i class="fa fa-comment-o fa-x" aria-hidden="true"></i>
             <span>${discussion.reply.length}</span>
           </div>
           <div class="container-discussion-profile d-flex">
@@ -110,7 +107,7 @@ const createDiscussionItemTemplate = (discussion) => {
                 <p class="fw-light fs-6">${discussion.date}</p>
               </div>
           </div>
-          <span class="${isSolvedClass} p-1 rounded indicator-solved">${discussion.isSolved}</span>
+          <span class="${isSolvedClass} p-1 rounded indicator-solved">${isSolved}</span>
         </div>  
 
       </div>
@@ -165,12 +162,13 @@ const createBookmarkItemTemplate = (bookmark) => {
 };
 const createDiscussionDetailTemplate = (discussion) => {
   let isSolvedClass = '';
+  let isSolved = '';
   if (discussion.isSolved === false) {
     isSolvedClass = 'text-secondary';
-    discussion.isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>';
+    isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>';
   } else {
     isSolvedClass = 'text-success';
-    discussion.isSolved = '<i class="fa fa-check-circle-o fa-2x " aria-hidden="true"></i>';
+    isSolved = '<i class="fa fa-check-circle-o fa-2x " aria-hidden="true"></i>';
   }
   return `
     <div class="container bg-white padding ">
@@ -179,7 +177,9 @@ const createDiscussionDetailTemplate = (discussion) => {
           <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion">
           <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;"><span class="ms-1 username fw-bolder font-monospace text-body">${discussion.username}</span></a>
         </div>
-        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn btn-warning fw-bold d-none" id="user-only">Edit</button>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn fw-bold d-none" id="user-only">
+          <i class="fa fa-pencil-square-o fa-2x text-primary" aria-label="edit discussion"></i>
+        </button>
         <div class="modal fade" id="modal-edit">
           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
@@ -190,13 +190,14 @@ const createDiscussionDetailTemplate = (discussion) => {
               <form id="form-edit-discussion">
                 <div class="modal-body">
                   <h3 class="card-text">Category</h3>
-                  <select name="categoryList" id="categoryList" class="form-select mb-2"></select>
+                  <!--<select name="categoryList" id="categoryList" class="form-select mb-2"></select>-->
+                  <div id="listCategoryForSelected"></div>
                   <h3 class="card-text">Discussion</h3>
                   <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" value="${discussion.title}" placeholder="Masukkan Judul Diskusi">
                   <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
                   placeholder="Masukkan Diskusi">${discussion.discussion.replace(/(?:\r\n|\r|\n)/g, '<br>')}</textarea>
-                  <input class="form-check-input" type="checkbox" id="invalidCheck">
-                  <label class="form-check-label" for="invalidCheck">Solved</label>
+                  <input class="form-check-input" type="checkbox" id="issolved" value="solved">
+                  <label class="form-check-label" for="issolved">Solved</label>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -209,16 +210,12 @@ const createDiscussionDetailTemplate = (discussion) => {
       </div>
       <div class="text-capitalize">${createCategoryDiscussionTemplate(discussion.categories)}</div>
       <h1>${discussion.title}</h1>
-      <div class="d-flex" style="align-items:center;">
-      <h3 class="text-muted fs-6 font-monospace pt-1 mx-1" >${discussion.date}</h3>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-        <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-        <path
-          d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-        </svg>
-      <span class="lengthReply mx-1">0</span>
-      <div class="${isSolvedClass}">${discussion.isSolved}</div>
-      <div id="saveButtonContainer"></div>
+      <div class="d-flex align-items-center">
+        <h3 class="text-muted fs-6 font-monospace pt-1 mx-1" >${discussion.date}</h3>
+        <i class="fa fa-comment-o fa-x" aria-hidden="true"></i>
+        <span class="lengthReply mx-1">0</span>
+        <div class="${isSolvedClass}">${isSolved}</div>
+        <div id="saveButtonContainer"></div>
       </div>
       <p class="text-justify border-top border-bottom my-lg-2">${discussion.discussion.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
       <form id="form-discussion-reply" class="my-2 ">
@@ -235,12 +232,12 @@ const createCategoryDiscussionTemplate = (categories) => {
   if ((typeof (categories)).includes('object')) {
     categories.forEach((category) => {
       categoryElement += `
-        <span class="badge bg-secondary">${category}</span>
+        <span class="badge text-bg-warning">${category}</span>
       `;
     });
   } else {
     categoryElement += `
-      <span class="badge bg-secondary">${category}</span>
+      <span class="badge text-bg-warning">${category}</span>
     `;
   }
 
@@ -278,12 +275,14 @@ const createFilterListTemplate = () => `
     <form id="form-filter">
       <div class="my-2">
         <h3>Sort</h3>
-        <input type="radio" class="btn-check" name="sort" id="latest" autocomplete="off" checked>
-        <label class="btn btn-success mb-1" for="latest">Latest</label>
-        <input type="radio" class="btn-check" name="sort" id="solved" autocomplete="off">
-        <label class="btn btn-success mb-1" for="solved">Solved</label>
-        <input type="radio" class="btn-check" name="sort" id="unsolved" autocomplete="off">
-        <label class="btn btn-success mb-1" for="unsolved">Unsolved</label>
+        <input type="radio" class="btn-check" name="sort" id="latest" autocomplete="off" value="latest" checked>
+        <label class="btn btn-outline-primary mb-1" for="latest">Latest</label>
+        <input type="radio" class="btn-check" name="sort" id="oldest" autocomplete="off" value="oldest">
+        <label class="btn btn-outline-primary mb-1" for="oldest">Oldest</label>
+        <input type="radio" class="btn-check" name="sort" id="solved" autocomplete="off" value="solved">
+        <label class="btn btn-outline-primary mb-1" for="solved">Solved</label>
+        <input type="radio" class="btn-check" name="sort" id="unsolved" autocomplete="off" value="unsolved">
+        <label class="btn btn-outline-primary mb-1" for="unsolved">Unsolved</label>
       </div>
       <div class="my-2">
         <h3>Category</h3>
@@ -291,7 +290,7 @@ const createFilterListTemplate = () => `
       </div>
       <div>
         <button type="reset" class="btn btn-danger">Reset</button>
-        <button type="submit" class="btn btn-dark">Filter</button>
+        <button type="submit" class="btn btn-primary">Filter</button>
       </div>
     </form>
   </div>
@@ -299,7 +298,7 @@ const createFilterListTemplate = () => `
 
 const createFilterCategoryTemplate = (category) => `
   <input type="checkbox" class="btn-check" name="categoryFilter" id="${category.name}" value="${category.name}" autocomplete="off">
-  <label class="btn btn-light mb-1" for="${category.name}">${category.name}</label>
+  <label class="btn btn-outline-primary mb-1" for="${category.name}">${category.name}</label>
 `;
 
 const createProfileTemplate = (user) => {
