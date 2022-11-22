@@ -313,23 +313,18 @@ const createProfileTemplate = (user) => {
   }
   return `
     <div class="container-profile">
-    <div class="container-profile-main">
-      <div class="card profile">
-        <img src="${user.image}" class="card-img-top">
-          <div class="card-body text-center">
-            <p>${user.username}</p>
-            <h6> Your Discussion</h6>
-            <p class="length-disscussion-user"></p>
-            <a class=" btn btn-primary" href="#/editprofile/${user._id}">Change Profile</a>
-            <a class=" btn btn-primary" href="#/changepwd/${user._id}">Change Password</a>
+ 
+        <div class="container-profile-main">
+          <div class="card profile">
+            <img src="${user.image}" class="card-img-top">
+              <div class="card-body text-center">
+                <p>${user.username}</p>
+                <a class=" btn btn-primary btn-sm" href="#/editprofile/${user._id}" style="padding:11px;">Change Profile</a>
+                <a class=" btn btn-primary btn-sm" href="#/changepwd/${user._id}" style="padding:11px;">Change Password</a>
+              </div>
           </div>
-      </div>
-        <div class="card" style="margin-top:50px; padding:10px;">
-        <button class="btn btn-primary  btn-sm" id="btn-discussion">Discussion</button>
-        <button class="btn btn-secondary  btn-sm" id="btn-bookmark">Bookmark</button>
+          
         </div>
-        </div>
-      <div class="container-about">
         <div class="card about">
             <h6>Profession</h6>
             <p>${user.profesi}</p>
@@ -339,9 +334,19 @@ const createProfileTemplate = (user) => {
             <p>${user.contact}</p>
             <h6>About</h6>
             <p>${user.bio}</p>
+            <h6> Your Discussion</h6>
+            <p class="length-disscussion-user"></p>
         </div>
-       <div class="container-discussion-user">
-       </div>
+        <div class="container-fluid">
+          <div class="header-btn">
+            <div class="d-flex">
+            <button class="btn btn-sm onactive fw-bold" id="btn-discussion">Discussion</button>
+            <button class="btn btn-sm fw-bold" id="btn-bookmark">Bookmark</button>
+            </div>
+            <div class="container-discussion-user"></div>
+          </div>
+        </div>
+
     </div>
   `;
 };

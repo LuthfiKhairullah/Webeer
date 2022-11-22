@@ -36,6 +36,8 @@ const ProfilePage = {
     const BtnDiscussion = document.querySelector('#btn-discussion');
     BtnBookmark.addEventListener('click', async (event) => {
       event.preventDefault();
+      BtnDiscussion.classList.remove('onactive');
+      BtnBookmark.classList.add('onactive');
       content.innerHTML = '<bookmark-list></bookmark-list>';
       const userBookmark = await BookmarkDiscussionIdb.getAllDiscussions();
       const userBookmarkElement = document.querySelector('bookmark-list');
@@ -43,6 +45,8 @@ const ProfilePage = {
     });
     BtnDiscussion.addEventListener('click', async (event) => {
       event.preventDefault();
+      BtnBookmark.classList.remove('onactive');
+      BtnDiscussion.classList.add('onactive');
       content.innerHTML = '<discussion-list></discussion-list>';
       const userDiscussion = await DiscussionSource.getUserDiscussion();
       const userDiscussionElement = document.querySelector('discussion-list');
