@@ -45,8 +45,22 @@ const ForumsPage = {
     const searchInput = document.querySelector('#searchDiscussion');
     const searchButton = document.querySelector('#form-searchDiscussion');
     const check = document.getElementsByName('categoryFilter');
+    const sort = document.getElementsByName('sort');
     searchButton.addEventListener('submit', async (e) => {
       e.preventDefault();
+      sort.forEach((s) => {
+        if (s.checked) {
+          if (s.value === 'solved') {
+            sort.value = 'true';
+          } else if (s.value === 'unsolved') {
+            sort.value = 'false';
+          } else if (s.value === 'oldest') {
+            sort.value = 'oldest';
+          } else {
+            sort.value = '';
+          }
+        }
+      });
       const arrcategory = [];
       check.forEach((c) => {
         if (c.checked) {
@@ -59,9 +73,9 @@ const ForumsPage = {
         arrcategory.forEach((category) => {
           formatcategory += `category=${category}&`;
         });
-        discussion = await DiscussionSource.getAllDiscussion(`${formatcategory}search=${searchInput.value}`);
+        discussion = await DiscussionSource.getAllDiscussion(`${formatcategory}search=${searchInput.value}&sort=${sort.value}`);
       } else {
-        discussion = await DiscussionSource.getAllDiscussion(`search=${searchInput.value}`);
+        discussion = await DiscussionSource.getAllDiscussion(`search=${searchInput.value}&sort=${sort.value}`);
       }
       discussionListElement.discussions = discussion;
     });
@@ -75,6 +89,19 @@ const ForumsPage = {
     });
     filterButton.addEventListener('submit', async (e) => {
       e.preventDefault();
+      sort.forEach((s) => {
+        if (s.checked) {
+          if (s.value === 'solved') {
+            sort.value = 'true';
+          } else if (s.value === 'unsolved') {
+            sort.value = 'false';
+          } else if (s.value === 'oldest') {
+            sort.value = 'oldest';
+          } else {
+            sort.value = '';
+          }
+        }
+      });
       const arrcategory = [];
       check.forEach((c) => {
         if (c.checked) {
@@ -87,9 +114,9 @@ const ForumsPage = {
         arrcategory.forEach((category) => {
           formatcategory += `category=${category}&`;
         });
-        discussion = await DiscussionSource.getAllDiscussion(`${formatcategory}search=${searchInput.value}`);
+        discussion = await DiscussionSource.getAllDiscussion(`${formatcategory}search=${searchInput.value}&sort=${sort.value}`);
       } else {
-        discussion = await DiscussionSource.getAllDiscussion(`search=${searchInput.value}`);
+        discussion = await DiscussionSource.getAllDiscussion(`search=${searchInput.value}&sort=${sort.value}`);
       }
       discussionListElement.discussions = discussion;
     });

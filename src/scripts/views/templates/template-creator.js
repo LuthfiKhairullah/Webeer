@@ -91,11 +91,7 @@ const createDiscussionItemTemplate = (discussion) => {
           </div>
         <div class="sub-container">
           <div class="container-reply text-center">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-          <path
-            d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-        </svg>
+            <i class="fa fa-comment-o fa-x" aria-hidden="true"></i>
             <span>${discussion.reply.length}</span>
           </div>
           <div class="container-discussion-profile d-flex">
@@ -161,15 +157,11 @@ const createDiscussionDetailTemplate = (discussion) => {
       </div>
       <div class="text-capitalize">${createCategoryDiscussionTemplate(discussion.categories)}</div>
       <h1>${discussion.title}</h1>
-      <div class="d-flex" style="align-items:center;">
-      <h3 class="text-muted fs-6 font-monospace pt-1 mx-1" >${discussion.date}</h3>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-        <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-        <path
-          d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-        </svg>
-      <span class="lengthReply mx-1">0</span>
-      <div class="${isSolvedClass}">${discussion.isSolved}</div>
+      <div class="d-flex align-items-center">
+        <h3 class="text-muted fs-6 font-monospace pt-1 mx-1 m-0" >${discussion.date}</h3>
+        <i class="fa fa-comment-o fa-x" aria-hidden="true"></i>
+        <span class="lengthReply mx-1">0</span>
+        <div class="${isSolvedClass}">${discussion.isSolved}</div>
       </div>
       <p class="text-justify border-top border-bottom my-lg-2">${discussion.discussion.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
       <form id="form-discussion-reply" class="my-2 ">
@@ -229,12 +221,14 @@ const createFilterListTemplate = () => `
     <form id="form-filter">
       <div class="my-2">
         <h3>Sort</h3>
-        <input type="radio" class="btn-check" name="sort" id="latest" autocomplete="off" checked>
-        <label class="btn btn-success mb-1" for="latest">Latest</label>
-        <input type="radio" class="btn-check" name="sort" id="solved" autocomplete="off">
-        <label class="btn btn-success mb-1" for="solved">Solved</label>
-        <input type="radio" class="btn-check" name="sort" id="unsolved" autocomplete="off">
-        <label class="btn btn-success mb-1" for="unsolved">Unsolved</label>
+        <input type="radio" class="btn-check" name="sort" id="latest" autocomplete="off" value="latest" checked>
+        <label class="btn btn-outline-dark mb-1" for="latest">Latest</label>
+        <input type="radio" class="btn-check" name="sort" id="oldest" autocomplete="off" value="oldest">
+        <label class="btn btn-outline-dark mb-1" for="oldest">Oldest</label>
+        <input type="radio" class="btn-check" name="sort" id="solved" autocomplete="off" value="solved">
+        <label class="btn btn-outline-dark mb-1" for="solved">Solved</label>
+        <input type="radio" class="btn-check" name="sort" id="unsolved" autocomplete="off" value="unsolved">
+        <label class="btn btn-outline-dark mb-1" for="unsolved">Unsolved</label>
       </div>
       <div class="my-2">
         <h3>Category</h3>
@@ -250,7 +244,7 @@ const createFilterListTemplate = () => `
 
 const createFilterCategoryTemplate = (category) => `
   <input type="checkbox" class="btn-check" name="categoryFilter" id="${category.name}" value="${category.name}" autocomplete="off">
-  <label class="btn btn-light mb-1" for="${category.name}">${category.name}</label>
+  <label class="btn btn-outline-dark mb-1" for="${category.name}">${category.name}</label>
 `;
 
 const createProfileTemplate = (user) => {
