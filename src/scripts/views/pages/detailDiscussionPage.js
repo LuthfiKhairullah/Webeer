@@ -27,15 +27,57 @@ const DetailDiscussionPage = {
     discussionListElement.discussion = discussions;
     const lengthReply = document.querySelector('.lengthReply');
     lengthReply.innerText = discussions.reply.length;
-    const categoriesDiscussion = await DiscussionSource.getDiscussionCategory();
-    const categoriesListElement = document.querySelector('#categoryList');
-    categoriesDiscussion.forEach((category) => {
-      if (discussions.categories.toString() === category.name.toString()) {
-        categoriesListElement.innerHTML += `<option value="${category.name}" selected>${category.name}</option>`;
+    const discussionCategory = await DiscussionSource.getDiscussionCategory();
+    const categoryList = document.querySelector('#listCategoryForSelected');
+    discussionCategory.forEach((categoryitem) => {
+      if (discussions.categories.includes(categoryitem.name.toString())) {
+        categoryList.innerHTML += `
+          <input type="checkbox" class="btn-check" name="categoryFilter" id="${categoryitem.name}" value="${categoryitem.name}" autocomplete="off" checked>
+          <label class="btn btn-outline-primary mb-1" for="${categoryitem.name}">${categoryitem.name}</label>
+        `;
       } else {
-        categoriesListElement.innerHTML += `<option value="${category.name}">${category.name}</option>`;
+        categoryList.innerHTML += `
+          <input type="checkbox" class="btn-check" name="categoryFilter" id="${categoryitem.name}" value="${categoryitem.name}" autocomplete="off">
+          <label class="btn btn-outline-primary mb-1" for="${categoryitem.name}">${categoryitem.name}</label>
+        `;
       }
     });
+    const categorySelect = document.getElementsByName('categoryFilter');
+    const isSolvedCheck = document.getElementById('issolved');
+    if (discussions.isSolved.toString() === 'true') {
+      isSolvedCheck.setAttribute('checked', '');
+    }
+    const formEditDiscussion = document.querySelector('#form-edit-discussion');
+    formEditDiscussion.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const arrcategory = [];
+      categorySelect.forEach((c) => {
+        if (c.checked) {
+          arrcategory.push(c.value);
+        }
+      });
+      if (arrcategory.length === 0) {
+        alert('Error! Please choose one category first!');
+      }
+      const inputTitle = document.getElementById('inputTitle').value;
+      const inputDiscussion = document.getElementById('inputDiscussion').value;
+      const editDiscussion = await DiscussionSource.editDiscussion(
+        url.id,
+        {
+          title: inputTitle,
+          categories: arrcategory,
+          discussion: inputDiscussion,
+          isSolved: isSolvedCheck.checked,
+        },
+      );
+      if (editDiscussion.error) {
+        alert('Failed');
+      } else {
+        alert('Success');
+        document.location = `#/detaildiscussion/${url.id}`;
+      }
+    });
+
     const user = await User.getUser();
     const userOnlyElement = document.querySelector('#user-only');
     if (user._id === discussions.userid) {

@@ -85,6 +85,24 @@ class DiscussionSource {
     }
   }
 
+  static async editDiscussion(id, discussion) {
+    try {
+      const jwt = localStorage.getItem('token').replaceAll('"', '');
+      const responseJson = await axios({
+        url: `${API_ENDPOINT.DISCUSSION_DETAIL(id)}`,
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          auth: `${jwt}`,
+        },
+        data: JSON.stringify(discussion),
+      });
+      return responseJson.data.data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+
   static async getDiscussionReply(id) {
     try {
       const jwt = localStorage.getItem('token').replaceAll('"', '');

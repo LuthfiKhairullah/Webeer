@@ -7,61 +7,72 @@
     height: 20px;
     width: 20px;
 }
-.container-discussion-profile{
+
+.container-discussion-profile {
     flex-grow: 0.4;
     align-items: center;
     text-align: center;
 }
+
 .picture-profile-reply {
     border-radius: 5%;
     height: 30px;
     width: 30px;
 }
 
-.img-profile-discussion{
+.img-profile-discussion {
     width: 55px;
     height: 55px;
     border-radius: 50px;
     border: 1px solid black;
-    margin:0 auto;
+    margin: 0 auto;
 }
+
 .username {
-margin: 0;
+    margin: 0;
 }
-.container-reply{
+
+.container-reply {
     width: 80px;
 }
+
 .padding {
     margin-top: 80px;
     padding-top: 20px;
     padding-bottom: 20px;
 }
-.indicator-solved{
+
+.indicator-solved {
     margin-left: 5px;
 
     margin: 0 auto;
 }
-.container-item-discussion .main-container{
+
+.container-item-discussion .main-container {
     width: 350px;
     flex-grow: 0.3;
     text-align: justify;
     margin-right: 30px;
 }
-.container-item-discussion .sub-container{
+
+.container-item-discussion .sub-container {
     width: 700px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 }
-.container-item-discussion .card-body{
+
+.container-item-discussion .card-body {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 }
+
 .username {
     font-size: 20px;
 }
-.container-reply{
+
+.container-reply {
     margin-top: 10px;
 
 }
@@ -74,9 +85,11 @@ margin: 0;
 #form-searchDiscussion button {
     border-radius: 20px;
 }
-.container-item-discussion .card{
- border-radius: 0;
+
+.container-item-discussion .card {
+    border-radius: 0;
 }
-.container-item-discussion .card:hover{
+
+.container-item-discussion .card:hover {
     background-color: #EEEEEE;
 }
