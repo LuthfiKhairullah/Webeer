@@ -158,10 +158,11 @@ const createDiscussionDetailTemplate = (discussion) => {
       <div class="text-capitalize">${createCategoryDiscussionTemplate(discussion.categories)}</div>
       <h1>${discussion.title}</h1>
       <div class="d-flex align-items-center">
-        <h3 class="text-muted fs-6 font-monospace pt-1 mx-1 m-0" >${discussion.date}</h3>
+        <h3 class="text-muted fs-6 font-monospace pt-1 mx-1" >${discussion.date}</h3>
         <i class="fa fa-comment-o fa-x" aria-hidden="true"></i>
         <span class="lengthReply mx-1">0</span>
         <div class="${isSolvedClass}">${discussion.isSolved}</div>
+        <div id="saveButtonContainer"></div>
       </div>
       <p class="text-justify border-top border-bottom my-lg-2">${discussion.discussion.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
       <form id="form-discussion-reply" class="my-2 ">
@@ -418,6 +419,17 @@ const changePasswordTemplate = () => `
   </div>
 </div>
 `;
+const createSaveDiscussionButtonTemplate = () => `
+  <button aria-label="like this restaurant" id="likeButton" class="like btn" style="border:none; background-color:transparent;">
+  <i class="fa fa-bookmark-o fa-2x" aria-hidden="true"></i>
+  </button>
+`;
+
+const createUnsaveDiscussionButtonTemplate = () => `
+  <button aria-label="unsave this discussion" id="likeButton" class="like btn" style="border:none; background-color:transparent;">
+  <i class="fa fa-bookmark fa-2x" aria-hidden="true"></i>
+  </button>
+`;
 export {
   DetailJobsSkeleton,
   createDiscussionItemTemplate,
@@ -434,4 +446,6 @@ export {
   UserDiscussionSkeleton,
   createProfileEditTemplate,
   changePasswordTemplate,
+  createSaveDiscussionButtonTemplate,
+  createUnsaveDiscussionButtonTemplate,
 };

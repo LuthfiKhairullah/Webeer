@@ -3,6 +3,7 @@ import '../components/discussionReply';
 import DiscussionSource from '../../data/discussionSource';
 import UrlParser from '../../routes/urlParser';
 import User from '../../data/loginSource';
+import SaveButtonInitiator from '../../utils/save-initiator';
 
 const DetailDiscussionPage = {
   async render() {
@@ -21,6 +22,7 @@ const DetailDiscussionPage = {
   async afterRender() {
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const discussions = await DiscussionSource.getDiscussion(url.id);
+    console.log(discussions);
     const discussionListElement = document.querySelector('discussion-detail');
     discussionListElement.discussion = discussions;
     const lengthReply = document.querySelector('.lengthReply');
@@ -70,6 +72,21 @@ const DetailDiscussionPage = {
       } else {
         alert('Type your reply first');
       }
+    });
+    SaveButtonInitiator.init({
+      saveButtonContainer: document.querySelector('#saveButtonContainer'),
+      discussions: {
+        id: discussions._id,
+        title: discussions.title,
+        categories: discussions.categories,
+        discussions: discussions.discussion,
+        reply: discussions.reply.length,
+        userimage: discussions.userimage,
+        username: discussions.username,
+        date: discussions.date,
+        isSolved: discussions.isSolved,
+
+      },
     });
   },
 
