@@ -71,7 +71,6 @@ const createDetailJob = (detail) => `
   <div class="footer-detail">
   <a href="${detail.details.link}"><button type="button" class="detail-link btn btn-primary btn-sm">Apply</button></a>
   </div>
-
 </div>
 `;
 
@@ -109,7 +108,6 @@ const createDiscussionItemTemplate = (discussion) => {
           </div>
           <span class="${isSolvedClass} p-1 rounded indicator-solved">${isSolved}</span>
         </div>  
-
       </div>
     </div>
   </a>
@@ -153,7 +151,6 @@ const createBookmarkItemTemplate = (bookmark) => {
           </div>
           <span class="${isSolvedClass} p-1 rounded indicator-solved">${bookmark.isSolved}</span>
         </div>  
-
       </div>
     </div>
   </a>
@@ -178,14 +175,10 @@ const createDiscussionDetailTemplate = (discussion) => {
           <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;"><span class="ms-1 username fw-bolder font-monospace text-body">${discussion.username}</span></a>
         </div>
         <div class = "d-flex d-none" id="user-only">
-<<<<<<< HEAD
-        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn fw-bold ">
-=======
         <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn">
->>>>>>> 3a064a7861f9b5d1f34f694185d4f09cd99c6644
         <i class="fa fa-pencil-square-o fa-2x text-primary" aria-label="edit discussion"></i>
         </button>
-        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         <i class="fa fa-trash-o fa-2x text-danger" aria-label="delete discussion"></i>
         </button>
         </div>
@@ -201,7 +194,7 @@ const createDiscussionDetailTemplate = (discussion) => {
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-danger" id="delete-discussion" data-bs-dismiss="modal" >Delete</button>
+              <button type="button" class="btn btn-danger" id="delete-discussion">Delete</button>
             </div>
           </div>
         </div>
@@ -372,7 +365,6 @@ const createProfileTemplate = (user) => {
             <div class="container-discussion-user"></div>
           </div>
         </div>
-
     </div>
   `;
 };
@@ -418,7 +410,6 @@ const createProfileOtherTemplate = (user) => {
             <div class="container-discussion-user"></div>
           </div>
         </div>
-
     </div>
   `;
 };
@@ -548,7 +539,6 @@ const changePasswordTemplate = () => `
       <a href= "#/profile" class="btn btn-dark">Kembali</a>
       <button type="submit"data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary"> Submit </button>
     </form>
-
   </div>
 </div>
 `;
@@ -562,6 +552,20 @@ const createUnsaveDiscussionButtonTemplate = () => `
   <button aria-label="unsave this discussion" id="likeButton" class="like btn" style="border:none; background-color:transparent;">
   <i class="fa fa-bookmark fa-2x" aria-hidden="true"></i>
   </button>
+`;
+
+const createBookmarkEmpty = () => `
+<div class="container-fluid bg-light p-2">
+<h6> You haven't bookmarked a discussion yet </h6>
+</div>
+<a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
+`;
+
+const createDiscussionEmpty = () => `
+<div class="container-fluid bg-light p-2">
+<h6> You have no discussions yet </h6>
+</div>
+<a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
 `;
 export {
   DetailJobsSkeleton,
@@ -583,4 +587,6 @@ export {
   createUnsaveDiscussionButtonTemplate,
   createBookmarkItemTemplate,
   createProfileOtherTemplate,
+  createBookmarkEmpty,
+  createDiscussionEmpty,
 };
