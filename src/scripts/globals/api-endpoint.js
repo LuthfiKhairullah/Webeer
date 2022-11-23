@@ -7,6 +7,7 @@ const API_ENDPOINT = {
   DISCUSSION_USER: `${CONFIG.BASE_URL}/discussions/user`,
   DISCUSSION_REPLY: (id) => `${CONFIG.BASE_URL}/discussions/reply/${id}`,
   DISCUSSION_CATEGORY: `${CONFIG.BASE_URL}/discussionscategory`,
+  DISCUSSION_DELETE: (id) => `${CONFIG.BASE_URL}/discussions/${id}`,
   JOB_ITEM: `${CONFIG.BASE_URL}/jobs/all`,
   JOB_DETAIL: (_id) => `${CONFIG.BASE_URL}/jobs/detail/${_id}`,
   JOB_SEARCH: (keyword) => `${CONFIG.BASE_URL}/jobs?profession=${keyword}`,

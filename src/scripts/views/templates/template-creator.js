@@ -177,12 +177,31 @@ const createDiscussionDetailTemplate = (discussion) => {
           <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion">
           <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;"><span class="ms-1 username fw-bolder font-monospace text-body">${discussion.username}</span></a>
         </div>
-        <button type="button" data-bs-toggle="modal" data-bs-target="#" class="btn fw-bold d-none" >
-              <i class="fa fa-trash-o fa-2x text-danger" aria-label="delete discussion"></i>
-      </button>
+        <div class = "d-flex">
         <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn fw-bold d-none" id="user-only">
-          <i class="fa fa-pencil-square-o fa-2x text-primary" aria-label="edit discussion"></i>
+        <i class="fa fa-pencil-square-o fa-2x text-primary" aria-label="edit discussion"></i>
         </button>
+        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <i class="fa fa-trash-o fa-2x text-danger" aria-label="delete discussion"></i>
+        </button>
+        </div>
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-danger fw-bold" id="staticBackdropLabel">DELETE</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            Do you want to delete this discussion?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger" id="delete-discussion">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
         <div class="modal fade" id="modal-edit">
           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
