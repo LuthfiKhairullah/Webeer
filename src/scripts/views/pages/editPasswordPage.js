@@ -33,11 +33,13 @@ const PasswordEditPage = {
       });
       if (data.error) {
         console.log(data.error);
+        message.classList.remove('text-success');
         messageText.innerText = `${data.error}`;
         message.innerText = 'WARNING';
         message.classList.add('text-warning');
       } else {
         console.log(data);
+        message.classList.remove('text-warning');
         messageText.innerText = `${data.message}`;
         message.innerText = 'SUCCESS';
         message.classList.add('text-success');
