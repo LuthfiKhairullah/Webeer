@@ -1,7 +1,7 @@
 import DiscussionSource from '../../data/discussionSource';
 import User from '../../data/loginSource';
 import UrlParser from '../../routes/urlParser';
-import '../components/userProfile';
+import '../components/userOtherProfile';
 // import { UserDiscussionSkeleton } from '../templates/template-creator';
 
 const DetailProfilePage = {
@@ -15,7 +15,7 @@ const DetailProfilePage = {
     }
 
     return `
-        <user-profile></user-profile>
+        <user-profile-other></user-profile-other>
     `;
   },
 
@@ -24,11 +24,13 @@ const DetailProfilePage = {
     console.log(url);
     const userProfile = await User.getDetailUser(url.id);
     console.log(userProfile);
-    const userProfileElement = document.querySelector('user-profile');
+    const userProfileElement = document.querySelector('user-profile-other');
     userProfileElement.user = userProfile;
     const userDiscussion = await DiscussionSource.getUserOtherDisscussion(url.id);
-    const test = document.querySelector('.length-disscussion-user');
-    test.innerHTML = userDiscussion.length;
+    const lengthReply = document.querySelector('.length-disscussion-user');
+    lengthReply.innerHTML = userDiscussion.length;
+    const content = document.querySelector('.container-discussion-user');
+    content.innerHTML = '<discussion-list></discussion-list>';
     const userDiscussionElement = document.querySelector('discussion-list');
     userDiscussionElement.discussions = userDiscussion;
   },
