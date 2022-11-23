@@ -178,7 +178,11 @@ const createDiscussionDetailTemplate = (discussion) => {
           <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;"><span class="ms-1 username fw-bolder font-monospace text-body">${discussion.username}</span></a>
         </div>
         <div class = "d-flex d-none" id="user-only">
+<<<<<<< HEAD
         <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn fw-bold ">
+=======
+        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn">
+>>>>>>> 3a064a7861f9b5d1f34f694185d4f09cd99c6644
         <i class="fa fa-pencil-square-o fa-2x text-primary" aria-label="edit discussion"></i>
         </button>
         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
