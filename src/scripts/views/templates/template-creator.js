@@ -177,6 +177,9 @@ const createDiscussionDetailTemplate = (discussion) => {
           <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion">
           <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;"><span class="ms-1 username fw-bolder font-monospace text-body">${discussion.username}</span></a>
         </div>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#" class="btn fw-bold d-none" >
+              <i class="fa fa-trash-o fa-2x text-danger" aria-label="delete discussion"></i>
+      </button>
         <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn fw-bold d-none" id="user-only">
           <i class="fa fa-pencil-square-o fa-2x text-primary" aria-label="edit discussion"></i>
         </button>
@@ -195,7 +198,7 @@ const createDiscussionDetailTemplate = (discussion) => {
                   <h3 class="card-text">Discussion</h3>
                   <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" value="${discussion.title}" placeholder="Masukkan Judul Diskusi">
                   <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
-                  placeholder="Masukkan Diskusi">${discussion.discussion.replace(/(?:\r\n|\r|\n)/g, '<br>')}</textarea>
+                  placeholder="Masukkan Diskusi"></textarea>
                   <input class="form-check-input" type="checkbox" id="issolved" value="solved">
                   <label class="form-check-label" for="issolved">Solved</label>
                 </div>
@@ -252,7 +255,7 @@ const createDiscussionReplyTemplate = (discussion) => `
           <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-reply">
         </div>
         <div class="ms-2">
-          <h2 style="font-size: 20px">${discussion.username}</h2>
+        <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;" class="text-dark"><h2 style="font-size: 20px">${discussion.username}</h2></a>
           <h3 class="mb-2 text-muted" style="font-size: 14px">${discussion.date}</h3>
           <p style="font-size: 18px">${discussion.reply.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
         </div>
@@ -350,7 +353,52 @@ const createProfileTemplate = (user) => {
     </div>
   `;
 };
+const createProfileOtherTemplate = (user) => {
+  if (user.bio === undefined) {
+    user.bio = '-';
+  }
+  if (user.contact === undefined) {
+    user.contact = '-';
+  }
+  if (user.profesi === undefined) {
+    user.profesi = '-';
+  }
+  return `
+    <div class="container-profile">
+ 
+        <div class="container-profile-main">
+          <div class="card profile">
+            <img src="${user.image}" class="card-img-top">
+              <div class="card-body text-center">
+                <p>${user.username}</p>
+              </div>
+          </div>
+          
+        </div>
+        <div class="card about">
+            <h6>Profession</h6>
+            <p>${user.profesi}</p>
+            <h6>Country</h6>
+            <p>${user.email}</p>
+            <h6>Contact</h6>
+            <p>${user.contact}</p>
+            <h6>About</h6>
+            <p>${user.bio}</p>
+            <h6>Have Discussion</h6>
+            <p class="length-disscussion-user"></p>
+        </div>
+        <div class="container-fluid">
+          <div class="header-btn">
+            <div class="d-flex">
+            <button class="btn btn-sm onactive fw-bold" id="btn-discussion">Discussion</button>
+            </div>
+            <div class="container-discussion-user"></div>
+          </div>
+        </div>
 
+    </div>
+  `;
+};
 const createNavbarTemplateBeforeLogin = () => `
 <nav class="navbar fixed-top navbar-expand-lg  ">
 <div class="container-fluid">
@@ -511,4 +559,5 @@ export {
   createSaveDiscussionButtonTemplate,
   createUnsaveDiscussionButtonTemplate,
   createBookmarkItemTemplate,
+  createProfileOtherTemplate,
 };
