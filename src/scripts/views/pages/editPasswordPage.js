@@ -33,14 +33,20 @@ const PasswordEditPage = {
       });
       if (data.error) {
         console.log(data.error);
+        message.classList.remove('text-success');
+        messageText.classList.remove('bg-success');
         messageText.innerText = `${data.error}`;
         message.innerText = 'WARNING';
         message.classList.add('text-warning');
+        messageText.classList.add('bg-warning');
       } else {
         console.log(data);
+        message.classList.remove('text-warning');
+        messageText.classList.remove('bg-warning');
         messageText.innerText = `${data.message}`;
         message.innerText = 'SUCCESS';
         message.classList.add('text-success');
+        messageText.classList.add('bg-success');
       }
     });
   },

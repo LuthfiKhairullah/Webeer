@@ -71,7 +71,6 @@ const createDetailJob = (detail) => `
   <div class="footer-detail">
   <a href="${detail.details.link}"><button type="button" class="detail-link btn btn-primary btn-sm">Apply</button></a>
   </div>
-
 </div>
 `;
 
@@ -109,7 +108,6 @@ const createDiscussionItemTemplate = (discussion) => {
           </div>
           <span class="${isSolvedClass} p-1 rounded indicator-solved">${isSolved}</span>
         </div>  
-
       </div>
     </div>
   </a>
@@ -153,7 +151,6 @@ const createBookmarkItemTemplate = (bookmark) => {
           </div>
           <span class="${isSolvedClass} p-1 rounded indicator-solved">${bookmark.isSolved}</span>
         </div>  
-
       </div>
     </div>
   </a>
@@ -368,7 +365,6 @@ const createProfileTemplate = (user) => {
             <div class="container-discussion-user"></div>
           </div>
         </div>
-
     </div>
   `;
 };
@@ -414,7 +410,6 @@ const createProfileOtherTemplate = (user) => {
             <div class="container-discussion-user"></div>
           </div>
         </div>
-
     </div>
   `;
 };
@@ -544,7 +539,6 @@ const changePasswordTemplate = () => `
       <a href= "#/profile" class="btn btn-dark">Kembali</a>
       <button type="submit"data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary"> Submit </button>
     </form>
-
   </div>
 </div>
 `;
@@ -558,6 +552,27 @@ const createUnsaveDiscussionButtonTemplate = () => `
   <button aria-label="unsave this discussion" id="likeButton" class="like btn" style="border:none; background-color:transparent;">
   <i class="fa fa-bookmark fa-2x" aria-hidden="true"></i>
   </button>
+`;
+
+const createBookmarkEmpty = () => `
+<div class="container-fluid bg-light p-2">
+<h6> You haven't bookmarked a discussion yet </h6>
+</div>
+<a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
+`;
+
+const createDiscussionEmpty = () => `
+<div class="container-fluid bg-light p-2">
+<h6> You have no discussions yet </h6>
+</div>
+<a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
+`;
+
+const createSearchDiscussionEmpty = () => `
+<div class="container-fluid p-2" style="border:3px solid #ffc107; background-color:#FFF56D;">
+<h6 class="fw-bold p-2"> Oops, Discussion not found </h6>
+</div>
+<a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
 `;
 export {
   DetailJobsSkeleton,
@@ -579,4 +594,7 @@ export {
   createUnsaveDiscussionButtonTemplate,
   createBookmarkItemTemplate,
   createProfileOtherTemplate,
+  createBookmarkEmpty,
+  createDiscussionEmpty,
+  createSearchDiscussionEmpty,
 };

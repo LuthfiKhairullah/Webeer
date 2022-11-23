@@ -3,7 +3,7 @@ import '../components/searchDiscussion';
 import '../components/filterList';
 import FilterInitiator from '../../utils/filter-initiator';
 import DiscussionSource from '../../data/discussionSource';
-import { createFilterCategoryTemplate } from '../templates/template-creator';
+import { createFilterCategoryTemplate,createSearchDiscussionEmpty } from '../templates/template-creator';
 
 const ForumsPage = {
   async render() {
@@ -20,7 +20,8 @@ const ForumsPage = {
             </button>
             <search-discussion class="w-100"></search-discussion>
           </div>
-          <discussion-list></discussion-list>
+          <div class ="list">
+          </div>
         </div>
       </div>
     `;
@@ -29,6 +30,8 @@ const ForumsPage = {
   async afterRender() {
     const discussions = await DiscussionSource.getAllDiscussion();
     console.log(discussions);
+    const content = document.querySelector('.list');
+    content.innerHTML = '<discussion-list></discussion-list>';
     const discussionListElement = document.querySelector('discussion-list');
     discussionListElement.discussions = discussions;
     const filterList = await DiscussionSource.getDiscussionCategory();
@@ -77,7 +80,13 @@ const ForumsPage = {
       } else {
         discussion = await DiscussionSource.getAllDiscussion(`search=${searchInput.value}&sort=${sort.value}`);
       }
-      discussionListElement.discussions = discussion;
+      if (discussion.length > 0) {
+        content.innerHTML = '<discussion-list></discussion-list>';
+        const discussionListElement = document.querySelector('discussion-list');
+        discussionListElement.discussions = discussion;
+      } else {
+        content.innerHTML = createSearchDiscussionEmpty();
+      }
     });
     const filterButton = document.querySelector('#form-filter');
     filterButton.addEventListener('reset', async (e) => {
@@ -118,7 +127,13 @@ const ForumsPage = {
       } else {
         discussion = await DiscussionSource.getAllDiscussion(`search=${searchInput.value}&sort=${sort.value}`);
       }
-      discussionListElement.discussions = discussion;
+      if (discussion.length > 0) {
+        content.innerHTML = '<discussion-list></discussion-list>';
+        const discussionListElement = document.querySelector('discussion-list');
+        discussionListElement.discussions = discussion;
+      } else {
+        content.innerHTML = createSearchDiscussionEmpty();
+      }
     });
   },
 
