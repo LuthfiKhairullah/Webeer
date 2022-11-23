@@ -115,6 +115,12 @@ const DetailDiscussionPage = {
         alert('Type your reply first');
       }
     });
+    const btnDelete = document.querySelector('#delete-discussion');
+    btnDelete.addEventListener('click', async (event) => {
+      event.preventDefault();
+      const data = await DiscussionSource.DeleteDiscussion(url.id);
+      console.log(data.message);
+    });
     SaveButtonInitiator.init({
       saveButtonContainer: document.querySelector('#saveButtonContainer'),
       discussions: {

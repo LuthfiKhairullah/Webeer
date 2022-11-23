@@ -24,6 +24,15 @@ class AppBar extends HTMLElement {
         }
       });
     }
+    const Currentlocation = location.href;
+    const menuItem = document.querySelectorAll('a');
+    console.log(menuItem)
+    const menuLength = menuItem.length;
+    for (let i = 0; i < menuLength; i++) {
+      if (menuItem[i].href === Currentlocation) {
+        menuItem[i].classList.add('active');
+      }
+    }
   }
 }
 

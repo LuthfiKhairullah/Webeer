@@ -150,5 +150,21 @@ class DiscussionSource {
       return console.log(error);
     }
   }
+
+  static async DeleteDiscussion(id) {
+    try {
+      const jwt = localStorage.getItem('token').replaceAll('"', '');
+      const response = await axios({
+        url: `${API_ENDPOINT.DISCUSSION_DELETE(id)}`,
+        method: 'DELETE',
+        headers: {
+          auth: `${jwt}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
 }
 export default DiscussionSource;
