@@ -127,7 +127,13 @@ const ForumsPage = {
       } else {
         discussion = await DiscussionSource.getAllDiscussion(`search=${searchInput.value}&sort=${sort.value}`);
       }
-      discussionListElement.discussions = discussion;
+      if (discussion.length > 0) {
+        content.innerHTML = '<discussion-list></discussion-list>';
+        const discussionListElement = document.querySelector('discussion-list');
+        discussionListElement.discussions = discussion;
+      } else {
+        content.innerHTML = createSearchDiscussionEmpty();
+      }
     });
   },
 
