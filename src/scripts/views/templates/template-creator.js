@@ -177,8 +177,8 @@ const createDiscussionDetailTemplate = (discussion) => {
           <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion">
           <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;"><span class="ms-1 username fw-bolder font-monospace text-body">${discussion.username}</span></a>
         </div>
-        <div class = "d-flex">
-        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn fw-bold d-none" id="user-only">
+        <div class = "d-flex d-none" id="user-only">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn">
         <i class="fa fa-pencil-square-o fa-2x text-primary" aria-label="edit discussion"></i>
         </button>
         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
