@@ -567,6 +567,13 @@ const createDiscussionEmpty = () => `
 </div>
 <a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
 `;
+
+const createSearchDiscussionEmpty = () => `
+<div class="container-fluid p-2" style="border:3px solid #ffc107; background-color:#FFF56D;">
+<h6 class="fw-bold p-2"> Oops, Discussion not found </h6>
+</div>
+<a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
+`;
 export {
   DetailJobsSkeleton,
   createDiscussionItemTemplate,
@@ -589,4 +596,5 @@ export {
   createProfileOtherTemplate,
   createBookmarkEmpty,
   createDiscussionEmpty,
+  createSearchDiscussionEmpty,
 };
