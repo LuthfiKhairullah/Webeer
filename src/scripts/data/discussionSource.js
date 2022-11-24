@@ -97,9 +97,13 @@ class DiscussionSource {
         },
         data: JSON.stringify(discussion),
       });
-      return responseJson.data.data;
-    } catch (error) {
-      return console.log(error);
+      if (responseJson.statusText !== 'Created') {
+        throw new Error(responseJson.data.message);
+      }
+      return responseJson.data;
+      console.log(responseJson.data)
+    } catch (err) {
+      return { error: err.response.data.message || err.message };
     }
   }
 

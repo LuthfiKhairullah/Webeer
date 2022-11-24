@@ -16,10 +16,13 @@ const DetailDiscussionPage = {
           </div>
         </div>
       </div>
+      <message-container></message-container>
     `;
   },
 
   async afterRender() {
+    const messageText = document.querySelector('.modal-body');
+    const message = document.querySelector('.modal-title');
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const discussions = await DiscussionSource.getDiscussion(url.id);
     console.log(discussions);
@@ -71,10 +74,19 @@ const DetailDiscussionPage = {
         },
       );
       if (editDiscussion.error) {
-        alert('Failed');
+        message.classList.remove('text-success');
+        messageText.classList.remove('bg-success');
+        messageText.innerHTML = `${editDiscussion.error}`;
+        message.innerHTML = 'WARNING';
+        message.classList.add('text-warning');
+        messageText.classList.add('bg-warning');
       } else {
-        alert('Success');
-        document.location = `#/detaildiscussion/${url.id}`;
+        message.classList.remove('text-warning');
+        messageText.classList.remove('bg-warning');
+        messageText.innerHTML = `${editDiscussion.message}`;
+        message.innerHTML = 'SUCCESS';
+        message.classList.add('text-success');
+        messageText.classList.add('bg-success');
       }
     });
 
