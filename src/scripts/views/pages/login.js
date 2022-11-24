@@ -20,6 +20,7 @@ const Login = {
         </div>
         </div>
         <message-container></message-container>
+        <div class="test"></div>
         `;
   },
   afterRender() {
