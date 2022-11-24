@@ -329,7 +329,7 @@ const createProfileTemplate = (user) => {
     user.bio = '-';
   }
   if (user.contact === undefined) {
-    user.contact = '-';
+    user.contact = '';
   }
   if (user.profesi === undefined) {
     user.profesi = '-';
@@ -381,10 +381,13 @@ const createProfileOtherTemplate = (user) => {
     user.bio = '-';
   }
   if (user.contact === undefined) {
-    user.contact = '-';
+    user.contact = '';
   }
   if (user.profesi === undefined) {
     user.profesi = '-';
+  }
+  if (user.country === undefined) {
+    user.country = '-';
   }
   return `
     <div class="container-profile">
@@ -399,17 +402,18 @@ const createProfileOtherTemplate = (user) => {
           
         </div>
         <div class="card about">
-            <h6>Profession</h6>
-            <p>${user.profesi}</p>
-            <h6>Country</h6>
-            <p>${user.email}</p>
-            <h6>Contact</h6>
-            <p>${user.contact}</p>
-            <h6>About</h6>
-            <p>${user.bio}</p>
-            <h6>Have Discussion</h6>
-            <p class="length-disscussion-user"></p>
-        </div>
+        <h6>Profession</h6>
+        <p>${user.profesi}</p>
+        <h6>Country</h6>
+        <p>${user.country}</p>
+        <h6>Contact</h6>
+        <p>${user.contact}</p>
+        <p>${user.email}</p>
+        <h6>About</h6>
+        <p>${user.bio}</p>
+        <h6> Your Discussion</h6>
+        <p class="length-disscussion-user"></p>
+    </div>
         <div class="container-fluid">
           <div class="header-btn">
             <div class="d-flex">
