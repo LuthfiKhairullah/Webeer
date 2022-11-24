@@ -23,7 +23,7 @@ const ProfilePage = {
 
   async afterRender() {
     const userProfile = await User.getUser();
-    console.log(userProfile);
+    console.log('test',userProfile);
     const userProfileElement = document.querySelector('user-profile');
     userProfileElement.user = userProfile;
     const userDiscussion = await DiscussionSource.getUserDiscussion();

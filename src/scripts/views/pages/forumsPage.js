@@ -3,7 +3,7 @@ import '../components/searchDiscussion';
 import '../components/filterList';
 import FilterInitiator from '../../utils/filter-initiator';
 import DiscussionSource from '../../data/discussionSource';
-import { createFilterCategoryTemplate,createSearchDiscussionEmpty } from '../templates/template-creator';
+import { createFilterCategoryTemplate, createSearchDiscussionEmpty } from '../templates/template-creator';
 
 const ForumsPage = {
   async render() {

@@ -9,12 +9,12 @@ const Login = {
         <img src="./asset/hero-login.png">
           <form id="form-login">
             <div class="mb-3">
-              <input type="email" class="form-control" id="emailUser" placeholder="Masukkan Email Anda">
+              <input type="email" class="form-control" id="emailUser" placeholder="Enter your email">
             </div>
             <div class="mb-3">
-              <input type="password" class="form-control" id="pwdUser" placeholder="Masukkan Password Anda">
+              <input type="password" class="form-control" id="pwdUser" placeholder="Enter your password">
             </div>
-            <p>Kamu belum memiliki akun? <span> <a href="#/register">Daftar Sekarang</a> </span> </p>
+            <p>You don't have an account yet? <span> <a href="#/register">Sign Up</a> </span> </p>
             <button type="submit" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
           </form>
         </div>
@@ -38,13 +38,19 @@ const Login = {
         password: pwUser.value,
       });
       if (data.error) {
+        message.classList.remove('text-success');
+        messageText.classList.remove('bg-success');
         messageText.innerHTML = `${data.error}`;
         message.innerHTML = 'WARNING';
         message.classList.add('text-warning');
+        messageText.classList.add('bg-warning');
       } else {
+        message.classList.remove('text-warning');
+        messageText.classList.remove('bg-warning');
         messageText.innerHTML = `${data.data.message}`;
         message.innerHTML = 'SUCCESS';
         message.classList.add('text-success');
+        messageText.classList.add('bg-success');
         setTimeout(() => {
           document.location = '#/profile';
           window.location.reload();

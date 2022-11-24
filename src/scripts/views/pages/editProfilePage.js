@@ -26,14 +26,16 @@ const ProfileEditPage = {
     userProfileElement.user = userProfile;
     const form = document.querySelector('#edit-user');
     console.log(form);
+    const test = document.querySelector('#edit-country');
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
+      const { text } = test.options[test.selectedIndex];
       const data = await User.Edit(url.id, {
         username: document.querySelector('#edit-username').value,
-        email: document.querySelector('#edit-email').value,
         contact: document.querySelector('#edit-contact').value,
         profesi: document.querySelector('#edit-profesi').value,
         bio: document.querySelector('#edit-bio').value,
+        country: text,
       });
       if (data.error) {
         messageText.innerHTML = `${data.error}`;
@@ -44,6 +46,13 @@ const ProfileEditPage = {
         message.innerHTML = 'SUCCESS';
         message.classList.add('text-success');
       }
+      console.log(
+        document.querySelector('#edit-username').value,
+        document.querySelector('#edit-contact').value,
+        document.querySelector('#edit-profesi').value,
+        document.querySelector('#edit-bio').value,
+        text,
+      );
     });
   },
 };

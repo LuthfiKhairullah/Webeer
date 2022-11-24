@@ -69,7 +69,7 @@ const AddDiscussionPage = {
           alert('Failed');
         } else {
           alert('Success');
-          document.location = '#/forums';
+          console.log(addDiscussion);
         }
       }
     });
