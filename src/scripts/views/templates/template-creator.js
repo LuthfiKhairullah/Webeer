@@ -245,9 +245,9 @@ const createDiscussionDetailTemplate = (discussion) => {
         <div id="saveButtonContainer"></div>
       </div>
       <p class="text-justify border-top border-bottom my-lg-2"><xmp>${discussion.discussion}</xmp></p>
-      <button id="code">{}</button>
+      <button id="code" class="btn btn-light m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
       <form id="form-discussion-reply" class="my-2 ">
-        <textarea  name="inputReply" id="inputReply" class="form-control"  rows="5"></textarea>
+        <textarea  name="inputReply" id="inputReply" class="form-control"  rows=15"></textarea>
         <button type="submit" class="btn btn-dark ms-1 my-1">Submit Answer</button>
       </form>
     </div>
@@ -345,7 +345,8 @@ const createProfileTemplate = (user) => {
     <div class="container-profile">
  
         <div class="container-profile-main">
-          <div class="card profile">
+        <div class="card profile">
+        <div class="semi-circle"></div>
             <img src="${user.image}" class="card-img-top">
               <div class="card-body text-center">
                 <p>${user.username}</p>

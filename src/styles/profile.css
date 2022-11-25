@@ -2,10 +2,12 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    z-index: 1;
 }
 .card.profile{
     margin-right: 10px;
     height:500px;
+    border: none;
 }
 .card.about{
     width: 70%;
@@ -13,6 +15,7 @@
     height:500px;
     margin-bottom: 10px;
 }
+
 /* .card-item-discussion-user {
     background-color: white;
     max-width: 1200px;
@@ -20,7 +23,23 @@
     margin: 50px auto;
     border-radius: 5px;
 } */
-
+.card.profile img{
+    width: 200px;
+    border-radius: 50%;
+    margin: 10px auto;
+    border:1px solid black;
+    z-index: 1;
+}
+.semi-circle{
+    height: 150px;
+    width: 100%;
+    border-radius: 0 0 150px 150px;
+    margin: 0;
+    padding: 0;
+    background-color: #344D67;
+    z-index:0;
+    position: absolute;
+}
 .header-btn{
     max-width: 1300px;
     margin: 20px auto;
