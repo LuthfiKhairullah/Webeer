@@ -240,9 +240,9 @@ const createDiscussionDetailTemplate = (discussion) => {
         <div class="${isSolvedClass}">${isSolved}</div>
         <div id="saveButtonContainer"></div>
       </div>
-      <p class="text-justify border-top border-bottom my-lg-2">${discussion.discussion.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+      <p class="text-justify border-top border-bottom my-lg-2"><xmp>${discussion.discussion}</xmp></p>
+      <button id="code">{}</button>
       <form id="form-discussion-reply" class="my-2 ">
-        <p> Your Answer </p>
         <textarea  name="inputReply" id="inputReply" class="form-control"  rows="5"></textarea>
         <button type="submit" class="btn btn-dark ms-1 my-1">Submit Answer</button>
       </form>
@@ -277,7 +277,7 @@ const createDiscussionReplyTemplate = (discussion) => `
         <div class="ms-2">
         <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;" class="text-dark"><h2 style="font-size: 20px">${discussion.username}</h2></a>
           <h3 class="mb-2 text-muted" style="font-size: 14px">${discussion.date}</h3>
-          <p style="font-size: 18px">${discussion.reply.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+          <p style="font-size: 18px">${(discussion.reply).replace(/~Enter Your Code is Here/g,'<div class="bg-light"><xmp>').replace(/Dont Delete this~/g,'</xmp></div>')}</p>
         </div>
       </div>
   </div>
@@ -723,6 +723,9 @@ const createProfileEditTemplate = (user) => {
             <div class="mb-4">
               <h5>Bio</h5>
               <textarea class="form-control" id="edit-bio" placeholder="${user.bio}" required></textarea>
+            </div>
+            <div class="mb-4">
+            <input type="file" id="edit-photo">
             </div>
               <a href="#/profile" class="btn btn-primary"> Back </a>
               <button class="btn btn-light border-dark" id="edit-simpan" data-bs-toggle="modal" data-bs-target="#exampleModal">Save</button>  

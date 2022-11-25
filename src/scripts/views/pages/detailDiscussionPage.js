@@ -21,11 +21,14 @@ const DetailDiscussionPage = {
   },
 
   async afterRender() {
+    const test = document.querySelector('.picture-profile-reply');
+    console.log(test);
     const messageText = document.querySelector('.modal-body');
     const message = document.querySelector('.modal-title');
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const discussions = await DiscussionSource.getDiscussion(url.id);
     console.log(discussions);
+    // test.innerText=discussions.discussion
     const discussionListElement = document.querySelector('discussion-detail');
     discussionListElement.discussion = discussions;
     const lengthReply = document.querySelector('.lengthReply');
@@ -100,10 +103,25 @@ const DetailDiscussionPage = {
     discussionReply.forEach((reply) => {
       discussionReplyListElement.replies = reply;
     });
+    console.log(discussionReply);
+
+    const myTextArea = document.getElementById('inputReply');
+    const myTextAreaValue = myTextArea.value;
+    const selected_txt = myTextAreaValue.substring(myTextArea.selectionStart, myTextArea.selectionEnd);
+    const before_txt = myTextAreaValue.substring(0, myTextArea.selectionStart);
+    const after_txt = myTextAreaValue.substring(myTextArea.selectionEnd, myTextAreaValue.length);
+
+    const code = document.querySelector('#code');
+    code.addEventListener('click', (event) => {
+      event.preventDefault();
+      myTextArea.value = `${before_txt}\n ` + '~Enter Your Code is Here' + `\n ${selected_txt}\n` + 'Dont Delete this~' + `\n${after_txt}`;
+    });
+
     const replyButton = document.querySelector('#form-discussion-reply');
     replyButton.addEventListener('submit', async (e) => {
       e.preventDefault();
       const inputReply = document.getElementById('inputReply').value;
+      console.log(selected_txt);
       if (inputReply !== '') {
         const addDiscussionReply = await DiscussionSource.addDiscussionReply(
           url.id,
@@ -145,7 +163,6 @@ const DetailDiscussionPage = {
         username: discussions.username,
         date: discussions.date,
         isSolved: discussions.isSolved,
-
       },
     });
   },
