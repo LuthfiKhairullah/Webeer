@@ -35,6 +35,7 @@ const ProfileEditPage = {
         contact: document.querySelector('#edit-contact').value,
         profesi: document.querySelector('#edit-profesi').value,
         bio: document.querySelector('#edit-bio').value,
+        image: document.querySelector('#edit-photo').files[0],
         country: text,
       });
       if (data.error) {

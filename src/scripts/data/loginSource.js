@@ -118,7 +118,7 @@ class User {
   }
 
   static async Edit(_id, {
-    username, email, contact, profesi, bio, country,
+    username, email, contact, profesi, bio, country, image,
   }) {
     try {
       const jwt = localStorage.getItem('token').replaceAll('"', '');
@@ -127,6 +127,7 @@ class User {
         method: 'PUT',
         headers: {
           auth: `${jwt}`,
+          'Content-Type': 'multipart/form-data',
         },
         data: {
           username,
@@ -135,6 +136,7 @@ class User {
           profesi,
           bio,
           country,
+          image,
         },
       });
       if (response.statusText !== 'Created') {

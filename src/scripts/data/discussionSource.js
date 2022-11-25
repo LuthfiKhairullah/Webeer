@@ -101,7 +101,6 @@ class DiscussionSource {
         throw new Error(responseJson.data.message);
       }
       return responseJson.data;
-      console.log(responseJson.data)
     } catch (err) {
       return { error: err.response.data.message || err.message };
     }
