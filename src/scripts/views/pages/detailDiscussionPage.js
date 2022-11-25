@@ -105,15 +105,14 @@ const DetailDiscussionPage = {
     });
     console.log(discussionReply);
 
-    const myTextArea = document.getElementById('inputReply');
-    const myTextAreaValue = myTextArea.value;
-    const selected_txt = myTextAreaValue.substring(myTextArea.selectionStart, myTextArea.selectionEnd);
-    const before_txt = myTextAreaValue.substring(0, myTextArea.selectionStart);
-    const after_txt = myTextAreaValue.substring(myTextArea.selectionEnd, myTextAreaValue.length);
-
     const code = document.querySelector('#code');
     code.addEventListener('click', (event) => {
       event.preventDefault();
+      const myTextArea = document.getElementById('inputReply');
+      const myTextAreaValue = myTextArea.value;
+      const selected_txt = myTextAreaValue.substring(myTextArea.selectionStart, myTextArea.selectionEnd);
+      const before_txt = myTextAreaValue.substring(0, myTextArea.selectionStart);
+      const after_txt = myTextAreaValue.substring(myTextArea.selectionEnd, myTextAreaValue.length);
       myTextArea.value = `${before_txt}\n ` + '~Enter Your Code is Here' + `\n ${selected_txt}\n` + 'Dont Delete this~' + `\n${after_txt}`;
     });
 
