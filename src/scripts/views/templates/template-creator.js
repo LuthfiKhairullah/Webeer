@@ -216,9 +216,9 @@ const createDiscussionDetailTemplate = (discussion) => {
                   <!--<select name="categoryList" id="categoryList" class="form-select mb-2"></select>-->
                   <div id="listCategoryForSelected"></div>
                   <h3 class="card-text">Discussion</h3>
-                  <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" value="${discussion.title}" placeholder="Masukkan Judul Diskusi">
+                  <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" value="${discussion.title}" placeholder="Type your title discussion here">
                   <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
-                  placeholder="Masukkan Diskusi"></textarea>
+                  placeholder="Type your discussion here"></textarea>
                   <input class="form-check-input" type="checkbox" id="issolved" value="solved">
                   <label class="form-check-label" for="issolved">Solved</label>
                 </div>
@@ -234,8 +234,12 @@ const createDiscussionDetailTemplate = (discussion) => {
       <div class="text-capitalize">${createCategoryDiscussionTemplate(discussion.categories)}</div>
       <h1>${discussion.title}</h1>
       <div class="d-flex align-items-center">
-        <h3 class="text-muted fs-6 font-monospace pt-1 mx-1" >${discussion.date}</h3>
-        <i class="fa fa-comment-o fa-x" aria-hidden="true"></i>
+        <h3 class="text-muted fs-6 font-monospace pt-1 mx-1 m-0" >${discussion.date}</h3>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
+          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+          <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
+        </svg>
+        <!--<i class="fa fa-comment-o fa-x" aria-hidden="true"></i>-->
         <span class="lengthReply mx-1">0</span>
         <div class="${isSolvedClass}">${isSolved}</div>
         <div id="saveButtonContainer"></div>
@@ -277,7 +281,7 @@ const createDiscussionReplyTemplate = (discussion) => `
         <div class="ms-2">
         <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;" class="text-dark"><h2 style="font-size: 20px">${discussion.username}</h2></a>
           <h3 class="mb-2 text-muted" style="font-size: 14px">${discussion.date}</h3>
-          <p style="font-size: 18px">${discussion.reply.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+          <p id="discussion" style="font-size: 18px"><xmp>${discussion.reply}</xmp></p>
         </div>
       </div>
   </div>

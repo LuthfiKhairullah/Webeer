@@ -20,9 +20,9 @@ const AddDiscussionPage = {
                     <h3 class="card-text">Category</h3>
                     <div id="listCategoryForSelected"></div>
                     <h3 class="card-text">Dicussion</h3>
-                    <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" placeholder="Type your title discussion here">
+                    <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" placeholder="Type your title discussion here" required>
                     <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
-                    placeholder="Type your discussion here"></textarea>
+                    placeholder="Type your discussion here" required></textarea>
                     <button type="button" class="btn btn-secondary border" id="closeButton">Back</button>
                     <button type="submit" class="btn btn-primary">Send</button>
                 </form>
@@ -58,18 +58,25 @@ const AddDiscussionPage = {
       } else {
         const inputTitle = document.getElementById('inputTitle').value;
         const inputDiscussion = document.getElementById('inputDiscussion').value;
-        const addDiscussion = await DiscussionSource.addDiscussion({
-          title: inputTitle,
-          categories: arrcategory,
-          discussion: inputDiscussion,
-        });
-        console.log(addDiscussion);
-
-        if (addDiscussion.error) {
-          alert('Failed');
+        if (inputTitle === '') {
+          alert('Error! Please type your title discussion');
+        } else if (inputDiscussion === '') {
+          alert('Error! Please type your discussion');
         } else {
-          alert('Success');
+          const addDiscussion = await DiscussionSource.addDiscussion({
+            title: inputTitle,
+            categories: arrcategory,
+            discussion: inputDiscussion,
+          });
           console.log(addDiscussion);
+
+          if (addDiscussion.error) {
+            alert('Failed');
+          } else {
+            alert('Success');
+            document.location = '#/forums';
+            console.log(addDiscussion);
+          }
         }
       }
     });
