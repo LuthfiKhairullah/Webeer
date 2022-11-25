@@ -724,6 +724,9 @@ const createProfileEditTemplate = (user) => {
               <h5>Bio</h5>
               <textarea class="form-control" id="edit-bio" placeholder="${user.bio}" required></textarea>
             </div>
+            <div class="mb-4">
+            <input type="file" id="edit-photo">
+            </div>
               <a href="#/profile" class="btn btn-primary"> Back </a>
               <button class="btn btn-light border-dark" id="edit-simpan" data-bs-toggle="modal" data-bs-target="#exampleModal">Save</button>  
             </form>
