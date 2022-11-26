@@ -1,16 +1,19 @@
-.container-add-job{
+.container-add-job {
     width: 800px;
     height: 800px;
-    margin:auto;
+    margin: auto;
 }
-.container-add-job form{
-padding: 10px;
-background-color: white;
+
+.container-add-job form {
+    padding: 10px;
+    background-color: white;
 }
-.container-add-job form label{
+
+.container-add-job form label {
     font-size: 12px;
 }
-.container-add-job form h5{
+
+.container-add-job form h5 {
     font-size: 15px;
     border-bottom: 1px solid black;
 }

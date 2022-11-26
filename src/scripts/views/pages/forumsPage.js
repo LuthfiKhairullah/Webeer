@@ -7,6 +7,14 @@ import { createFilterCategoryTemplate, createSearchDiscussionEmpty } from '../te
 
 const ForumsPage = {
   async render() {
+    const getToken = localStorage.getItem('token');
+    console.log(getToken);
+    if (getToken === null) {
+      document.location = '#/login';
+      localStorage.setItem('login', 'false');
+      window.reload();
+    }
+
     return `
       <div class="d-flex">
         <filter-list></filter-list>

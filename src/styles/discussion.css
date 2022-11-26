@@ -19,10 +19,12 @@
     height: 30px;
     width: 30px;
 }
-.code{
+
+.code {
     width: 100px;
-    border:1px solid black;
+    border: 1px solid black;
 }
+
 .img-profile-discussion {
     width: 55px;
     height: 55px;

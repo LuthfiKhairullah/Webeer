@@ -29,7 +29,6 @@ const ProfilePage = {
     const userDiscussion = await DiscussionSource.getUserDiscussion();
     const count = document.querySelector('.length-disscussion-user');
     count.innerHTML = userDiscussion.length;
-    console.log(userDiscussion.reply.length)
     const content = document.querySelector('.container-discussion-user');
     if (userDiscussion.length > 0) {
       content.innerHTML = '<discussion-list></discussion-list>';
