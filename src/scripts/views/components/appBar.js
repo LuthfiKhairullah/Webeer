@@ -17,14 +17,21 @@ class AppBar extends HTMLElement {
       </button>
       <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+            </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+            </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#/forums">Forums</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#/login">Login</a>
+            <a class="nav-link" href="#/jobs">Jobs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#/jobs">Jobs</a>
+          <button class="button btn-primary ms-lg-3">
+            <a class="nav-link" href="#/login">Login</a></button>
           </li>
         </ul>
       </div>
