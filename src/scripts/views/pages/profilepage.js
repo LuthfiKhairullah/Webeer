@@ -23,13 +23,25 @@ const ProfilePage = {
 
   async afterRender() {
     const userProfile = await User.getUser();
-    console.log('test',userProfile);
+    console.log('test', userProfile);
     const userProfileElement = document.querySelector('user-profile');
     userProfileElement.user = userProfile;
     const userDiscussion = await DiscussionSource.getUserDiscussion();
-    const count = document.querySelector('.length-disscussion-user');
-    count.innerHTML = userDiscussion.length;
-    console.log(userDiscussion.reply.length)
+    const userReply = await DiscussionSource.getDiscussionReply(userProfile._id);
+    const countDiscussion = document.querySelector('.length-disscussion-user');
+    const countReply = document.querySelector('.length-reply-user');
+    countDiscussion.innerHTML = userDiscussion.length;
+    countReply.innerHTML = userReply.length;
+    const lenDiscussion = userDiscussion.length;
+    const lenReply = userReply.length;
+    const grade = document.querySelector('.grade-user');
+    if (lenDiscussion >= 0 && lenDiscussion <= 10 && lenReply >= 0 && lenReply <= 10) {
+      grade.innerHTML = 'D';
+    } else if (lenDiscussion >= 11 && lenDiscussion <= 20 && lenReply >= 11 && lenReply <= 20) {
+      grade.innerHTML = 'C';
+    } else {
+      grade.innerHTML = 'E';
+    }
     const content = document.querySelector('.container-discussion-user');
     if (userDiscussion.length > 0) {
       content.innerHTML = '<discussion-list></discussion-list>';

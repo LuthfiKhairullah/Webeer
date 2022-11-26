@@ -101,7 +101,6 @@ class DiscussionSource {
         throw new Error(responseJson.data.message);
       }
       return responseJson.data;
-      console.log(responseJson.data)
     } catch (err) {
       return { error: err.response.data.message || err.message };
     }
@@ -150,6 +149,21 @@ class DiscussionSource {
         },
       });
       return responseJson.data.data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+
+  static async getReplyUser() {
+    try {
+      const jwt = localStorage.getItem('token').replaceAll('"', '');
+      const responseJson = await axios({
+        url: `${API_ENDPOINT.DISCUSSION_REPLY_GET}`,
+        headers: {
+          auth: `${jwt}`,
+        },
+      });
+      return responseJson.data;
     } catch (error) {
       return console.log(error);
     }

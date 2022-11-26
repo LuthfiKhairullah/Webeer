@@ -277,7 +277,7 @@ const createDiscussionReplyTemplate = (discussion) => `
         <div class="ms-2">
         <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;" class="text-dark"><h2 style="font-size: 20px">${discussion.username}</h2></a>
           <h3 class="mb-2 text-muted" style="font-size: 14px">${discussion.date}</h3>
-          <p style="font-size: 18px">${(discussion.reply).replace(/~Enter Your Code is Here/g,'<div class="bg-light"><xmp>').replace(/Dont Delete this~/g,'</xmp></div>')}</p>
+          <p style="font-size: 18px">${(discussion.reply).replace(/~Enter Your Code is Here/g, '<div class="bg-light"><xmp>').replace(/Dont Delete this~/g, '</xmp></div>')}</p>
         </div>
       </div>
   </div>
@@ -341,30 +341,36 @@ const createProfileTemplate = (user) => {
     <div class="container-profile">
  
         <div class="container-profile-main">
-        <div class="card profile">
-        <div class="semi-circle"></div>
-            <img src="${user.image}" class="card-img-top">
-              <div class="card-body text-center">
-                <p>${user.username}</p>
-                <a class=" btn btn-primary btn-sm" href="#/editprofile/${user._id}" style="padding:11px;">Change Profile</a>
-                <a class=" btn btn-primary btn-sm" href="#/changepwd/${user._id}" style="padding:11px;">Change Password</a>
-              </div>
+          <div class="card profile">
+            <div class="semi-circle"></div>
+              <img src="${user.image}" class="card-img-top">
+                <div class="card-body text-center">
+                  <p>${user.username}</p>
+                  <a class=" btn btn-primary btn-sm" href="#/editprofile/${user._id}" style="padding:11px;">Change Profile</a>
+                  <a class=" btn btn-primary btn-sm" href="#/changepwd/${user._id}" style="padding:11px;">Change Password</a>
+                </div>
+            </div>
           </div>
-          
-        </div>
-        <div class="card about">
-            <h6>Profession</h6>
-            <p>${user.profesi}</p>
-            <h6>Country</h6>
-            <p>${user.country}</p>
-            <h6>Contact</h6>
-            <p>${user.contact}</p>
-            <p>${user.email}</p>
-            <h6>About</h6>
-            <p>${user.bio}</p>
-            <h6> Your Discussion</h6>
-            <p class="length-disscussion-user"></p>
-        </div>
+          <div class="card about">
+              <h6>Profession</h6>
+              <p>${user.profesi}</p>
+              <h6>Country</h6>
+              <p>${user.country}</p>
+              <h6>Contact</h6>
+              <p>${user.contact}</p>
+              <p>${user.email}</p>
+              <h6>About</h6>
+              <p>${user.bio}</p>
+          </div>
+          <div class="card activity">
+          <h3>Your Activity </h3>
+          <h2 class="grade-user"></h2>
+          <h6> Your Discussion</h6>
+          <p class="length-disscussion-user"></p>
+          <h6> Your Answer Discussion</h6>
+          <p class="length-reply-user"></p>
+          </div>
+          </div>
         <div class="container-fluid">
           <div class="header-btn">
             <div class="d-flex">
@@ -824,6 +830,62 @@ const createSearchDiscussionEmpty = () => `
 </div>
 <a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
 `;
+const createSidebarCompany = () => `
+<nav class="navbar fixed-top navbar-expand-lg ">
+<div class="container-fluid">
+  <a class="navbar-brand text-light fw-bold" href="#">Webeer</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link text-light " aria-current="page" href="#/list">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light " href="#/jobs">Jobs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light " href="#" id="logout">Logout</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>
+`;
+
+const createCardJobCompany = (job) => `
+<div class="card">
+  <div class="card-header" style="text-align:center;">
+    <img src="${job.image}" class="card-img-top w-75">
+  </div>
+  <div class = "card-body">
+    <h6>${job.company}</h6>
+    <p>${truncateString(job?.details.descriptionCompany , 200)}
+  </div>
+  <div class ="card-footer">
+    <button class="btn btn-primary">Edit</button>
+    <button value="${job._id}" class="btn btn-danger"data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="delete-job">Delete</button>
+  </div>
+</div>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title text-danger fw-bold" id="staticBackdropLabel">DELETE</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+    Do you want to delete this discussion?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-danger" id="delete-this-job" data-bs-dismiss="modal">Delete</button>
+    </div>
+  </div>
+</div>
+</div>
+`;
 export {
   DetailJobsSkeleton,
   createDiscussionItemTemplate,
@@ -847,4 +909,6 @@ export {
   createBookmarkEmpty,
   createDiscussionEmpty,
   createSearchDiscussionEmpty,
+  createSidebarCompany,
+  createCardJobCompany,
 };

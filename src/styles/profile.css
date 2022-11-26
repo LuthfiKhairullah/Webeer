@@ -10,12 +10,17 @@
     border: none;
 }
 .card.about{
-    width: 70%;
+    width: 50%;
     padding: 10px;
     height:500px;
     margin-bottom: 10px;
 }
-
+.card.activity{
+    height: 500px;
+    margin-left: 10px;
+    text-align: center;
+    padding: 10px;
+}
 /* .card-item-discussion-user {
     background-color: white;
     max-width: 1200px;
