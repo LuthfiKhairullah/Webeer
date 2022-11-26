@@ -1,5 +1,6 @@
 import 'regenerator-runtime';
 import '../styles/style.css';
+import '../styles/home.css';
 import '../styles/login.css';
 import '../styles/addDiscussion.css';
 import '../styles/filter.css';
