@@ -5,5 +5,6 @@
 }
 main{
     height: 700px;
-    background-color: #CCF2F4;
+    background: linear-gradient(to left, #B2C4F1, #fff);
 }
+
