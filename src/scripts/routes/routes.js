@@ -11,6 +11,7 @@ import verificationPage from '../views/pages/verification';
 import ProfileEditPage from '../views/pages/editProfilePage';
 import DetailProfilePage from '../views/pages/detailUserPage';
 import PasswordEditPage from '../views/pages/editPasswordPage';
+import listJobPage from '../views/pages/listJobPage';
 
 const routes = {
   '/': HomePage,
@@ -26,6 +27,7 @@ const routes = {
   '/editprofile/:id': ProfileEditPage,
   '/detailprofile/:id': DetailProfilePage,
   '/changepwd/:id': PasswordEditPage,
+  '/list': listJobPage,
 };
 
 export default routes;

@@ -30,7 +30,6 @@ const DetailDiscussionPage = {
     const message = new Toast(messageContainer);
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const discussions = await DiscussionSource.getDiscussion(url.id);
-    console.log(discussions);
     // test.innerText=discussions.discussion
     const discussionListElement = document.querySelector('discussion-detail');
     discussionListElement.discussion = discussions;
@@ -143,6 +142,7 @@ const DetailDiscussionPage = {
     replyButton.addEventListener('submit', async (e) => {
       e.preventDefault();
       const inputReply = document.getElementById('inputReply').value;
+
       if (inputReply !== '') {
         const addDiscussionReply = await DiscussionSource.addDiscussionReply(
           url.id,

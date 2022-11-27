@@ -8,6 +8,7 @@ import '../styles/modalOtp.css';
 import '../styles/message.css';
 import '../styles/profile.css';
 import '../styles/addjobs.css';
+import '../styles/companyJob.css';
 import '../styles/discussion.css';
 import '../styles/verification.css';
 import '../styles/changePwd.css';
