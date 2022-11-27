@@ -154,6 +154,21 @@ class DiscussionSource {
     }
   }
 
+  static async getReplyUser() {
+    try {
+      const jwt = localStorage.getItem('token').replaceAll('"', '');
+      const responseJson = await axios({
+        url: `${API_ENDPOINT.DISCUSSION_REPLY_GET}`,
+        headers: {
+          auth: `${jwt}`,
+        },
+      });
+      return responseJson.data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+
   static async DeleteDiscussion(id) {
     try {
       const jwt = localStorage.getItem('token').replaceAll('"', '');

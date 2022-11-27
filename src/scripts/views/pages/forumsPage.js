@@ -4,7 +4,10 @@ import '../components/filterList';
 import FilterInitiator from '../../utils/filter-initiator';
 import DiscussionSource from '../../data/discussionSource';
 import {
-  createDiscussionItemTemplateSkeleton, createFilterCategoryTemplate, createFilterListTemplateSkeleton, createSearchDiscussionEmpty,
+  createDiscussionItemTemplateSkeleton,
+  createFilterCategoryTemplate,
+  createFilterListTemplateSkeleton,
+  createSearchDiscussionEmpty,
 } from '../templates/template-creator';
 
 const ForumsPage = {

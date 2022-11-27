@@ -149,6 +149,7 @@ const DetailDiscussionPage = {
     replyButton.addEventListener('submit', async (e) => {
       e.preventDefault();
       const inputReply = document.getElementById('inputReply').value;
+
       if (inputReply !== '') {
         const addDiscussionReply = await DiscussionSource.addDiscussionReply(
           url.id,

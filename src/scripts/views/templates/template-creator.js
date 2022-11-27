@@ -525,33 +525,40 @@ const createProfileTemplate = (user) => {
   }
   return `
     <div class="container-profile">
-      <div class="container-profile-main">
-        <div class="card profile">
-          <div class="semi-circle"></div>
-          <img src="${user.image}" class="card-img-top lazyload">
-          <div class="card-body text-center">
-            <p>${user.username}</p>
-            <a class=" btn btn-primary btn-sm" href="#/editprofile/${user._id}" style="padding:11px;">Change Profile</a>
-            <a class=" btn btn-primary btn-sm" href="#/changepwd/${user._id}" style="padding:11px;">Change Password</a>
+        <div class="container-profile-main">
+          <div class="card profile">
+            <div class="semi-circle"></div>
+              <img src="${user.image}" class="card-img-top">
+                <div class="card-body text-center">
+                  <p>${user.username}</p>
+                  <a class=" btn btn-primary btn-sm" href="#/editprofile/${user._id}" style="padding:11px;">Change Profile</a>
+                  <a class=" btn btn-primary btn-sm" href="#/changepwd/${user._id}" style="padding:11px;">Change Password</a>
+                </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="card about">
-        <h6>Profession</h6>
-        <p>${user.profesi}</p>
-        <h6>Country</h6>
-        <p>${user.country}</p>
-        <h6>Contact</h6>
-        <p>${user.contact}</p>
-        <p>${user.email}</p>
-        <h6>About</h6>
-        <p>${user.bio}</p>
-        <h6> Your Discussion</h6>
-        <p class="length-disscussion-user"></p>
-      </div>
-      <div class="container-fluid">
-        <div class="header-btn">
-          <div class="d-flex">
+          <div class="card about">
+              <h6>Profession</h6>
+              <p>${user.profesi}</p>
+              <h6>Country</h6>
+              <p>${user.country}</p>
+              <h6>Contact</h6>
+              <p>${user.contact}</p>
+              <p>${user.email}</p>
+              <h6>About</h6>
+              <p>${user.bio}</p>
+          </div>
+          <div class="card activity">
+          <h3>Your Activity </h3>
+          <h2 class="grade-user"></h2>
+          <h6> Your Discussion</h6>
+          <p class="length-disscussion-user"></p>
+          <h6> Your Answer Discussion</h6>
+          <p class="length-reply-user"></p>
+          </div>
+          </div>
+        <div class="container-fluid">
+          <div class="header-btn">
+            <div class="d-flex">
             <button class="btn btn-sm onactive fw-bold" id="btn-discussion">Discussion</button>
             <button class="btn btn-sm fw-bold" id="btn-bookmark">Bookmark</button>
           </div>
@@ -1008,6 +1015,174 @@ const createSearchDiscussionEmpty = () => `
 </div>
 <a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
 `;
+const createSidebarCompany = () => `
+<nav class="navbar fixed-top navbar-expand-lg ">
+<div class="container-fluid">
+  <a class="navbar-brand text-light fw-bold" href="#">Webeer</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link text-light " aria-current="page" href="#/list">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light " href="#/jobs">Jobs</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link text-light " href="#/addjobs">Add jobs</a>
+    </li>
+      <li class="nav-item">
+        <a class="nav-link text-light " href="#" id="logout">Logout</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>
+`;
+
+const createCardJobCompany = (job) => `
+<div class="card">
+  <div class="card-header" style="text-align:center;">
+    <img src="${job.image}" class="card-img-top w-75">
+  </div>
+  <div class = "card-body">
+    <h6>${job.company}</h6>
+    <p>${truncateString(job?.details.descriptionCompany, 200)}
+  </div>
+  <div class ="card-footer">
+    <button value="${job._id}" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit-job">Edit</button>
+    <button value="${job._id}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="delete-job">Delete</button>
+  </div>
+</div>
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-danger fw-bold" id="staticBackdropLabel">DELETE</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        Do you want to delete this discussion?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" id="delete-this-job" data-bs-dismiss="modal">Delete</button>
+        </div>
+      </div>
+  </div>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" id="container-edit">
+  </div>
+</div>
+`;
+const createFormEditJob = (job) => `
+<div class="modal-content">
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+<img src="${job.image}" class="card-img-top">
+<form id="form-edit-job">
+<h5>Job Vacancy Details</h5>
+<div class="mb-3 row">
+  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company name</label>
+  <div class="col-sm-6">
+    <input type="text" class="form-control  form-control-sm" id="company-job" value="${job.company}">
+  </div>
+</div>
+<div class="mb-3 row">
+  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Job position</label>
+  <div class="col-sm-6">
+    <input type="text" class="form-control  form-control-sm" id="profession-job" value="${job.profession}" >
+  </div>
+</div>
+<div class="mb-3 row">
+  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company's addressn</label>
+  <div class="col-sm-6">
+    <input type="text" class="form-control  form-control-sm" id="address-job"  value="${job.address}">
+  </div>
+</div>
+<div class="mb-3 row">
+  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company logo</label>
+    <div class="col-sm-6">
+      <input type="file" class="form-control  form-control-sm" id="image-job" >
+    </div>
+</div>
+<h5>Details of Worker Qualifications</h5>
+<div class="mb-3 row">
+<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company description</label>
+    <div class="col-sm-6">
+        <textarea class="form-control" id="description-job" rows="4">${job.details.descriptionCompany}</textarea>
+    </div>
+</div>
+<div class="mb-3 row">
+<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Job description</label>
+ <div class="col-sm-6">
+     <textarea class="form-control" id="descriptionProfession-job" rows="4" >${job.details.descriptionProfession}</textarea>
+ </div>
+</div>
+<div class="mb-3 row">
+ <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Level</label>
+    <div class="col-sm-5">
+        <select class="form-select" aria-label="Default select example"  id="level-job">
+        <option selected value="${job.details.level}">${job.details.level}</option>
+            <option value="Entry">Entry</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Expert">Expert</option>
+        </select>
+    </div>
+</div>
+<div class="mb-3 row">
+<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Work from</label>
+<div class="col-sm-5">
+    <select class="form-select" aria-label="Default select example"  id="place-job">
+    <option selected value="${job.details.workplace}">${job.details.workplace}</option>
+        <option value="Onsite">Onsite</option>
+        <option value="Remote">Remote</option>
+        <option value="Hybrid">Hybrid</option>
+    </select>
+</div>
+</div>
+<div class="mb-3 row">
+<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Time</label>
+  <div class="col-sm-5">
+    <select class="form-select" aria-label="Default select example" id="time-job">
+      <option selected value="${job.details.timeWork}">${job.details.timeWork}</option>
+      <option value="Full Time">Full Time</option>
+      <option value="Part Time">Part Time</option>
+    </select>
+  </div>
+</div>
+<div class="mb-3 row">
+<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Salary</label>
+<div class="col-sm-6">
+    <input type="text" class="form-control  form-control-sm" id="salary-job" value="${job.details.salary}" >
+</div>
+</div>
+<div class="mb-3 row">
+<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Qualification</label>
+<div class="col-sm-6">
+    <textarea class="form-control" id="qualification-job" rows="4">${job.details.qualification}</textarea>
+</div>
+</div>
+<div class="mb-3 row">
+<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company Links</label>
+    <div class="col-sm-6">
+        <input type="text" class="form-control  form-control-sm" id="link-job" value="${job.details.link}" >
+    </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  <button type="submit" class="btn btn-primary">Save changes</button>
+</div>
+</form>
+</div>
+</div>
+`;
 export {
   DetailJobsSkeleton,
   createDiscussionItemTemplateSkeleton,
@@ -1036,4 +1211,7 @@ export {
   createBookmarkEmpty,
   createDiscussionEmpty,
   createSearchDiscussionEmpty,
+  createSidebarCompany,
+  createCardJobCompany,
+  createFormEditJob,
 };

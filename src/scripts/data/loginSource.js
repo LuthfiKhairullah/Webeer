@@ -37,9 +37,15 @@ class User {
       }
       console.log(response);
       const responseToken = response.data.token;
+      const responseRole = response.data.user.role;
+      console.log(responseRole);
       localStorage.setItem(
         'token',
         JSON.stringify(responseToken),
+      );
+      localStorage.setItem(
+        'role',
+        JSON.stringify(responseRole),
       );
       return response;
     } catch (err) {

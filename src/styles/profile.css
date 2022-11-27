@@ -11,13 +11,16 @@
     border: none;
 }
 
-.card.about {
-    width: 70%;
-    padding: 10px;
-    height: 500px;
-    margin-bottom: 10px;
+.card.about{
+    width: 50%;
 }
 
+.card.activity{
+    height: 500px;
+    margin-left: 10px;
+    text-align: center;
+    padding: 10px;
+}
 /* .card-item-discussion-user {
     background-color: white;
     max-width: 1200px;

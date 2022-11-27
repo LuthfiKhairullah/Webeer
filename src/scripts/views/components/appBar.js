@@ -1,5 +1,5 @@
 const { default: User } = require('../../data/loginSource');
-const { createNavbarTemplateAfterLogin, createNavbarTemplateBeforeLogin } = require('../templates/template-creator');
+const { createNavbarTemplateAfterLogin, createNavbarTemplateBeforeLogin, createSidebarCompany } = require('../templates/template-creator');
 
 class AppBar extends HTMLElement {
   connectedCallback() {
@@ -8,9 +8,14 @@ class AppBar extends HTMLElement {
 
   render() {
     const getTokenStorage = localStorage.getItem('token');
+    let getRoleStorage = localStorage.getItem('role');
+    console.log(getRoleStorage);
+    if (getRoleStorage !== null) {
+      getRoleStorage = localStorage.getItem('role').replaceAll('"', '');
+    }
     if (getTokenStorage === null) {
       this.innerHTML += createNavbarTemplateBeforeLogin();
-    } else {
+    } else if (getTokenStorage != null && getRoleStorage === 'Programmer') {
       this.innerHTML += createNavbarTemplateAfterLogin();
       const logout = document.querySelector('#logout');
       logout.addEventListener('click', async (event) => {
@@ -23,17 +28,20 @@ class AppBar extends HTMLElement {
           window.location.reload();
         }
       });
-    }
-    const Currentlocation = location.href;
-    const menuItem = document.querySelectorAll('a');
-    console.log(menuItem)
-    const menuLength = menuItem.length;
-    for (let i = 0; i < menuLength; i++) {
-      if (menuItem[i].href === Currentlocation) {
-        menuItem[i].classList.add('active');
-      }
+    } else {
+      this.innerHTML += createSidebarCompany();
+      const logout = document.querySelector('#logout');
+      logout.addEventListener('click', async (event) => {
+        event.preventDefault();
+        const response = await User.Logout();
+        if (response.error) {
+          console.log(response.error);
+        } else {
+          document.location = '#/';
+          window.location.reload();
+        }
+      });
     }
   }
 }
-
 customElements.define('app-bar', AppBar);
