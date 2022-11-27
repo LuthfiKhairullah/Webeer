@@ -1,0 +1,6 @@
+.container-company{
+    display: flex;
+    width: 800px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
