@@ -6,7 +6,7 @@ const CacheHelper = {
     cache.addAll(requests);
   },
 
-  async deletOldCache() {
+  async deleteOldCache() {
     const cacheNames = await caches.keys();
     cacheNames
       .filter((name) => name !== 'Webeer-V1')

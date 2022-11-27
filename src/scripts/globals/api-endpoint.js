@@ -14,6 +14,8 @@ const API_ENDPOINT = {
   JOB_SEARCH: (keyword) => `${CONFIG.BASE_URL}/jobs?profession=${keyword}`,
   GET_JOB: `${CONFIG.BASE_URL}/jobs/company`,
   JOB_DELETE: (id) => `${CONFIG.BASE_URL}/jobs/${id}`,
+  JOB_ADD: `${CONFIG.BASE_URL}/jobs`,
+  JOB_EDIT: (id) => `${CONFIG.BASE_URL}/jobs/${id}`,
   REGISTER: `${CONFIG.BASE_URL}/users/register`,
   LOGIN: `${CONFIG.BASE_URL}/users/login`,
   USER: `${CONFIG.BASE_URL}/users`,

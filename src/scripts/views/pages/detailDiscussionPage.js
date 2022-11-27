@@ -1,5 +1,6 @@
 import '../components/discussionDetail';
 import '../components/discussionReply';
+import { Toast } from 'bootstrap/dist/js/bootstrap.bundle';
 import DiscussionSource from '../../data/discussionSource';
 import UrlParser from '../../routes/urlParser';
 import User from '../../data/loginSource';
@@ -23,8 +24,10 @@ const DetailDiscussionPage = {
   async afterRender() {
     const test = document.querySelector('.picture-profile-reply');
     console.log(test);
-    const messageText = document.querySelector('.modal-body');
-    const message = document.querySelector('.modal-title');
+    const messageText = document.querySelector('.toast-body');
+    const messageTitle = document.querySelector('.toast-title');
+    const messageContainer = document.getElementById('liveToast');
+    const message = new Toast(messageContainer);
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const discussions = await DiscussionSource.getDiscussion(url.id);
     // test.innerText=discussions.discussion
@@ -56,39 +59,55 @@ const DetailDiscussionPage = {
     formEditDiscussion.addEventListener('submit', async (e) => {
       e.preventDefault();
       const arrcategory = [];
+      const inputTitle = document.getElementById('inputTitle').value;
+      const inputDiscussion = document.getElementById('inputDiscussion').value;
       categorySelect.forEach((c) => {
         if (c.checked) {
           arrcategory.push(c.value);
         }
       });
-      if (arrcategory.length === 0) {
-        alert('Error! Please choose one category first!');
-      }
-      const inputTitle = document.getElementById('inputTitle').value;
-      const inputDiscussion = document.getElementById('inputDiscussion').value;
-      const editDiscussion = await DiscussionSource.editDiscussion(
-        url.id,
-        {
-          title: inputTitle,
-          categories: arrcategory,
-          discussion: inputDiscussion,
-          isSolved: isSolvedCheck.checked,
-        },
-      );
-      if (editDiscussion.error) {
-        message.classList.remove('text-success');
-        messageText.classList.remove('bg-success');
-        messageText.innerHTML = `${editDiscussion.error}`;
-        message.innerHTML = 'WARNING';
-        message.classList.add('text-warning');
-        messageText.classList.add('bg-warning');
+      if (arrcategory.length === 0 || inputTitle === '' || inputDiscussion === '') {
+        if (arrcategory.length === 0) {
+          messageText.innerHTML = 'Error! Please choose one category first!';
+        } else if (inputTitle === '') {
+          messageText.innerHTML = 'Error! Please type your title discussion';
+        } else {
+          messageText.innerHTML = 'Error! Please type your discussion';
+        }
+        messageText.classList.remove('text-bg-success');
+        messageTitle.classList.remove('text-success');
+        messageText.classList.add('text-bg-warning');
+        messageTitle.classList.add('text-warning');
+        messageTitle.innerHTML = 'WARNING';
+        message.show();
       } else {
-        message.classList.remove('text-warning');
-        messageText.classList.remove('bg-warning');
-        messageText.innerHTML = `${editDiscussion.message}`;
-        message.innerHTML = 'SUCCESS';
-        message.classList.add('text-success');
-        messageText.classList.add('bg-success');
+        const editDiscussion = await DiscussionSource.editDiscussion(
+          url.id,
+          {
+            title: inputTitle,
+            categories: arrcategory,
+            discussion: inputDiscussion,
+            isSolved: isSolvedCheck.checked,
+          },
+        );
+        if (editDiscussion.error) {
+          messageText.classList.remove('text-bg-success');
+          messageTitle.classList.remove('text-success');
+          messageText.classList.add('text-bg-warning');
+          messageTitle.classList.add('text-warning');
+          messageText.innerHTML = `${editDiscussion.error}`;
+          messageTitle.innerHTML = 'WARNING';
+          message.show();
+        } else {
+          messageText.classList.remove('text-bg-warning');
+          messageTitle.classList.remove('text-warning');
+          messageText.classList.add('text-bg-success');
+          messageTitle.classList.add('text-success');
+          messageText.innerHTML = `${editDiscussion.message}`;
+          messageTitle.innerHTML = 'SUCCESS';
+          message.show();
+          setTimeout(() => document.location.reload(), 1000);
+        }
       }
     });
 
@@ -99,17 +118,21 @@ const DetailDiscussionPage = {
     }
     const discussionReply = await DiscussionSource.getDiscussionReply(url.id);
     const discussionReplyListElement = document.querySelector('discussion-reply');
-    discussionReply.forEach((reply) => {
-      discussionReplyListElement.replies = reply;
-    });
-    console.log(discussionReply);
+    if (discussionReply !== undefined) {
+      discussionReply.forEach((reply) => {
+        discussionReplyListElement.replies = reply;
+      });
+    }
 
     const code = document.querySelector('#code');
     code.addEventListener('click', (event) => {
       event.preventDefault();
       const myTextArea = document.getElementById('inputReply');
       const myTextAreaValue = myTextArea.value;
-      const selected_txt = myTextAreaValue.substring(myTextArea.selectionStart, myTextArea.selectionEnd);
+      const selected_txt = myTextAreaValue.substring(
+        myTextArea.selectionStart,
+        myTextArea.selectionEnd,
+      );
       const before_txt = myTextAreaValue.substring(0, myTextArea.selectionStart);
       const after_txt = myTextAreaValue.substring(myTextArea.selectionEnd, myTextAreaValue.length);
       myTextArea.value = `${before_txt}\n ` + '~Enter Your Code is Here' + `\n ${selected_txt}\n` + 'Dont Delete this~' + `\n${after_txt}`;
@@ -128,9 +151,21 @@ const DetailDiscussionPage = {
           },
         );
         if (addDiscussionReply.error) {
-          alert('Added reply failed');
+          messageText.classList.remove('text-bg-success');
+          messageTitle.classList.remove('text-success');
+          messageText.classList.add('text-bg-warning');
+          messageTitle.classList.add('text-warning');
+          messageText.innerHTML = 'Added reply failed';
+          messageTitle.innerHTML = 'WARNING';
+          message.show();
         } else {
-          alert('Added reply successfully');
+          messageText.classList.remove('text-bg-warning');
+          messageTitle.classList.remove('text-warning');
+          messageText.classList.add('text-bg-success');
+          messageTitle.classList.add('text-success');
+          messageText.innerHTML = 'Added reply successfully';
+          messageTitle.innerHTML = 'SUCCESS';
+          message.show();
           const updateDiscussions = await DiscussionSource.getDiscussion(url.id);
           lengthReply.innerHTML = updateDiscussions.reply.length;
           const updateDiscussionReply = await DiscussionSource.getDiscussionReply(url.id);
@@ -140,14 +175,38 @@ const DetailDiscussionPage = {
           });
         }
       } else {
-        alert('Type your reply first');
+        messageText.classList.remove('text-bg-success');
+        messageTitle.classList.remove('text-success');
+        messageText.classList.add('text-bg-warning');
+        messageTitle.classList.add('text-warning');
+        messageText.innerHTML = 'Type your reply first';
+        messageTitle.innerHTML = 'WARNING';
+        message.show();
       }
     });
     const btnDelete = document.querySelector('#delete-discussion');
     btnDelete.addEventListener('click', async (event) => {
       event.preventDefault();
       const data = await DiscussionSource.DeleteDiscussion(url.id);
-      console.log(data.message);
+      if (data.error) {
+        messageText.classList.remove('text-bg-success');
+        messageTitle.classList.remove('text-success');
+        messageText.classList.add('text-bg-warning');
+        messageTitle.classList.add('text-warning');
+        messageText.innerHTML = data.error;
+        messageTitle.innerHTML = 'WARNING';
+        message.show();
+      } else {
+        messageText.classList.remove('text-bg-warning');
+        messageTitle.classList.remove('text-warning');
+        messageText.classList.add('text-bg-success');
+        messageTitle.classList.add('text-success');
+        messageText.innerHTML = 'Delete discussion successfully';
+        messageTitle.innerHTML = 'SUCCESS';
+        message.show();
+
+        setTimeout(() => document.location = '#/forums', 1000);
+      }
     });
     SaveButtonInitiator.init({
       saveButtonContainer: document.querySelector('#saveButtonContainer'),

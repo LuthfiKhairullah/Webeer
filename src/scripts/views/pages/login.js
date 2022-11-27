@@ -1,3 +1,4 @@
+import { Toast } from 'bootstrap/dist/js/bootstrap.bundle';
 import User from '../../data/loginSource';
 
 const Login = {
@@ -15,7 +16,7 @@ const Login = {
               <input type="password" class="form-control" id="pwdUser" placeholder="Enter your password">
             </div>
             <p>You don't have an account yet? <span> <a href="#/register">Sign Up</a> </span> </p>
-            <button type="submit" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
+            <button type="submit" class="btn btn-primary mb-3">Login</button>
           </form>
         </div>
         </div>
@@ -27,8 +28,10 @@ const Login = {
     const formLogin = document.querySelector('#form-login');
     const idUser = document.querySelector('#emailUser');
     const pwUser = document.querySelector('#pwdUser');
-    const messageText = document.querySelector('.modal-body');
-    const message = document.querySelector('.modal-title');
+    const messageText = document.querySelector('.toast-body');
+    const messageTitle = document.querySelector('.toast-title');
+    const messageContainer = document.getElementById('liveToast');
+    const message = new Toast(messageContainer);
 
     // FORM LOGIN
     console.log(message);
@@ -39,19 +42,21 @@ const Login = {
         password: pwUser.value,
       });
       if (data.error) {
-        message.classList.remove('text-success');
-        messageText.classList.remove('bg-success');
+        messageText.classList.remove('text-bg-success');
+        messageTitle.classList.remove('text-success');
+        messageText.classList.add('text-bg-warning');
+        messageTitle.classList.add('text-warning');
         messageText.innerHTML = `${data.error}`;
-        message.innerHTML = 'WARNING';
-        message.classList.add('text-warning');
-        messageText.classList.add('bg-warning');
+        messageTitle.innerHTML = 'WARNING';
+        message.show();
       } else {
-        message.classList.remove('text-warning');
-        messageText.classList.remove('bg-warning');
+        messageText.classList.remove('text-bg-warning');
+        messageTitle.classList.remove('text-warning');
+        messageText.classList.add('text-bg-success');
+        messageTitle.classList.add('text-success');
         messageText.innerHTML = `${data.data.message}`;
-        message.innerHTML = 'SUCCESS';
-        message.classList.add('text-success');
-        messageText.classList.add('bg-success');
+        messageTitle.innerHTML = 'SUCCESS';
+        message.show();
         setTimeout(() => {
           document.location = '#/profile';
           window.location.reload();

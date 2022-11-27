@@ -9,8 +9,20 @@ import { createBookmarkEmpty, createDiscussionEmpty } from '../templates/templat
 const ProfilePage = {
   async render() {
     const getToken = localStorage.getItem('token');
+    const getRole = localStorage.getItem('role').replaceAll('"', '');
     console.log(getToken);
     if (getToken === null) {
+      document.location = '#/login';
+      localStorage.setItem('login', 'false');
+      window.reload();
+    } else if (getToken !== null && getRole === 'Company') {
+      document.location = '#/list';
+      localStorage.setItem('login', 'true');
+      window.reload();
+    } else if (getToken !== null && getRole === 'Programmer') {
+      document.location = '#/profile';
+      localStorage.setItem('login', 'true');
+    } else {
       document.location = '#/login';
       localStorage.setItem('login', 'false');
       window.reload();
@@ -42,6 +54,7 @@ const ProfilePage = {
     } else {
       grade.innerHTML = 'E';
     }
+
     const content = document.querySelector('.container-discussion-user');
     if (userDiscussion.length > 0) {
       content.innerHTML = '<discussion-list></discussion-list>';

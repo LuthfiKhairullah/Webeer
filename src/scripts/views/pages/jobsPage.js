@@ -7,6 +7,13 @@ import JobSource from '../../data/jobSource';
 
 const jobsPage = {
   async render() {
+    const getToken = localStorage.getItem('token');
+    console.log(getToken);
+    if (getToken === null) {
+      document.location = '#/login';
+      localStorage.setItem('login', 'false');
+      window.reload();
+    }
     return `
         <div id="container-page-jobs">
             <search-bar></search-bar>

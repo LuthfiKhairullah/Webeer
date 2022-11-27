@@ -2,6 +2,44 @@ import axios from 'axios';
 import API_ENDPOINT from '../globals/api-endpoint';
 
 class JobSource {
+  static async addJobs({
+    company, profession, address, descriptionCompany, descriptionProfession, level,
+    link, salary, timeWork, workplace, qualification, image,
+  }) {
+    try {
+      const jwt = localStorage.getItem('token').replaceAll('"', '');
+      const response = await axios({
+        url: `${API_ENDPOINT.JOB_ADD}`,
+        method: 'POST',
+        headers: {
+          auth: `${jwt}`,
+          'Content-Type': 'multipart/form-data',
+        },
+        data: {
+          company,
+          profession,
+          address,
+          descriptionCompany,
+          descriptionProfession,
+          level,
+          link,
+          salary,
+          timeWork,
+          workplace,
+          qualification,
+          image,
+        },
+      });
+      if (response.statusText !== 'Created') {
+        throw new Error(response.data.message);
+      }
+      return response;
+    } catch (err) {
+      console.log(err);
+      return { error: err.response.data.message || err.message };
+    }
+  }
+
   static async getJobs() {
     try {
       const responseJson = axios.get(API_ENDPOINT.JOB_ITEM);
@@ -48,6 +86,44 @@ class JobSource {
     }
   }
 
+  static async EditJob(id, {
+    company, profession, address, descriptionCompany, descriptionProfession, level,
+    link, salary, timeWork, workplace, qualification, image,
+  }) {
+    try {
+      const jwt = localStorage.getItem('token').replaceAll('"', '');
+      const response = await axios({
+        url: `${API_ENDPOINT.JOB_EDIT(id)}`,
+        method: 'PUT',
+        headers: {
+          auth: `${jwt}`,
+          'Content-Type': 'multipart/form-data',
+        },
+        data: {
+          company,
+          profession,
+          address,
+          descriptionCompany,
+          descriptionProfession,
+          level,
+          link,
+          salary,
+          timeWork,
+          workplace,
+          qualification,
+          image,
+        },
+      });
+      if (response.statusText !== 'Created') {
+        throw new Error(response.data.message);
+      }
+      return response;
+    } catch (err) {
+      console.log(err);
+      return { error: err.response.data.message || err.message };
+    }
+  }
+
   static async DeleteJob(id) {
     try {
       const jwt = localStorage.getItem('token').replaceAll('"', '');
@@ -59,9 +135,10 @@ class JobSource {
         },
       });
       return response.data;
-    } catch (error) {
+    } catch (err) {
       return { error: err.response.data.message || err.message };
     }
   }
 }
+
 export default JobSource;

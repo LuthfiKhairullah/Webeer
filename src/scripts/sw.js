@@ -3,6 +3,10 @@ import CacheHelper from './utils/cache-helper';
 
 const assetsToCache = [
   './',
+  './asset/hero-changepwd.png',
+  './asset/hero-jobsDetail.png',
+  './asset/hero-login.png',
+  './asset/verified.png',
   './icons/maskable_icon.png',
   './icons/maskable_icon_x48.png',
   './icons/maskable_icon_x72.png',

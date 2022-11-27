@@ -1,38 +1,95 @@
+import { Toast } from 'bootstrap/dist/js/bootstrap.bundle';
 import User from '../../data/loginSource';
 import '../components/userProfile';
 import JobSource from '../../data/jobSource';
-import { createCardJobCompany } from '../templates/template-creator';
-import { async } from 'regenerator-runtime';
-
+import { createCardJobCompany, createFormEditJob } from '../templates/template-creator';
 
 const listJobPage = {
   async render() {
     return `
-    <user-profile></user-profile>
     <div class="container-company"></div>
+    <message-container></message-container>
         `;
   },
   async afterRender() {
+    const messageText = document.querySelector('.toast-body');
+    const messageTitle = document.querySelector('.toast-title');
+    const messageContainer = document.getElementById('liveToast');
+    const message = new Toast(messageContainer);
     const user = await User.getUser();
     console.log(user);
     const itemJob = await JobSource.getCompanyJob();
     itemJob.data.data.forEach((job) => {
       document.querySelector('.container-company').innerHTML += createCardJobCompany(job);
     });
-    console.log(itemJob.data.data);
-    console.log(itemJob.length);
     const btnDelete = document.querySelectorAll('#delete-job');
-    console.log(btnDelete)
     for (let i = 0; i < btnDelete.length; i++) {
-      btnDelete[i].addEventListener('click',(event) => {
+      btnDelete[i].addEventListener('click', (event) => {
         event.preventDefault();
         console.log(btnDelete[i].value);
         const btnConfirmDelete = document.querySelector('#delete-this-job');
-        btnConfirmDelete.addEventListener('click', async(event)=>{
+        btnConfirmDelete.addEventListener('click', async (event) => {
           event.preventDefault();
           const data = await JobSource.DeleteJob(btnDelete[i].value);
-          console.log(data)
-        })
+          if (data.error) {
+            messageText.classList.remove('text-bg-success');
+            messageTitle.classList.remove('text-success');
+            messageText.classList.add('text-bg-warning');
+            messageTitle.classList.add('text-warning');
+            messageText.innerHTML = data.error;
+            messageTitle.innerHTML = 'WARNING';
+            message.show();
+          } else {
+            messageText.classList.remove('text-bg-warning');
+            messageTitle.classList.remove('text-warning');
+            messageText.classList.add('text-bg-success');
+            messageTitle.classList.add('text-success');
+            messageText.innerHTML = 'Delete discussion successfully';
+            messageTitle.innerHTML = 'SUCCESS';
+            message.show();
+
+            setTimeout(() => document.location = '#/list', 1000);
+          }
+        });
+      });
+    }
+    const btnEdit = document.querySelectorAll('#edit-job');
+    const containerEdit = document.querySelector('#container-edit');
+    console.log(btnEdit);
+    for (let i = 0; i < btnDelete.length; i++) {
+      btnEdit[i].addEventListener('click', async (event) => {
+        event.preventDefault();
+        const data = await JobSource.getJobsDetail(btnDelete[i].value);
+        containerEdit.innerHTML = createFormEditJob(data.data.data);
+        const formEdit = document.querySelector('#form-edit-job');
+        const level = document.querySelector('#level-job');
+        const time = document.querySelector('#time-job');
+        const place = document.querySelector('#place-job');
+        formEdit.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          const getLevel = level.value;
+          const getTime = time.value;
+          const getPlace = place.value;
+          const dataEdit = await JobSource.EditJob(btnDelete[i].value, {
+            company: document.querySelector('#company-job').value,
+            profession: document.querySelector('#profession-job').value,
+            address: document.querySelector('#address-job').value,
+            descriptionCompany: document.querySelector('#description-job').value,
+            descriptionProfession: document.querySelector('#descriptionProfession-job').value,
+            level: getLevel,
+            salary: document.querySelector('#salary-job').value,
+            timeWork: getTime,
+            workplace: getPlace,
+            link: document.querySelector('#link-job').value,
+            qualification: document.querySelector('#qualification-job').value,
+            image: document.querySelector('#image-job').files[0],
+          });
+          if (dataEdit.error) {
+            console.log(dataEdit.error);
+          } else {
+            console.log(dataEdit);
+          }
+        });
       });
     }
   },

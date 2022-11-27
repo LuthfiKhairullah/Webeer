@@ -1,3 +1,4 @@
+import { Toast } from 'bootstrap/dist/js/bootstrap.bundle';
 import User from '../../data/loginSource';
 
 const Register = {
@@ -8,15 +9,15 @@ const Register = {
           <div class ="card">
           <img src="./asset/hero-login.png">
             <form id="form-login">
-            <p>Kamu sudah memiliki akun? <span> <a href="#/login">Login Sekarang</a> </span> </p>
+            <p>Kamu sudah memiliki akun? <span> <a href="#/login">Login Now</a> </span> </p>
               <div class="mb-4">
-                <input type="text" class="form-control" id="Username" placeholder="Masukkan Username Anda" required>
+                <input type="text" class="form-control" id="Username" placeholder="Enter your username" required>
               </div>
               <div class="mb-4">
-                <input type="email" class="form-control" id="emailUser" placeholder="Masukkan Email Anda" required>
+                <input type="email" class="form-control" id="emailUser" placeholder="Enter your email" required>
               </div>
               <div class="mb-4 password-container">
-                <input type="password" class="form-control" id="pwdUser" placeholder="Masukkan Password Anda" required>
+                <input type="password" class="form-control" id="pwdUser" placeholder="Enter your password" required>
                     <div class="pwdProgress hide">
                             <p class="textProgress"></p>
                     </div>
@@ -27,7 +28,7 @@ const Register = {
             <option value="1">Programmer</option>
             <option value="2">Company</option>
             </select>
-            <button type="submit" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" id="submit">Register</button>
+            <button type="submit" class="btn btn-primary mb-3" id="submit">Register</button>
             </form>
           </div>
           </div>
@@ -66,11 +67,15 @@ const Register = {
     const Username = document.querySelector('#Username');
     const email = document.querySelector('#emailUser');
     const selected = document.getElementById('role-user');
-    const title = document.querySelector('.modal-title');
-    const message = document.querySelector('.modal-body');
+    const messageText = document.querySelector('.toast-body');
+    const messageTitle = document.querySelector('.toast-title');
+    const messageContainer = document.getElementById('liveToast');
+    const message = new Toast(messageContainer);
+    const submitButton = document.querySelector('#submit');
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const { text } = selected.options[selected.selectedIndex];
+      submitButton.setAttribute('disabled', '');
       const data = await User.Register({
         username: Username.value,
         email: email.value,
@@ -79,18 +84,27 @@ const Register = {
       });
       if (data.error) {
         console.log(data.error);
-        title.innerText = 'WARNING';
-        message.innerText = data.error;
-        title.classList.add('text-warning');
+        messageText.classList.remove('text-bg-success');
+        messageTitle.classList.remove('text-success');
+        messageText.classList.add('text-bg-warning');
+        messageTitle.classList.add('text-warning');
+        messageText.innerHTML = data.error;
+        messageTitle.innerHTML = 'WARNING';
+        message.show();
+        submitButton.removeAttribute('disabled');
       } else {
         console.log(data);
-        title.innerText = 'SUCCESS';
-        message.innerText = 'Selamat registrasi anda berhasil, silahkan verifikasi';
-        title.classList.add('text-success');
+        messageText.classList.remove('text-bg-warning');
+        messageTitle.classList.remove('text-warning');
+        messageText.classList.add('text-bg-success');
+        messageTitle.classList.add('text-success');
+        messageText.innerHTML = 'Selamat registrasi anda berhasil, silahkan verifikasi';
+        messageTitle.innerHTML = 'SUCCESS';
+        message.show();
         localStorage.setItem('email', JSON.stringify(data.email));
         localStorage.setItem('idUser', JSON.stringify(data.idUser));
-        document.location = '#/verification';
-        window.location.reload();
+        setTimeout(() => document.location = '#/verification', 1500);
+        // window.location.reload();
       }
     });
     // const modal = document.querySelector('.modal-otp');

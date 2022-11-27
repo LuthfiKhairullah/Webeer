@@ -1,63 +1,66 @@
+import { Toast } from 'bootstrap/dist/js/bootstrap.bundle';
 import User from '../../data/loginSource';
 
 const verificationPage = {
   async render() {
     return `
     <div class="container-verification">
-    <div class="card">
-    <img src="./asset/verified.png" class="card-img-top">
-    <div class="card-body text-center">
-    <p>Silahkan cek email anda, jika kode tidak terkirim silahkan tekan kirim ulang</p>
-    <button class =" btn btn-primary mb-5"  data-bs-toggle="modal" data-bs-target="#exampleModal" id="resend">Kirim Ulang </button>
-    <form id="verifikasi-user">
-    <div class="mb-4">
-                <input type="text" class="form-control" id="otp" placeholder="Masukkan Kode OTP Anda" required>
-              </div>
-              <button class =" btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" ">Submit</button>
-    </form>
-    </div>
-    </div>
-    </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title " id="exampleModalLabel"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <div class="card">
+        <img src="./asset/verified.png" class="card-img-top">
+        <div class="card-body text-center">
+          <p>Silahkan cek email anda, jika kode tidak terkirim silahkan tekan kirim ulang</p>
+          <button class =" btn btn-primary mb-5" id="resend">Kirim Ulang </button>
+          <form id="verifikasi-user">
+            <div class="mb-4">
+              <input type="text" class="form-control" id="otp" placeholder="Masukkan Kode OTP Anda" required>
+            </div>
+            <button class="btn btn-primary" id="submit">Submit</button>
+          </form>
         </div>
       </div>
     </div>
-    </div>`;
+    <message-container></message-container>
+    `;
   },
   async afterRender() {
     const resend = document.querySelector('#resend');
     const getId = localStorage.getItem('idUser').replaceAll('"', '');
     const getEmail = localStorage.getItem('email').replaceAll('"', '');
-    const title = document.querySelector('.modal-title');
-    const message = document.querySelector('.modal-body');
+    const messageText = document.querySelector('.toast-body');
+    const messageTitle = document.querySelector('.toast-title');
+    const messageContainer = document.getElementById('liveToast');
+    const message = new Toast(messageContainer);
+    const resendButton = document.querySelector('#resend');
+    const submitButton = document.querySelector('#submit');
     console.log(getEmail);
     console.log('Get Item :', getId);
     // eslint-disable-next-line no-unused-expressions
     resend.addEventListener('click', async (event) => {
       event.preventDefault();
+      resendButton.setAttribute('disabled', '');
       const data = await User.Resend({
         idUser: getId,
         email: getEmail,
       });
       if (data.error) {
-        title.innerText = 'WARNING';
-        message.innerText = `${data.error}`;
-        title.classList.add('text-warning');
+        messageText.classList.remove('text-bg-success');
+        messageTitle.classList.remove('text-success');
+        messageText.classList.add('text-bg-warning');
+        messageTitle.classList.add('text-warning');
+        messageText.innerHTML = `${data.error}`;
+        messageTitle.innerHTML = 'WARNING';
+        message.show();
+        resendButton.removeAttribute('disabled');
       } else {
         console.log(data);
-        title.innerText = 'SUCCESS';
-        message.innerText = `${data.data.message}`;
-        title.classList.add('text-success');
+        messageText.classList.remove('text-bg-warning');
+        messageTitle.classList.remove('text-warning');
+        messageText.classList.add('text-bg-success');
+        messageTitle.classList.add('text-success');
+        messageText.innerHTML = `${data.data.message}`;
+        messageTitle.innerHTML = 'SUCCESS';
+        message.show();
+        resendButton.removeAttribute('disabled');
       }
     });
 
@@ -69,16 +72,25 @@ const verificationPage = {
         OTP: document.querySelector('#otp').value,
       });
       if (data.error) {
-        title.innerText = 'WARNING';
-        message.innerText = `${data.error}`;
-        title.classList.add('text-warning');
+        messageText.classList.remove('text-bg-success');
+        messageTitle.classList.remove('text-success');
+        messageText.classList.add('text-bg-warning');
+        messageTitle.classList.add('text-warning');
+        messageText.innerHTML = `${data.error}`;
+        messageTitle.innerHTML = 'WARNING';
+        message.show();
       } else {
-        title.innerText = 'SUCCESS';
-        message.innerText = `${data.data.message}`;
-        title.classList.add('text-success');
+        submitButton.setAttribute('disabled', '');
+        messageText.classList.remove('text-bg-warning');
+        messageTitle.classList.remove('text-warning');
+        messageText.classList.add('text-bg-success');
+        messageTitle.classList.add('text-success');
+        messageText.innerHTML = `${data.data.message}`;
+        messageTitle.innerHTML = 'SUCCESS';
+        message.show();
         localStorage.removeItem('idUser');
         localStorage.removeItem('email');
-        document.location = ('#/login');
+        setTimeout(() => document.location = '#/login', 1500);
       }
     });
   },

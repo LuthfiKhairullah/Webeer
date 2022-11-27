@@ -1,20 +1,20 @@
-.container-profile{
+.container-profile {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     z-index: 1;
 }
-.card.profile{
+
+.card.profile {
     margin-right: 10px;
-    height:500px;
+    height: 500px;
     border: none;
 }
+
 .card.about{
     width: 50%;
-    padding: 10px;
-    height:500px;
-    margin-bottom: 10px;
 }
+
 .card.activity{
     height: 500px;
     margin-left: 10px;
@@ -28,44 +28,50 @@
     margin: 50px auto;
     border-radius: 5px;
 } */
-.card.profile img{
+.card.profile img {
     width: 200px;
     border-radius: 50%;
     margin: 10px auto;
-    border:1px solid black;
+    border: 1px solid black;
     z-index: 1;
 }
-.semi-circle{
+
+.semi-circle {
     height: 150px;
     width: 100%;
     border-radius: 0 0 150px 150px;
     margin: 0;
     padding: 0;
     background-color: #344D67;
-    z-index:0;
+    z-index: 0;
     position: absolute;
 }
-.header-btn{
+
+.header-btn {
     max-width: 1300px;
     margin: 20px auto;
 }
-.container-discussion-user{
+
+.container-discussion-user {
     height: 700px;
     overflow-y: auto;
 }
-.header-btn .btn{
+
+.header-btn .btn {
     background-color: #f8f9fa;
-    padding:11px;
+    padding: 11px;
 }
-.header-btn .btn:hover{
+
+.header-btn .btn:hover {
     background-color: #0d6efd;
 }
-.btn.onactive{
+
+.btn.onactive {
     background-color: #0d6efd;
     color: white;
 }
 
-.edit-profile{
+.edit-profile {
     background-color: #f8f9fa;
     max-width: 800px;
     margin: 0 auto;

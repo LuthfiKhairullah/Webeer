@@ -1,7 +1,7 @@
-.message{
+.message {
     position: absolute;
     left: -200px;
-    bottom:50px;
+    bottom: 50px;
     width: 200px;
     height: 80px;
     background-color: white;
@@ -9,41 +9,47 @@
     border-radius: 10px;
     text-align: center;
 }
-.message.success{
+
+.message.success {
     left: 80px;
-    bottom:50px;
+    bottom: 50px;
     transition: all 0.3s;
 }
 
-.message.error{
+.message.error {
     left: 80px;
-    bottom:50px;
+    bottom: 50px;
     transition: all 0.3s;
 }
-.container-bar.hide{
+
+.container-bar.hide {
     display: none;
 }
-.message.error .message-text{
+
+.message.error .message-text {
     color: red;
     font-weight: bold;
-    }
-.message.success .message-text{
-color: #54B435;
-font-weight: bold;
 }
-.message p{
+
+.message.success .message-text {
+    color: #54B435;
+    font-weight: bold;
+}
+
+.message p {
     padding: 10px;
 }
+
 #container-bar {
     width: 80%;
     background-color: grey;
     margin: 0 auto;
     border-radius: 30px;
-  }
-  
-  #progress-bar {
+}
+
+#progress-bar {
     width: 1%;
     height: 10px;
     background-color: #54B435;
     border-radius: 30px;
-  }
+}

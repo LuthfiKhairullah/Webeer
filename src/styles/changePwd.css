@@ -1,16 +1,19 @@
-.container-change-page{
-display: flex;
-justify-content: center;
-margin-top: 10%;
+.container-change-page {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
 }
-#form-changepwd{
+
+#form-changepwd {
     text-align: center;
     padding: 15px;
 }
-.header-change-page img{
+
+.header-change-page img {
     width: 250px;
 }
-.change-page{
+
+.change-page {
     display: flex;
     align-items: center;
     flex-wrap: wrap;

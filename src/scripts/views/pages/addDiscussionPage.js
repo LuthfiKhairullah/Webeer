@@ -1,3 +1,4 @@
+import { Toast } from 'bootstrap/dist/js/bootstrap.bundle';
 import DiscussionSource from '../../data/discussionSource';
 import { createFilterCategoryTemplate } from '../templates/template-creator';
 
@@ -24,16 +25,22 @@ const AddDiscussionPage = {
                     <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
                     placeholder="Type your discussion here"></textarea>
                     <button type="button" class="btn btn-secondary border" id="closeButton">Back</button>
-                    <button type="submit" class="btn btn-primary">Send</button>
+                    <button type="submit" class="btn btn-primary" id="addButton">Send</button>
                 </form>
             </div>
         </div>
     </div>
+    <message-container></message-container>
     `;
   },
 
   async afterRender() {
+    const messageText = document.querySelector('.toast-body');
+    const messageTitle = document.querySelector('.toast-title');
+    const messageContainer = document.getElementById('liveToast');
+    const message = new Toast(messageContainer);
     const addDiscussionButton = document.querySelector('#form-discussion');
+    const addButton = document.querySelector('#addButton');
     const closeButton = document.querySelector('#closeButton');
     closeButton.addEventListener('click', () => {
       document.location = '#/forums';
@@ -53,23 +60,47 @@ const AddDiscussionPage = {
           arrcategory.push(c.value);
         }
       });
-      if (arrcategory.length === 0) {
-        alert('Error! Please choose one category first!');
+      const inputTitle = document.getElementById('inputTitle').value;
+      const inputDiscussion = document.getElementById('inputDiscussion').value;
+      if (arrcategory.length === 0 || inputTitle === '' || inputDiscussion === '') {
+        if (arrcategory.length === 0) {
+          messageText.innerHTML = 'Error! Please choose one category first!';
+        } else if (inputTitle === '') {
+          messageText.innerHTML = 'Error! Please type your title discussion';
+        } else if (inputDiscussion === '') {
+          messageText.innerHTML = 'Error! Please type your discussion';
+        }
+        messageText.classList.remove('text-bg-success');
+        messageTitle.classList.remove('text-success');
+        messageText.classList.add('text-bg-warning');
+        messageTitle.classList.add('text-warning');
+        messageTitle.innerHTML = 'WARNING';
+        message.show();
       } else {
-        const inputTitle = document.getElementById('inputTitle').value;
-        const inputDiscussion = document.getElementById('inputDiscussion').value;
         const addDiscussion = await DiscussionSource.addDiscussion({
           title: inputTitle,
           categories: arrcategory,
           discussion: inputDiscussion,
         });
-        console.log(addDiscussion);
 
         if (addDiscussion.error) {
-          alert('Failed');
+          messageText.classList.remove('text-bg-success');
+          messageTitle.classList.remove('text-success');
+          messageText.classList.add('text-bg-warning');
+          messageTitle.classList.add('text-warning');
+          messageText.innerHTML = 'Add discussion failed';
+          messageTitle.innerHTML = 'WARNING';
+          message.show();
         } else {
-          alert('Success');
-          console.log(addDiscussion);
+          addButton.setAttribute('disabled', '');
+          messageText.classList.remove('text-bg-warning');
+          messageTitle.classList.remove('text-warning');
+          messageText.classList.add('text-bg-success');
+          messageTitle.classList.add('text-success');
+          messageText.innerHTML = 'Add discussion successfully';
+          messageTitle.innerHTML = 'SUCCESS';
+          message.show();
+          setTimeout(() => document.location = '#/forums', 2000);
         }
       }
     });
