@@ -3,7 +3,7 @@ import User from '../../data/loginSource';
 import BookmarkDiscussionIdb from '../../data/bookmark-discussion-idb';
 import '../components/userProfile';
 import '../components/bookmarkList';
-import { createBookmarkEmpty, createDiscussionEmpty } from '../templates/template-creator';
+import { createBookmarkEmpty, createDiscussionEmpty, createProfileTemplateSkeleton } from '../templates/template-creator';
 // import { UserDiscussionSkeleton } from '../templates/template-creator';
 
 const ProfilePage = {
@@ -17,16 +17,18 @@ const ProfilePage = {
     }
 
     return `
-        <user-profile></user-profile>
+        <user-profile>
+          ${createProfileTemplateSkeleton()}
+        </user-profile>
     `;
   },
 
   async afterRender() {
     const userProfile = await User.getUser();
+    const userDiscussion = await DiscussionSource.getUserDiscussion();
     console.log('test', userProfile);
     const userProfileElement = document.querySelector('user-profile');
     userProfileElement.user = userProfile;
-    const userDiscussion = await DiscussionSource.getUserDiscussion();
     const count = document.querySelector('.length-disscussion-user');
     count.innerHTML = userDiscussion.length;
     const content = document.querySelector('.container-discussion-user');
