@@ -23,7 +23,7 @@ const DetailJobsSkeleton = (count) => {
 };
 const createItemJob = (jobs) => `
 <div class = "card-item">
-<img src="${jobs.image}" class="card-image">
+<img src="${jobs.image}" class="card-image lazyload">
 <h6 class="fw-bold">${jobs.company}</h6>
 <h6>${jobs.profession}</h6>
 <p>${timeAgo.format(Date.now() - Math.floor(new Date(jobs.createdAt).getTime() / 1000))}</p>
@@ -37,7 +37,7 @@ const createDetailJob = (detail) => `
 <div class="detail-container">
   <div class="header-detail">
     <div class="image-detail">
-      <img src="${detail.image}">
+      <img class="lazyload" src="${detail.image}">
     </div>
     <div class="title-detail">
       <h4>${detail.company}</h4>
@@ -74,6 +74,47 @@ const createDetailJob = (detail) => `
 </div>
 `;
 
+const createDiscussionItemTemplateSkeleton = (count) => {
+  let template = '';
+
+  for (let i = 0; i < count; i++) {
+    template += `
+      <div class="container-item-discussion fluid">
+        <a class="border-0 text-start text-decoration-none text-dark w-100 test">
+          <div class="card w-100 m-0">
+            <div class="card-body">
+              <div class="main-container">
+                <div class="categoryDiscussion">${createCategoryDiscussionTemplateSkeleton()}</div>
+                  <h5 class="skeleton">Lorem ipsum dolor</h5>
+                  <p class="card-text skeleton">Lorem ipsum dolor</p>
+                </div>
+              <div class="sub-container">
+                <div class="container-reply text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
+                <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path
+                  d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
+                </svg>
+                  <span class="skeleton">999</span>
+                </div>
+                <div class="container-discussion-profile d-flex">
+                  <img class="img-profile-discussion skeleton">
+                    <div class"sub-profile">
+                      <p class="fw-bold username fs-6 skeleton">Lorem ipsum dolor</p>
+                      <p class="fw-light fs-6 skeleton">Lorem ipsum dolor</p>
+                    </div>
+                </div>
+                <span class="skeleton p-1 rounded indicator-solved">LO</span>
+              </div>  
+            </div>
+          </div>
+        </a>
+      </div>
+    `;
+  }
+  return template;
+};
+
 const createDiscussionItemTemplate = (discussion) => {
   let isSolvedClass = '';
   let isSolved = '';
@@ -104,7 +145,7 @@ const createDiscussionItemTemplate = (discussion) => {
             <span>${discussion.reply.length}</span>
           </div>
           <div class="container-discussion-profile d-flex">
-            <img src="${discussion.userimage}" class="img-profile-discussion">
+            <img src="${discussion.userimage}" class="img-profile-discussion lazyload">
               <div class"sub-profile">
                 <p class="fw-bold username fs-6">${discussion.username}</p>
                 <p class="fw-light fs-6">${discussion.date}</p>
@@ -147,7 +188,7 @@ const createBookmarkItemTemplate = (bookmark) => {
             <span>${bookmark.reply.length}</span>
           </div>
           <div class="container-discussion-profile d-flex">
-            <img src="${bookmark.userimage}" class="img-profile-discussion">
+            <img src="${bookmark.userimage}" class="img-profile-discussion lazyload">
               <div class"sub-profile">
                 <p class="fw-bold username fs-6">${bookmark.username}</p>
                 <p class="fw-light fs-6">${bookmark.date}</p>
@@ -161,6 +202,36 @@ const createBookmarkItemTemplate = (bookmark) => {
 </div>
   `;
 };
+
+const createDiscussionDetailTemplateSkeleton = () => `
+  <div class="container bg-white padding ">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+          <img style="height: 20px; width: 20px;" class="picture-profile-discussion skeleton">
+          <a style="text-decoration:none;"><span class="ms-1 username font-monospace skeleton">Lorem ipsum</span></a>
+        </div>
+      </div>
+      <div class="text-capitalize skeleton">Lorem</div>
+      <h1 class="skeleton">Lorem ipsum</h1>
+      <div class="d-flex align-items-center">
+        <h3 class="fs-6 font-monospace pt-1 mx-1 m-0 skeleton">31 Desember 2022</h3>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
+          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+          <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
+        </svg>
+        <span class="lengthReply mx-1 skeleton">999</span>
+        <div class="skeleton">LO</div>
+        <div id="saveButtonContainer"></div>
+      </div>
+      <p class="text-justify border-top border-bottom my-lg-2"><xmp class="skeleton">Lorem ipsum dolor</xmp></p>
+      <button class="btn m-0 skeleton"><i class="fa fa-code" aria-hidden="true" disabled></i></button>
+      <form id="form-discussion-reply" class="my-2 ">
+        <textarea class="form-control skeleton" rows=15" disabled></textarea>
+        <button type="button" class="btn ms-1 my-1 skeleton">Submit Answer</button>
+      </form>
+    </div>
+`;
+
 const createDiscussionDetailTemplate = (discussion) => {
   let isSolvedClass = '';
   let isSolved = '';
@@ -175,34 +246,34 @@ const createDiscussionDetailTemplate = (discussion) => {
     <div class="container bg-white padding ">
       <div class="d-flex justify-content-between">
         <div class="d-flex align-items-center">
-          <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion">
+          <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion lazyload">
           <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;"><span class="ms-1 username fw-bolder font-monospace text-body">${discussion.username}</span></a>
         </div>
         <div class = "d-flex d-none" id="user-only">
-        <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn">
-        <i class="fa fa-pencil-square-o fa-2x text-primary" aria-label="edit discussion"></i>
-        </button>
-        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        <i class="fa fa-trash-o fa-2x text-danger" aria-label="delete discussion"></i>
-        </button>
+          <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn">
+            <i class="fa fa-pencil-square-o fa-2x text-primary" aria-label="edit discussion"></i>
+          </button>
+          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <i class="fa fa-trash-o fa-2x text-danger" aria-label="delete discussion"></i>
+          </button>
         </div>
-      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title text-danger fw-bold" id="staticBackdropLabel">DELETE</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            Do you want to delete this discussion?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="delete-discussion">Delete</button>
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title text-danger fw-bold" id="staticBackdropLabel">DELETE</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+              Do you want to delete this discussion?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="delete-discussion">Delete</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
         <div class="modal fade" id="modal-edit">
           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
@@ -254,6 +325,10 @@ const createDiscussionDetailTemplate = (discussion) => {
   `;
 };
 
+const createCategoryDiscussionTemplateSkeleton = () => `
+  <span class="badge skeleton">l</span>
+`;
+
 const createCategoryDiscussionTemplate = (categories) => {
   let categoryElement = '';
   if ((typeof (categories)).includes('object')) {
@@ -271,12 +346,35 @@ const createCategoryDiscussionTemplate = (categories) => {
   return categoryElement;
 };
 
+const createDiscussionReplyTemplateSkeleton = (count) => {
+  let template = '';
+
+  for (let i = 0; i < count; i++) {
+    template += `
+      <div class="container bg-white border-top">
+        <p>Answer from</p>
+        <div class="d-flex align-items-top p-2">
+          <div class="container-img-reply">
+            <img style="height: 30px; width: 30px" class="picture-profile-reply skeleton">
+          </div>
+          <div class="ms-2">
+          <a style="text-decoration:none;"><h2 style="font-size: 20px" class="skeleton">Lorem ipsum dolor</h2></a>
+            <h3 class="mb-2 skeleton" style="font-size: 14px">31 Desember 2022</h3>
+            <p style="font-size: 18px" class="skeleton">Lorem ipsum dolor</p>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  return template;
+};
+
 const createDiscussionReplyTemplate = (discussion) => `
   <div class="container bg-white border-top">
   <p>Answer from</p>
       <div class="d-flex align-items-top p-2">
         <div class="container-img-reply">
-          <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-reply">
+          <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-reply lazyload">
         </div>
         <div class="ms-2">
         <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;" class="text-dark"><h2 style="font-size: 20px">${discussion.username}</h2></a>
@@ -289,6 +387,38 @@ const createDiscussionReplyTemplate = (discussion) => `
 
 const createAddDiscussionButtonTemplate = () => `
   <a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
+`;
+
+const createFilterListTemplateSkeleton = () => `
+  <div id="filter-drawer-skeleton" class="bg-white">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex">
+        <h2>Filter</h2>
+      </div>
+      <button id="close-filter" class="btn fw-bold">X</button>
+    </div>
+    <form id="form-filter">
+      <div class="my-2">
+        <h3>Sort</h3>
+        <input type="radio" class="btn-check" name="sort" id="latest" disabled>
+        <label class="btn skeleton mb-1" for="latest">Latest</label>
+        <input type="radio" class="btn-check" name="sort" id="oldest" disabled>
+        <label class="btn skeleton mb-1" for="oldest">Oldest</label>
+        <input type="radio" class="btn-check" name="sort" id="solved" disabled>
+        <label class="btn skeleton mb-1" for="solved">Solved</label>
+        <input type="radio" class="btn-check" name="sort" id="unsolved" disabled>
+        <label class="btn skeleton mb-1" for="unsolved">Unsolved</label>
+      </div>
+      <div class="my-2">
+        <h3>Category</h3>
+        <div class="filterCategory">${createFilterCategoryTemplateSkeleton(5)}</div>
+      </div>
+      <div>
+        <button type="reset" class="btn skeleton">Reset</button>
+        <button type="submit" class="btn skeleton">Filter</button>
+      </div>
+    </form>
+  </div>
 `;
 
 const createFilterListTemplate = () => `
@@ -323,9 +453,61 @@ const createFilterListTemplate = () => `
   </div>
 `;
 
+const createFilterCategoryTemplateSkeleton = (count) => {
+  let template = '';
+
+  for (let i = 0; i < count; i++) {
+    template += `
+      <input type="checkbox" class="btn-check" id="lorem" disabled>
+      <label class="btn skeleton mb-1" for="lorem">lorem</label>
+    `;
+  }
+  return template;
+};
+
 const createFilterCategoryTemplate = (category) => `
   <input type="checkbox" class="btn-check" name="categoryFilter" id="${category.name}" value="${category.name}" autocomplete="off">
   <label class="btn btn-outline-primary mb-1" for="${category.name}">${category.name}</label>
+`;
+
+const createProfileTemplateSkeleton = () => `
+  <div class="container-profile">
+    <div class="container-profile-main">
+      <div class="card profile">
+        <div class="semi-circle"></div>
+        <img style="width:200px; height: 200px;" class="card-img-top skeleton">
+        <div class="card-body text-center">
+          <p class="skeleton">Lorem ipsum dolor</p>
+          <a class=" btn btn-sm skeleton" style="padding:11px;" disabled>Change Profile</a>
+          <a class=" btn btn-sm skeleton" style="padding:11px;" disabled>Change Password</a>
+        </div>
+      </div>
+    </div>
+    <div class="card about">
+      <h6>Profession</h6>
+      <p class="skeleton">Lorem ipsum dolor</p>
+      <h6>Country</h6>
+      <p class="skeleton">Lorem ipsum dolor</p>
+      <h6>Contact</h6>
+      <p class="skeleton">Lorem ipsum dolor</p>
+      <p class="skeleton">Lorem ipsum dolor</p>
+      <h6>About</h6>
+      <p class="skeleton">Lorem ipsum dolor</p>
+      <h6> Your Discussion</h6>
+      <p class="skeleton">999</p>
+    </div>
+    <div class="container-fluid">
+      <div class="header-btn">
+        <div class="d-flex">
+          <button class="btn btn-sm skeleton">Discussion</button>
+          <button class="btn btn-sm skeleton">Bookmark</button>
+        </div>
+        <div class="container-discussion-user">
+          ${createDiscussionItemTemplateSkeleton(5)}
+        </div>
+      </div>
+    </div>
+  </div>
 `;
 
 const createProfileTemplate = (user) => {
@@ -343,7 +525,6 @@ const createProfileTemplate = (user) => {
   }
   return `
     <div class="container-profile">
- 
         <div class="container-profile-main">
           <div class="card profile">
             <div class="semi-circle"></div>
@@ -380,10 +561,10 @@ const createProfileTemplate = (user) => {
             <div class="d-flex">
             <button class="btn btn-sm onactive fw-bold" id="btn-discussion">Discussion</button>
             <button class="btn btn-sm fw-bold" id="btn-bookmark">Bookmark</button>
-            </div>
-            <div class="container-discussion-user"></div>
           </div>
+          <div class="container-discussion-user"></div>
         </div>
+      </div>
     </div>
   `;
 };
@@ -405,7 +586,7 @@ const createProfileOtherTemplate = (user) => {
  
         <div class="container-profile-main">
           <div class="card profile">
-            <img src="${user.image}" class="card-img-top">
+            <img src="${user.image}" class="card-img-top lazyload">
               <div class="card-body text-center">
                 <p>${user.username}</p>
               </div>
@@ -472,7 +653,7 @@ const createProfileEditTemplate = (user) => {
     <div class="container-edit-profile">
     <div class="d-flex edit-profile" style="flex-wrap:wrap; justify-content:center; margin-top:100px;">
             <div class="container-img">
-              <img src="${user.image}" alt="Picture Profile" class="picture-profile" style="border:1px solid black; margin:15px;">
+              <img src="${user.image}" alt="Picture Profile" class="picture-profile lazyload" style="border:1px solid black; margin:15px;">
             </div>
             <form id= "edit-user">
             <div class="mb-4">
@@ -784,7 +965,7 @@ const changePasswordTemplate = () => `
 <div class="container-change-page">
   <div class="change-page">
     <div class="header-change-page">
-      <img src="./asset/hero-changepwd.png">
+      <img class="lazyload" src="./asset/hero-changepwd.png">
     </div>
     <form id="form-changepwd">
     <div class="mb-3">
@@ -835,30 +1016,49 @@ const createSearchDiscussionEmpty = () => `
 <a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
 `;
 const createSidebarCompany = () => `
-<nav class="navbar fixed-top navbar-expand-lg ">
-<div class="container-fluid">
-  <a class="navbar-brand text-light fw-bold" href="#">Webeer</a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link text-light " aria-current="page" href="#/list">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light " href="#/jobs">Jobs</a>
-      </li>
-      <li class="nav-item">
-      <a class="nav-link text-light " href="#/addjobs">Add jobs</a>
-    </li>
-      <li class="nav-item">
-        <a class="nav-link text-light " href="#" id="logout">Logout</a>
-      </li>
-    </ul>
-  </div>
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" id="sidebar">
+<a href="#/list" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" id="button" class="company">
+<i class="fa fa-code fw-bold fa-2x" aria-hidden="true"></i>
+  <span class="fs-4 fw-bold m-1 nav-text">Webeer</span>
+</a>
+<hr>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<ul class="nav nav-pills flex-column mb-auto">
+  <li class="nav-item">
+    <a href="" class="nav-link active" aria-current="page">
+    <i class="fa fa-home" aria-hidden="true"></i>
+      <span class="nav-text">Home</span>
+    </a>
+  </li>
+  <li>
+    <a href="#/list" class="nav-link text-white">
+    <i class="fa fa-list" aria-hidden="true"></i>
+      <span class="nav-text">Dashboard</span>
+    </a>
+  </li>
+  <li>
+    <a href="#/addjobs" class="nav-link text-white">
+    <i class="fa fa-plus-square" aria-hidden="true"></i>
+    <span class="nav-text">Add</span>
+    </a>
+  </li>
+  <li>
+    <a href="#/company" class="nav-link text-white">
+    <i class="fa fa-cog" aria-hidden="true"></i>
+    <span class="nav-text">Settings</span>
+    </a>
+  </li>
+  <li>
+  <a href="#" class="nav-link text-white" id="logout">
+  <i class="fa fa-sign-out" aria-hidden="true"></i>
+  <span class="nav-text">Logout</span>
+  </a>
+</li>
+</ul>
+<hr>
 </div>
-</nav>
 `;
 
 const createCardJobCompany = (job) => `
@@ -883,7 +1083,7 @@ const createCardJobCompany = (job) => `
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        Do you want to delete this discussion?
+        Do you want to delete this job vacancy?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -899,8 +1099,8 @@ const createCardJobCompany = (job) => `
 `;
 const createFormEditJob = (job) => `
 <div class="modal-content">
-<div class="modal-header">
-  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+<div class="modal-header bg-primary">
+  <h5 class="modal-title text-light fw-bold" id="exampleModalLabel">Edit Job Vacancy</h5>
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
@@ -908,46 +1108,45 @@ const createFormEditJob = (job) => `
 <form id="form-edit-job">
 <h5>Job Vacancy Details</h5>
 <div class="mb-3 row">
-  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company name</label>
+  <label for="exampleInputEmail1" class="col-form-label"><small>Company name</small></label>
   <div class="col-sm-6">
     <input type="text" class="form-control  form-control-sm" id="company-job" value="${job.company}">
   </div>
 </div>
 <div class="mb-3 row">
-  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Job position</label>
+  <label for="exampleInputEmail1" class="col-form-label"><small>Job position</small></label>
   <div class="col-sm-6">
     <input type="text" class="form-control  form-control-sm" id="profession-job" value="${job.profession}" >
   </div>
 </div>
 <div class="mb-3 row">
-  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company's addressn</label>
+  <label for="exampleInputEmail1" class="col-form-label"><small>Company's addressn</small></label>
   <div class="col-sm-6">
     <input type="text" class="form-control  form-control-sm" id="address-job"  value="${job.address}">
   </div>
 </div>
 <div class="mb-3 row">
-  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company logo</label>
+  <label for="exampleInputEmail1" class="col-form-label"><small>Company logo</small></label>
     <div class="col-sm-6">
       <input type="file" class="form-control  form-control-sm" id="image-job" >
     </div>
 </div>
-<h5>Details of Worker Qualifications</h5>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company description</label>
+<label for="exampleInputEmail1" class="col-form-label"><small>Company description</small></label>
     <div class="col-sm-6">
         <textarea class="form-control" id="description-job" rows="4">${job.details.descriptionCompany}</textarea>
     </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Job description</label>
+<label for="exampleInputEmail1" class="col-form-label"><small>Job description</small></label>
  <div class="col-sm-6">
      <textarea class="form-control" id="descriptionProfession-job" rows="4" >${job.details.descriptionProfession}</textarea>
  </div>
 </div>
 <div class="mb-3 row">
- <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Level</label>
+ <label for="exampleInputEmail1" class="col-form-label"><small>Level</small></label>
     <div class="col-sm-5">
-        <select class="form-select" aria-label="Default select example"  id="level-job">
+        <select class="form-select form-select-sm" aria-label="Default select example"  id="level-job">
         <option selected value="${job.details.level}">${job.details.level}</option>
             <option value="Entry">Entry</option>
             <option value="Intermediate">Intermediate</option>
@@ -956,9 +1155,9 @@ const createFormEditJob = (job) => `
     </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Work from</label>
+<label for="exampleInputEmail1" class=" col-form-label"><small>Work from</small></label>
 <div class="col-sm-5">
-    <select class="form-select" aria-label="Default select example"  id="place-job">
+    <select class="form-select form-select-sm" aria-label="Default select example"  id="place-job">
     <option selected value="${job.details.workplace}">${job.details.workplace}</option>
         <option value="Onsite">Onsite</option>
         <option value="Remote">Remote</option>
@@ -967,9 +1166,9 @@ const createFormEditJob = (job) => `
 </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Time</label>
+<label for="exampleInputEmail1" class="col-form-label"><small>Time</small></label>
   <div class="col-sm-5">
-    <select class="form-select" aria-label="Default select example" id="time-job">
+    <select class="form-select form-select-sm" aria-label="Default select example" id="time-job">
       <option selected value="${job.details.timeWork}">${job.details.timeWork}</option>
       <option value="Full Time">Full Time</option>
       <option value="Part Time">Part Time</option>
@@ -977,19 +1176,22 @@ const createFormEditJob = (job) => `
   </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Salary</label>
-<div class="col-sm-6">
+<label for="exampleInputEmail1" class="col-form-label"><small>Range Salary</small></label>
+<div class="col-sm-3">
     <input type="text" class="form-control  form-control-sm" id="salary-job" value="${job.details.salary}" >
+</div>-
+<div class="col-sm-3">
+    <input type="text" class="form-control  form-control-sm" id="salary-job2" value="${job.details.salary2}" >
 </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Qualification</label>
+<label for="exampleInputEmail1" class="col-form-label"><small>Qualification</small></label>
 <div class="col-sm-6">
     <textarea class="form-control" id="qualification-job" rows="4">${job.details.qualification}</textarea>
 </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company Links</label>
+<label for="exampleInputEmail1" class="col-form-label"><small>Company Links</small></label>
     <div class="col-sm-6">
         <input type="text" class="form-control  form-control-sm" id="link-job" value="${job.details.link}" >
     </div>
@@ -1002,16 +1204,96 @@ const createFormEditJob = (job) => `
 </div>
 </div>
 `;
+
+const createProfileCompany = (user) => `
+<div class="card">
+  <div class="card-header">
+    <img src="${user.image}" class="card-img-top">
+  </div>
+  <div class="card-body">
+    <p>${user.username}</p>
+  </div>
+  <div class="card-footer">
+    <button value="${user._id}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="btn-edit-company"> Change Profile </button>
+    <button value="${user._id}" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btn-edit-pwd"> Change Password </button>
+  </div>
+</div>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PASSWORD</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form id = "edit-password-company">
+          <div class="mb-3 row">
+            <label for="exampleInputEmail1" class="form-label">Old Password</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control  form-control-sm" id="old-password">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">New Password</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control  form-control-sm" id="new-password">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control  form-control-sm" id="confirm-password">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary"  data-bs-dismiss="modal">Save</button>
+          </div>
+          </form>
+      </div>
+    </div>
+</div>
+</div>
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PROFILE</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form id = "edit-profile-company">
+          <div class="mb-3 row">
+            <label for="exampleInputEmail1" class="form-label">Username</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control  form-control-sm" id="edit-username">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">Company Logo</label>
+            <div class="col-sm-6">
+              <input type="file" class="form-control  form-control-sm" id="edit-logo-company">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" id="delete-this-job" data-bs-dismiss="modal">Save</button>
+          </div>
+          </form>
+      </div>
+    </div>
+</div>
+</div>
+`;
 export {
   DetailJobsSkeleton,
+  createDiscussionItemTemplateSkeleton,
   createDiscussionItemTemplate,
+  createDiscussionDetailTemplateSkeleton,
   createDiscussionDetailTemplate,
   createAddDiscussionButtonTemplate,
+  createFilterListTemplateSkeleton,
   createFilterListTemplate,
   createFilterCategoryTemplate,
+  createDiscussionReplyTemplateSkeleton,
   createDiscussionReplyTemplate,
   createItemJob,
   createDetailJob,
+  createProfileTemplateSkeleton,
   createProfileTemplate,
   createNavbarTemplateAfterLogin,
   createNavbarTemplateBeforeLogin,
@@ -1028,4 +1310,5 @@ export {
   createSidebarCompany,
   createCardJobCompany,
   createFormEditJob,
+  createProfileCompany,
 };

@@ -23,7 +23,7 @@ const jobsPage = {
                 </div>
                 <div class="detail-jobs" id="detail">
                     <div class="card">
-                        <img src="./asset/hero-jobsDetail.png">
+                        <img class="lazyload" src="./asset/hero-jobsDetail.png">
                         <p> Temukan pekerjaan sesuai dengan passion kamu </p>
                     </div>
                 </div>

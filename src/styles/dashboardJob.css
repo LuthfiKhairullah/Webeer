@@ -1,6 +1,41 @@
 .container-company{
     display: flex;
-    width: 800px;
-    justify-content: center;
+    max-width: 1200px;
+    margin-left: 230px;
     flex-wrap: wrap;
+}
+.container-company .card{
+    margin: 10px;
+}
+#sidebar{
+
+    height: 100%;
+    position: fixed;
+}
+#sidebar li a{
+    padding: 11px;
+}
+#sidebar li a:hover{
+    background-color: #0d6efd;
+}
+@media screen  and (max-width:800px){
+    #sidebar{
+        width: 80px;
+    }
+    #sidebar li{
+        width: 50px;
+    }
+    .nav-text{
+        display: none;
+    }
+    .container-company{
+        margin-left: 100px;
+    }
+    #sidebar li a{
+        text-align: center;
+        
+    }
+    .company{
+        justify-content: center;
+    }
 }

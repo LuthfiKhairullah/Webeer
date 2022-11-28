@@ -7,7 +7,7 @@ const Register = {
     <modal-otp></modal-otp>
          <div id="container-register">
           <div class ="card">
-          <img src="./asset/hero-login.png">
+          <img class="lazyload" src="./asset/hero-login.png">
             <form id="form-login">
             <p>Kamu sudah memiliki akun? <span> <a href="#/login">Login Now</a> </span> </p>
               <div class="mb-4">

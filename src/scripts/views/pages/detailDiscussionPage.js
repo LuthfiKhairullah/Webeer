@@ -5,6 +5,7 @@ import DiscussionSource from '../../data/discussionSource';
 import UrlParser from '../../routes/urlParser';
 import User from '../../data/loginSource';
 import SaveButtonInitiator from '../../utils/save-initiator';
+import { createDiscussionDetailTemplateSkeleton, createDiscussionReplyTemplateSkeleton } from '../templates/template-creator';
 
 const DetailDiscussionPage = {
   async render() {
@@ -12,8 +13,12 @@ const DetailDiscussionPage = {
       <div class="container-fluid">
         <div class="d-flex">
           <div class="container-fluid">
-            <discussion-detail></discussion-detail>
-            <discussion-reply></discussion-reply>
+            <discussion-detail>
+              ${createDiscussionDetailTemplateSkeleton()}
+            </discussion-detail>
+            <discussion-reply>
+              ${createDiscussionReplyTemplateSkeleton(5)}
+            </discussion-reply>
           </div>
         </div>
       </div>
@@ -30,12 +35,15 @@ const DetailDiscussionPage = {
     const message = new Toast(messageContainer);
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const discussions = await DiscussionSource.getDiscussion(url.id);
+    const discussionCategory = await DiscussionSource.getDiscussionCategory();
+    const user = await User.getUser();
+    const discussionReply = await DiscussionSource.getDiscussionReply(url.id);
+    console.log(discussions);
     // test.innerText=discussions.discussion
     const discussionListElement = document.querySelector('discussion-detail');
     discussionListElement.discussion = discussions;
     const lengthReply = document.querySelector('.lengthReply');
     lengthReply.innerText = discussions.reply.length;
-    const discussionCategory = await DiscussionSource.getDiscussionCategory();
     const categoryList = document.querySelector('#listCategoryForSelected');
     discussionCategory.forEach((categoryitem) => {
       if (discussions.categories.includes(categoryitem.name.toString())) {
@@ -111,13 +119,12 @@ const DetailDiscussionPage = {
       }
     });
 
-    const user = await User.getUser();
     const userOnlyElement = document.querySelector('#user-only');
     if (user._id === discussions.userid) {
       userOnlyElement.classList.replace('d-none', 'd-block');
     }
-    const discussionReply = await DiscussionSource.getDiscussionReply(url.id);
     const discussionReplyListElement = document.querySelector('discussion-reply');
+    discussionReplyListElement.innerHTML = '';
     if (discussionReply !== undefined) {
       discussionReply.forEach((reply) => {
         discussionReplyListElement.replies = reply;

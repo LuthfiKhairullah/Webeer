@@ -6,7 +6,7 @@ const verificationPage = {
     return `
     <div class="container-verification">
       <div class="card">
-        <img src="./asset/verified.png" class="card-img-top">
+        <img src="./asset/verified.png" class="card-img-top lazyload">
         <div class="card-body text-center">
           <p>Silahkan cek email anda, jika kode tidak terkirim silahkan tekan kirim ulang</p>
           <button class =" btn btn-primary mb-5" id="resend">Kirim Ulang </button>

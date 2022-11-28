@@ -3,7 +3,12 @@ import '../components/searchDiscussion';
 import '../components/filterList';
 import FilterInitiator from '../../utils/filter-initiator';
 import DiscussionSource from '../../data/discussionSource';
-import { createFilterCategoryTemplate, createSearchDiscussionEmpty } from '../templates/template-creator';
+import {
+  createDiscussionItemTemplateSkeleton,
+  createFilterCategoryTemplate,
+  createFilterListTemplateSkeleton,
+  createSearchDiscussionEmpty,
+} from '../templates/template-creator';
 
 const ForumsPage = {
   async render() {
@@ -17,7 +22,12 @@ const ForumsPage = {
 
     return `
       <div class="d-flex">
-        <filter-list></filter-list>
+        <div class="filterList">
+          <div class="filterListSkeleton">
+            ${createFilterListTemplateSkeleton()}
+          </div>
+        </div>
+        <!--<filter-list></filter-list>-->
         <div class="container-fluid forum">
           <div class="d-flex">
             <button id="filter" aria-label="filter list button" class="btn p-0 mb-2 me-1">
@@ -29,6 +39,7 @@ const ForumsPage = {
             <search-discussion class="w-100"></search-discussion>
           </div>
           <div class ="list">
+            ${createDiscussionItemTemplateSkeleton(10)}
           </div>
         </div>
       </div>
@@ -43,6 +54,8 @@ const ForumsPage = {
     const discussionListElement = document.querySelector('discussion-list');
     discussionListElement.discussions = discussions;
     const filterList = await DiscussionSource.getDiscussionCategory();
+    const listFilter = document.querySelector('.filterList');
+    listFilter.innerHTML = '<filter-list></filter-list>';
     const filterListElement = document.querySelector('.filterCategory');
     filterListElement.innerHTML = '';
     filterList.forEach((category) => {

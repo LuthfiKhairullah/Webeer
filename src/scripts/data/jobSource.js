@@ -4,7 +4,7 @@ import API_ENDPOINT from '../globals/api-endpoint';
 class JobSource {
   static async addJobs({
     company, profession, address, descriptionCompany, descriptionProfession, level,
-    link, salary, timeWork, workplace, qualification, image,
+    link, salary, salary2, timeWork, workplace, qualification, image,
   }) {
     try {
       const jwt = localStorage.getItem('token').replaceAll('"', '');
@@ -24,6 +24,7 @@ class JobSource {
           level,
           link,
           salary,
+          salary2,
           timeWork,
           workplace,
           qualification,
@@ -88,7 +89,7 @@ class JobSource {
 
   static async EditJob(id, {
     company, profession, address, descriptionCompany, descriptionProfession, level,
-    link, salary, timeWork, workplace, qualification, image,
+    link, salary, salary2, timeWork, workplace, qualification, image,
   }) {
     try {
       const jwt = localStorage.getItem('token').replaceAll('"', '');
@@ -108,6 +109,7 @@ class JobSource {
           level,
           link,
           salary,
+          salary2,
           timeWork,
           workplace,
           qualification,

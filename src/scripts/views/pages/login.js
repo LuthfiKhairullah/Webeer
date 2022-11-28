@@ -7,7 +7,7 @@ const Login = {
     <modal-not-login></modal-not-login>
        <div id="container-login">
         <div class ="card">
-        <img src="./asset/hero-login.png">
+        <img class="lazyload" src="./asset/hero-login.png">
           <form id="form-login">
             <div class="mb-3">
               <input type="email" class="form-control" id="emailUser" placeholder="Enter your email">

@@ -8,8 +8,11 @@ class AppBar extends HTMLElement {
 
   render() {
     const getTokenStorage = localStorage.getItem('token');
-    const getRoleStorage = localStorage.getItem('role').replaceAll('"', '');
+    let getRoleStorage = localStorage.getItem('role');
     console.log(getRoleStorage);
+    if (getRoleStorage !== null) {
+      getRoleStorage = localStorage.getItem('role').replaceAll('"', '');
+    }
     if (getTokenStorage === null) {
       this.innerHTML += createNavbarTemplateBeforeLogin();
     } else if (getTokenStorage != null && getRoleStorage === 'Programmer') {
