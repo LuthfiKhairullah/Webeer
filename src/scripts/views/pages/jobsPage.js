@@ -28,7 +28,6 @@ const jobsPage = {
                     </div>
                 </div>
             </div>
-            <a class="btn-open-job" href="#/addjobs"><button class="btn btn-primary">Membuka Lowongan</button></a>
         </div>
         `;
   },

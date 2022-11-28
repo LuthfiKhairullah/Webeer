@@ -1027,7 +1027,7 @@ const createSidebarCompany = () => `
 </button>
 <ul class="nav nav-pills flex-column mb-auto">
   <li class="nav-item">
-    <a href="" class="nav-link active" aria-current="page">
+    <a href="#/dashboard" class="nav-link active" aria-current="page">
     <i class="fa fa-home" aria-hidden="true"></i>
       <span class="nav-text">Home</span>
     </a>
