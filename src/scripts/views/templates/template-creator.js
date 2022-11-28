@@ -90,11 +90,7 @@ const createDiscussionItemTemplateSkeleton = (count) => {
                 </div>
               <div class="sub-container">
                 <div class="container-reply text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-                <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                <path
-                  d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-                </svg>
+                  <span class="skeleton">LO</span>
                   <span class="skeleton">999</span>
                 </div>
                 <div class="container-discussion-profile d-flex">
@@ -133,7 +129,7 @@ const createDiscussionItemTemplate = (discussion) => {
         <div class="main-container">
           <div class="categoryDiscussion">${createCategoryDiscussionTemplate(discussion.categories)}</div>
             <h5>${discussion.title}</h5>
-            <p class="card-text">${truncateString(discussion?.discussion, 200)}</p>
+            <p class="card-text"><xmp>${truncateString(discussion?.discussion, 200)}</xmp></p>
           </div>
         <div class="sub-container">
           <div class="container-reply text-center">
@@ -215,19 +211,16 @@ const createDiscussionDetailTemplateSkeleton = () => `
       <h1 class="skeleton">Lorem ipsum</h1>
       <div class="d-flex align-items-center">
         <h3 class="fs-6 font-monospace pt-1 mx-1 m-0 skeleton">31 Desember 2022</h3>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-          <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-        </svg>
-        <span class="lengthReply mx-1 skeleton">999</span>
+        <span class="skeleton">LO</span>
+        <span class="mx-1 skeleton">999</span>
         <div class="skeleton">LO</div>
-        <div id="saveButtonContainer"></div>
+        <div class="skeleton">LO</div>
       </div>
       <p class="text-justify border-top border-bottom my-lg-2"><xmp class="skeleton">Lorem ipsum dolor</xmp></p>
-      <button class="btn m-0 skeleton"><i class="fa fa-code" aria-hidden="true" disabled></i></button>
+      <button class="btn m-0 skeleton" disabled><i class="fa fa-code" aria-hidden="true"></i></button>
       <form id="form-discussion-reply" class="my-2 ">
         <textarea class="form-control skeleton" rows=15" disabled></textarea>
-        <button type="button" class="btn ms-1 my-1 skeleton">Submit Answer</button>
+        <button type="button" class="btn ms-1 my-1 skeleton" disabled>Submit Answer</button>
       </form>
     </div>
 `;
@@ -274,8 +267,8 @@ const createDiscussionDetailTemplate = (discussion) => {
             </div>
           </div>
         </div>
-        <div class="modal fade" id="modal-edit">
-          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal fade modal-xl" id="modal-edit">
+          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5">Edit Discussion</h1>
@@ -288,6 +281,7 @@ const createDiscussionDetailTemplate = (discussion) => {
                   <div id="listCategoryForSelected"></div>
                   <h3 class="card-text">Discussion</h3>
                   <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" value="${discussion.title}" placeholder="Type your title discussion here">
+                  <button id="codeDiscussion" class="btn btn-light m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
                   <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
                   placeholder="Type your discussion here">${discussion.discussion}</textarea>
                   <input class="form-check-input" type="checkbox" id="issolved" value="solved">
@@ -310,16 +304,15 @@ const createDiscussionDetailTemplate = (discussion) => {
           <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
           <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
         </svg>
-        <!--<i class="fa fa-comment-o fa-x" aria-hidden="true"></i>-->
         <span class="lengthReply mx-1">0</span>
         <div class="${isSolvedClass}">${isSolved}</div>
         <div id="saveButtonContainer"></div>
       </div>
-      <p class="text-justify border-top border-bottom my-lg-2"><xmp>${discussion.discussion}</xmp></p>
+      <p class="text-justify border-top border-bottom my-lg-2">${(discussion.discussion).replace(/~Enter Your Code is Here/g, '</p><div class="bg-light"><xmp>').replace(/Dont Delete this~/g, '</xmp></div><p class="text-justify border-top border-bottom my-lg-2">')}</p>
       <button id="code" class="btn btn-light m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
       <form id="form-discussion-reply" class="my-2 ">
-        <textarea  name="inputReply" id="inputReply" class="form-control"  rows=15"></textarea>
-        <button type="submit" class="btn btn-dark ms-1 my-1">Submit Answer</button>
+        <textarea  name="inputReply" id="inputReply" class="form-control" rows=15"></textarea>
+        <button type="submit" class="btn btn-dark ms-1 my-1" id="answerButton">Submit Answer</button>
       </form>
     </div>
   `;
@@ -414,8 +407,8 @@ const createFilterListTemplateSkeleton = () => `
         <div class="filterCategory">${createFilterCategoryTemplateSkeleton(5)}</div>
       </div>
       <div>
-        <button type="reset" class="btn skeleton">Reset</button>
-        <button type="submit" class="btn skeleton">Filter</button>
+        <button type="button" class="btn skeleton" disabled>Reset</button>
+        <button type="button" class="btn skeleton" disabled>Filter</button>
       </div>
     </form>
   </div>
@@ -478,8 +471,8 @@ const createProfileTemplateSkeleton = () => `
         <img style="width:200px; height: 200px;" class="card-img-top skeleton">
         <div class="card-body text-center">
           <p class="skeleton">Lorem ipsum dolor</p>
-          <a class=" btn btn-sm skeleton" style="padding:11px;" disabled>Change Profile</a>
-          <a class=" btn btn-sm skeleton" style="padding:11px;" disabled>Change Password</a>
+          <button class=" btn btn-sm skeleton" style="padding:11px;" disabled>Change Profile</button>
+          <button class=" btn btn-sm skeleton" style="padding:11px;" disabled>Change Password</button>
         </div>
       </div>
     </div>
@@ -493,14 +486,21 @@ const createProfileTemplateSkeleton = () => `
       <p class="skeleton">Lorem ipsum dolor</p>
       <h6>About</h6>
       <p class="skeleton">Lorem ipsum dolor</p>
-      <h6> Your Discussion</h6>
-      <p class="skeleton">999</p>
     </div>
+    <div class="card activity">
+      <h3>Your Activity </h3>
+      <h2 class="grade-user skeleton">A</h2>
+      <h6> Your Discussion</h6>
+      <p class="length-disscussion-user skeleton">999</p>
+      <h6> Your Answer Discussion</h6>
+      <p class="length-reply-user skeleton">999</p>
+    </div>
+  </div>
     <div class="container-fluid">
       <div class="header-btn">
         <div class="d-flex">
-          <button class="btn btn-sm skeleton">Discussion</button>
-          <button class="btn btn-sm skeleton">Bookmark</button>
+          <button class="btn btn-sm skeleton" disabled>Discussion</button>
+          <button class="btn btn-sm skeleton" disabled>Bookmark</button>
         </div>
         <div class="container-discussion-user">
           ${createDiscussionItemTemplateSkeleton(5)}
@@ -917,7 +917,8 @@ const createProfileEditTemplate = (user) => {
               <textarea class="form-control" id="edit-bio" placeholder="Type your bio">${user.bio}</textarea>
             </div>
             <div class="mb-4">
-            <input type="file" id="edit-photo">
+              <h5>Profile Picture</h5>
+              <input class="form-control" type="file" id="edit-photo">
             </div>
               <a href="#/profile" class="btn btn-primary"> Back </a>
               <button class="btn btn-light border-dark" id="edit-simpan">Save</button>  

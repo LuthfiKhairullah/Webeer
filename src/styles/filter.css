@@ -20,18 +20,9 @@
 }
 
 @media screen and (max-width: 750px) {
-    .filterListSkeleton {
-        background-color: #607EAA;
-        margin: 0;
-        position: absolute;
-        top: 56px;
-        transform: translate(-100%, 0);
-        width: 100%;
-        z-index: 10;
-        -webkit-transform: translate(-100%, 0);
-    }
 
-    filter-list {
+    filter-list,
+    .filterListSkeleton {
         background-color: #607EAA;
         margin: 0;
         position: absolute;

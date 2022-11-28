@@ -64,6 +64,19 @@ const DetailDiscussionPage = {
       isSolvedCheck.setAttribute('checked', '');
     }
     const formEditDiscussion = document.querySelector('#form-edit-discussion');
+    const codeDiscussion = document.querySelector('#codeDiscussion');
+    codeDiscussion.addEventListener('click', (event) => {
+      event.preventDefault();
+      const myTextArea = document.getElementById('inputDiscussion');
+      const myTextAreaValue = myTextArea.value;
+      const selected_txt = myTextAreaValue.substring(
+        myTextArea.selectionStart,
+        myTextArea.selectionEnd,
+      );
+      const before_txt = myTextAreaValue.substring(0, myTextArea.selectionStart);
+      const after_txt = myTextAreaValue.substring(myTextArea.selectionEnd, myTextAreaValue.length);
+      myTextArea.value = `${before_txt}\n ` + '~Enter Your Code is Here' + `\n ${selected_txt}\n` + 'Dont Delete this~' + `\n${after_txt}`;
+    });
     formEditDiscussion.addEventListener('submit', async (e) => {
       e.preventDefault();
       const arrcategory = [];
@@ -146,15 +159,17 @@ const DetailDiscussionPage = {
     });
 
     const replyButton = document.querySelector('#form-discussion-reply');
+    const answerButton = document.querySelector('#answerButton');
     replyButton.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const inputReply = document.getElementById('inputReply').value;
+      answerButton.setAttribute('disabled', '');
+      const inputReply = document.getElementById('inputReply');
 
-      if (inputReply !== '') {
+      if (inputReply.value !== '') {
         const addDiscussionReply = await DiscussionSource.addDiscussionReply(
           url.id,
           {
-            reply: inputReply,
+            reply: inputReply.value,
           },
         );
         if (addDiscussionReply.error) {
@@ -165,6 +180,7 @@ const DetailDiscussionPage = {
           messageText.innerHTML = 'Added reply failed';
           messageTitle.innerHTML = 'WARNING';
           message.show();
+          answerButton.removeAttribute('disabled');
         } else {
           messageText.classList.remove('text-bg-warning');
           messageTitle.classList.remove('text-warning');
@@ -173,6 +189,8 @@ const DetailDiscussionPage = {
           messageText.innerHTML = 'Added reply successfully';
           messageTitle.innerHTML = 'SUCCESS';
           message.show();
+          answerButton.removeAttribute('disabled');
+          inputReply.value = '';
           const updateDiscussions = await DiscussionSource.getDiscussion(url.id);
           lengthReply.innerHTML = updateDiscussions.reply.length;
           const updateDiscussionReply = await DiscussionSource.getDiscussionReply(url.id);
@@ -189,6 +207,7 @@ const DetailDiscussionPage = {
         messageText.innerHTML = 'Type your reply first';
         messageTitle.innerHTML = 'WARNING';
         message.show();
+        answerButton.removeAttribute('disabled');
       }
     });
     const btnDelete = document.querySelector('#delete-discussion');
