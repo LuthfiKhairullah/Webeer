@@ -1016,30 +1016,49 @@ const createSearchDiscussionEmpty = () => `
 <a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
 `;
 const createSidebarCompany = () => `
-<nav class="navbar fixed-top navbar-expand-lg ">
-<div class="container-fluid">
-  <a class="navbar-brand text-light fw-bold" href="#">Webeer</a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link text-light " aria-current="page" href="#/list">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light " href="#/jobs">Jobs</a>
-      </li>
-      <li class="nav-item">
-      <a class="nav-link text-light " href="#/addjobs">Add jobs</a>
-    </li>
-      <li class="nav-item">
-        <a class="nav-link text-light " href="#" id="logout">Logout</a>
-      </li>
-    </ul>
-  </div>
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" id="sidebar">
+<a href="#/list" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" id="button" class="company">
+<i class="fa fa-code fw-bold fa-2x" aria-hidden="true"></i>
+  <span class="fs-4 fw-bold m-1 nav-text">Webeer</span>
+</a>
+<hr>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<ul class="nav nav-pills flex-column mb-auto">
+  <li class="nav-item">
+    <a href="" class="nav-link active" aria-current="page">
+    <i class="fa fa-home" aria-hidden="true"></i>
+      <span class="nav-text">Home</span>
+    </a>
+  </li>
+  <li>
+    <a href="#/list" class="nav-link text-white">
+    <i class="fa fa-list" aria-hidden="true"></i>
+      <span class="nav-text">Dashboard</span>
+    </a>
+  </li>
+  <li>
+    <a href="#/addjobs" class="nav-link text-white">
+    <i class="fa fa-plus-square" aria-hidden="true"></i>
+    <span class="nav-text">Add</span>
+    </a>
+  </li>
+  <li>
+    <a href="#/company" class="nav-link text-white">
+    <i class="fa fa-cog" aria-hidden="true"></i>
+    <span class="nav-text">Settings</span>
+    </a>
+  </li>
+  <li>
+  <a href="#" class="nav-link text-white" id="logout">
+  <i class="fa fa-sign-out" aria-hidden="true"></i>
+  <span class="nav-text">Logout</span>
+  </a>
+</li>
+</ul>
+<hr>
 </div>
-</nav>
 `;
 
 const createCardJobCompany = (job) => `
@@ -1064,7 +1083,7 @@ const createCardJobCompany = (job) => `
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        Do you want to delete this discussion?
+        Do you want to delete this job vacancy?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -1080,8 +1099,8 @@ const createCardJobCompany = (job) => `
 `;
 const createFormEditJob = (job) => `
 <div class="modal-content">
-<div class="modal-header">
-  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+<div class="modal-header bg-primary">
+  <h5 class="modal-title text-light fw-bold" id="exampleModalLabel">Edit Job Vacancy</h5>
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
@@ -1089,46 +1108,45 @@ const createFormEditJob = (job) => `
 <form id="form-edit-job">
 <h5>Job Vacancy Details</h5>
 <div class="mb-3 row">
-  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company name</label>
+  <label for="exampleInputEmail1" class="col-form-label"><small>Company name</small></label>
   <div class="col-sm-6">
     <input type="text" class="form-control  form-control-sm" id="company-job" value="${job.company}">
   </div>
 </div>
 <div class="mb-3 row">
-  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Job position</label>
+  <label for="exampleInputEmail1" class="col-form-label"><small>Job position</small></label>
   <div class="col-sm-6">
     <input type="text" class="form-control  form-control-sm" id="profession-job" value="${job.profession}" >
   </div>
 </div>
 <div class="mb-3 row">
-  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company's addressn</label>
+  <label for="exampleInputEmail1" class="col-form-label"><small>Company's addressn</small></label>
   <div class="col-sm-6">
     <input type="text" class="form-control  form-control-sm" id="address-job"  value="${job.address}">
   </div>
 </div>
 <div class="mb-3 row">
-  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company logo</label>
+  <label for="exampleInputEmail1" class="col-form-label"><small>Company logo</small></label>
     <div class="col-sm-6">
       <input type="file" class="form-control  form-control-sm" id="image-job" >
     </div>
 </div>
-<h5>Details of Worker Qualifications</h5>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company description</label>
+<label for="exampleInputEmail1" class="col-form-label"><small>Company description</small></label>
     <div class="col-sm-6">
         <textarea class="form-control" id="description-job" rows="4">${job.details.descriptionCompany}</textarea>
     </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Job description</label>
+<label for="exampleInputEmail1" class="col-form-label"><small>Job description</small></label>
  <div class="col-sm-6">
      <textarea class="form-control" id="descriptionProfession-job" rows="4" >${job.details.descriptionProfession}</textarea>
  </div>
 </div>
 <div class="mb-3 row">
- <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Level</label>
+ <label for="exampleInputEmail1" class="col-form-label"><small>Level</small></label>
     <div class="col-sm-5">
-        <select class="form-select" aria-label="Default select example"  id="level-job">
+        <select class="form-select form-select-sm" aria-label="Default select example"  id="level-job">
         <option selected value="${job.details.level}">${job.details.level}</option>
             <option value="Entry">Entry</option>
             <option value="Intermediate">Intermediate</option>
@@ -1137,9 +1155,9 @@ const createFormEditJob = (job) => `
     </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Work from</label>
+<label for="exampleInputEmail1" class=" col-form-label"><small>Work from</small></label>
 <div class="col-sm-5">
-    <select class="form-select" aria-label="Default select example"  id="place-job">
+    <select class="form-select form-select-sm" aria-label="Default select example"  id="place-job">
     <option selected value="${job.details.workplace}">${job.details.workplace}</option>
         <option value="Onsite">Onsite</option>
         <option value="Remote">Remote</option>
@@ -1148,9 +1166,9 @@ const createFormEditJob = (job) => `
 </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Time</label>
+<label for="exampleInputEmail1" class="col-form-label"><small>Time</small></label>
   <div class="col-sm-5">
-    <select class="form-select" aria-label="Default select example" id="time-job">
+    <select class="form-select form-select-sm" aria-label="Default select example" id="time-job">
       <option selected value="${job.details.timeWork}">${job.details.timeWork}</option>
       <option value="Full Time">Full Time</option>
       <option value="Part Time">Part Time</option>
@@ -1158,19 +1176,22 @@ const createFormEditJob = (job) => `
   </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Salary</label>
-<div class="col-sm-6">
+<label for="exampleInputEmail1" class="col-form-label"><small>Range Salary</small></label>
+<div class="col-sm-3">
     <input type="text" class="form-control  form-control-sm" id="salary-job" value="${job.details.salary}" >
+</div>-
+<div class="col-sm-3">
+    <input type="text" class="form-control  form-control-sm" id="salary-job2" value="${job.details.salary2}" >
 </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Qualification</label>
+<label for="exampleInputEmail1" class="col-form-label"><small>Qualification</small></label>
 <div class="col-sm-6">
     <textarea class="form-control" id="qualification-job" rows="4">${job.details.qualification}</textarea>
 </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company Links</label>
+<label for="exampleInputEmail1" class="col-form-label"><small>Company Links</small></label>
     <div class="col-sm-6">
         <input type="text" class="form-control  form-control-sm" id="link-job" value="${job.details.link}" >
     </div>
@@ -1180,6 +1201,81 @@ const createFormEditJob = (job) => `
   <button type="submit" class="btn btn-primary">Save changes</button>
 </div>
 </form>
+</div>
+</div>
+`;
+
+const createProfileCompany = (user) => `
+<div class="card">
+  <div class="card-header">
+    <img src="${user.image}" class="card-img-top">
+  </div>
+  <div class="card-body">
+    <p>${user.username}</p>
+  </div>
+  <div class="card-footer">
+    <button value="${user._id}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="btn-edit-company"> Change Profile </button>
+    <button value="${user._id}" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btn-edit-pwd"> Change Password </button>
+  </div>
+</div>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PASSWORD</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form id = "edit-password-company">
+          <div class="mb-3 row">
+            <label for="exampleInputEmail1" class="form-label">Old Password</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control  form-control-sm" id="old-password">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">New Password</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control  form-control-sm" id="new-password">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control  form-control-sm" id="confirm-password">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary"  data-bs-dismiss="modal">Save</button>
+          </div>
+          </form>
+      </div>
+    </div>
+</div>
+</div>
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PROFILE</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form id = "edit-profile-company">
+          <div class="mb-3 row">
+            <label for="exampleInputEmail1" class="form-label">Username</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control  form-control-sm" id="edit-username">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">Company Logo</label>
+            <div class="col-sm-6">
+              <input type="file" class="form-control  form-control-sm" id="edit-logo-company">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" id="delete-this-job" data-bs-dismiss="modal">Save</button>
+          </div>
+          </form>
+      </div>
+    </div>
 </div>
 </div>
 `;
@@ -1214,4 +1310,5 @@ export {
   createSidebarCompany,
   createCardJobCompany,
   createFormEditJob,
+  createProfileCompany,
 };
