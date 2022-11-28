@@ -10,19 +10,32 @@
 }
 
 .item-jobs {
-    width: 400px;
+    width: 500px;
     height: 600px;
-    margin-right: 50px;
     overflow-y: auto;
-    margin-top: 10px;
 }
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+    background-color: black;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: grey; 
+    border-radius: 10px;
+  }
+  
 
 .detail-jobs {
-    width: 600px;
+    width: 800px;
     height: 600px;
     background-color: white;
-    margin-top: 20px;
-    border-radius: 10px;
     overflow-y: auto;
 }
 
@@ -81,13 +94,15 @@
 }
 
 .card-item {
-    width: 350px;
+    width: 100%;
     height: 250px;
     background-color: white;
-    margin: 10px auto;
-    border-radius: 10px;
+    border-bottom: 1px solid black;
 }
 
+.card-item:hover{
+    background-color: whitesmoke;
+}
 .card-item p {
     font-size: 12px;
     margin: 2px;
