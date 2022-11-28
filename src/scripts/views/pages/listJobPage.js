@@ -44,7 +44,7 @@ const listJobPage = {
             messageTitle.classList.remove('text-warning');
             messageText.classList.add('text-bg-success');
             messageTitle.classList.add('text-success');
-            messageText.innerHTML = 'Delete discussion successfully';
+            messageText.innerHTML = data.message;
             messageTitle.innerHTML = 'SUCCESS';
             message.show();
 
@@ -78,6 +78,7 @@ const listJobPage = {
             descriptionProfession: document.querySelector('#descriptionProfession-job').value,
             level: getLevel,
             salary: document.querySelector('#salary-job').value,
+            salary2: document.querySelector('#salary-job2').value,
             timeWork: getTime,
             workplace: getPlace,
             link: document.querySelector('#link-job').value,
@@ -85,9 +86,22 @@ const listJobPage = {
             image: document.querySelector('#image-job').files[0],
           });
           if (dataEdit.error) {
-            console.log(dataEdit.error);
+            messageText.classList.remove('text-bg-success');
+            messageTitle.classList.remove('text-success');
+            messageText.classList.add('text-bg-warning');
+            messageTitle.classList.add('text-warning');
+            messageText.innerHTML = dataEdit.error;
+            messageTitle.innerHTML = 'WARNING';
+            message.show();
           } else {
-            console.log(dataEdit);
+            console.log(dataEdit.data.message)
+            messageText.classList.remove('text-bg-warning');
+            messageTitle.classList.remove('text-warning');
+            messageText.classList.add('text-bg-success');
+            messageTitle.classList.add('text-success');
+            messageText.innerHTML = dataEdit.data.message;
+            messageTitle.innerHTML = 'SUCCESS';
+            message.show();
           }
         });
       });
