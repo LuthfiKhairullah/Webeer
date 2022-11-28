@@ -16,7 +16,9 @@ const DetailJobsSkeleton = (count) => {
   let template = '';
   for (let i = 0; i < count; i += 1) {
     template += `
-    <div class="card-item">
+    <div class="placeholder-glow">
+      <div class="card-item placeholder">
+      </div>
     </div>`;
   }
   return template;
@@ -83,24 +85,24 @@ const createDiscussionItemTemplateSkeleton = (count) => {
         <a class="border-0 text-start text-decoration-none text-dark w-100 test">
           <div class="card w-100 m-0">
             <div class="card-body">
-              <div class="main-container">
+              <div class="main-container placeholder-glow">
                 <div class="categoryDiscussion">${createCategoryDiscussionTemplateSkeleton()}</div>
-                  <h5 class="skeleton">Lorem ipsum dolor</h5>
-                  <p class="card-text skeleton">Lorem ipsum dolor</p>
+                  <h5><span class="placeholder">Lorem ipsum dolor</span></h5>
+                  <p class="card-text placeholder">Lorem ipsum dolor lorem ipsum dolor</p>
                 </div>
-              <div class="sub-container">
-                <div class="container-reply text-center">
-                  <span class="skeleton">LO</span>
-                  <span class="skeleton">999</span>
+              <div class="sub-container placeholder-glow">
+                <div class="container-reply text-center placeholder-glow">
+                  <span class="placeholder">0000</span>
+                  <span class="placeholder">999</span>
                 </div>
-                <div class="container-discussion-profile d-flex">
+                <div class="container-discussion-profile d-flex placeholder-glow">
                   <img class="img-profile-discussion skeleton">
-                    <div class"sub-profile">
-                      <p class="fw-bold username fs-6 skeleton">Lorem ipsum dolor</p>
-                      <p class="fw-light fs-6 skeleton">Lorem ipsum dolor</p>
-                    </div>
+                  <div class"sub-profile">
+                    <p class="fw-bold username fs-6"><span class="placeholder">Lorem ipsum dolor</span></p>
+                    <p class="fw-light fs-6"><span class="placeholder">31 Desember 2022</span></p>
+                  </div>
                 </div>
-                <span class="skeleton p-1 rounded indicator-solved">LO</span>
+                <span class="placeholder p-1 rounded indicator-solved">0000</span>
               </div>  
             </div>
           </div>
@@ -200,27 +202,27 @@ const createBookmarkItemTemplate = (bookmark) => {
 };
 
 const createDiscussionDetailTemplateSkeleton = () => `
-  <div class="container bg-white padding ">
+  <div class="container bg-white padding placeholder-glow">
       <div class="d-flex justify-content-between">
         <div class="d-flex align-items-center">
-          <img style="height: 20px; width: 20px;" class="picture-profile-discussion skeleton">
-          <a style="text-decoration:none;"><span class="ms-1 username font-monospace skeleton">Lorem ipsum</span></a>
+          <img style="height: 20px; width: 20px;" class="picture-profile-discussion placeholder">
+          <a style="text-decoration:none;"><span class="ms-1 username font-monospace placeholder">Lorem ipsum dolor</span></a>
         </div>
       </div>
-      <div class="text-capitalize skeleton">Lorem</div>
-      <h1 class="skeleton">Lorem ipsum</h1>
+      <div class="text-capitalize placeholder">Lorem</div>
+      <h1><span class="placeholder">Lorem ipsum dolor</span></h1>
       <div class="d-flex align-items-center">
-        <h3 class="fs-6 font-monospace pt-1 mx-1 m-0 skeleton">31 Desember 2022</h3>
-        <span class="skeleton">LO</span>
-        <span class="mx-1 skeleton">999</span>
-        <div class="skeleton">LO</div>
-        <div class="skeleton">LO</div>
+        <h3 class="fs-6 font-monospace pt-1 mx-1 m-0"><span class="placeholder">31 Desember 2022</span></h3>
+        <span class="placeholder">0000</span>
+        <span class="mx-1 placeholder">999</span>
+        <div class="placeholder">0000</div>
+        <div class="placeholder">0000</div>
       </div>
-      <p class="text-justify border-top border-bottom my-lg-2"><xmp class="skeleton">Lorem ipsum dolor</xmp></p>
-      <button class="btn m-0 skeleton" disabled><i class="fa fa-code" aria-hidden="true"></i></button>
+      <p class="text-justify border-top border-bottom my-lg-2"><xmp class="placeholder">Lorem ipsum dolor lorem ipsum dolor</xmp></p>
+      <button class="btn m-0 btn-secondary text-secondary disabled placeholder">000</button>
       <form id="form-discussion-reply" class="my-2 ">
-        <textarea class="form-control skeleton" rows=15" disabled></textarea>
-        <button type="button" class="btn ms-1 my-1 skeleton" disabled>Submit Answer</button>
+        <textarea class="form-control disabled placeholder" rows=15"></textarea>
+        <button type="button" class="btn ms-1 my-1 btn-dark text-dark disabled placeholder">Submit Answer</button>
       </form>
     </div>
 `;
@@ -319,7 +321,7 @@ const createDiscussionDetailTemplate = (discussion) => {
 };
 
 const createCategoryDiscussionTemplateSkeleton = () => `
-  <span class="badge skeleton">l</span>
+  <span class="placeholder">0000</span>
 `;
 
 const createCategoryDiscussionTemplate = (categories) => {
@@ -344,16 +346,16 @@ const createDiscussionReplyTemplateSkeleton = (count) => {
 
   for (let i = 0; i < count; i++) {
     template += `
-      <div class="container bg-white border-top">
-        <p>Answer from</p>
+      <div class="container bg-white border-top placeholder-glow">
+        <p class="placeholder">Answer from</p>
         <div class="d-flex align-items-top p-2">
           <div class="container-img-reply">
-            <img style="height: 30px; width: 30px" class="picture-profile-reply skeleton">
+            <img style="height: 30px; width: 30px" class="picture-profile-reply placeholder">
           </div>
           <div class="ms-2">
-          <a style="text-decoration:none;"><h2 style="font-size: 20px" class="skeleton">Lorem ipsum dolor</h2></a>
-            <h3 class="mb-2 skeleton" style="font-size: 14px">31 Desember 2022</h3>
-            <p style="font-size: 18px" class="skeleton">Lorem ipsum dolor</p>
+            <a style="text-decoration:none;"><h2 style="font-size: 20px" class="placeholder">Lorem ipsum dolor</h2></a>
+            <h3 class="mb-2" style="font-size: 14px"><span class="placeholder">31 Desember 2022</span></h3>
+            <p style="font-size: 18px" class="placeholder">Lorem ipsum dolor lorem ipsum dolor</p>
           </div>
         </div>
       </div>
@@ -383,32 +385,32 @@ const createAddDiscussionButtonTemplate = () => `
 `;
 
 const createFilterListTemplateSkeleton = () => `
-  <div id="filter-drawer-skeleton" class="bg-white">
+  <div id="filter-drawer-skeleton" class="bg-white placeholder-glow">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
-        <h2>Filter</h2>
+        <h2><span class="placeholder">Filter</span></h2>
       </div>
       <button id="close-filter" class="btn fw-bold">X</button>
     </div>
     <form id="form-filter">
       <div class="my-2">
-        <h3>Sort</h3>
-        <input type="radio" class="btn-check" name="sort" id="latest" disabled>
-        <label class="btn skeleton mb-1" for="latest">Latest</label>
-        <input type="radio" class="btn-check" name="sort" id="oldest" disabled>
-        <label class="btn skeleton mb-1" for="oldest">Oldest</label>
-        <input type="radio" class="btn-check" name="sort" id="solved" disabled>
-        <label class="btn skeleton mb-1" for="solved">Solved</label>
-        <input type="radio" class="btn-check" name="sort" id="unsolved" disabled>
-        <label class="btn skeleton mb-1" for="unsolved">Unsolved</label>
+        <h3><span class="placeholder">Sort</span></h3>
+        <input type="radio" class="btn-check" name="sort" id="latest">
+        <label class="btn btn-primary text-primary disabled placeholder mb-1" for="latest">Latest</label>
+        <input type="radio" class="btn-check" name="sort" id="oldest">
+        <label class="btn btn-primary text-primary disabled placeholder mb-1" for="oldest">Oldest</label>
+        <input type="radio" class="btn-check" name="sort" id="solved">
+        <label class="btn btn-primary text-primary disabled placeholder mb-1" for="solved">Solved</label>
+        <input type="radio" class="btn-check" name="sort" id="unsolved">
+        <label class="btn btn-primary text-primary disabled placeholder mb-1" for="unsolved">Unsolved</label>
       </div>
       <div class="my-2">
-        <h3>Category</h3>
+        <h3><span class="placeholder">Category</span></h3>
         <div class="filterCategory">${createFilterCategoryTemplateSkeleton(5)}</div>
       </div>
       <div>
-        <button type="button" class="btn skeleton" disabled>Reset</button>
-        <button type="button" class="btn skeleton" disabled>Filter</button>
+        <button type="button" class="btn btn-danger text-danger disabled placeholder">Reset</button>
+        <button type="button" class="btn btn-primary text-primary disabled placeholder">Filter</button>
       </div>
     </form>
   </div>
@@ -451,8 +453,8 @@ const createFilterCategoryTemplateSkeleton = (count) => {
 
   for (let i = 0; i < count; i++) {
     template += `
-      <input type="checkbox" class="btn-check" id="lorem" disabled>
-      <label class="btn skeleton mb-1" for="lorem">lorem</label>
+      <input type="checkbox" class="btn-check" id="lorem">
+      <label class="btn btn-primary text-primary disabled placeholder mb-1" for="lorem">lorem</label>
     `;
   }
   return template;
@@ -469,38 +471,38 @@ const createProfileTemplateSkeleton = () => `
       <div class="card profile">
         <div class="semi-circle"></div>
         <img style="width:200px; height: 200px;" class="card-img-top skeleton">
-        <div class="card-body text-center">
-          <p class="skeleton">Lorem ipsum dolor</p>
-          <button class=" btn btn-sm skeleton" style="padding:11px;" disabled>Change Profile</button>
-          <button class=" btn btn-sm skeleton" style="padding:11px;" disabled>Change Password</button>
+        <div class="card-body text-center placeholder-glow">
+          <p><span class="placeholder">Lorem ipsum dolor</span></p>
+          <button class="btn btn-sm btn-primary text-primary disabled placeholder" style="padding:11px;">Change Profile</button>
+          <button class="btn btn-sm btn-primary text-primary disabled placeholder" style="padding:11px;">Change Password</button>
         </div>
       </div>
     </div>
-    <div class="card about">
-      <h6>Profession</h6>
-      <p class="skeleton">Lorem ipsum dolor</p>
-      <h6>Country</h6>
-      <p class="skeleton">Lorem ipsum dolor</p>
-      <h6>Contact</h6>
-      <p class="skeleton">Lorem ipsum dolor</p>
-      <p class="skeleton">Lorem ipsum dolor</p>
-      <h6>About</h6>
-      <p class="skeleton">Lorem ipsum dolor</p>
+    <div class="card about placeholder-glow">
+      <h6><span class="placeholder">Profession</span></h6>
+      <p class="placeholder">-</p>
+      <h6><span class="placeholder">Country</span></h6>
+      <p class="placeholder">-</p>
+      <h6><span class="placeholder">Contact</span></h6>
+      <p><span class="placeholder">1234567890123</span></p>
+      <p class="placeholder">-</p>
+      <h6><span class="placeholder">About</span></h6>
+      <p class="placeholder">-</p>
     </div>
-    <div class="card activity">
-      <h3>Your Activity </h3>
-      <h2 class="grade-user skeleton">A</h2>
-      <h6> Your Discussion</h6>
-      <p class="length-disscussion-user skeleton">999</p>
-      <h6> Your Answer Discussion</h6>
-      <p class="length-reply-user skeleton">999</p>
+    <div class="card activity placeholder-glow">
+      <h3><span class="placeholder">Your Activity</span></h3>
+      <h2><span class="placeholder">AA</span></h2>
+      <h6><span class="placeholder">Your Discussion</span></h6>
+      <p><span class="placeholder">999</span></p>
+      <h6><span class="placeholder">Your Answer Discussion</span></h6>
+      <p><span class="placeholder">999</span></p>
     </div>
   </div>
     <div class="container-fluid">
       <div class="header-btn">
-        <div class="d-flex">
-          <button class="btn btn-sm skeleton" disabled>Discussion</button>
-          <button class="btn btn-sm skeleton" disabled>Bookmark</button>
+        <div class="d-flex placeholder-glow">
+          <button class="btn btn-sm btn-primary text-primary disabled placeholder">Discussion</button>
+          <button class="btn btn-sm btn-light text-light disabled placeholder">Bookmark</button>
         </div>
         <div class="container-discussion-user">
           ${createDiscussionItemTemplateSkeleton(5)}
@@ -525,75 +527,18 @@ const createProfileTemplate = (user) => {
   }
   return `
     <div class="container-profile">
-        <div class="container-profile-main">
-          <div class="card profile">
-            <div class="semi-circle"></div>
-              <img src="${user.image}" class="card-img-top">
-                <div class="card-body text-center">
-                  <p>${user.username}</p>
-                  <a class=" btn btn-primary btn-sm" href="#/editprofile/${user._id}" style="padding:11px;">Change Profile</a>
-                  <a class=" btn btn-primary btn-sm" href="#/changepwd/${user._id}" style="padding:11px;">Change Password</a>
-                </div>
-            </div>
+      <div class="container-profile-main">
+        <div class="card profile">
+          <div class="semi-circle"></div>
+          <img src="${user.image}" class="card-img-top lazyload">
+          <div class="card-body text-center">
+            <p>${user.username}</p>
+            <a class=" btn btn-primary btn-sm" href="#/editprofile/${user._id}" style="padding:11px;">Change Profile</a>
+            <a class=" btn btn-primary btn-sm" href="#/changepwd/${user._id}" style="padding:11px;">Change Password</a>
           </div>
-          <div class="card about">
-              <h6>Profession</h6>
-              <p>${user.profesi}</p>
-              <h6>Country</h6>
-              <p>${user.country}</p>
-              <h6>Contact</h6>
-              <p>${user.contact}</p>
-              <p>${user.email}</p>
-              <h6>About</h6>
-              <p>${user.bio}</p>
-          </div>
-          <div class="card activity">
-          <h3>Your Activity </h3>
-          <h2 class="grade-user"></h2>
-          <h6> Your Discussion</h6>
-          <p class="length-disscussion-user"></p>
-          <h6> Your Answer Discussion</h6>
-          <p class="length-reply-user"></p>
-          </div>
-          </div>
-        <div class="container-fluid">
-          <div class="header-btn">
-            <div class="d-flex">
-            <button class="btn btn-sm onactive fw-bold" id="btn-discussion">Discussion</button>
-            <button class="btn btn-sm fw-bold" id="btn-bookmark">Bookmark</button>
-          </div>
-          <div class="container-discussion-user"></div>
         </div>
       </div>
-    </div>
-  `;
-};
-const createProfileOtherTemplate = (user) => {
-  if (user.bio === undefined) {
-    user.bio = '-';
-  }
-  if (user.contact === undefined) {
-    user.contact = '';
-  }
-  if (user.profesi === undefined) {
-    user.profesi = '-';
-  }
-  if (user.country === undefined) {
-    user.country = '-';
-  }
-  return `
-    <div class="container-profile">
- 
-        <div class="container-profile-main">
-          <div class="card profile">
-            <img src="${user.image}" class="card-img-top lazyload">
-              <div class="card-body text-center">
-                <p>${user.username}</p>
-              </div>
-          </div>
-          
-        </div>
-        <div class="card about">
+      <div class="card about">
         <h6>Profession</h6>
         <p>${user.profesi}</p>
         <h6>Country</h6>
@@ -603,17 +548,122 @@ const createProfileOtherTemplate = (user) => {
         <p>${user.email}</p>
         <h6>About</h6>
         <p>${user.bio}</p>
+      </div>
+      <div class="card activity">
+        <h3>Your Activity </h3>
+        <h2 class="grade-user"></h2>
         <h6> Your Discussion</h6>
         <p class="length-disscussion-user"></p>
+        <h6> Your Answer Discussion</h6>
+        <p class="length-reply-user"></p>
+      </div>
     </div>
-        <div class="container-fluid">
-          <div class="header-btn">
-            <div class="d-flex">
-            <button class="btn btn-sm onactive fw-bold" id="btn-discussion">Discussion</button>
-            </div>
-            <div class="container-discussion-user"></div>
+    <div class="container-fluid">
+      <div class="header-btn">
+        <div class="d-flex">
+          <button class="btn btn-sm onactive fw-bold" id="btn-discussion">Discussion</button>
+          <button class="btn btn-sm fw-bold" id="btn-bookmark">Bookmark</button>
+        </div>
+        <div class="container-discussion-user"></div>
+      </div>
+    </div>
+  `;
+};
+
+const createProfileOtherTemplateSkeleton = () => `
+  <div class="container-profile">
+    <div class="container-profile-main">
+      <div class="card profile">
+        <div class="semi-circle"></div>
+        <img style="width:200px; height: 200px;" class="card-img-top skeleton">
+        <div class="card-body text-center placeholder-glow">
+          <p><span class="placeholder">Lorem ipsum dolor</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="card about placeholder-glow">
+      <h6><span class="placeholder">Profession</span></h6>
+      <p class="placeholder">-</p>
+      <h6><span class="placeholder">Country</span></h6>
+      <p class="placeholder">-</p>
+      <h6><span class="placeholder">Contact</span></h6>
+      <p><span class="placeholder">1234567890123</span></p>
+      <p class="placeholder">-</p>
+      <h6><span class="placeholder">About</span></h6>
+      <p class="placeholder">-</p>
+    </div>
+    <div class="card activity placeholder-glow">
+      <h3><span class="placeholder">Your Activity</span></h3>
+      <h2><span class="placeholder">AA</span></h2>
+      <h6><span class="placeholder">Your Discussion</span></h6>
+      <p><span class="placeholder">999</span></p>
+      <h6><span class="placeholder">Your Answer Discussion</span></h6>
+      <p><span class="placeholder">999</span></p>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="header-btn">
+      <div class="d-flex placeholder-glow">
+        <button class="btn btn-sm btn-primary text-primary disabled placeholder">Discussion</button>
+      </div>
+      <div class="container-discussion-user">
+        ${createDiscussionItemTemplateSkeleton(5)}
+      </div>
+    </div>
+  </div>
+`;
+
+const createProfileOtherTemplate = (user) => {
+  if (user.bio === undefined) {
+    user.bio = '-';
+  }
+  if (user.contact === undefined) {
+    user.contact = '-';
+  }
+  if (user.profesi === undefined) {
+    user.profesi = '-';
+  }
+  if (user.country === undefined) {
+    user.country = '-';
+  }
+  return `
+    <div class="container-profile">
+      <div class="container-profile-main">
+        <div class="card profile">
+          <div class="semi-circle"></div>
+          <img src="${user.image}" class="card-img-top lazyload">
+          <div class="card-body text-center">
+            <p>${user.username}</p>
           </div>
         </div>
+      </div>
+      <div class="card about">
+        <h6>Profession</h6>
+        <p>${user.profesi}</p>
+        <h6>Country</h6>
+        <p>${user.country}</p>
+        <h6>Contact</h6>
+        <p>${user.contact}</p>
+        <p>${user.email}</p>
+        <h6>About</h6>
+        <p>${user.bio}</p>
+      </div>
+      <div class="card activity">
+        <h3>Your Activity </h3>
+        <h2 class="grade-user"></h2>
+        <h6>Your Discussion</h6>
+        <p class="length-disscussion-user"></p>
+        <h6>Your Answer Discussion</h6>
+        <p class="length-reply-user"></p>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="header-btn">
+        <div class="d-flex">
+          <button class="btn btn-sm onactive fw-bold" id="btn-discussion">Discussion</button>
+        </div>
+        <div class="container-discussion-user"></div>
+      </div>
     </div>
   `;
 };
@@ -1289,6 +1339,7 @@ export {
   createAddDiscussionButtonTemplate,
   createFilterListTemplateSkeleton,
   createFilterListTemplate,
+  createFilterCategoryTemplateSkeleton,
   createFilterCategoryTemplate,
   createDiscussionReplyTemplateSkeleton,
   createDiscussionReplyTemplate,
@@ -1304,6 +1355,7 @@ export {
   createSaveDiscussionButtonTemplate,
   createUnsaveDiscussionButtonTemplate,
   createBookmarkItemTemplate,
+  createProfileOtherTemplateSkeleton,
   createProfileOtherTemplate,
   createBookmarkEmpty,
   createDiscussionEmpty,

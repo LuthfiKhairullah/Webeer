@@ -1,6 +1,6 @@
 import { Toast } from 'bootstrap/dist/js/bootstrap.bundle';
 import DiscussionSource from '../../data/discussionSource';
-import { createFilterCategoryTemplate } from '../templates/template-creator';
+import { createFilterCategoryTemplate, createFilterCategoryTemplateSkeleton } from '../templates/template-creator';
 
 const AddDiscussionPage = {
   async render() {
@@ -19,7 +19,7 @@ const AddDiscussionPage = {
                 <form id="form-discussion" method="POST" enctype="multipart/form-data">
                     <h2 class="card-title text-center">Add Dicussion</h2>
                     <h3 class="card-text">Category</h3>
-                    <div id="listCategoryForSelected"></div>
+                    <div id="listCategoryForSelected">${createFilterCategoryTemplateSkeleton(5)}</div>
                     <h3 class="card-text">Dicussion</h3>
                     <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" placeholder="Type your title discussion here">
                     <button id="code" class="btn btn-light m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
@@ -48,6 +48,7 @@ const AddDiscussionPage = {
     });
     const discussionCategory = await DiscussionSource.getDiscussionCategory();
     const categoryList = document.querySelector('#listCategoryForSelected');
+    categoryList.innerHTML = '';
     discussionCategory.forEach((categoryitem) => {
       categoryList.innerHTML += createFilterCategoryTemplate(categoryitem);
     });
