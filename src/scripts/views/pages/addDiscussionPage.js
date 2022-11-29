@@ -1,6 +1,6 @@
 import { Toast } from 'bootstrap/dist/js/bootstrap.bundle';
 import DiscussionSource from '../../data/discussionSource';
-import { createFilterCategoryTemplate } from '../templates/template-creator';
+import { createFilterCategoryTemplate, createFilterCategoryTemplateSkeleton } from '../templates/template-creator';
 
 const AddDiscussionPage = {
   async render() {
@@ -19,9 +19,10 @@ const AddDiscussionPage = {
                 <form id="form-discussion" method="POST" enctype="multipart/form-data">
                     <h2 class="card-title text-center">Add Dicussion</h2>
                     <h3 class="card-text">Category</h3>
-                    <div id="listCategoryForSelected"></div>
+                    <div id="listCategoryForSelected">${createFilterCategoryTemplateSkeleton(5)}</div>
                     <h3 class="card-text">Dicussion</h3>
                     <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" placeholder="Type your title discussion here">
+                    <button id="code" class="btn btn-light m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
                     <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
                     placeholder="Type your discussion here"></textarea>
                     <button type="button" class="btn btn-secondary border" id="closeButton">Back</button>
@@ -47,11 +48,25 @@ const AddDiscussionPage = {
     });
     const discussionCategory = await DiscussionSource.getDiscussionCategory();
     const categoryList = document.querySelector('#listCategoryForSelected');
+    categoryList.innerHTML = '';
     discussionCategory.forEach((categoryitem) => {
       categoryList.innerHTML += createFilterCategoryTemplate(categoryitem);
     });
     const categorySelect = document.getElementsByName('categoryFilter');
     console.log(categorySelect);
+    const codeDiscussion = document.querySelector('#code');
+    codeDiscussion.addEventListener('click', (event) => {
+      event.preventDefault();
+      const myTextArea = document.getElementById('inputDiscussion');
+      const myTextAreaValue = myTextArea.value;
+      const selected_txt = myTextAreaValue.substring(
+        myTextArea.selectionStart,
+        myTextArea.selectionEnd,
+      );
+      const before_txt = myTextAreaValue.substring(0, myTextArea.selectionStart);
+      const after_txt = myTextAreaValue.substring(myTextArea.selectionEnd, myTextAreaValue.length);
+      myTextArea.value = `${before_txt}\n ` + '~Enter Your Code is Here' + `\n ${selected_txt}\n` + 'Dont Delete this~' + `\n${after_txt}`;
+    });
     addDiscussionButton.addEventListener('submit', async (e) => {
       e.preventDefault();
       const arrcategory = [];

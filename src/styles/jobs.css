@@ -3,26 +3,66 @@
     margin: auto;
     margin-top: 50px;
 }
+.header-detailjob{
+    max-width: 1200px; 
+    background-color: white;
+    margin-bottom: 20px;
+    margin-top: 60px;
+    padding: 15px;
+    border-radius: 5px;
+}
+.image-detailjob{
+    width: 200px;
+    height: 200px;
+}
 
+.container-detail-jobspage{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
 .container-jobs {
     display: flex;
     justify-content: center;
 }
-
-.item-jobs {
-    width: 400px;
-    height: 600px;
-    margin-right: 50px;
-    overflow-y: auto;
-    margin-top: 10px;
+.content-detailjob{
+    max-width: 1200px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
 }
 
+.description-detailjob{
+    text-align: justify;
+}
+.item-jobs {
+    width: 500px;
+    height: 600px;
+    overflow-y: auto;
+}
+
+.scroll-item::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.scroll-item::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+    background-color: black;
+}
+
+/* Handle */
+.scroll-item::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+}
+
+
 .detail-jobs {
-    width: 600px;
+    width: 800px;
     height: 600px;
     background-color: white;
-    margin-top: 20px;
-    border-radius: 10px;
     overflow-y: auto;
 }
 
@@ -52,7 +92,7 @@
 }
 
 .work-1 {
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 .footer-detail {
@@ -81,11 +121,14 @@
 }
 
 .card-item {
-    width: 350px;
+    width: 100%;
     height: 250px;
     background-color: white;
-    margin: 10px auto;
-    border-radius: 10px;
+    border-bottom: 1px solid black;
+}
+
+.card-item:hover {
+    background-color: whitesmoke;
 }
 
 .card-item p {
@@ -121,4 +164,22 @@
 
 .btn-open-job {
     margin-left: 100px;
+}
+#btnDetailJob{
+    display: block;
+}
+#btnDetailOpen{
+    display: none;
+}
+@media screen and (max-width:1200px) {
+    .detail-jobs{
+        display: none;                                                      
+    }
+    #btnDetailJob{
+        display: none;
+    }
+    #btnDetailOpen{
+        display: block;
+        width: 100px;
+    }
 }

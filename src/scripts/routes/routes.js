@@ -13,6 +13,9 @@ import DetailProfilePage from '../views/pages/detailUserPage';
 import PasswordEditPage from '../views/pages/editPasswordPage';
 import listJobPage from '../views/pages/listJobPage';
 import aboutpage from '../views/pages/aboutpage';
+import profileCompany from '../views/pages/profileCompany';
+import HomeCompany from '../views/pages/homeCompany';
+import DetailJobPage from '../views/pages/detailJobPage';
 
 const routes = {
   '/': HomePage,
@@ -30,6 +33,9 @@ const routes = {
   '/changepwd/:id': PasswordEditPage,
   '/list': listJobPage,
   '/about': aboutpage, 
+  '/company': profileCompany,
+  '/dashboard': HomeCompany,
+  '/detailjob/:id': DetailJobPage,
 };
 
 export default routes;

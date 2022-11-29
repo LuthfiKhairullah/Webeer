@@ -1,10 +1,5 @@
 import { showFormattedDate } from '../utils/formate-date';
 import '../components/discussionList';
-import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en';
-
-TimeAgo.addDefaultLocale(en);
-const timeAgo = new TimeAgo('en-US');
 const truncateString = (str, num) => {
   if (str?.length > num) {
     return `${str.slice(0, num)}...`;
@@ -16,20 +11,63 @@ const DetailJobsSkeleton = (count) => {
   let template = '';
   for (let i = 0; i < count; i += 1) {
     template += `
-    <div class="card-item">
+    <div class="placeholder-glow">
+      <div class="card-item placeholder">
+      </div>
     </div>`;
   }
   return template;
 };
+const createDetailJobPageTemplate = (jobs) => `
+<div class="container-detail-jobspage">
+  <div class="header-detailjob">
+  <div class="d-flex" style="align-items:center;">
+  <img src="${jobs.image}" class="image-detailjob">
+      <div class="company-detailjob">
+        <h5 class="fw-bold fs-4">${jobs.company}</h5>
+        <h6 class="fw-bold fs-5">${jobs.profession}</h6>
+        <p class="fst-italic my-0">${jobs.address}</p>
+        <p class="text-muted my-0 fs-10">${showFormattedDate(jobs.createdAt)}</p>
+      </div>
+    </div>
+  <p class="fw-bold"> Description Company </p>
+  <p style="text-align:justify;">${jobs.details.descriptionCompany}</p>
+  </div>
+<div class="content-detailjob">
+<div class="description-detailjob">
+<p class="fw-bold"> Description Position </p>
+<p>${jobs.details.descriptionProfession}</p>
+</div>
+<div class="work-detail">
+      <div class="work-1">
+        <p class="fw-bold">Salary :</p>
+        <p>${jobs.details.salary} - ${jobs.details.salary2}</p>
+        <p class="fw-bold">Level :</p>
+        <p>${jobs.details.level}</p>
+      </div>
+      <div class="work-2">
+        <p class="fw-bold">Work from :</p>
+        <p>${jobs.details.workplace}</p>
+        <p class="fw-bold">Time :</p>
+        <p>${jobs.details.timeWork}</p>
+      </div>
+    </div>
+<p class="fw-bold my-3"> Requirement :</p>
+<p class="mx-3">${jobs.details.qualification.replace(/\n/g, "<br />")}</p>
+<a href="${jobs.details.link}" class="btn btn-danger">Apply</a>
+</div>
+</div>
+</div>
+`;
 const createItemJob = (jobs) => `
 <div class = "card-item">
 <img src="${jobs.image}" class="card-image lazyload">
 <h6 class="fw-bold">${jobs.company}</h6>
 <h6>${jobs.profession}</h6>
-<p>${timeAgo.format(Date.now() - Math.floor(new Date(jobs.createdAt).getTime() / 1000))}</p>
 <p>${showFormattedDate(jobs.createdAt)}</p>
 <p class="fw-bold">${jobs.address}</p>
-<button value=${jobs._id} class="btn btn-primary fw-bold btn-detail btn-sm">LIHAT</button>
+<button value=${jobs._id} class="btn btn-primary fw-bold btn-detail btn-sm" id="btnDetailJob">LIHAT</button>
+<a class="btn btn-primary" id="btnDetailOpen" href="#/detailjob/${jobs._id}" target="_blank">Visit</a>
 </div>
 `;
 
@@ -65,7 +103,7 @@ const createDetailJob = (detail) => `
   </div>
   <div class="kualifikasi-detail">
     <h6>Requirement</h6>
-    <p>${detail.details.descriptionProfession}</p>
+    <p>${detail.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}}</p>
     <ul class="test"><ul>
   </div>
   <div class="footer-detail">
@@ -83,28 +121,24 @@ const createDiscussionItemTemplateSkeleton = (count) => {
         <a class="border-0 text-start text-decoration-none text-dark w-100 test">
           <div class="card w-100 m-0">
             <div class="card-body">
-              <div class="main-container">
+              <div class="main-container placeholder-glow">
                 <div class="categoryDiscussion">${createCategoryDiscussionTemplateSkeleton()}</div>
-                  <h5 class="skeleton">Lorem ipsum dolor</h5>
-                  <p class="card-text skeleton">Lorem ipsum dolor</p>
+                  <h5><span class="placeholder">Lorem ipsum dolor</span></h5>
+                  <p class="card-text placeholder">Lorem ipsum dolor lorem ipsum dolor</p>
                 </div>
-              <div class="sub-container">
-                <div class="container-reply text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-                <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                <path
-                  d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-                </svg>
-                  <span class="skeleton">999</span>
+              <div class="sub-container placeholder-glow">
+                <div class="container-reply text-center placeholder-glow">
+                  <span class="placeholder">0000</span>
+                  <span class="placeholder">999</span>
                 </div>
-                <div class="container-discussion-profile d-flex">
-                  <img class="img-profile-discussion skeleton">
-                    <div class"sub-profile">
-                      <p class="fw-bold username fs-6 skeleton">Lorem ipsum dolor</p>
-                      <p class="fw-light fs-6 skeleton">Lorem ipsum dolor</p>
-                    </div>
+                <div class="container-discussion-profile d-flex placeholder-glow">
+                  <img class="img-profile-discussion placeholder">
+                  <div class"sub-profile">
+                    <p class="fw-bold username fs-6"><span class="placeholder">Lorem ipsum dolor</span></p>
+                    <p class="fw-light fs-6"><span class="placeholder">31 Desember 2022</span></p>
+                  </div>
                 </div>
-                <span class="skeleton p-1 rounded indicator-solved">LO</span>
+                <span class="placeholder p-1 rounded indicator-solved">0000</span>
               </div>  
             </div>
           </div>
@@ -133,7 +167,7 @@ const createDiscussionItemTemplate = (discussion) => {
         <div class="main-container">
           <div class="categoryDiscussion">${createCategoryDiscussionTemplate(discussion.categories)}</div>
             <h5>${discussion.title}</h5>
-            <p class="card-text">${truncateString(discussion?.discussion, 200)}</p>
+            <p class="card-text"><xmp>${truncateString(discussion?.discussion.replace(/(?:\r\n|\r|\n)/g, ' ').replace(/~Enter Your Code is Here/g, '').replace(/Dont Delete this~/g, ''), 200)}</xmp></p>
           </div>
         <div class="sub-container">
           <div class="container-reply text-center">
@@ -204,30 +238,27 @@ const createBookmarkItemTemplate = (bookmark) => {
 };
 
 const createDiscussionDetailTemplateSkeleton = () => `
-  <div class="container bg-white padding ">
+  <div class="container bg-white padding placeholder-glow">
       <div class="d-flex justify-content-between">
         <div class="d-flex align-items-center">
-          <img style="height: 20px; width: 20px;" class="picture-profile-discussion skeleton">
-          <a style="text-decoration:none;"><span class="ms-1 username font-monospace skeleton">Lorem ipsum</span></a>
+          <img style="height: 20px; width: 20px;" class="picture-profile-discussion placeholder">
+          <a style="text-decoration:none;"><span class="ms-1 username font-monospace placeholder">Lorem ipsum dolor</span></a>
         </div>
       </div>
-      <div class="text-capitalize skeleton">Lorem</div>
-      <h1 class="skeleton">Lorem ipsum</h1>
+      <div class="text-capitalize placeholder">Lorem</div>
+      <h1><span class="placeholder">Lorem ipsum dolor</span></h1>
       <div class="d-flex align-items-center">
-        <h3 class="fs-6 font-monospace pt-1 mx-1 m-0 skeleton">31 Desember 2022</h3>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-          <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-        </svg>
-        <span class="lengthReply mx-1 skeleton">999</span>
-        <div class="skeleton">LO</div>
-        <div id="saveButtonContainer"></div>
+        <h3 class="fs-6 font-monospace pt-1 mx-1 m-0"><span class="placeholder">31 Desember 2022</span></h3>
+        <span class="placeholder">0000</span>
+        <span class="mx-1 placeholder">999</span>
+        <div class="placeholder">0000</div>
+        <div class="placeholder">0000</div>
       </div>
-      <p class="text-justify border-top border-bottom my-lg-2"><xmp class="skeleton">Lorem ipsum dolor</xmp></p>
-      <button class="btn m-0 skeleton"><i class="fa fa-code" aria-hidden="true" disabled></i></button>
+      <p class="text-justify border-top border-bottom my-lg-2"><span class="placeholder">Lorem ipsum dolor lorem ipsum dolor</span></p>
+      <button class="btn m-0 btn-secondary text-secondary disabled placeholder">000</button>
       <form id="form-discussion-reply" class="my-2 ">
-        <textarea class="form-control skeleton" rows=15" disabled></textarea>
-        <button type="button" class="btn ms-1 my-1 skeleton">Submit Answer</button>
+        <textarea class="form-control disabled placeholder" rows=15"></textarea>
+        <button type="button" class="btn ms-1 my-1 btn-dark text-dark disabled placeholder">Submit Answer</button>
       </form>
     </div>
 `;
@@ -241,6 +272,11 @@ const createDiscussionDetailTemplate = (discussion) => {
   } else {
     isSolvedClass = 'text-success';
     isSolved = '<i class="fa fa-check-circle-o fa-2x " aria-hidden="true"></i>';
+  }
+  // const discussionDetail = `<p class="text-justify border-top border-bottom my-lg-2">${(discussion.discussion).replace(/~Enter Your Code is Here/g, '</p><div class="bg-light"><xmp>').replace(/Dont Delete this~/g, '</xmp></div><p class="text-justify border-top border-bottom my-lg-2">')}</p>`;
+  const discussionDetail = discussion.discussion.split('~Enter Your Code is Here').join('Dont Delete this~').split('Dont Delete this~');
+  for (let i = 0; i < discussionDetail.length; i++) {
+    if (i % 2 === 0) { discussionDetail[i] = `<p class="text-justify border-top border-bottom my-lg-2">${discussionDetail[i].replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>`; } else { discussionDetail[i] = `<div class="bg-light"><xmp>${discussionDetail[i]}</xmp></div>`; }
   }
   return `
     <div class="container bg-white padding ">
@@ -274,8 +310,8 @@ const createDiscussionDetailTemplate = (discussion) => {
             </div>
           </div>
         </div>
-        <div class="modal fade" id="modal-edit">
-          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal fade modal-xl" id="modal-edit">
+          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5">Edit Discussion</h1>
@@ -288,6 +324,7 @@ const createDiscussionDetailTemplate = (discussion) => {
                   <div id="listCategoryForSelected"></div>
                   <h3 class="card-text">Discussion</h3>
                   <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" value="${discussion.title}" placeholder="Type your title discussion here">
+                  <button id="codeDiscussion" class="btn btn-light m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
                   <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
                   placeholder="Type your discussion here">${discussion.discussion}</textarea>
                   <input class="form-check-input" type="checkbox" id="issolved" value="solved">
@@ -310,23 +347,22 @@ const createDiscussionDetailTemplate = (discussion) => {
           <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
           <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
         </svg>
-        <!--<i class="fa fa-comment-o fa-x" aria-hidden="true"></i>-->
         <span class="lengthReply mx-1">0</span>
         <div class="${isSolvedClass}">${isSolved}</div>
         <div id="saveButtonContainer"></div>
       </div>
-      <p class="text-justify border-top border-bottom my-lg-2"><xmp>${discussion.discussion}</xmp></p>
+      ${discussionDetail.join('')}
       <button id="code" class="btn btn-light m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
       <form id="form-discussion-reply" class="my-2 ">
-        <textarea  name="inputReply" id="inputReply" class="form-control"  rows=15"></textarea>
-        <button type="submit" class="btn btn-dark ms-1 my-1">Submit Answer</button>
+        <textarea  name="inputReply" id="inputReply" class="form-control" rows=15"></textarea>
+        <button type="submit" class="btn btn-dark ms-1 my-1" id="answerButton">Submit Answer</button>
       </form>
     </div>
   `;
 };
 
 const createCategoryDiscussionTemplateSkeleton = () => `
-  <span class="badge skeleton">l</span>
+  <span class="placeholder">0000</span>
 `;
 
 const createCategoryDiscussionTemplate = (categories) => {
@@ -351,16 +387,16 @@ const createDiscussionReplyTemplateSkeleton = (count) => {
 
   for (let i = 0; i < count; i++) {
     template += `
-      <div class="container bg-white border-top">
-        <p>Answer from</p>
+      <div class="container bg-white border-top placeholder-glow">
+        <p class="placeholder">Answer from</p>
         <div class="d-flex align-items-top p-2">
           <div class="container-img-reply">
-            <img style="height: 30px; width: 30px" class="picture-profile-reply skeleton">
+            <img style="height: 30px; width: 30px" class="picture-profile-reply placeholder">
           </div>
           <div class="ms-2">
-          <a style="text-decoration:none;"><h2 style="font-size: 20px" class="skeleton">Lorem ipsum dolor</h2></a>
-            <h3 class="mb-2 skeleton" style="font-size: 14px">31 Desember 2022</h3>
-            <p style="font-size: 18px" class="skeleton">Lorem ipsum dolor</p>
+            <a style="text-decoration:none;"><h2 style="font-size: 20px" class="placeholder">Lorem ipsum dolor</h2></a>
+            <h3 class="mb-2" style="font-size: 14px"><span class="placeholder">31 Desember 2022</span></h3>
+            <p style="font-size: 18px" class="placeholder">Lorem ipsum dolor lorem ipsum dolor</p>
           </div>
         </div>
       </div>
@@ -369,53 +405,59 @@ const createDiscussionReplyTemplateSkeleton = (count) => {
   return template;
 };
 
-const createDiscussionReplyTemplate = (discussion) => `
-  <div class="container bg-white border-top">
-  <p>Answer from</p>
+const createDiscussionReplyTemplate = (discussion) => {
+  const discussionReply = discussion.reply.split('~Enter Your Code is Here').join('Dont Delete this~').split('Dont Delete this~');
+  for (let i = 0; i < discussionReply.length; i++) {
+    if (i % 2 === 0) { discussionReply[i] = `<p style="font-size: 18px">${discussionReply[i].replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>`; } else { discussionReply[i] = `<div class="bg-light"><xmp>${discussionReply[i]}</xmp></div>`; }
+  }
+  return `
+    <div class="container bg-white border-top">
+      <p>Answer from</p>
       <div class="d-flex align-items-top p-2">
         <div class="container-img-reply">
           <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-reply lazyload">
         </div>
         <div class="ms-2">
-        <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;" class="text-dark"><h2 style="font-size: 20px">${discussion.username}</h2></a>
+          <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;" class="text-dark"><h2 style="font-size: 20px">${discussion.username}</h2></a>
           <h3 class="mb-2 text-muted" style="font-size: 14px">${discussion.date}</h3>
-          <p style="font-size: 18px">${(discussion.reply).replace(/~Enter Your Code is Here/g, '<div class="bg-light"><xmp>').replace(/Dont Delete this~/g, '</xmp></div>')}</p>
+          ${discussionReply.join('')}
         </div>
       </div>
-  </div>
-`;
+    </div>
+  `;
+};
 
 const createAddDiscussionButtonTemplate = () => `
   <a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
 `;
 
 const createFilterListTemplateSkeleton = () => `
-  <div id="filter-drawer-skeleton" class="bg-white">
+  <div id="filter-drawer-skeleton" class="bg-white placeholder-glow">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
-        <h2>Filter</h2>
+        <h2><span class="placeholder">Filter</span></h2>
       </div>
       <button id="close-filter" class="btn fw-bold">X</button>
     </div>
     <form id="form-filter">
       <div class="my-2">
-        <h3>Sort</h3>
-        <input type="radio" class="btn-check" name="sort" id="latest" disabled>
-        <label class="btn skeleton mb-1" for="latest">Latest</label>
-        <input type="radio" class="btn-check" name="sort" id="oldest" disabled>
-        <label class="btn skeleton mb-1" for="oldest">Oldest</label>
-        <input type="radio" class="btn-check" name="sort" id="solved" disabled>
-        <label class="btn skeleton mb-1" for="solved">Solved</label>
-        <input type="radio" class="btn-check" name="sort" id="unsolved" disabled>
-        <label class="btn skeleton mb-1" for="unsolved">Unsolved</label>
+        <h3><span class="placeholder">Sort</span></h3>
+        <input type="radio" class="btn-check" name="sort" id="latest">
+        <label class="btn btn-primary text-primary disabled placeholder mb-1" for="latest">Latest</label>
+        <input type="radio" class="btn-check" name="sort" id="oldest">
+        <label class="btn btn-primary text-primary disabled placeholder mb-1" for="oldest">Oldest</label>
+        <input type="radio" class="btn-check" name="sort" id="solved">
+        <label class="btn btn-primary text-primary disabled placeholder mb-1" for="solved">Solved</label>
+        <input type="radio" class="btn-check" name="sort" id="unsolved">
+        <label class="btn btn-primary text-primary disabled placeholder mb-1" for="unsolved">Unsolved</label>
       </div>
       <div class="my-2">
-        <h3>Category</h3>
+        <h3><span class="placeholder">Category</span></h3>
         <div class="filterCategory">${createFilterCategoryTemplateSkeleton(5)}</div>
       </div>
       <div>
-        <button type="reset" class="btn skeleton">Reset</button>
-        <button type="submit" class="btn skeleton">Filter</button>
+        <button type="button" class="btn btn-danger text-danger disabled placeholder">Reset</button>
+        <button type="button" class="btn btn-primary text-primary disabled placeholder">Filter</button>
       </div>
     </form>
   </div>
@@ -458,8 +500,8 @@ const createFilterCategoryTemplateSkeleton = (count) => {
 
   for (let i = 0; i < count; i++) {
     template += `
-      <input type="checkbox" class="btn-check" id="lorem" disabled>
-      <label class="btn skeleton mb-1" for="lorem">lorem</label>
+      <input type="checkbox" class="btn-check" id="lorem">
+      <label class="btn btn-primary text-primary disabled placeholder mb-1" for="lorem">lorem</label>
     `;
   }
   return template;
@@ -476,31 +518,38 @@ const createProfileTemplateSkeleton = () => `
       <div class="card profile">
         <div class="semi-circle"></div>
         <img style="width:200px; height: 200px;" class="card-img-top skeleton">
-        <div class="card-body text-center">
-          <p class="skeleton">Lorem ipsum dolor</p>
-          <a class=" btn btn-sm skeleton" style="padding:11px;" disabled>Change Profile</a>
-          <a class=" btn btn-sm skeleton" style="padding:11px;" disabled>Change Password</a>
+        <div class="card-body text-center placeholder-glow">
+          <p><span class="placeholder">Lorem ipsum dolor</span></p>
+          <button class="btn btn-sm btn-primary text-primary disabled placeholder" style="padding:11px;">Change Profile</button>
+          <button class="btn btn-sm btn-primary text-primary disabled placeholder" style="padding:11px;">Change Password</button>
         </div>
       </div>
     </div>
-    <div class="card about">
-      <h6>Profession</h6>
-      <p class="skeleton">Lorem ipsum dolor</p>
-      <h6>Country</h6>
-      <p class="skeleton">Lorem ipsum dolor</p>
-      <h6>Contact</h6>
-      <p class="skeleton">Lorem ipsum dolor</p>
-      <p class="skeleton">Lorem ipsum dolor</p>
-      <h6>About</h6>
-      <p class="skeleton">Lorem ipsum dolor</p>
-      <h6> Your Discussion</h6>
-      <p class="skeleton">999</p>
+    <div class="card about placeholder-glow">
+      <h6><span class="placeholder">Profession</span></h6>
+      <p class="placeholder">-</p>
+      <h6><span class="placeholder">Country</span></h6>
+      <p class="placeholder">-</p>
+      <h6><span class="placeholder">Contact</span></h6>
+      <p><span class="placeholder">1234567890123</span></p>
+      <p class="placeholder">-</p>
+      <h6><span class="placeholder">About</span></h6>
+      <p class="placeholder">-</p>
     </div>
+    <div class="card activity placeholder-glow">
+      <h3><span class="placeholder">Your Activity</span></h3>
+      <h2><span class="placeholder">AA</span></h2>
+      <h6><span class="placeholder">Your Discussion</span></h6>
+      <p><span class="placeholder">999</span></p>
+      <h6><span class="placeholder">Your Answer Discussion</span></h6>
+      <p><span class="placeholder">999</span></p>
+    </div>
+  </div>
     <div class="container-fluid">
       <div class="header-btn">
-        <div class="d-flex">
-          <button class="btn btn-sm skeleton">Discussion</button>
-          <button class="btn btn-sm skeleton">Bookmark</button>
+        <div class="d-flex placeholder-glow">
+          <button class="btn btn-sm btn-primary text-primary disabled placeholder">Discussion</button>
+          <button class="btn btn-sm btn-light text-light disabled placeholder">Bookmark</button>
         </div>
         <div class="container-discussion-user">
           ${createDiscussionItemTemplateSkeleton(5)}
@@ -525,75 +574,18 @@ const createProfileTemplate = (user) => {
   }
   return `
     <div class="container-profile">
-        <div class="container-profile-main">
-          <div class="card profile">
-            <div class="semi-circle"></div>
-              <img src="${user.image}" class="card-img-top">
-                <div class="card-body text-center">
-                  <p>${user.username}</p>
-                  <a class=" btn btn-primary btn-sm" href="#/editprofile/${user._id}" style="padding:11px;">Change Profile</a>
-                  <a class=" btn btn-primary btn-sm" href="#/changepwd/${user._id}" style="padding:11px;">Change Password</a>
-                </div>
-            </div>
+      <div class="container-profile-main">
+        <div class="card profile">
+          <div class="semi-circle"></div>
+          <img src="${user.image}" class="card-img-top lazyload">
+          <div class="card-body text-center">
+            <p>${user.username}</p>
+            <a class=" btn btn-primary btn-sm" href="#/editprofile/${user._id}" style="padding:11px;">Change Profile</a>
+            <a class=" btn btn-primary btn-sm" href="#/changepwd/${user._id}" style="padding:11px;">Change Password</a>
           </div>
-          <div class="card about">
-              <h6>Profession</h6>
-              <p>${user.profesi}</p>
-              <h6>Country</h6>
-              <p>${user.country}</p>
-              <h6>Contact</h6>
-              <p>${user.contact}</p>
-              <p>${user.email}</p>
-              <h6>About</h6>
-              <p>${user.bio}</p>
-          </div>
-          <div class="card activity">
-          <h3>Your Activity </h3>
-          <h2 class="grade-user"></h2>
-          <h6> Your Discussion</h6>
-          <p class="length-disscussion-user"></p>
-          <h6> Your Answer Discussion</h6>
-          <p class="length-reply-user"></p>
-          </div>
-          </div>
-        <div class="container-fluid">
-          <div class="header-btn">
-            <div class="d-flex">
-            <button class="btn btn-sm onactive fw-bold" id="btn-discussion">Discussion</button>
-            <button class="btn btn-sm fw-bold" id="btn-bookmark">Bookmark</button>
-          </div>
-          <div class="container-discussion-user"></div>
         </div>
       </div>
-    </div>
-  `;
-};
-const createProfileOtherTemplate = (user) => {
-  if (user.bio === undefined) {
-    user.bio = '-';
-  }
-  if (user.contact === undefined) {
-    user.contact = '';
-  }
-  if (user.profesi === undefined) {
-    user.profesi = '-';
-  }
-  if (user.country === undefined) {
-    user.country = '-';
-  }
-  return `
-    <div class="container-profile">
- 
-        <div class="container-profile-main">
-          <div class="card profile">
-            <img src="${user.image}" class="card-img-top lazyload">
-              <div class="card-body text-center">
-                <p>${user.username}</p>
-              </div>
-          </div>
-          
-        </div>
-        <div class="card about">
+      <div class="card about">
         <h6>Profession</h6>
         <p>${user.profesi}</p>
         <h6>Country</h6>
@@ -603,17 +595,122 @@ const createProfileOtherTemplate = (user) => {
         <p>${user.email}</p>
         <h6>About</h6>
         <p>${user.bio}</p>
+      </div>
+      <div class="card activity">
+        <h3>Your Activity </h3>
+        <h2 class="grade-user"></h2>
         <h6> Your Discussion</h6>
         <p class="length-disscussion-user"></p>
+        <h6> Your Answer Discussion</h6>
+        <p class="length-reply-user"></p>
+      </div>
     </div>
-        <div class="container-fluid">
-          <div class="header-btn">
-            <div class="d-flex">
-            <button class="btn btn-sm onactive fw-bold" id="btn-discussion">Discussion</button>
-            </div>
-            <div class="container-discussion-user"></div>
+    <div class="container-fluid">
+      <div class="header-btn">
+        <div class="d-flex">
+          <button class="btn btn-sm onactive fw-bold" id="btn-discussion">Discussion</button>
+          <button class="btn btn-sm fw-bold" id="btn-bookmark">Bookmark</button>
+        </div>
+        <div class="container-discussion-user"></div>
+      </div>
+    </div>
+  `;
+};
+
+const createProfileOtherTemplateSkeleton = () => `
+  <div class="container-profile">
+    <div class="container-profile-main">
+      <div class="card profile">
+        <div class="semi-circle"></div>
+        <img style="width:200px; height: 200px;" class="card-img-top skeleton">
+        <div class="card-body text-center placeholder-glow">
+          <p><span class="placeholder">Lorem ipsum dolor</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="card about placeholder-glow">
+      <h6><span class="placeholder">Profession</span></h6>
+      <p class="placeholder">-</p>
+      <h6><span class="placeholder">Country</span></h6>
+      <p class="placeholder">-</p>
+      <h6><span class="placeholder">Contact</span></h6>
+      <p><span class="placeholder">1234567890123</span></p>
+      <p class="placeholder">-</p>
+      <h6><span class="placeholder">About</span></h6>
+      <p class="placeholder">-</p>
+    </div>
+    <div class="card activity placeholder-glow">
+      <h3><span class="placeholder">Your Activity</span></h3>
+      <h2><span class="placeholder">AA</span></h2>
+      <h6><span class="placeholder">Your Discussion</span></h6>
+      <p><span class="placeholder">999</span></p>
+      <h6><span class="placeholder">Your Answer Discussion</span></h6>
+      <p><span class="placeholder">999</span></p>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="header-btn">
+      <div class="d-flex placeholder-glow">
+        <button class="btn btn-sm btn-primary text-primary disabled placeholder">Discussion</button>
+      </div>
+      <div class="container-discussion-user">
+        ${createDiscussionItemTemplateSkeleton(5)}
+      </div>
+    </div>
+  </div>
+`;
+
+const createProfileOtherTemplate = (user) => {
+  if (user.bio === undefined) {
+    user.bio = '-';
+  }
+  if (user.contact === undefined) {
+    user.contact = '-';
+  }
+  if (user.profesi === undefined) {
+    user.profesi = '-';
+  }
+  if (user.country === undefined) {
+    user.country = '-';
+  }
+  return `
+    <div class="container-profile">
+      <div class="container-profile-main">
+        <div class="card profile">
+          <div class="semi-circle"></div>
+          <img src="${user.image}" class="card-img-top lazyload">
+          <div class="card-body text-center">
+            <p>${user.username}</p>
           </div>
         </div>
+      </div>
+      <div class="card about">
+        <h6>Profession</h6>
+        <p>${user.profesi}</p>
+        <h6>Country</h6>
+        <p>${user.country}</p>
+        <h6>Contact</h6>
+        <p>${user.contact}</p>
+        <p>${user.email}</p>
+        <h6>About</h6>
+        <p>${user.bio}</p>
+      </div>
+      <div class="card activity">
+        <h3>Your Activity </h3>
+        <h2 class="grade-user"></h2>
+        <h6>Your Discussion</h6>
+        <p class="length-disscussion-user"></p>
+        <h6>Your Answer Discussion</h6>
+        <p class="length-reply-user"></p>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="header-btn">
+        <div class="d-flex">
+          <button class="btn btn-sm onactive fw-bold" id="btn-discussion">Discussion</button>
+        </div>
+        <div class="container-discussion-user"></div>
+      </div>
     </div>
   `;
 };
@@ -719,15 +816,15 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Chile">Chile</option>
                 <option name="countryselect" value="China">China</option>
                 <option name="countryselect" value="Christmas Island">Christmas Island</option>
-                <option name="countryselect" value="Cocos Islands">Cocos (Keeling) Islands</option>
+                <option name="countryselect" value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
                 <option name="countryselect" value="Colombia">Colombia</option>
                 <option name="countryselect" value="Comoros">Comoros</option>
                 <option name="countryselect" value="Congo">Congo</option>
-                <option name="countryselect" value="Congo">Congo, the Democratic Republic of the</option>
+                <option name="countryselect" value="Congo, the Democratic Republic of the">Congo, the Democratic Republic of the</option>
                 <option name="countryselect" value="Cook Islands">Cook Islands</option>
                 <option name="countryselect" value="Costa Rica">Costa Rica</option>
-                <option name="countryselect" value="Cota D'Ivoire">Cote d'Ivoire</option>
-                <option name="countryselect" value="Croatia">Croatia (Hrvatska)</option>
+                <option name="countryselect" value="Cote d'Ivoire">Cote d'Ivoire</option>
+                <option name="countryselect" value="Croatia (Hrvatska)">Croatia (Hrvatska)</option>
                 <option name="countryselect" value="Cuba">Cuba</option>
                 <option name="countryselect" value="Cyprus">Cyprus</option>
                 <option name="countryselect" value="Czech Republic">Czech Republic</option>
@@ -743,12 +840,12 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Eritrea">Eritrea</option>
                 <option name="countryselect" value="Estonia">Estonia</option>
                 <option name="countryselect" value="Ethiopia">Ethiopia</option>
-                <option name="countryselect" value="Falkland Islands">Falkland Islands (Malvinas)</option>
+                <option name="countryselect" value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
                 <option name="countryselect" value="Faroe Islands">Faroe Islands</option>
                 <option name="countryselect" value="Fiji">Fiji</option>
                 <option name="countryselect" value="Finland">Finland</option>
                 <option name="countryselect" value="France">France</option>
-                <option name="countryselect" value="France Metropolitan">France, Metropolitan</option>
+                <option name="countryselect" value="France, Metropolitan">France, Metropolitan</option>
                 <option name="countryselect" value="French Guiana">French Guiana</option>
                 <option name="countryselect" value="French Polynesia">French Polynesia</option>
                 <option name="countryselect" value="French Southern Territories">French Southern Territories</option>
@@ -768,15 +865,15 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Guinea-Bissau">Guinea-Bissau</option>
                 <option name="countryselect" value="Guyana">Guyana</option>
                 <option name="countryselect" value="Haiti">Haiti</option>
-                <option name="countryselect" value="Heard and McDonald Islands">Heard and Mc Donald Islands</option>
-                <option name="countryselect" value="Holy See">Holy See (Vatican City State)</option>
+                <option name="countryselect" value="Heard and Mc Donald Islands">Heard and Mc Donald Islands</option>
+                <option name="countryselect" value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
                 <option name="countryselect" value="Honduras">Honduras</option>
                 <option name="countryselect" value="Hong Kong">Hong Kong</option>
                 <option name="countryselect" value="Hungary">Hungary</option>
                 <option name="countryselect" value="Iceland">Iceland</option>
                 <option name="countryselect" value="India">India</option>
                 <option name="countryselect" value="Indonesia">Indonesia</option>
-                <option name="countryselect" value="Iran">Iran (Islamic Republic of)</option>
+                <option name="countryselect" value="Iran (Islamic Republic of)">Iran (Islamic Republic of)</option>
                 <option name="countryselect" value="Iraq">Iraq</option>
                 <option name="countryselect" value="Ireland">Ireland</option>
                 <option name="countryselect" value="Israel">Israel</option>
@@ -787,11 +884,11 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Kazakhstan">Kazakhstan</option>
                 <option name="countryselect" value="Kenya">Kenya</option>
                 <option name="countryselect" value="Kiribati">Kiribati</option>
-                <option name="countryselect" value="Democratic People's Republic of Korea">Korea, Democratic People's Republic of</option>
-                <option name="countryselect" value="Korea">Korea, Republic of</option>
+                <option name="countryselect" value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+                <option name="countryselect" value="Korea, Republic of">Korea, Republic of</option>
                 <option name="countryselect" value="Kuwait">Kuwait</option>
                 <option name="countryselect" value="Kyrgyzstan">Kyrgyzstan</option>
-                <option name="countryselect" value="Lao">Lao People's Democratic Republic</option>
+                <option name="countryselect" value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
                 <option name="countryselect" value="Latvia">Latvia</option>
                 <option name="countryselect" value="Lebanon">Lebanon</option>
                 <option name="countryselect" value="Lesotho">Lesotho</option>
@@ -801,7 +898,7 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Lithuania">Lithuania</option>
                 <option name="countryselect" value="Luxembourg">Luxembourg</option>
                 <option name="countryselect" value="Macau">Macau</option>
-                <option name="countryselect" value="Macedonia">Macedonia, The Former Yugoslav Republic of</option>
+                <option name="countryselect" value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
                 <option name="countryselect" value="Madagascar">Madagascar</option>
                 <option name="countryselect" value="Malawi">Malawi</option>
                 <option name="countryselect" value="Malaysia">Malaysia</option>
@@ -814,8 +911,8 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Mauritius">Mauritius</option>
                 <option name="countryselect" value="Mayotte">Mayotte</option>
                 <option name="countryselect" value="Mexico">Mexico</option>
-                <option name="countryselect" value="Micronesia">Micronesia, Federated States of</option>
-                <option name="countryselect" value="Moldova">Moldova, Republic of</option>
+                <option name="countryselect" value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+                <option name="countryselect" value="Moldova, Republic of">Moldova, Republic of</option>
                 <option name="countryselect" value="Monaco">Monaco</option>
                 <option name="countryselect" value="Mongolia">Mongolia</option>
                 <option name="countryselect" value="Montserrat">Montserrat</option>
@@ -851,39 +948,39 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Qatar">Qatar</option>
                 <option name="countryselect" value="Reunion">Reunion</option>
                 <option name="countryselect" value="Romania">Romania</option>
-                <option name="countryselect" value="Russia">Russian Federation</option>
+                <option name="countryselect" value="Russian Federation">Russian Federation</option>
                 <option name="countryselect" value="Rwanda">Rwanda</option>
                 <option name="countryselect" value="Saint Kitts and Nevis">Saint Kitts and Nevis</option> 
                 <option name="countryselect" value="Saint LUCIA">Saint LUCIA</option>
-                <option name="countryselect" value="Saint Vincent">Saint Vincent and the Grenadines</option>
+                <option name="countryselect" value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
                 <option name="countryselect" value="Samoa">Samoa</option>
                 <option name="countryselect" value="San Marino">San Marino</option>
                 <option name="countryselect" value="Sao Tome and Principe">Sao Tome and Principe</option> 
                 <option name="countryselect" value="Saudi Arabia">Saudi Arabia</option>
                 <option name="countryselect" value="Senegal">Senegal</option>
                 <option name="countryselect" value="Seychelles">Seychelles</option>
-                <option name="countryselect" value="Sierra">Sierra Leone</option>
+                <option name="countryselect" value="Sierra Leone">Sierra Leone</option>
                 <option name="countryselect" value="Singapore">Singapore</option>
-                <option name="countryselect" value="Slovakia">Slovakia (Slovak Republic)</option>
+                <option name="countryselect" value="Slovakia (Slovak Republic)">Slovakia (Slovak Republic)</option>
                 <option name="countryselect" value="Slovenia">Slovenia</option>
                 <option name="countryselect" value="Solomon Islands">Solomon Islands</option>
                 <option name="countryselect" value="Somalia">Somalia</option>
                 <option name="countryselect" value="South Africa">South Africa</option>
-                <option name="countryselect" value="South Georgia">South Georgia and the South Sandwich Islands</option>
-                <option name="countryselect" value="Span">Spain</option>
-                <option name="countryselect" value="SriLanka">Sri Lanka</option>
+                <option name="countryselect" value="South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich Islands</option>
+                <option name="countryselect" value="Spain">Spain</option>
+                <option name="countryselect" value="Sri Lanka">Sri Lanka</option>
                 <option name="countryselect" value="St. Helena">St. Helena</option>
-                <option name="countryselect" value="St. Pierre and Miguelon">St. Pierre and Miquelon</option>
+                <option name="countryselect" value="St. Pierre and Miquelon">St. Pierre and Miquelon</option>
                 <option name="countryselect" value="Sudan">Sudan</option>
                 <option name="countryselect" value="Suriname">Suriname</option>
-                <option name="countryselect" value="Svalbard">Svalbard and Jan Mayen Islands</option>
+                <option name="countryselect" value="Svalbard and Jan Mayen Islands">Svalbard and Jan Mayen Islands</option>
                 <option name="countryselect" value="Swaziland">Swaziland</option>
                 <option name="countryselect" value="Sweden">Sweden</option>
                 <option name="countryselect" value="Switzerland">Switzerland</option>
-                <option name="countryselect" value="Syria">Syrian Arab Republic</option>
-                <option name="countryselect" value="Taiwan">Taiwan, Province of China</option>
+                <option name="countryselect" value="Syrian Arab Republic">Syrian Arab Republic</option>
+                <option name="countryselect" value="Taiwan, Province of China">Taiwan, Province of China</option>
                 <option name="countryselect" value="Tajikistan">Tajikistan</option>
-                <option name="countryselect" value="Tanzania">Tanzania, United Republic of</option>
+                <option name="countryselect" value="Tanzania, United Republic of">Tanzania, United Republic of</option>
                 <option name="countryselect" value="Thailand">Thailand</option>
                 <option name="countryselect" value="Togo">Togo</option>
                 <option name="countryselect" value="Tokelau">Tokelau</option>
@@ -892,7 +989,7 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Tunisia">Tunisia</option>
                 <option name="countryselect" value="Turkey">Turkey</option>
                 <option name="countryselect" value="Turkmenistan">Turkmenistan</option>
-                <option name="countryselect" value="Turks and Caicos">Turks and Caicos Islands</option>
+                <option name="countryselect" value="Turks and Caicos Islands">Turks and Caicos Islands</option>
                 <option name="countryselect" value="Tuvalu">Tuvalu</option>
                 <option name="countryselect" value="Uganda">Uganda</option>
                 <option name="countryselect" value="Ukraine">Ukraine</option>
@@ -904,10 +1001,10 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Uzbekistan">Uzbekistan</option>
                 <option name="countryselect" value="Vanuatu">Vanuatu</option>
                 <option name="countryselect" value="Venezuela">Venezuela</option>
-                <option name="countryselect" value="Vietnam">Viet Nam</option>
+                <option name="countryselect" value="Viet Nam">Viet Nam</option>
                 <option name="countryselect" value="Virgin Islands (British)">Virgin Islands (British)</option>
-                <option name="countryselect" value="Virgin Islands (U.S)">Virgin Islands (U.S.)</option>
-                <option name="countryselect" value="Wallis and Futana Islands">Wallis and Futuna Islands</option>
+                <option name="countryselect" value="Virgin Islands (U.S.)">Virgin Islands (U.S.)</option>
+                <option name="countryselect" value="Wallis and Futuna Islands">Wallis and Futuna Islands</option>
                 <option name="countryselect" value="Western Sahara">Western Sahara</option>
                 <option name="countryselect" value="Yemen">Yemen</option>
                 <option name="countryselect" value="Serbia">Serbia</option>
@@ -920,7 +1017,8 @@ const createProfileEditTemplate = (user) => {
               <textarea class="form-control" id="edit-bio" placeholder="Type your bio">${user.bio}</textarea>
             </div>
             <div class="mb-4">
-            <input type="file" id="edit-photo">
+              <h5>Profile Picture</h5>
+              <input class="form-control" type="file" id="edit-photo">
             </div>
               <a href="#/profile" class="btn btn-primary"> Back </a>
               <button class="btn btn-light border-dark" id="edit-simpan">Save</button>  
@@ -1022,30 +1120,49 @@ const createSearchDiscussionEmpty = () => `
 <a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
 `;
 const createSidebarCompany = () => `
-<nav class="navbar fixed-top navbar-expand-lg ">
-<div class="container-fluid">
-  <a class="navbar-brand text-light fw-bold" href="#">Webeer</a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link text-light " aria-current="page" href="#/list">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light " href="#/jobs">Jobs</a>
-      </li>
-      <li class="nav-item">
-      <a class="nav-link text-light " href="#/addjobs">Add jobs</a>
-    </li>
-      <li class="nav-item">
-        <a class="nav-link text-light " href="#" id="logout">Logout</a>
-      </li>
-    </ul>
-  </div>
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" id="sidebar">
+<a href="#/list" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" id="button" class="company">
+<i class="fa fa-code fw-bold fa-2x" aria-hidden="true"></i>
+  <span class="fs-4 fw-bold m-1 nav-text">Webeer</span>
+</a>
+<hr>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<ul class="nav nav-pills flex-column mb-auto">
+  <li class="nav-item">
+    <a href="#/dashboard" class="nav-link active" aria-current="page">
+    <i class="fa fa-home" aria-hidden="true"></i>
+      <span class="nav-text">Home</span>
+    </a>
+  </li>
+  <li>
+    <a href="#/list" class="nav-link text-white">
+    <i class="fa fa-list" aria-hidden="true"></i>
+      <span class="nav-text">Dashboard</span>
+    </a>
+  </li>
+  <li>
+    <a href="#/addjobs" class="nav-link text-white">
+    <i class="fa fa-plus-square" aria-hidden="true"></i>
+    <span class="nav-text">Add</span>
+    </a>
+  </li>
+  <li>
+    <a href="#/company" class="nav-link text-white">
+    <i class="fa fa-cog" aria-hidden="true"></i>
+    <span class="nav-text">Settings</span>
+    </a>
+  </li>
+  <li>
+  <a href="#" class="nav-link text-white" id="logout">
+  <i class="fa fa-sign-out" aria-hidden="true"></i>
+  <span class="nav-text">Logout</span>
+  </a>
+</li>
+</ul>
+<hr>
 </div>
-</nav>
 `;
 
 const createCardJobCompany = (job) => `
@@ -1070,7 +1187,7 @@ const createCardJobCompany = (job) => `
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        Do you want to delete this discussion?
+        Do you want to delete this job vacancy?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -1086,8 +1203,8 @@ const createCardJobCompany = (job) => `
 `;
 const createFormEditJob = (job) => `
 <div class="modal-content">
-<div class="modal-header">
-  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+<div class="modal-header bg-primary">
+  <h5 class="modal-title text-light fw-bold" id="exampleModalLabel">Edit Job Vacancy</h5>
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
@@ -1095,46 +1212,45 @@ const createFormEditJob = (job) => `
 <form id="form-edit-job">
 <h5>Job Vacancy Details</h5>
 <div class="mb-3 row">
-  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company name</label>
+  <label for="exampleInputEmail1" class="col-form-label"><small>Company name</small></label>
   <div class="col-sm-6">
     <input type="text" class="form-control  form-control-sm" id="company-job" value="${job.company}">
   </div>
 </div>
 <div class="mb-3 row">
-  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Job position</label>
+  <label for="exampleInputEmail1" class="col-form-label"><small>Job position</small></label>
   <div class="col-sm-6">
     <input type="text" class="form-control  form-control-sm" id="profession-job" value="${job.profession}" >
   </div>
 </div>
 <div class="mb-3 row">
-  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company's addressn</label>
+  <label for="exampleInputEmail1" class="col-form-label"><small>Company's addressn</small></label>
   <div class="col-sm-6">
     <input type="text" class="form-control  form-control-sm" id="address-job"  value="${job.address}">
   </div>
 </div>
 <div class="mb-3 row">
-  <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company logo</label>
+  <label for="exampleInputEmail1" class="col-form-label"><small>Company logo</small></label>
     <div class="col-sm-6">
       <input type="file" class="form-control  form-control-sm" id="image-job" >
     </div>
 </div>
-<h5>Details of Worker Qualifications</h5>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company description</label>
+<label for="exampleInputEmail1" class="col-form-label"><small>Company description</small></label>
     <div class="col-sm-6">
         <textarea class="form-control" id="description-job" rows="4">${job.details.descriptionCompany}</textarea>
     </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Job description</label>
+<label for="exampleInputEmail1" class="col-form-label"><small>Job description</small></label>
  <div class="col-sm-6">
      <textarea class="form-control" id="descriptionProfession-job" rows="4" >${job.details.descriptionProfession}</textarea>
  </div>
 </div>
 <div class="mb-3 row">
- <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Level</label>
+ <label for="exampleInputEmail1" class="col-form-label"><small>Level</small></label>
     <div class="col-sm-5">
-        <select class="form-select" aria-label="Default select example"  id="level-job">
+        <select class="form-select form-select-sm" aria-label="Default select example"  id="level-job">
         <option selected value="${job.details.level}">${job.details.level}</option>
             <option value="Entry">Entry</option>
             <option value="Intermediate">Intermediate</option>
@@ -1143,9 +1259,9 @@ const createFormEditJob = (job) => `
     </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Work from</label>
+<label for="exampleInputEmail1" class=" col-form-label"><small>Work from</small></label>
 <div class="col-sm-5">
-    <select class="form-select" aria-label="Default select example"  id="place-job">
+    <select class="form-select form-select-sm" aria-label="Default select example"  id="place-job">
     <option selected value="${job.details.workplace}">${job.details.workplace}</option>
         <option value="Onsite">Onsite</option>
         <option value="Remote">Remote</option>
@@ -1154,9 +1270,9 @@ const createFormEditJob = (job) => `
 </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Time</label>
+<label for="exampleInputEmail1" class="col-form-label"><small>Time</small></label>
   <div class="col-sm-5">
-    <select class="form-select" aria-label="Default select example" id="time-job">
+    <select class="form-select form-select-sm" aria-label="Default select example" id="time-job">
       <option selected value="${job.details.timeWork}">${job.details.timeWork}</option>
       <option value="Full Time">Full Time</option>
       <option value="Part Time">Part Time</option>
@@ -1164,19 +1280,22 @@ const createFormEditJob = (job) => `
   </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Salary</label>
-<div class="col-sm-6">
+<label for="exampleInputEmail1" class="col-form-label"><small>Range Salary</small></label>
+<div class="col-sm-3">
     <input type="text" class="form-control  form-control-sm" id="salary-job" value="${job.details.salary}" >
+</div>-
+<div class="col-sm-3">
+    <input type="text" class="form-control  form-control-sm" id="salary-job2" value="${job.details.salary2}" >
 </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Qualification</label>
+<label for="exampleInputEmail1" class="col-form-label"><small>Qualification</small></label>
 <div class="col-sm-6">
     <textarea class="form-control" id="qualification-job" rows="4">${job.details.qualification}</textarea>
 </div>
 </div>
 <div class="mb-3 row">
-<label for="exampleInputEmail1" class="col-sm-3 col-form-label">Company Links</label>
+<label for="exampleInputEmail1" class="col-form-label"><small>Company Links</small></label>
     <div class="col-sm-6">
         <input type="text" class="form-control  form-control-sm" id="link-job" value="${job.details.link}" >
     </div>
@@ -1189,6 +1308,81 @@ const createFormEditJob = (job) => `
 </div>
 </div>
 `;
+
+const createProfileCompany = (user) => `
+<div class="card">
+  <div class="card-header">
+    <img src="${user.image}" class="card-img-top">
+  </div>
+  <div class="card-body">
+    <p>${user.username}</p>
+  </div>
+  <div class="card-footer">
+    <button value="${user._id}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="btn-edit-company"> Change Profile </button>
+    <button value="${user._id}" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btn-edit-pwd"> Change Password </button>
+  </div>
+</div>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PASSWORD</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form id = "edit-password-company">
+          <div class="mb-3 row">
+            <label for="exampleInputEmail1" class="form-label">Old Password</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control  form-control-sm" id="old-password">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">New Password</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control  form-control-sm" id="new-password">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control  form-control-sm" id="confirm-password">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary"  data-bs-dismiss="modal">Save</button>
+          </div>
+          </form>
+      </div>
+    </div>
+</div>
+</div>
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PROFILE</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form id = "edit-profile-company">
+          <div class="mb-3 row">
+            <label for="exampleInputEmail1" class="form-label">Username</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control  form-control-sm" id="edit-username">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">Company Logo</label>
+            <div class="col-sm-6">
+              <input type="file" class="form-control  form-control-sm" id="edit-logo-company">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" id="delete-this-job" data-bs-dismiss="modal">Save</button>
+          </div>
+          </form>
+      </div>
+    </div>
+</div>
+</div>
+`;
 export {
   DetailJobsSkeleton,
   createDiscussionItemTemplateSkeleton,
@@ -1198,6 +1392,7 @@ export {
   createAddDiscussionButtonTemplate,
   createFilterListTemplateSkeleton,
   createFilterListTemplate,
+  createFilterCategoryTemplateSkeleton,
   createFilterCategoryTemplate,
   createDiscussionReplyTemplateSkeleton,
   createDiscussionReplyTemplate,
@@ -1213,6 +1408,7 @@ export {
   createSaveDiscussionButtonTemplate,
   createUnsaveDiscussionButtonTemplate,
   createBookmarkItemTemplate,
+  createProfileOtherTemplateSkeleton,
   createProfileOtherTemplate,
   createBookmarkEmpty,
   createDiscussionEmpty,
@@ -1220,4 +1416,6 @@ export {
   createSidebarCompany,
   createCardJobCompany,
   createFormEditJob,
+  createProfileCompany,
+  createDetailJobPageTemplate,
 };

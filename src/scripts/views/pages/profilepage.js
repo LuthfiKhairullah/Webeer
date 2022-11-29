@@ -16,7 +16,7 @@ const ProfilePage = {
       localStorage.setItem('login', 'false');
       window.reload();
     } else if (getToken !== null && getRole === 'Company') {
-      document.location = '#/list';
+      document.location = '#/dashboard';
       localStorage.setItem('login', 'true');
       window.reload();
     } else if (getToken !== null && getRole === 'Programmer') {
@@ -44,11 +44,14 @@ const ProfilePage = {
     userProfileElement.user = userProfile;
     const countDiscussion = document.querySelector('.length-disscussion-user');
     const countReply = document.querySelector('.length-reply-user');
-    console.log(userDiscussion);
     countDiscussion.innerHTML = userDiscussion.length;
-    countReply.innerHTML = userReply.length;
+    if (userReply === undefined) {
+      countReply.innerHTML = 0;
+    } else {
+      countReply.innerHTML = userReply.length;
+    }
     const lenDiscussion = userDiscussion.length;
-    const lenReply = userReply.length;
+    const lenReply = countReply.innerHTML;
     const grade = document.querySelector('.grade-user');
     if (lenDiscussion >= 0 && lenDiscussion <= 10 && lenReply >= 0 && lenReply <= 10) {
       grade.innerHTML = 'D';

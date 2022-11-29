@@ -18,7 +18,7 @@ const jobsPage = {
         <div id="container-page-jobs">
             <search-bar></search-bar>
             <div class="container-jobs">
-                <div class="item-jobs">
+                <div class="item-jobs scroll-item">
                     ${DetailJobsSkeleton(10)}
                 </div>
                 <div class="detail-jobs" id="detail">
@@ -28,7 +28,6 @@ const jobsPage = {
                     </div>
                 </div>
             </div>
-            <a class="btn-open-job" href="#/addjobs"><button class="btn btn-primary">Membuka Lowongan</button></a>
         </div>
         `;
   },

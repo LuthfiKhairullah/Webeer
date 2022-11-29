@@ -98,3 +98,8 @@
 .container-item-discussion .card:hover {
     background-color: #EEEEEE;
 }
+
+xmp {
+    text-align: justify;
+    white-space: pre-wrap;
+}
