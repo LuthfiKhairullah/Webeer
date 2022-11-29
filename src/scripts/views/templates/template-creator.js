@@ -221,7 +221,7 @@ const createDiscussionDetailTemplateSkeleton = () => `
       <p class="text-justify border-top border-bottom my-lg-2"><span class="placeholder">Lorem ipsum dolor lorem ipsum dolor</span></p>
       <button class="btn m-0 btn-secondary text-secondary disabled placeholder">000</button>
       <form id="form-discussion-reply" class="my-2 ">
-        <textarea class="form-control disabled placeholder" rows=15"></textarea>
+        <textarea class="form-control disabled placeholder" rows=15" disabled></textarea>
         <button type="button" class="btn ms-1 my-1 btn-dark text-dark disabled placeholder">Submit Answer</button>
       </form>
     </div>
@@ -407,13 +407,13 @@ const createFilterListTemplateSkeleton = () => `
       <div class="my-2">
         <h3><span class="placeholder">Sort</span></h3>
         <input type="radio" class="btn-check" name="sort" id="latest">
-        <label class="btn btn-primary text-primary disabled placeholder mb-1" for="latest">Latest</label>
+        <label class="btn btn-secondary text-secondary disabled placeholder mb-1" for="latest">Latest</label>
         <input type="radio" class="btn-check" name="sort" id="oldest">
-        <label class="btn btn-primary text-primary disabled placeholder mb-1" for="oldest">Oldest</label>
+        <label class="btn btn-secondary text-secondary disabled placeholder mb-1" for="oldest">Oldest</label>
         <input type="radio" class="btn-check" name="sort" id="solved">
-        <label class="btn btn-primary text-primary disabled placeholder mb-1" for="solved">Solved</label>
+        <label class="btn btn-secondary text-secondary disabled placeholder mb-1" for="solved">Solved</label>
         <input type="radio" class="btn-check" name="sort" id="unsolved">
-        <label class="btn btn-primary text-primary disabled placeholder mb-1" for="unsolved">Unsolved</label>
+        <label class="btn btn-secondary text-secondary disabled placeholder mb-1" for="unsolved">Unsolved</label>
       </div>
       <div class="my-2">
         <h3><span class="placeholder">Category</span></h3>
@@ -465,7 +465,7 @@ const createFilterCategoryTemplateSkeleton = (count) => {
   for (let i = 0; i < count; i++) {
     template += `
       <input type="checkbox" class="btn-check" id="lorem">
-      <label class="btn btn-primary text-primary disabled placeholder mb-1" for="lorem">lorem</label>
+      <label class="btn btn-secondary text-secondary disabled placeholder mb-1" for="lorem">lorem</label>
     `;
   }
   return template;
