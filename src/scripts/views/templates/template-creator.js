@@ -727,6 +727,9 @@ const createNavbarTemplateBeforeLogin = () => `
         <a class="nav-link text-light" aria-current="page" href="#/forums">Forums</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link text-light" href="#/about">About</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link text-light" href="#/jobs">Jobs</a>
       </li>
       <li class="nav-item">
@@ -1038,6 +1041,9 @@ const createNavbarTemplateAfterLogin = () => `
       </li>
       <li class="nav-item">
         <a class="nav-link text-light " aria-current="page" href="#/forums">Forums</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light " href="#/about">About</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-light " href="#/jobs">Jobs</a>
