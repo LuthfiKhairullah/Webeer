@@ -16,7 +16,7 @@ const ProfilePage = {
       localStorage.setItem('login', 'false');
       window.reload();
     } else if (getToken !== null && getRole === 'Company') {
-      document.location = '#/list';
+      document.location = '#/dashboard';
       localStorage.setItem('login', 'true');
       window.reload();
     } else if (getToken !== null && getRole === 'Programmer') {

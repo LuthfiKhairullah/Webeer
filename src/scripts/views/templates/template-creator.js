@@ -1,10 +1,5 @@
 import { showFormattedDate } from '../utils/formate-date';
 import '../components/discussionList';
-import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en';
-
-TimeAgo.addDefaultLocale(en);
-const timeAgo = new TimeAgo('en-US');
 const truncateString = (str, num) => {
   if (str?.length > num) {
     return `${str.slice(0, num)}...`;
@@ -23,15 +18,56 @@ const DetailJobsSkeleton = (count) => {
   }
   return template;
 };
+const createDetailJobPageTemplate = (jobs) => `
+<div class="container-detail-jobspage">
+  <div class="header-detailjob">
+  <div class="d-flex" style="align-items:center;">
+  <img src="${jobs.image}" class="image-detailjob">
+      <div class="company-detailjob">
+        <h5 class="fw-bold fs-4">${jobs.company}</h5>
+        <h6 class="fw-bold fs-5">${jobs.profession}</h6>
+        <p class="fst-italic my-0">${jobs.address}</p>
+        <p class="text-muted my-0 fs-10">${showFormattedDate(jobs.createdAt)}</p>
+      </div>
+    </div>
+  <p class="fw-bold"> Description Company </p>
+  <p style="text-align:justify;">${jobs.details.descriptionCompany}</p>
+  </div>
+<div class="content-detailjob">
+<div class="description-detailjob">
+<p class="fw-bold"> Description Position </p>
+<p>${jobs.details.descriptionProfession}</p>
+</div>
+<div class="work-detail">
+      <div class="work-1">
+        <p class="fw-bold">Salary :</p>
+        <p>${jobs.details.salary} - ${jobs.details.salary2}</p>
+        <p class="fw-bold">Level :</p>
+        <p>${jobs.details.level}</p>
+      </div>
+      <div class="work-2">
+        <p class="fw-bold">Work from :</p>
+        <p>${jobs.details.workplace}</p>
+        <p class="fw-bold">Time :</p>
+        <p>${jobs.details.timeWork}</p>
+      </div>
+    </div>
+<p class="fw-bold my-3"> Requirement :</p>
+<p class="mx-3">${jobs.details.qualification.replace(/\n/g, "<br />")}</p>
+<a href="${jobs.details.link}" class="btn btn-danger">Apply</a>
+</div>
+</div>
+</div>
+`;
 const createItemJob = (jobs) => `
 <div class = "card-item">
 <img src="${jobs.image}" class="card-image lazyload">
 <h6 class="fw-bold">${jobs.company}</h6>
 <h6>${jobs.profession}</h6>
-<p>${timeAgo.format(Date.now() - Math.floor(new Date(jobs.createdAt).getTime() / 1000))}</p>
 <p>${showFormattedDate(jobs.createdAt)}</p>
 <p class="fw-bold">${jobs.address}</p>
-<button value=${jobs._id} class="btn btn-primary fw-bold btn-detail btn-sm">LIHAT</button>
+<button value=${jobs._id} class="btn btn-primary fw-bold btn-detail btn-sm" id="btnDetailJob">LIHAT</button>
+<a class="btn btn-primary" id="btnDetailOpen" href="#/detailjob/${jobs._id}" target="_blank">Visit</a>
 </div>
 `;
 
@@ -691,6 +727,9 @@ const createNavbarTemplateBeforeLogin = () => `
         <a class="nav-link text-light" aria-current="page" href="#/forums">Forums</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link text-light" href="#/about">About</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link text-light" href="#/jobs">Jobs</a>
       </li>
       <li class="nav-item">
@@ -1002,6 +1041,9 @@ const createNavbarTemplateAfterLogin = () => `
       </li>
       <li class="nav-item">
         <a class="nav-link text-light " aria-current="page" href="#/forums">Forums</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light " href="#/about">About</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-light " href="#/jobs">Jobs</a>
@@ -1375,4 +1417,5 @@ export {
   createCardJobCompany,
   createFormEditJob,
   createProfileCompany,
+  createDetailJobPageTemplate,
 };
