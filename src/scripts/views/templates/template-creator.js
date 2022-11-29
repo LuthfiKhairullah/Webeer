@@ -96,7 +96,7 @@ const createDiscussionItemTemplateSkeleton = (count) => {
                   <span class="placeholder">999</span>
                 </div>
                 <div class="container-discussion-profile d-flex placeholder-glow">
-                  <img class="img-profile-discussion skeleton">
+                  <img class="img-profile-discussion placeholder">
                   <div class"sub-profile">
                     <p class="fw-bold username fs-6"><span class="placeholder">Lorem ipsum dolor</span></p>
                     <p class="fw-light fs-6"><span class="placeholder">31 Desember 2022</span></p>
@@ -131,7 +131,7 @@ const createDiscussionItemTemplate = (discussion) => {
         <div class="main-container">
           <div class="categoryDiscussion">${createCategoryDiscussionTemplate(discussion.categories)}</div>
             <h5>${discussion.title}</h5>
-            <p class="card-text"><xmp>${truncateString(discussion?.discussion, 200)}</xmp></p>
+            <p class="card-text"><xmp>${truncateString(discussion?.discussion.replace(/(?:\r\n|\r|\n)/g, ' ').replace(/~Enter Your Code is Here/g, '').replace(/Dont Delete this~/g, ''), 200)}</xmp></p>
           </div>
         <div class="sub-container">
           <div class="container-reply text-center">
@@ -218,7 +218,7 @@ const createDiscussionDetailTemplateSkeleton = () => `
         <div class="placeholder">0000</div>
         <div class="placeholder">0000</div>
       </div>
-      <p class="text-justify border-top border-bottom my-lg-2"><xmp class="placeholder">Lorem ipsum dolor lorem ipsum dolor</xmp></p>
+      <p class="text-justify border-top border-bottom my-lg-2"><span class="placeholder">Lorem ipsum dolor lorem ipsum dolor</span></p>
       <button class="btn m-0 btn-secondary text-secondary disabled placeholder">000</button>
       <form id="form-discussion-reply" class="my-2 ">
         <textarea class="form-control disabled placeholder" rows=15"></textarea>
@@ -236,6 +236,11 @@ const createDiscussionDetailTemplate = (discussion) => {
   } else {
     isSolvedClass = 'text-success';
     isSolved = '<i class="fa fa-check-circle-o fa-2x " aria-hidden="true"></i>';
+  }
+  // const discussionDetail = `<p class="text-justify border-top border-bottom my-lg-2">${(discussion.discussion).replace(/~Enter Your Code is Here/g, '</p><div class="bg-light"><xmp>').replace(/Dont Delete this~/g, '</xmp></div><p class="text-justify border-top border-bottom my-lg-2">')}</p>`;
+  const discussionDetail = discussion.discussion.split('~Enter Your Code is Here').join('Dont Delete this~').split('Dont Delete this~');
+  for (let i = 0; i < discussionDetail.length; i++) {
+    if (i % 2 === 0) { discussionDetail[i] = `<p class="text-justify border-top border-bottom my-lg-2">${discussionDetail[i].replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>`; } else { discussionDetail[i] = `<div class="bg-light"><xmp>${discussionDetail[i]}</xmp></div>`; }
   }
   return `
     <div class="container bg-white padding ">
@@ -310,7 +315,7 @@ const createDiscussionDetailTemplate = (discussion) => {
         <div class="${isSolvedClass}">${isSolved}</div>
         <div id="saveButtonContainer"></div>
       </div>
-      <p class="text-justify border-top border-bottom my-lg-2">${(discussion.discussion).replace(/~Enter Your Code is Here/g, '</p><div class="bg-light"><xmp>').replace(/Dont Delete this~/g, '</xmp></div><p class="text-justify border-top border-bottom my-lg-2">')}</p>
+      ${discussionDetail.join('')}
       <button id="code" class="btn btn-light m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
       <form id="form-discussion-reply" class="my-2 ">
         <textarea  name="inputReply" id="inputReply" class="form-control" rows=15"></textarea>
@@ -364,21 +369,27 @@ const createDiscussionReplyTemplateSkeleton = (count) => {
   return template;
 };
 
-const createDiscussionReplyTemplate = (discussion) => `
-  <div class="container bg-white border-top">
-  <p>Answer from</p>
+const createDiscussionReplyTemplate = (discussion) => {
+  const discussionReply = discussion.reply.split('~Enter Your Code is Here').join('Dont Delete this~').split('Dont Delete this~');
+  for (let i = 0; i < discussionReply.length; i++) {
+    if (i % 2 === 0) { discussionReply[i] = `<p style="font-size: 18px">${discussionReply[i].replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>`; } else { discussionReply[i] = `<div class="bg-light"><xmp>${discussionReply[i]}</xmp></div>`; }
+  }
+  return `
+    <div class="container bg-white border-top">
+      <p>Answer from</p>
       <div class="d-flex align-items-top p-2">
         <div class="container-img-reply">
           <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-reply lazyload">
         </div>
         <div class="ms-2">
-        <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;" class="text-dark"><h2 style="font-size: 20px">${discussion.username}</h2></a>
+          <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;" class="text-dark"><h2 style="font-size: 20px">${discussion.username}</h2></a>
           <h3 class="mb-2 text-muted" style="font-size: 14px">${discussion.date}</h3>
-          <p style="font-size: 18px">${(discussion.reply).replace(/~Enter Your Code is Here/g, '<div class="bg-light"><xmp>').replace(/Dont Delete this~/g, '</xmp></div>')}</p>
+          ${discussionReply.join('')}
         </div>
       </div>
-  </div>
-`;
+    </div>
+  `;
+};
 
 const createAddDiscussionButtonTemplate = () => `
   <a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
