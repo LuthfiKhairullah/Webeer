@@ -3,11 +3,11 @@
     z-index: 0;
 }
 .main-content-company{
-    width: 100%;
-    height:880px;
-    
+    width: 90%;
+    height:100%;
+    position: fixed;
     background:#1E3163;
-    padding: 30px;
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,9 +16,10 @@
 #content-dashboard p{
     width:300px ;
 }
-#content-dashboard{
-    flex-grow: 0.5;
+#content-text-dashboard{
     z-index: 1;
+    position: relative;
+    flex-grow:1;
 }
 .image-container img{
     width: 300px;
@@ -27,46 +28,105 @@
 }
 .image-container{
     position: relative;
+    text-align: center;
+    flex-grow:0.5;
 }
-.blob{
-    width:500px;
-    height:400px;
-    background: rgb(255,0,224);
-    background: linear-gradient(184deg, rgba(255,0,224,1) 0%, rgba(255,0,0,1) 100%);
-    border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%;
-    top:-200px;
+#blob{
+    width: 500px;
     position: absolute;
     z-index: 0;
-    right: 100px;
+    left: 100px;
+    top: 10%;
+    height: 700px;
+}
+#blob2{
+    position: absolute;
+    z-index: 0;
+    top: 5%;
+    right: 30%;
+    width: 300px;
+    opacity: 0.5;
+}
+#blob3{
+    position: absolute;
+    z-index: 0;
+    top: 30%;
+    right: 10%;
+    width: 600px;
+
 }
 @media screen and (max-width:900px) {
-    .blob{
-        width: 400px;
-        height: 300px;
-        right: 50px;
+    #blob{
+        width: 300px;
+        left: 50px;
+    }
+    #blob3{
+        top: 50%;
+        right: 10%;
+        width:400px;
+    
+    }
+    .image-container img{
+        width: 300px;
+       }
+       .image-container{
+        text-align: left;
+        width: 300px;
+       }
+}
+@media screen and (max-width:750px) {
+    #blob{
+        width: 250px;
+        left: 50px;
+    }
+    #blob3{
+        top: 70%;
+        right: 10%;
+        width:250px;
+    
     }
 }
 @media screen and (max-width:800px) {
     .container-dashboard-company{
         margin-left:80px ;
     }
-    .blob{
-        width: 300px;
-        height: 300px;
-    }
 }
 @media screen and (max-width:500px){
-    .blob{
-        width: 180px;
-        height: 180px;
-        right: 10px;
-    }
-    #content-dashboard p{
-        width:200px ;
+    
+    #content-text-dashboard p , #content-text-dashboard h1{
+        width:200px  ;
     }
     .image-container img{
         width: 200px;
-        z-index: 2;
-        position: relative;
+        margin-left: 0;
+    }
+    .image-container{
+        text-align: center;
+    }
+}
+
+@media screen and (max-width:350px) {
+    #blob{
+        width: 180px;
+    }
+    #blob2{
+        right: 5%;
+        width: 180px;
+    }
+    #blob3{
+        top: 70%;
+        right: 10%;
+        width:250px;
+    
+    }
+    #content-text-dashboard p  {
+       width: 150px;
+    }
+    .image-container img{
+        width: 150px;
+        margin-left: 0;
+    }
+    .image-container{
+                text-align: left;
     }
 }
