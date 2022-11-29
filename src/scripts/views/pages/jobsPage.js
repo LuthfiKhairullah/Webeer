@@ -18,7 +18,7 @@ const jobsPage = {
         <div id="container-page-jobs">
             <search-bar></search-bar>
             <div class="container-jobs">
-                <div class="item-jobs">
+                <div class="item-jobs scroll-item">
                     ${DetailJobsSkeleton(10)}
                 </div>
                 <div class="detail-jobs" id="detail">

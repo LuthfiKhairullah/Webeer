@@ -67,7 +67,7 @@ const createDetailJob = (detail) => `
   </div>
   <div class="kualifikasi-detail">
     <h6>Requirement</h6>
-    <p>${detail.details.descriptionProfession}</p>
+    <p>${detail.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}}</p>
     <ul class="test"><ul>
   </div>
   <div class="footer-detail">
@@ -777,15 +777,15 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Chile">Chile</option>
                 <option name="countryselect" value="China">China</option>
                 <option name="countryselect" value="Christmas Island">Christmas Island</option>
-                <option name="countryselect" value="Cocos Islands">Cocos (Keeling) Islands</option>
+                <option name="countryselect" value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
                 <option name="countryselect" value="Colombia">Colombia</option>
                 <option name="countryselect" value="Comoros">Comoros</option>
                 <option name="countryselect" value="Congo">Congo</option>
-                <option name="countryselect" value="Congo">Congo, the Democratic Republic of the</option>
+                <option name="countryselect" value="Congo, the Democratic Republic of the">Congo, the Democratic Republic of the</option>
                 <option name="countryselect" value="Cook Islands">Cook Islands</option>
                 <option name="countryselect" value="Costa Rica">Costa Rica</option>
-                <option name="countryselect" value="Cota D'Ivoire">Cote d'Ivoire</option>
-                <option name="countryselect" value="Croatia">Croatia (Hrvatska)</option>
+                <option name="countryselect" value="Cote d'Ivoire">Cote d'Ivoire</option>
+                <option name="countryselect" value="Croatia (Hrvatska)">Croatia (Hrvatska)</option>
                 <option name="countryselect" value="Cuba">Cuba</option>
                 <option name="countryselect" value="Cyprus">Cyprus</option>
                 <option name="countryselect" value="Czech Republic">Czech Republic</option>
@@ -801,12 +801,12 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Eritrea">Eritrea</option>
                 <option name="countryselect" value="Estonia">Estonia</option>
                 <option name="countryselect" value="Ethiopia">Ethiopia</option>
-                <option name="countryselect" value="Falkland Islands">Falkland Islands (Malvinas)</option>
+                <option name="countryselect" value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
                 <option name="countryselect" value="Faroe Islands">Faroe Islands</option>
                 <option name="countryselect" value="Fiji">Fiji</option>
                 <option name="countryselect" value="Finland">Finland</option>
                 <option name="countryselect" value="France">France</option>
-                <option name="countryselect" value="France Metropolitan">France, Metropolitan</option>
+                <option name="countryselect" value="France, Metropolitan">France, Metropolitan</option>
                 <option name="countryselect" value="French Guiana">French Guiana</option>
                 <option name="countryselect" value="French Polynesia">French Polynesia</option>
                 <option name="countryselect" value="French Southern Territories">French Southern Territories</option>
@@ -826,15 +826,15 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Guinea-Bissau">Guinea-Bissau</option>
                 <option name="countryselect" value="Guyana">Guyana</option>
                 <option name="countryselect" value="Haiti">Haiti</option>
-                <option name="countryselect" value="Heard and McDonald Islands">Heard and Mc Donald Islands</option>
-                <option name="countryselect" value="Holy See">Holy See (Vatican City State)</option>
+                <option name="countryselect" value="Heard and Mc Donald Islands">Heard and Mc Donald Islands</option>
+                <option name="countryselect" value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
                 <option name="countryselect" value="Honduras">Honduras</option>
                 <option name="countryselect" value="Hong Kong">Hong Kong</option>
                 <option name="countryselect" value="Hungary">Hungary</option>
                 <option name="countryselect" value="Iceland">Iceland</option>
                 <option name="countryselect" value="India">India</option>
                 <option name="countryselect" value="Indonesia">Indonesia</option>
-                <option name="countryselect" value="Iran">Iran (Islamic Republic of)</option>
+                <option name="countryselect" value="Iran (Islamic Republic of)">Iran (Islamic Republic of)</option>
                 <option name="countryselect" value="Iraq">Iraq</option>
                 <option name="countryselect" value="Ireland">Ireland</option>
                 <option name="countryselect" value="Israel">Israel</option>
@@ -845,11 +845,11 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Kazakhstan">Kazakhstan</option>
                 <option name="countryselect" value="Kenya">Kenya</option>
                 <option name="countryselect" value="Kiribati">Kiribati</option>
-                <option name="countryselect" value="Democratic People's Republic of Korea">Korea, Democratic People's Republic of</option>
-                <option name="countryselect" value="Korea">Korea, Republic of</option>
+                <option name="countryselect" value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+                <option name="countryselect" value="Korea, Republic of">Korea, Republic of</option>
                 <option name="countryselect" value="Kuwait">Kuwait</option>
                 <option name="countryselect" value="Kyrgyzstan">Kyrgyzstan</option>
-                <option name="countryselect" value="Lao">Lao People's Democratic Republic</option>
+                <option name="countryselect" value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
                 <option name="countryselect" value="Latvia">Latvia</option>
                 <option name="countryselect" value="Lebanon">Lebanon</option>
                 <option name="countryselect" value="Lesotho">Lesotho</option>
@@ -859,7 +859,7 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Lithuania">Lithuania</option>
                 <option name="countryselect" value="Luxembourg">Luxembourg</option>
                 <option name="countryselect" value="Macau">Macau</option>
-                <option name="countryselect" value="Macedonia">Macedonia, The Former Yugoslav Republic of</option>
+                <option name="countryselect" value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
                 <option name="countryselect" value="Madagascar">Madagascar</option>
                 <option name="countryselect" value="Malawi">Malawi</option>
                 <option name="countryselect" value="Malaysia">Malaysia</option>
@@ -872,8 +872,8 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Mauritius">Mauritius</option>
                 <option name="countryselect" value="Mayotte">Mayotte</option>
                 <option name="countryselect" value="Mexico">Mexico</option>
-                <option name="countryselect" value="Micronesia">Micronesia, Federated States of</option>
-                <option name="countryselect" value="Moldova">Moldova, Republic of</option>
+                <option name="countryselect" value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+                <option name="countryselect" value="Moldova, Republic of">Moldova, Republic of</option>
                 <option name="countryselect" value="Monaco">Monaco</option>
                 <option name="countryselect" value="Mongolia">Mongolia</option>
                 <option name="countryselect" value="Montserrat">Montserrat</option>
@@ -909,39 +909,39 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Qatar">Qatar</option>
                 <option name="countryselect" value="Reunion">Reunion</option>
                 <option name="countryselect" value="Romania">Romania</option>
-                <option name="countryselect" value="Russia">Russian Federation</option>
+                <option name="countryselect" value="Russian Federation">Russian Federation</option>
                 <option name="countryselect" value="Rwanda">Rwanda</option>
                 <option name="countryselect" value="Saint Kitts and Nevis">Saint Kitts and Nevis</option> 
                 <option name="countryselect" value="Saint LUCIA">Saint LUCIA</option>
-                <option name="countryselect" value="Saint Vincent">Saint Vincent and the Grenadines</option>
+                <option name="countryselect" value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
                 <option name="countryselect" value="Samoa">Samoa</option>
                 <option name="countryselect" value="San Marino">San Marino</option>
                 <option name="countryselect" value="Sao Tome and Principe">Sao Tome and Principe</option> 
                 <option name="countryselect" value="Saudi Arabia">Saudi Arabia</option>
                 <option name="countryselect" value="Senegal">Senegal</option>
                 <option name="countryselect" value="Seychelles">Seychelles</option>
-                <option name="countryselect" value="Sierra">Sierra Leone</option>
+                <option name="countryselect" value="Sierra Leone">Sierra Leone</option>
                 <option name="countryselect" value="Singapore">Singapore</option>
-                <option name="countryselect" value="Slovakia">Slovakia (Slovak Republic)</option>
+                <option name="countryselect" value="Slovakia (Slovak Republic)">Slovakia (Slovak Republic)</option>
                 <option name="countryselect" value="Slovenia">Slovenia</option>
                 <option name="countryselect" value="Solomon Islands">Solomon Islands</option>
                 <option name="countryselect" value="Somalia">Somalia</option>
                 <option name="countryselect" value="South Africa">South Africa</option>
-                <option name="countryselect" value="South Georgia">South Georgia and the South Sandwich Islands</option>
-                <option name="countryselect" value="Span">Spain</option>
-                <option name="countryselect" value="SriLanka">Sri Lanka</option>
+                <option name="countryselect" value="South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich Islands</option>
+                <option name="countryselect" value="Spain">Spain</option>
+                <option name="countryselect" value="Sri Lanka">Sri Lanka</option>
                 <option name="countryselect" value="St. Helena">St. Helena</option>
-                <option name="countryselect" value="St. Pierre and Miguelon">St. Pierre and Miquelon</option>
+                <option name="countryselect" value="St. Pierre and Miquelon">St. Pierre and Miquelon</option>
                 <option name="countryselect" value="Sudan">Sudan</option>
                 <option name="countryselect" value="Suriname">Suriname</option>
-                <option name="countryselect" value="Svalbard">Svalbard and Jan Mayen Islands</option>
+                <option name="countryselect" value="Svalbard and Jan Mayen Islands">Svalbard and Jan Mayen Islands</option>
                 <option name="countryselect" value="Swaziland">Swaziland</option>
                 <option name="countryselect" value="Sweden">Sweden</option>
                 <option name="countryselect" value="Switzerland">Switzerland</option>
-                <option name="countryselect" value="Syria">Syrian Arab Republic</option>
-                <option name="countryselect" value="Taiwan">Taiwan, Province of China</option>
+                <option name="countryselect" value="Syrian Arab Republic">Syrian Arab Republic</option>
+                <option name="countryselect" value="Taiwan, Province of China">Taiwan, Province of China</option>
                 <option name="countryselect" value="Tajikistan">Tajikistan</option>
-                <option name="countryselect" value="Tanzania">Tanzania, United Republic of</option>
+                <option name="countryselect" value="Tanzania, United Republic of">Tanzania, United Republic of</option>
                 <option name="countryselect" value="Thailand">Thailand</option>
                 <option name="countryselect" value="Togo">Togo</option>
                 <option name="countryselect" value="Tokelau">Tokelau</option>
@@ -950,7 +950,7 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Tunisia">Tunisia</option>
                 <option name="countryselect" value="Turkey">Turkey</option>
                 <option name="countryselect" value="Turkmenistan">Turkmenistan</option>
-                <option name="countryselect" value="Turks and Caicos">Turks and Caicos Islands</option>
+                <option name="countryselect" value="Turks and Caicos Islands">Turks and Caicos Islands</option>
                 <option name="countryselect" value="Tuvalu">Tuvalu</option>
                 <option name="countryselect" value="Uganda">Uganda</option>
                 <option name="countryselect" value="Ukraine">Ukraine</option>
@@ -962,10 +962,10 @@ const createProfileEditTemplate = (user) => {
                 <option name="countryselect" value="Uzbekistan">Uzbekistan</option>
                 <option name="countryselect" value="Vanuatu">Vanuatu</option>
                 <option name="countryselect" value="Venezuela">Venezuela</option>
-                <option name="countryselect" value="Vietnam">Viet Nam</option>
+                <option name="countryselect" value="Viet Nam">Viet Nam</option>
                 <option name="countryselect" value="Virgin Islands (British)">Virgin Islands (British)</option>
-                <option name="countryselect" value="Virgin Islands (U.S)">Virgin Islands (U.S.)</option>
-                <option name="countryselect" value="Wallis and Futana Islands">Wallis and Futuna Islands</option>
+                <option name="countryselect" value="Virgin Islands (U.S.)">Virgin Islands (U.S.)</option>
+                <option name="countryselect" value="Wallis and Futuna Islands">Wallis and Futuna Islands</option>
                 <option name="countryselect" value="Western Sahara">Western Sahara</option>
                 <option name="countryselect" value="Yemen">Yemen</option>
                 <option name="countryselect" value="Serbia">Serbia</option>
