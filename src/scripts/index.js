@@ -13,6 +13,7 @@ import '../styles/discussion.css';
 import '../styles/verification.css';
 import '../styles/changePwd.css';
 import '../styles/skeleton.css';
+import '../styles/about.css';
 import './views/components/appBar';
 import './views/components/footer';
 import './views/components/searchBar';
