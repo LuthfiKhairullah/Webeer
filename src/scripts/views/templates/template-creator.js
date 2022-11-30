@@ -1,5 +1,6 @@
 import { showFormattedDate } from '../utils/formate-date';
 import '../components/discussionList';
+
 const truncateString = (str, num) => {
   if (str?.length > num) {
     return `${str.slice(0, num)}...`;
@@ -53,7 +54,7 @@ const createDetailJobPageTemplate = (jobs) => `
       </div>
     </div>
 <p class="fw-bold my-3"> Requirement :</p>
-<p class="mx-3">${jobs.details.qualification.replace(/\n/g, "<br />")}</p>
+<p class="mx-3">${jobs.details.qualification.replace(/\n/g, '<br />')}</p>
 <a href="${jobs.details.link}" class="btn btn-danger">Apply</a>
 </div>
 </div>
@@ -273,7 +274,6 @@ const createDiscussionDetailTemplate = (discussion) => {
     isSolvedClass = 'text-success';
     isSolved = '<i class="fa fa-check-circle-o fa-2x " aria-hidden="true"></i>';
   }
-  // const discussionDetail = `<p class="text-justify border-top border-bottom my-lg-2">${(discussion.discussion).replace(/~Enter Your Code is Here/g, '</p><div class="bg-light"><xmp>').replace(/Dont Delete this~/g, '</xmp></div><p class="text-justify border-top border-bottom my-lg-2">')}</p>`;
   const discussionDetail = discussion.discussion.split('~Enter Your Code is Here').join('Dont Delete this~').split('Dont Delete this~');
   for (let i = 0; i < discussionDetail.length; i++) {
     if (i % 2 === 0) { discussionDetail[i] = `<p class="text-justify border-top border-bottom my-lg-2">${discussionDetail[i].replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>`; } else { discussionDetail[i] = `<div class="bg-light"><xmp>${discussionDetail[i]}</xmp></div>`; }

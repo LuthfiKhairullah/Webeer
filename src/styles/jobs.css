@@ -11,11 +11,18 @@
     padding: 15px;
     border-radius: 5px;
 }
+.asd{
+    width: 200px;
+    height: 200px;
+    background-color: aqua;
+}
 .image-detailjob{
     width: 200px;
     height: 200px;
 }
-
+.company-detailjob{
+    padding: 10px;
+}
 .container-detail-jobspage{
     max-width: 1200px;
     margin: 0 auto;
@@ -181,5 +188,11 @@
     #btnDetailOpen{
         display: block;
         width: 100px;
+    }
+}
+@media screen and (max-width:350px){
+    .image-detailjob{
+        width: 100px;
+        height: 100px;
     }
 }

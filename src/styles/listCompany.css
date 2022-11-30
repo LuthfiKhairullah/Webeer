@@ -1,7 +1,7 @@
 .container-company{
     display: flex;
     max-width: 1200px;
-    margin-left: 230px;
+    margin-left: 200px;
     flex-wrap: wrap;
 }
 .container-company .card{
