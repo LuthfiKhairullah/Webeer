@@ -27,7 +27,6 @@ const ForumsPage = {
             ${createFilterListTemplateSkeleton()}
           </div>
         </div>
-        <!--<filter-list></filter-list>-->
         <div class="container-fluid forum">
           <div class="d-flex">
             <button id="filter" aria-label="filter list button" class="btn p-0 mb-2 me-1">
@@ -36,7 +35,12 @@ const ForumsPage = {
                 <path d="M0 416c0-17.7 14.3-32 32-32l54.7 0c12.3-28.3 40.5-48 73.3-48s61 19.7 73.3 48L480 384c17.7 0 32 14.3 32 32s-14.3 32-32 32l-246.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 448c-17.7 0-32-14.3-32-32zm192 0c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32zM384 256c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32zm-32-80c32.8 0 61 19.7 73.3 48l54.7 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-54.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l246.7 0c12.3-28.3 40.5-48 73.3-48zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32s-14.3-32-32-32zm73.3 0L480 64c17.7 0 32 14.3 32 32s-14.3 32-32 32l-214.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 128C14.3 128 0 113.7 0 96S14.3 64 32 64l86.7 0C131 35.7 159.2 16 192 16s61 19.7 73.3 48z"/>
               </svg>
             </button>
-            <search-discussion class="w-100"></search-discussion>
+            <div class="w-100" id="searchBarDiscussion">
+              <div class="d-flex mb-2 placeholder-glow" id="form-searchDiscussion">
+                <input class="form-control bg-secondary placeholder disabled border-0" disabled>
+                <button class="btn btn-dark text-dark disabled ms-1">Search</button>
+              </div>
+            </div>
           </div>
           <div class ="list">
             ${createDiscussionItemTemplateSkeleton(10)}
@@ -48,6 +52,8 @@ const ForumsPage = {
 
   async afterRender() {
     const discussions = await DiscussionSource.getAllDiscussion();
+    const searchBarDiscussion = document.querySelector('#searchBarDiscussion');
+    searchBarDiscussion.innerHTML = '<search-discussion class="w-100"></search-discussion>';
     console.log(discussions);
     const content = document.querySelector('.list');
     content.innerHTML = '<discussion-list></discussion-list>';
