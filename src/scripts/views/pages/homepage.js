@@ -5,9 +5,6 @@ const HomePage = {
           <div class="asd"></div>
         `;
   },
-  async afterRender(){
-    console.log(Date.now())
-  }
 
 };
 export default HomePage;

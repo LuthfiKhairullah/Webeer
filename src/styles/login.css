@@ -2,25 +2,26 @@
     display: flex;
     justify-content: center;
 }
-
-.card {
-    width: 300px;
-    margin-top: 100px;
+.container-login-main {
+    max-width: 800px;
+    margin-top: 70px;
+    display: flex;
+    background-color: white;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 15px;
 }
-
 #form-login {
     padding: 15px;
     text-align: center;
 }
-
 #form-login p {
-    font-size: 10px;
+    font-size: 12px;
 }
-
 .pwdProgress.hide {
     display: none;
 }
-
 .pwdProgress {
     color: white;
     display: block;
@@ -29,15 +30,26 @@
     margin-top: 10px;
 }
 
-/* .password-container{
-    height: 70px;
-} */
-
 #container-register {
     display: flex;
     justify-content: center;
 }
-
+.container-login-main img{
+    width: 400px;
+}
 #submit {
     margin-top: 15px;
+}
+@media screen and (max-width:700px) {
+#container-login, #container-register{
+    padding: 10px;
+}
+}
+@media screen and (max-width:500px) {
+    .container-login-main img{
+        width: 200px;
+    }
+    .hero-register{
+        width: 200px;
+    }
 }

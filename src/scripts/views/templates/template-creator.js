@@ -13,8 +13,15 @@ const DetailJobsSkeleton = (count) => {
   for (let i = 0; i < count; i += 1) {
     template += `
     <div class="placeholder-glow">
-      <div class="card-item placeholder">
-      </div>
+    <div class = "card-item">
+    <img class="card-image placeholder skeleton my-1" style="width:150px; height:130px;">
+    <h6 class="fw-bold"><span class="placeholder">Lorem ipsum dolor sit amet consectetur adipisicing elit.Fuga optio</span></h6>
+    <h6><span class="placeholder">Lorem ipsum dolor sit amet consectetur adipisicing elit/span></h6>
+    <p><span class="placeholder">Lorem ipsum dolor sit amet</span></p>
+    <p class="fw-bold"><span class="placeholder">Lorem ipsum dolor sit amet consectetur</span></p>
+    <button class="btn fw-bold btn-detail  placeholder my-1" id="btnDetailJob"><span class="placeholder">Lorem ipsum </span></button>
+    <a id="btnDetailOpen"><span class="btn placeholder ">Lorem ipsum </span></a>
+    </div>
     </div>`;
   }
   return template;
@@ -23,7 +30,7 @@ const createDetailJobPageTemplate = (jobs) => `
 <div class="container-detail-jobspage">
   <div class="header-detailjob">
   <div class="d-flex" style="align-items:center;">
-  <img src="${jobs.image}" class="image-detailjob">
+  <img src="${jobs.image}" class="lazyload image-detailjob">
       <div class="company-detailjob">
         <h5 class="fw-bold fs-4">${jobs.company}</h5>
         <h6 class="fw-bold fs-5">${jobs.profession}</h6>
@@ -105,7 +112,6 @@ const createDetailJob = (detail) => `
   <div class="kualifikasi-detail">
     <h6>Requirement</h6>
     <p>${detail.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}}</p>
-    <ul class="test"><ul>
   </div>
   <div class="footer-detail">
   <a href="${detail.details.link}"><button type="button" class="detail-link btn btn-primary btn-sm">Apply</button></a>
@@ -113,6 +119,51 @@ const createDetailJob = (detail) => `
 </div>
 `;
 
+const createDetailJobPageSkeleton = () => `
+<div class="container-detail-jobspage placeholder-glow">
+  <div class="header-detailjob">
+  <div class="d-flex" style="align-items:center;">
+  <img class="image-detailjob placeholder" >
+      <div class="company-detailjob">
+        <h5 class="fw-bold fs-4 "><span class="placeholder">Lorem ipsum dolor sit amet consectetur adipisicing</span></h5>
+        <h6 class="fw-bold fs-5 "><span class="placeholder">Lorem ipsum dolor</span> </h6>
+        <p class="fst-italic my-0"><span class="placeholder">Lorem ipsum dolor</span></p>
+        <p class="my-0 fs-10 "><span class="placeholder">Lorem ipsum dolor</span></p>
+      </div>
+    </div>
+  <p class="fw-bold"> <span class="placeholder">Lorem ipsum dolor</span> </p>
+  <p style="text-align:justify;" class="placeholder">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat hic suscipit vitae. Ea, iure dignissimos cum, consequuntur labore excepturi possimus est facere expedita placeat laborum nobis eius eos. Eveniet praesentium ducimus perferendis quasi molestias, soluta assumenda iure magni, officiis perspiciatis quod quidem non. Illum ab nemo magnam quis, ut, in laboriosam deleniti perspiciatis voluptatibus esse impedit ducimus placeat commodi dicta? Repellendus, inventore dolorem ex accusantium adipisci quasi? Mollitia veniam nihil esse blanditiis nesciunt in cum temporibus accusantium error officia obcaecati nam sint quaerat tempore, sequi odio, voluptatem sapiente aut, ab optio qui nemo? Vitae unde dolorum, maxime temporibus numquam delectus!</p>
+  </div>
+<div class="content-detailjob">
+<div class="description-detailjob">
+<p class="fw-bold"><span class="placeholder">Lorem ipsum dolor</span> </p>
+<p class="placeholder">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat hic suscipit vitae. Ea, iure dignissimos cum, consequuntur labore excepturi possimus est facere expedita placeat laborum nobis eius eos. Eveniet praesentium ducimus perferendis quasi molestias, soluta assumenda iure magni, officiis perspiciatis quod quidem non. Illum ab nemo magnam quis, ut, in laboriosam deleniti perspiciatis voluptatibus esse impedit ducimus placeat commodi dicta? Repellendus, inventore dolorem ex accusantium adipisci quasi? Mollitia veniam nihil esse blanditiis nesciunt in cum temporibus accusantium error officia obcaecati nam sint quaerat tempore, sequi odio, voluptatem sapiente aut, ab optio qui nemo? Vitae unde dolorum, maxime temporibus numquam delectus!</p>
+</div>
+<div class="work-detail">
+      <div class="work-1">
+        <p ><span class="placeholder">Lorem ipsum dolor</span></p>
+        <p ><span class="placeholder">Lorem ipsum dolor</span> - <span class="placeholder">Lorem ipsum dolor</span></p>
+        <p ><span class="placeholder">Lorem ipsum dolor</span></p>
+        <p ><span class="placeholder">Lorem ipsum dolor</span></p>
+      </div>
+      <div class="work-2">
+        <p><span class="placeholder">Lorem ipsum dolor</span></p>
+        <p><span class="placeholder">Lorem ipsum dolor</span></p>
+        <p><span class="placeholder">Lorem ipsum dolor</span></p>
+        <p><span class="placeholder">Lorem ipsum dolor</span></p>
+      </div>
+</div>
+<p class="fw-bold my-3"><span class="placeholder">Lorem ipsum dolor</span></p>
+<p class="mx-3"><span class="placeholder">Lorem ipsum dolor</span></p>
+<p class="mx-3"><span class="placeholder">Lorem ipsum dolor</span></p>
+<p class="mx-3"><span class="placeholder">Lorem ipsum dolor</span></p>
+<p class="mx-3"><span class="placeholder">Lorem ipsum dolor</span></p>
+
+<a class="btn placeholder">Apply</a>
+</div>
+</div>
+</div>
+`;
 const createDiscussionItemTemplateSkeleton = (count) => {
   let template = '';
 
@@ -1457,4 +1508,5 @@ export {
   createFormEditJob,
   createProfileCompany,
   createDetailJobPageTemplate,
+  createDetailJobPageSkeleton,
 };

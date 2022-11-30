@@ -32,7 +32,7 @@ const routes = {
   '/detailprofile/:id': DetailProfilePage,
   '/changepwd/:id': PasswordEditPage,
   '/list': listJobPage,
-  '/about': aboutpage, 
+  '/about': aboutpage,
   '/company': profileCompany,
   '/dashboard': HomeCompany,
   '/detailjob/:id': DetailJobPage,

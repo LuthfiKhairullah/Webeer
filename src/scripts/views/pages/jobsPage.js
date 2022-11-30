@@ -23,8 +23,8 @@ const jobsPage = {
                 </div>
                 <div class="detail-jobs" id="detail">
                     <div class="card">
-                        <img class="lazyload" src="./asset/hero-jobsDetail.png">
-                        <p> Temukan pekerjaan sesuai dengan passion kamu </p>
+                        <img class="lazyload hero-job" src="./asset/hero-jobsDetail.png">
+                        <p class="fw-bold text-muted"> Find a job according to your passion </p>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,6 @@ const jobsPage = {
   async afterRender() {
     // Get data from API
     const job = await JobSource.getJobs();
-    const containerJob = document.querySelector('.container-jobs');
     const jobItemContainer = document.querySelector('.item-jobs');
     jobItemContainer.innerHTML = '';
     job.data.data.forEach((jobs) => {
@@ -65,9 +64,9 @@ const jobsPage = {
           }
         });
       } else {
-        containerJob.innerHTML = `<div class="card">
-        <img class="lazyload" src="./asset/hero-jobsDetail.png">
-        <p> Temukan pekerjaan sesuai dengan passion kamu </p>
+        jobItemContainer.innerHTML = `<div class = "card-item text-center">
+        <i class="fa fa-exclamation-triangle fa-4x my-5 text-secondary" aria-hidden="true"></i>
+        <p class="fw-bold fs-6 text-secondary"> Not Found </p>
         </div>`;
       }
     });
