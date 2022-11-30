@@ -73,6 +73,8 @@ const Register = {
     const message = new Toast(messageContainer);
     const submitButton = document.querySelector('#submit');
     form.addEventListener('submit', async (event) => {
+      const registerContainer = document.querySelector('#container-register');
+      registerContainer.classList.add('cursor-progress');
       event.preventDefault();
       const { text } = selected.options[selected.selectedIndex];
       submitButton.setAttribute('disabled', '');
@@ -84,6 +86,7 @@ const Register = {
       });
       if (data.error) {
         console.log(data.error);
+        registerContainer.classList.remove('cursor-progress');
         messageText.classList.remove('text-bg-success');
         messageTitle.classList.remove('text-success');
         messageText.classList.add('text-bg-warning');

@@ -131,9 +131,7 @@ const DetailDiscussionPage = {
           messageText.innerHTML = `${editDiscussion.message}`;
           messageTitle.innerHTML = 'SUCCESS';
           message.show();
-          setTimeout(() => {
-            document.location.reload();
-          }, 1000);
+          setTimeout(() => document.location.reload(), 1000);
         }
       }
     });
@@ -198,7 +196,7 @@ const DetailDiscussionPage = {
           answerButton.removeAttribute('disabled');
           inputReply.value = '';
           const updateDiscussions = await DiscussionSource.getDiscussion(url.id);
-          lengthReply.innerHTML = updateDiscussions.reply.length;
+          lengthReply.innerText = updateDiscussions.reply.length;
           const updateDiscussionReply = await DiscussionSource.getDiscussionReply(url.id);
           discussionReplyListElement.innerHTML = '';
           updateDiscussionReply.forEach((reply) => {

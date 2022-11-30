@@ -22,8 +22,8 @@ const AddDiscussionPage = {
 
   async afterRender() {
     const discussionCategory = await DiscussionSource.getDiscussionCategory();
-    const addDiscussion = document.querySelector('#addDiscussion');
-    addDiscussion.innerHTML = '<add-discussion></add-discussion>';
+    const addDiscussionContainer = document.querySelector('#addDiscussion');
+    addDiscussionContainer.innerHTML = '<add-discussion></add-discussion>';
     const messageText = document.querySelector('.toast-body');
     const messageTitle = document.querySelector('.toast-title');
     const messageContainer = document.getElementById('liveToast');
@@ -79,6 +79,7 @@ const AddDiscussionPage = {
         messageTitle.innerHTML = 'WARNING';
         message.show();
       } else {
+        addDiscussionContainer.classList.add('cursor-progress');
         const addDiscussion = await DiscussionSource.addDiscussion({
           title: inputTitle,
           categories: arrcategory,
@@ -86,6 +87,7 @@ const AddDiscussionPage = {
         });
 
         if (addDiscussion.error) {
+          addDiscussionContainer.classList.remove('cursor-progress');
           messageText.classList.remove('text-bg-success');
           messageTitle.classList.remove('text-success');
           messageText.classList.add('text-bg-warning');

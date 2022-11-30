@@ -120,38 +120,98 @@ const addJobPage = {
       const getLevel = level.value;
       const getTime = time.value;
       const getPlace = place.value;
-      const data = await JobSource.addJobs({
-        company: document.querySelector('#company-job').value,
-        profession: document.querySelector('#profession-job').value,
-        address: document.querySelector('#address-job').value,
-        descriptionCompany: document.querySelector('#description-job').value,
-        descriptionProfession: document.querySelector('#descriptionProfession-job').value,
-        level: getLevel,
-        salary: document.querySelector('#salary-job').value,
-        salary2: document.querySelector('#salary-job2').value,
-        timeWork: getTime,
-        workplace: getPlace,
-        link: document.querySelector('#link-job').value,
-        qualification: document.querySelector('#qualification-job').value,
-        image: document.querySelector('#image-job').files[0],
-      });
-      console.log(data);
-      if (data.error) {
+      const inputCompany = document.querySelector('#company-job');
+      const inputProfession = document.querySelector('#profession-job');
+      const inputAddress = document.querySelector('#address-job');
+      const inputDescriptionCompany = document.querySelector('#description-job');
+      const inputDescriptionProfession = document.querySelector('#descriptionProfession-job');
+      const inputSalary = document.querySelector('#salary-job');
+      const inputSalary2 = document.querySelector('#salary-job2');
+      const inputLink = document.querySelector('#link-job');
+      const inputQualification = document.querySelector('#qualification-job');
+      const inputImage = document.querySelector('#image-job').files[0];
+      if (inputCompany.value === ''
+           || inputProfession.value === ''
+           || inputAddress.value === ''
+           || inputDescriptionCompany.value === ''
+           || inputDescriptionProfession.value === ''
+           || inputSalary.value === ''
+           || inputSalary2.value === ''
+           || inputLink.value === ''
+           || inputQualification.value === ''
+           || inputImage === undefined
+      ) {
+        if (inputCompany.value === '') {
+          messageText.innerHTML = 'Company name can\'t null';
+          inputCompany.focus();
+        } else if (inputProfession.value === '') {
+          messageText.innerHTML = 'Job position can\'t null';
+          inputProfession.focus();
+        } else if (inputAddress.value === '') {
+          messageText.innerHTML = 'Company\'s address can\'t null';
+          inputAddress.focus();
+        } else if (inputDescriptionCompany.value === '') {
+          messageText.innerHTML = 'Company description can\'t null';
+          inputDescriptionCompany.focus();
+        } else if (inputDescriptionProfession.value === '') {
+          messageText.innerHTML = 'Job description can\'t null';
+          inputDescriptionProfession.focus();
+        } else if (inputSalary.value === '') {
+          messageText.innerHTML = 'Range salary can\'t null';
+          inputSalary.focus();
+        } else if (inputSalary2.value === '') {
+          messageText.innerHTML = 'Range salary can\'t null';
+          inputSalary2.focus();
+        } else if (inputQualification.value === '') {
+          messageText.innerHTML = 'Qualification can\'t null';
+          inputQualification.focus();
+        } else if (inputLink.value === '') {
+          messageText.innerHTML = 'Company logo can\'t null';
+          inputLink.focus();
+        } else if (inputImage === undefined) {
+          messageText.innerHTML = 'Image can\'t null';
+          inputImage.focus();
+        }
         messageText.classList.remove('text-bg-success');
         messageTitle.classList.remove('text-success');
         messageText.classList.add('text-bg-warning');
         messageTitle.classList.add('text-warning');
-        messageText.innerHTML = data.error;
-        messageTitle.innerHTML = 'WARNING';
-        message.show();
-      } else {
-        messageText.classList.remove('text-bg-warning');
-        messageTitle.classList.remove('text-warning');
-        messageText.classList.add('text-bg-success');
-        messageTitle.classList.add('text-success');
-        messageText.innerHTML = data.data.message;
         messageTitle.innerHTML = 'SUCCESS';
         message.show();
+      } else {
+        const data = await JobSource.addJobs({
+          company: inputCompany.value,
+          profession: inputProfession.value,
+          address: inputAddress.value,
+          descriptionCompany: inputDescriptionCompany.value,
+          descriptionProfession: inputDescriptionProfession.value,
+          level: getLevel,
+          salary: inputSalary.value,
+          salary2: inputSalary2.value,
+          timeWork: getTime,
+          workplace: getPlace,
+          link: inputLink.value,
+          qualification: inputQualification.value,
+          image: document.querySelector('#image-job').files[0],
+        });
+        console.log(data);
+        if (data.error) {
+          messageText.classList.remove('text-bg-success');
+          messageTitle.classList.remove('text-success');
+          messageText.classList.add('text-bg-warning');
+          messageTitle.classList.add('text-warning');
+          messageText.innerHTML = data.error;
+          messageTitle.innerHTML = 'WARNING';
+          message.show();
+        } else {
+          messageText.classList.remove('text-bg-warning');
+          messageTitle.classList.remove('text-warning');
+          messageText.classList.add('text-bg-success');
+          messageTitle.classList.add('text-success');
+          messageText.innerHTML = data.data.message;
+          messageTitle.innerHTML = 'SUCCESS';
+          message.show();
+        }
       }
     });
   },

@@ -24,6 +24,7 @@ class AppBar extends HTMLElement {
         if (response.error) {
           console.log(response.error);
         } else {
+          localStorage.clear();
           document.location = '#/';
           window.location.reload();
         }
