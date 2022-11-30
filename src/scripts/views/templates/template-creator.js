@@ -812,13 +812,7 @@ const createNavbarTemplateBeforeLogin = () => `
   <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link text-light" aria-current="page" href="#/forums">Forums</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link text-light" href="#/about">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" href="#/jobs">Jobs</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-light" href="#/login">Login</a>
@@ -1131,10 +1125,10 @@ const createNavbarTemplateAfterLogin = () => `
         <a class="nav-link text-light " aria-current="page" href="#/forums">Forums</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light " href="#/about">About</a>
+        <a class="nav-link text-light " href="#/jobs">Jobs</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light " href="#/jobs">Jobs</a>
+        <a class="nav-link text-light " href="#/about">About</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-light " href="#" id="logout">Logout</a>
@@ -1390,7 +1384,7 @@ const createFormEditJob = (job) => `
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-  <button type="submit" class="btn btn-primary">Save changes</button>
+  <button type="submit" class="btn btn-primary" id="editJobButton">Save changes</button>
 </div>
 </form>
 </div>

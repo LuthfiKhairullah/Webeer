@@ -36,14 +36,17 @@ const ProfileEditPage = {
     const form = document.querySelector('#edit-user');
     const test = document.querySelector('#edit-country');
     const editButton = document.querySelector('#edit-simpan');
+    const profileContainer = document.querySelector('.container-edit-profile');
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
+      profileContainer.classList.add('cursor-progress');
       const { text } = test.options[test.selectedIndex];
       const inputUsername = document.querySelector('#edit-username').value;
       const inputContact = document.querySelector('#edit-contact').value;
       const inputProfesi = document.querySelector('#edit-profesi').value;
       const inputBio = document.querySelector('#edit-bio').value;
       if (inputUsername === '') {
+        profileContainer.classList.remove('cursor-progress');
         messageText.classList.remove('text-bg-success');
         messageTitle.classList.remove('text-success');
         messageText.classList.add('text-bg-warning');
@@ -61,6 +64,7 @@ const ProfileEditPage = {
           country: text,
         });
         if (data.error) {
+          profileContainer.classList.remove('cursor-progress');
           messageText.classList.remove('text-bg-success');
           messageTitle.classList.remove('text-success');
           messageText.classList.add('text-bg-warning');
@@ -77,7 +81,10 @@ const ProfileEditPage = {
           messageText.innerHTML = `${data.data.message}`;
           messageTitle.innerHTML = 'SUCCESS';
           message.show();
-          setTimeout(() => document.location = '#/profile', 2000);
+          setTimeout(() => {
+            document.location = '#/profile';
+            document.location.reload();
+          }, 2000);
         }
         console.log(
           document.querySelector('#edit-username').value,

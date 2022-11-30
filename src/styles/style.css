@@ -6,7 +6,7 @@
 
 html {
     background-color: #607EAA;
-} 
+}
 
 main {
     background-color: #607EAA;
@@ -16,10 +16,17 @@ main {
 
     background-color: #1C3879;
 }
-#sidebar{
+
+#sidebar {
     width: 200px;
     height: 100%;
 }
-#item-sidebar a:hover{
-    background-color:  #1C3879;;
+
+#item-sidebar a:hover {
+    background-color: #1C3879;
+    ;
+}
+
+.cursor-progress {
+    cursor: progress;
 }

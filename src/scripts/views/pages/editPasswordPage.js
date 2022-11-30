@@ -28,8 +28,10 @@ const PasswordEditPage = {
     console.log(url);
     const form = document.querySelector('#form-changepwd');
     console.log(form);
+    const changePasswordContainer = document.querySelector('.container-change-page');
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
+      changePasswordContainer.classList.add('cursor-progress');
       const data = await User.changePwdUser(url.id, {
         oldPassword: document.querySelector('#oldPwd').value,
         newPassword: document.querySelector('#newPwd').value,
@@ -37,6 +39,7 @@ const PasswordEditPage = {
       });
       if (data.error) {
         console.log(data.error);
+        changePasswordContainer.classList.remove('cursor-progress');
         messageText.classList.remove('text-bg-success');
         messageTitle.classList.remove('text-success');
         messageText.classList.add('text-bg-warning');
