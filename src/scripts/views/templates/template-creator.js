@@ -1,5 +1,6 @@
 import { showFormattedDate } from '../utils/formate-date';
 import '../components/discussionList';
+
 const truncateString = (str, num) => {
   if (str?.length > num) {
     return `${str.slice(0, num)}...`;
@@ -53,7 +54,7 @@ const createDetailJobPageTemplate = (jobs) => `
       </div>
     </div>
 <p class="fw-bold my-3"> Requirement :</p>
-<p class="mx-3">${jobs.details.qualification.replace(/\n/g, "<br />")}</p>
+<p class="mx-3">${jobs.details.qualification.replace(/\n/g, '<br />')}</p>
 <a href="${jobs.details.link}" class="btn btn-danger">Apply</a>
 </div>
 </div>
@@ -332,7 +333,7 @@ const createDiscussionDetailTemplate = (discussion) => {
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="submit" class="btn btn-primary" id="saveEditButton">Save</button>
                 </div>
               </form>
             </div>
@@ -429,6 +430,43 @@ const createDiscussionReplyTemplate = (discussion) => {
 
 const createAddDiscussionButtonTemplate = () => `
   <a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
+`;
+
+const createAddDiscussionTemplateSkeleton = () => `
+  <div class="card w-100 border-0">
+      <div class="card-body placeholder-glow">
+          <form id="form-discussion" method="POST" enctype="multipart/form-data">
+              <h2 class="card-title text-center"><span class="placeholder">Add Dicussion</span></h2>
+              <h3 class="card-text"><span class="placeholder">Category</span></h3>
+              <div>${createFilterCategoryTemplateSkeleton(5)}</div>
+              <h3 class="card-text"><span class="placeholder">Dicussion</span></h3>
+              <input type="text" class="form-control mb-2 bg-secondary placeholder" disabled>
+              <button class="btn btn-secondary text-secondary m-0 placeholder disabled"><i class="fa fa-code" aria-hidden="true"></i></button>
+              <textarea cols="30" rows="10" class="form-control mb-2 bg-secondary placeholder" disabled></textarea>
+              <button class="btn btn-secondary text-secondary disabled">Back</button>
+              <button class="btn btn-primary text-primary disabled">Send</button>
+          </form>
+      </div>
+  </div>
+`;
+
+const createAddDiscussionTemplate = () => `
+  <div class="card w-100 border-0">
+      <div class="card-body">
+          <form id="form-discussion" method="POST" enctype="multipart/form-data">
+              <h2 class="card-title text-center">Add Dicussion</h2>
+              <h3 class="card-text">Category</h3>
+              <div id="listCategoryForSelected"></div>
+              <h3 class="card-text">Dicussion</h3>
+              <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" placeholder="Type your title discussion here">
+              <button id="code" class="btn btn-light m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
+              <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
+              placeholder="Type your discussion here"></textarea>
+              <button type="button" class="btn btn-secondary border" id="closeButton">Back</button>
+              <button type="submit" class="btn btn-primary" id="addButton">Send</button>
+          </form>
+      </div>
+  </div>
 `;
 
 const createFilterListTemplateSkeleton = () => `
@@ -1389,6 +1427,8 @@ export {
   createDiscussionItemTemplate,
   createDiscussionDetailTemplateSkeleton,
   createDiscussionDetailTemplate,
+  createAddDiscussionTemplateSkeleton,
+  createAddDiscussionTemplate,
   createAddDiscussionButtonTemplate,
   createFilterListTemplateSkeleton,
   createFilterListTemplate,

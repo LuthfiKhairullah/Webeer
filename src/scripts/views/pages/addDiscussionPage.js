@@ -1,6 +1,6 @@
 import { Toast } from 'bootstrap/dist/js/bootstrap.bundle';
 import DiscussionSource from '../../data/discussionSource';
-import { createFilterCategoryTemplate, createFilterCategoryTemplateSkeleton } from '../templates/template-creator';
+import { createAddDiscussionTemplateSkeleton, createFilterCategoryTemplate } from '../templates/template-creator';
 
 const AddDiscussionPage = {
   async render() {
@@ -13,29 +13,17 @@ const AddDiscussionPage = {
     }
 
     return `
-    <div class="container pt-2">
-        <div class="card w-100 border-0">
-            <div class="card-body">
-                <form id="form-discussion" method="POST" enctype="multipart/form-data">
-                    <h2 class="card-title text-center">Add Dicussion</h2>
-                    <h3 class="card-text">Category</h3>
-                    <div id="listCategoryForSelected">${createFilterCategoryTemplateSkeleton(5)}</div>
-                    <h3 class="card-text">Dicussion</h3>
-                    <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" placeholder="Type your title discussion here">
-                    <button id="code" class="btn btn-light m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
-                    <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
-                    placeholder="Type your discussion here"></textarea>
-                    <button type="button" class="btn btn-secondary border" id="closeButton">Back</button>
-                    <button type="submit" class="btn btn-primary" id="addButton">Send</button>
-                </form>
-            </div>
-        </div>
+    <div class="container pt-2" id="addDiscussion">
+        ${createAddDiscussionTemplateSkeleton()}
     </div>
     <message-container></message-container>
     `;
   },
 
   async afterRender() {
+    const discussionCategory = await DiscussionSource.getDiscussionCategory();
+    const addDiscussion = document.querySelector('#addDiscussion');
+    addDiscussion.innerHTML = '<add-discussion></add-discussion>';
     const messageText = document.querySelector('.toast-body');
     const messageTitle = document.querySelector('.toast-title');
     const messageContainer = document.getElementById('liveToast');
@@ -46,7 +34,6 @@ const AddDiscussionPage = {
     closeButton.addEventListener('click', () => {
       document.location = '#/forums';
     });
-    const discussionCategory = await DiscussionSource.getDiscussionCategory();
     const categoryList = document.querySelector('#listCategoryForSelected');
     categoryList.innerHTML = '';
     discussionCategory.forEach((categoryitem) => {
