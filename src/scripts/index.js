@@ -14,6 +14,7 @@ import '../styles/verification.css';
 import '../styles/changePwd.css';
 import '../styles/skeleton.css';
 import '../styles/about.css';
+import '../styles/resetpassword.css';
 import '../styles/listCompany.css';
 import '../styles/dashboardJob.css';
 import './views/components/appBar';

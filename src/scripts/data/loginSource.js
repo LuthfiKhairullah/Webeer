@@ -124,7 +124,8 @@ class User {
   }
 
   static async Edit(_id, {
-    username, email, contact, profesi, bio, country, image,
+    username, email, contact, profesi, bio, country, image, address, website, employee,
+    employee2, industry, founded, specialities,
   }) {
     try {
       const jwt = localStorage.getItem('token').replaceAll('"', '');
@@ -142,6 +143,13 @@ class User {
           profesi,
           bio,
           country,
+          address,
+          website,
+          employee,
+          employee2,
+          industry,
+          founded,
+          specialities,
           image,
         },
       });
@@ -165,7 +173,7 @@ class User {
           auth: `${jwt}`,
         },
       });
-      if (response.status !== 200) {
+      if (response.status !== 'OK') {
         throw new Error(response.data.message);
       }
       return response.data.data;
