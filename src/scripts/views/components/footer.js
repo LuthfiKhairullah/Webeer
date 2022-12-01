@@ -5,9 +5,9 @@ class Footer extends HTMLElement {
 
   render() {
     this.innerHTML = `
-    <div class="footer">
-    <h3>Footer</h3>
-    </div>`;
+    <footer id="footer">
+    <p>Copyright &copy; 2022 Webeer</p>
+    </footer>`;
   }
 }
 customElements.define('footer-bar', Footer);
