@@ -41,36 +41,36 @@ Fitur Job
   </div>
 </div>
 
-    <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
   <div class="col">
     <div class="card h-100">
+    <img src="../asset/fajar.jpeg" class="card-img-top w-auto img-thumbnail" alt="...">
       <div class="card-body">
-        <h5 class="card-title">fajar</h5>
-        <p class="card-text">ini tentang fajar</p>
+        <h5 class="card-title text-center">Muhammad Fajar Yudhistira H</h5>
       </div>
     </div>
   </div>
   <div class="col">
     <div class="card h-100">
+    <img src="../asset/Luthfi.jpg" class="card-img-top w-auto img-thumbnail" alt="...">
       <div class="card-body">
-        <h5 class="card-title">lutfi</h5>
-        <p class="card-text"> ini tentang luthfi</p>
+        <h5 class="card-title text-center">Muhammad Luthfi Khairullah</h5>
       </div>
     </div>
   </div>
   <div class="col">
-    <div class="card h-100">
+    <div class="card h-100 ">
+    <img src="../asset/muja.jpg" class="card-img-top w-auto img-thumbnail" alt="...">
       <div class="card-body">
-        <h5 class="card-title">muja</h5>
-        <p class="card-text">ini tentang mujafilah</p>
+        <h5 class="card-title text-center">Siti Mujadilah</h5>
       </div>
     </div>
   </div>
   <div class="col">
-    <div class="card h-100">
+    <div class="card h-100 ">
+    <img src="../asset/jovita.jpg" class="card-img-top w-auto img-thumbnail" alt="">
       <div class="card-body">
-        <h5 class="card-title">jovita</h5>
-        <p class="card-text">ini tentang jovita</p>
+        <h5 class="card-title text-center">Jovita Amelinda</h5>
       </div>
     </div>
   </div>
