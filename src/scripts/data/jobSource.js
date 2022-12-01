@@ -31,7 +31,7 @@ class JobSource {
           image,
         },
       });
-      if (response.statusText !== 'Created') {
+      if (response.status !== 201) {
         throw new Error(response.data.message);
       }
       return response;
@@ -77,7 +77,7 @@ class JobSource {
           auth: `${jwt}`,
         },
       });
-      if (response.statusText !== 'OK') {
+      if (response.status !== 200) {
         throw new Error(response.data.message);
       }
       console.log(response);
@@ -116,7 +116,7 @@ class JobSource {
           image,
         },
       });
-      if (response.statusText !== 'Created') {
+      if (response.status !== 201) {
         throw new Error(response.data.message);
       }
       return response;

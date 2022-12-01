@@ -36,12 +36,15 @@ const Login = {
     // FORM LOGIN
     console.log(message);
     formLogin.addEventListener('submit', async (event) => {
+      const loginContainer = document.querySelector('#container-login');
+      loginContainer.classList.add('cursor-progress');
       event.preventDefault();
       const data = await User.Login({
         email: idUser.value,
         password: pwUser.value,
       });
       if (data.error) {
+        loginContainer.classList.remove('cursor-progress');
         messageText.classList.remove('text-bg-success');
         messageTitle.classList.remove('text-success');
         messageText.classList.add('text-bg-warning');

@@ -14,7 +14,7 @@ class User {
         role,
       };
       const response = await axios.post(url, data);
-      if (response.statusText !== 'OK') {
+      if (response.status !== 200) {
         throw new Error(response.data.message);
       }
       console.log(response);
@@ -32,7 +32,7 @@ class User {
         password,
       };
       const response = await axios.post(url, data);
-      if (response.statusText !== 'OK') {
+      if (response.status !== 200) {
         throw new Error(response.data.message);
       }
       console.log(response);
@@ -78,7 +78,7 @@ class User {
           auth: `${jwt}`,
         },
       });
-      if (response.statusText !== 'OK') {
+      if (response.status !== 200) {
         throw new Error(response.data.message);
       }
       localStorage.removeItem('token');
@@ -97,7 +97,7 @@ class User {
         email,
       };
       const response = await axios.post(url, data);
-      if (response.statusText !== 'OK') {
+      if (response.status !== 200) {
         throw new Error(response.data.message);
       }
       return response;
@@ -114,7 +114,7 @@ class User {
         OTP,
       };
       const response = await axios.post(url, data);
-      if (response.statusText !== 'OK') {
+      if (response.status !== 200) {
         throw new Error(response.data.message);
       }
       return response;
@@ -145,7 +145,7 @@ class User {
           image,
         },
       });
-      if (response.statusText !== 'Created') {
+      if (response.status !== 201) {
         throw new Error(response.data.message);
       }
       return response;
@@ -165,7 +165,7 @@ class User {
           auth: `${jwt}`,
         },
       });
-      if (response.statusText !== 'OK') {
+      if (response.status !== 200) {
         throw new Error(response.data.message);
       }
       return response.data.data;
@@ -192,7 +192,7 @@ class User {
           confirmPassword,
         },
       });
-      if (response.statusText !== 'OK') {
+      if (response.status !== 200) {
         throw new Error(response.data.message);
       }
       return response.data;

@@ -57,7 +57,7 @@ class DiscussionSource {
           auth: `${jwt}`,
         },
       });
-      if (response.statusText !== 'OK') {
+      if (response.status !== 200) {
         throw new Error(response.data.message);
       }
       return response.data.data;
@@ -97,7 +97,7 @@ class DiscussionSource {
         },
         data: JSON.stringify(discussion),
       });
-      if (responseJson.statusText !== 'Created') {
+      if (responseJson.status !== 201) {
         throw new Error(responseJson.data.message);
       }
       return responseJson.data;

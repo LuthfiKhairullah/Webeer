@@ -35,14 +35,17 @@ const verificationPage = {
     console.log(getEmail);
     console.log('Get Item :', getId);
     // eslint-disable-next-line no-unused-expressions
+    const verificationContainer = document.querySelector('.container-verification');
     resend.addEventListener('click', async (event) => {
       event.preventDefault();
+      verificationContainer.classList.add('cursor-progress');
       resendButton.setAttribute('disabled', '');
       const data = await User.Resend({
         idUser: getId,
         email: getEmail,
       });
       if (data.error) {
+        verificationContainer.classList.remove('cursor-progress');
         messageText.classList.remove('text-bg-success');
         messageTitle.classList.remove('text-success');
         messageText.classList.add('text-bg-warning');
@@ -53,6 +56,7 @@ const verificationPage = {
         resendButton.removeAttribute('disabled');
       } else {
         console.log(data);
+        verificationContainer.classList.remove('cursor-progress');
         messageText.classList.remove('text-bg-warning');
         messageTitle.classList.remove('text-warning');
         messageText.classList.add('text-bg-success');
@@ -66,12 +70,14 @@ const verificationPage = {
 
     const form = document.querySelector('#verifikasi-user');
     form.addEventListener('submit', async (event) => {
+      verificationContainer.classList.add('cursor-progress');
       event.preventDefault();
       const data = await User.Verification({
         idUser: getId,
         OTP: document.querySelector('#otp').value,
       });
       if (data.error) {
+        verificationContainer.classList.remove('cursor-progress');
         messageText.classList.remove('text-bg-success');
         messageTitle.classList.remove('text-success');
         messageText.classList.add('text-bg-warning');

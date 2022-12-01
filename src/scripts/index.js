@@ -1,5 +1,6 @@
 import 'regenerator-runtime';
 import '../styles/style.css';
+import '../styles/home.css';
 import '../styles/login.css';
 import '../styles/addDiscussion.css';
 import '../styles/filter.css';
@@ -21,6 +22,7 @@ import './views/components/footer';
 import './views/components/searchBar';
 import './views/components/message';
 import './views/components/otp';
+import './views/components/addDiscussion';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import Main from './views/main';

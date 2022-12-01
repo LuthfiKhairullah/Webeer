@@ -4,6 +4,7 @@ import CacheHelper from './utils/cache-helper';
 const assetsToCache = [
   './',
   './asset/hero-changepwd.png',
+  './asset/hero-dashboard-company.png',
   './asset/hero-jobsDetail.png',
   './asset/hero-login.png',
   './asset/verified.png',
@@ -28,7 +29,7 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-  console.log('Activationg Service Worker ...');
+  console.log('Activating Service Worker ...');
   event.waitUntil(CacheHelper.deleteOldCache());
 });
 

@@ -77,11 +77,13 @@ const DetailDiscussionPage = {
       const after_txt = myTextAreaValue.substring(myTextArea.selectionEnd, myTextAreaValue.length);
       myTextArea.value = `${before_txt}\n ` + '~Enter Your Code is Here' + `\n ${selected_txt}\n` + 'Dont Delete this~' + `\n${after_txt}`;
     });
+    const editButton = document.querySelector('#saveEditButton');
     formEditDiscussion.addEventListener('submit', async (e) => {
       e.preventDefault();
       const arrcategory = [];
       const inputTitle = document.getElementById('inputTitle').value;
       const inputDiscussion = document.getElementById('inputDiscussion').value;
+      editButton.setAttribute('disabled', '');
       categorySelect.forEach((c) => {
         if (c.checked) {
           arrcategory.push(c.value);
@@ -101,6 +103,7 @@ const DetailDiscussionPage = {
         messageTitle.classList.add('text-warning');
         messageTitle.innerHTML = 'WARNING';
         message.show();
+        editButton.removeAttribute('disabled');
       } else {
         const editDiscussion = await DiscussionSource.editDiscussion(
           url.id,
@@ -119,6 +122,7 @@ const DetailDiscussionPage = {
           messageText.innerHTML = `${editDiscussion.error}`;
           messageTitle.innerHTML = 'WARNING';
           message.show();
+          editButton.removeAttribute('disabled');
         } else {
           messageText.classList.remove('text-bg-warning');
           messageTitle.classList.remove('text-warning');
@@ -192,7 +196,7 @@ const DetailDiscussionPage = {
           answerButton.removeAttribute('disabled');
           inputReply.value = '';
           const updateDiscussions = await DiscussionSource.getDiscussion(url.id);
-          lengthReply.innerHTML = updateDiscussions.reply.length;
+          lengthReply.innerText = updateDiscussions.reply.length;
           const updateDiscussionReply = await DiscussionSource.getDiscussionReply(url.id);
           discussionReplyListElement.innerHTML = '';
           updateDiscussionReply.forEach((reply) => {
