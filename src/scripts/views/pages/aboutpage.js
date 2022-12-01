@@ -1,10 +1,13 @@
 const AboutPage = {
   async render() {
     return `
-      <div class="About">
-        <div class="card">
-          <div class="card-header text-center">
-            WEBEER
+      <div class="container-fluid d-flex">
+        <img src="image/hero-about.png" alt="hero-img">
+      </div>
+      <div class="container border-0 About">
+        <div class="card w-100">
+          <div class="card-header fw-bold text-center">
+            ABOUT WEBEER
           </div>
           <div class="card-body fw-normal fs-4">
             <p class="card-text"> Webeer merupakan suatu website yang mewadahi para developer untuk melakukan diskusi. Webeer memiliki fitur seperti membuat diskusi dan mencari pekerjaan.
@@ -16,7 +19,7 @@ const AboutPage = {
             Contoh jika menjawab pertanyaan maka user akan mendapatkan nilai. Nilai pada activity berupa grade A sampai E dan setiap grade memiliki batas nilai yang berbeda, dimana semakin banyak menjawab dan bertanya maka grade akan meningkat.
           </div>
         </div>
-        <div class="card">
+        <div class="card container-about">
           <div class="card-header text-center">
             Fitur Job
           </div>
@@ -27,14 +30,14 @@ const AboutPage = {
             </blockquote>
           </div>
         </div>
-        <div class="card">
+        <div class="card container-about">
           <div class="card-body text-center rounded-4" >
             DEVELOPER 
           </div>
         </div>
         <div class="row row-cols-1 row-cols-md-2 g-4">
           <div class="col">
-            <div class="card h-100">
+            <div class="card container-about h-100">
               <div class="card-body">
                 <h5 class="card-title">fajar</h5>
                 <p class="card-text">ini tentang fajar</p>
@@ -42,7 +45,7 @@ const AboutPage = {
             </div>
           </div>
           <div class="col">
-            <div class="card h-100">
+            <div class="card container-about h-100">
               <div class="card-body">
                 <h5 class="card-title">lutfi</h5>
                 <p class="card-text"> ini tentang luthfi</p>
@@ -50,7 +53,7 @@ const AboutPage = {
             </div>
           </div>
           <div class="col">
-            <div class="card h-100">
+            <div class="card container-about h-100">
               <div class="card-body">
                 <h5 class="card-title">muja</h5>
                 <p class="card-text">ini tentang mujafilah</p>
@@ -58,7 +61,7 @@ const AboutPage = {
             </div>
           </div>
           <div class="col">
-            <div class="card h-100">
+            <div class="card container-about h-100">
               <div class="card-body">
                 <h5 class="card-title">jovita</h5>
                 <p class="card-text">ini tentang jovita</p>
@@ -76,6 +79,10 @@ const AboutPage = {
         </div>
       </div>
     `;
+  },
+
+  async afterRender() {
+
   },
 };
 export default AboutPage;

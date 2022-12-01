@@ -62,7 +62,7 @@ const Login = {
         message.show();
         setTimeout(() => {
           document.location = '#/profile';
-          window.location.reload();
+          document.location.reload();
         }, 1500);
       }
     });
