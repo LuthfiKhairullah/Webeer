@@ -208,6 +208,27 @@ class User {
       return { error: err.response.data.message || err.message };
     }
   }
+
+  static async ForgetPwd(id, {
+    newPassword, confirmPassword,
+  }) {
+    try {
+      const response = await axios({
+        url: `${API_ENDPOINT.USER_FORGETPWD(id)}`,
+        method: 'PUT',
+        data: {
+          newPassword,
+          confirmPassword,
+        },
+      });
+      if (response.status !== 'OK') {
+        throw new Error(response.data.message);
+      }
+      return response.data;
+    } catch (err) {
+      console.log(err)
+    }
+  }
 }
 
 export default User;

@@ -24,15 +24,20 @@ const ResetPassword = {
   },
   async afterRender() {
     const url = UrlParser.parseActiveUrlWithoutCombiner();
-    const data = await User.getDetailUser(url.id);
     const form = document.getElementById('reset-password');
-    console.log(data)
-    // form.addEventListener('submit',async(event)=>{
-    //     event.preventDefault();
-    //     const reset = await User.changePwdUser(url.id,{
-        
-    //     })
-    // })
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const reset = await User.ForgetPwd(url.id, {
+        newPassword: document.getElementById('inputPassword').value,
+        confirmPassword: document.getElementById('inputPasswordConfirm').value,
+      });
+      if (reset.error) {
+        console.log(reset.error);
+      } else {
+        console.log(reset);
+      }
+    });
   },
 };
 export default ResetPassword;
