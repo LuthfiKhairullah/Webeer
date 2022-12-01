@@ -8,3 +8,7 @@ margin: 50px;
 
 }
 
+.card img {
+
+width: fit-content;
+}
