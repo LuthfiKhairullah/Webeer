@@ -1,96 +1,185 @@
-#container-page-jobs{
+#container-page-jobs {
     max-width: 1200px;
-    margin:  auto;
+    margin: auto;
+    margin-top: 50px;
 }
-.container-jobs{
+.header-detailjob{
+    max-width: 1200px; 
+    background-color: white;
+    margin-bottom: 20px;
+    margin-top: 60px;
+    padding: 15px;
+    border-radius: 5px;
+}
+.image-detailjob{
+    width: 200px;
+    height: 200px;
+}
+
+.container-detail-jobspage{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
+.container-jobs {
     display: flex;
     justify-content: center;
 }
-.item-jobs{
-    width: 400px;
-    height: 600px;
-    margin-right: 50px;
-    overflow-y: auto;
-    margin-top: 10px;
+.content-detailjob{
+    max-width: 1200px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
 }
-.detail-jobs{
-    width: 600px;
+
+.description-detailjob{
+    text-align: justify;
+}
+.item-jobs {
+    width: 500px;
+    height: 600px;
+    overflow-y: auto;
+}
+
+.scroll-item::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.scroll-item::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+    background-color: black;
+}
+
+/* Handle */
+.scroll-item::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+}
+
+
+.detail-jobs {
+    width: 800px;
     height: 600px;
     background-color: white;
-    margin-top: 20px;
-    border-radius: 10px;
     overflow-y: auto;
 }
-.detail-container{
-    padding:5px
+
+.detail-container {
+    padding: 5px
 }
-.header-detail{
+
+.header-detail {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.description-detail, .kualifikasi-detail{
+
+.description-detail,
+.kualifikasi-detail {
     text-align: justify;
     font-size: 12px;
     padding: 10px;
 }
-.work-detail{
+
+.work-detail {
     display: flex;
 }
-.work-detail p{
+
+.work-detail p {
     margin: 0;
 }
-.work-1{
-    margin-right: 10px;
+
+.work-1 {
+    margin-right: 15px;
 }
-.footer-detail{
+
+.footer-detail {
     position: sticky;
     bottom: 0;
     background-color: gray;
     text-align: center;
 }
-.detail-link{
+
+.detail-link {
     margin: 5px;
 }
-.image-detail img{
+
+.image-detail img {
     width: 150px;
     margin-right: 20px;
 }
-.title-detail{
+
+.title-detail {
     width: 100%;
 }
-.title-detail p{
+
+.title-detail p {
     margin: 0;
     font-size: 13px;
 }
-.card-item{
-    width: 350px;
+
+.card-item {
+    width: 100%;
     height: 250px;
     background-color: white;
-    margin: 10px auto;
-    border-radius: 10px;
+    border-bottom: 1px solid black;
 }
-.card-item p{
-    font-size:12px;
+
+.card-item:hover {
+    background-color: whitesmoke;
+}
+
+.card-item p {
+    font-size: 12px;
     margin: 2px;
 }
-.detail-jobs .card{
-margin: 50px auto;
-text-align: center;
-background-color: transparent;
-border: 0px;
+
+.detail-jobs .card {
+    margin: 50px auto;
+    text-align: center;
+    background-color: transparent;
+    border: 0px;
 }
-.search{
-    padding: 10px;
+
+.search {
+    padding: 30px;
     max-width: 1000px;
     margin: 0 auto;
 }
-.search input, .search button{
+
+.search input,
+.search button {
     border-radius: 20px;
 }
-.card-item{
+
+.card-item {
     padding: 15px;
 }
-.card-image{
+
+.card-image {
     width: 100px;
+}
+
+.btn-open-job {
+    margin-left: 100px;
+}
+#btnDetailJob{
+    display: block;
+}
+#btnDetailOpen{
+    display: none;
+}
+@media screen and (max-width:1200px) {
+    .detail-jobs{
+        display: none;                                                      
+    }
+    #btnDetailJob{
+        display: none;
+    }
+    #btnDetailOpen{
+        display: block;
+        width: 100px;
+    }
 }

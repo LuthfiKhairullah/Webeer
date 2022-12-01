@@ -1,0 +1,25 @@
+.container-change-page {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+#form-changepwd {
+    text-align: center;
+    padding: 15px;
+}
+
+.header-change-page img {
+    width: 250px;
+}
+
+.change-page {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: white;
+    justify-content: center;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+}

@@ -1,0 +1,20 @@
+.container-add-job {
+display: flex;
+justify-content: center;
+width: 100%;
+background-color: white;
+}
+.container-add-job form{
+    background-color: white;
+    padding: 10px;
+    width: 100%;
+}
+.container-add-job input{
+    border-radius: 15px;
+}
+.container-add-job h3{
+    margin-bottom: 20px;
+}
+.container-add-job select{
+    border-radius: 15px;
+}

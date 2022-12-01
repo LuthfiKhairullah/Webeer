@@ -1,0 +1,9 @@
+.container-verification {
+        display: flex;
+        justify-content: center;
+}
+
+.container-verification .card {
+        width: 300px;
+        margin-top: 10%;
+}

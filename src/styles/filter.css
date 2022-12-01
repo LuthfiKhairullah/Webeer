@@ -3,24 +3,48 @@
         display: none;
     }
 
+    #filter-drawer,
+    #filter-drawer-skeleton {
+        border-radius: 10px;
+        margin-top: 80px;
+        padding: 20px;
+    }
+
     #close-filter {
         display: none;
+    }
+
+    .filterList {
+        margin-left: 12px;
     }
 }
 
 @media screen and (max-width: 750px) {
-    filter-list {
-        background-color: #CCF2F4;
+
+    filter-list,
+    .filterListSkeleton {
+        background-color: #607EAA;
+        margin: 0;
         position: absolute;
+        top: 56px;
         transform: translate(-100%, 0);
         width: 100%;
         z-index: 10;
         -webkit-transform: translate(-100%, 0);
     }
 
+    #filter {
+        margin-top: 80px;
+    }
+
+    #filter-drawer,
+    #filter-drawer-skeleton {
+        padding: 30px;
+    }
+
     .open-filter {
         -webkit-transform: translate(0, 0);
-        background-color: #CCF2F4;
+        background-color: #607EAA;
         height: 100vh;
         transform: translate(100%, 0);
         transition: transform 1s ease;

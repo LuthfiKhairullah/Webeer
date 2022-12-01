@@ -3,21 +3,27 @@ import {
   createItemJob,
   createDetailJob,
 } from '../templates/template-creator';
-
 import JobSource from '../../data/jobSource';
 
 const jobsPage = {
   async render() {
+    const getToken = localStorage.getItem('token');
+    console.log(getToken);
+    if (getToken === null) {
+      document.location = '#/login';
+      localStorage.setItem('login', 'false');
+      window.reload();
+    }
     return `
         <div id="container-page-jobs">
             <search-bar></search-bar>
             <div class="container-jobs">
-                <div class="item-jobs">
+                <div class="item-jobs scroll-item">
                     ${DetailJobsSkeleton(10)}
                 </div>
                 <div class="detail-jobs" id="detail">
                     <div class="card">
-                        <img src="./asset/hero-jobsDetail.png">
+                        <img class="lazyload" src="./asset/hero-jobsDetail.png">
                         <p> Temukan pekerjaan sesuai dengan passion kamu </p>
                     </div>
                 </div>
@@ -26,13 +32,6 @@ const jobsPage = {
         `;
   },
   async afterRender() {
-    const jobs = await JobSource.getJobs();
-    console.log(jobs);
-    const itemjobsElement = document.querySelector('.item-jobs');
-    itemjobsElement.innerHTML = '';
-    jobs.data.data.forEach((job) => {
-      itemjobsElement.innerHTML += createDetailJob(job);
-    });
     const job = await JobSource.getJobs();
     const jobItemContainer = document.querySelector('.item-jobs');
     jobItemContainer.innerHTML = '';
@@ -42,11 +41,9 @@ const jobsPage = {
     console.log(job.data.data);
     const search = document.querySelector('.searchBar');
     const inputSearch = document.querySelector('#searchInput');
-
     search.addEventListener('submit', async (event) => {
       event.preventDefault();
       const getInputSearch = inputSearch.value;
-      console.log(getInputSearch);
       const getSearch = await JobSource.getJobsSearch(getInputSearch);
       console.log(getSearch);
       jobItemContainer.innerHTML = '';
@@ -55,13 +52,21 @@ const jobsPage = {
         const btn = document.querySelectorAll('.btn-detail');
         console.log(btn);
         for (let i = 0; i < btn.length; i++) {
+          // eslint-disable-next-line no-loop-func
           btn[i].addEventListener('click', async () => {
+            event.preventDefault();
             const test = btn[i].value;
             console.log(test);
             const detail = await JobSource.getJobsDetail(test);
             console.log(detail);
-            const jobDetailContainer = document.querySelector('.card');
+            const jobDetailContainer = document.querySelector('#detail');
             jobDetailContainer.innerHTML = createDetailJob(detail.data.data);
+            const coba = document.querySelector('.test');
+            detail.data.data.details.qualification.forEach((item) => {
+              const li = document.createElement('li');
+              li.innerText = item;
+              coba.appendChild(li);
+            });
           });
         }
       });
@@ -71,7 +76,8 @@ const jobsPage = {
     console.log(btn);
     for (let i = 0; i < btn.length; i++) {
       // eslint-disable-next-line no-loop-func
-      btn[i].addEventListener('click', async () => {
+      btn[i].addEventListener('click', async (event) => {
+        event.preventDefault();
         const test = btn[i].value;
         console.log(test);
         const detail = await JobSource.getJobsDetail(test);
@@ -79,6 +85,7 @@ const jobsPage = {
         const jobDetailContainer = document.querySelector('#detail');
         jobDetailContainer.innerHTML = createDetailJob(detail.data.data);
         const coba = document.querySelector('.test');
+        console.log('rest', new Date(detail.data.data.createdAt).getTime());
         detail.data.data.details.qualification.forEach((item) => {
           const li = document.createElement('li');
           li.innerText = item;
