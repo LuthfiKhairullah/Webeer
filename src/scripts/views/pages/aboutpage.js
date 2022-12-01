@@ -34,9 +34,10 @@ Fitur Job
   </div>
 </div>
 
+<br></br>
 <div class="card">
-  <div class="card-body text-center rounded-4" >
-   DEVELOPER 
+  <div class="card-body text-center">
+    OUR TEAM
   </div>
 </div>
 
@@ -74,7 +75,8 @@ Fitur Job
     </div>
   </div>
 </div>
-            </div>
+<br></br>
+</div>
           `;
     },
   
