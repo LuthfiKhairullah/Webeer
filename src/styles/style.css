@@ -30,3 +30,12 @@ main {
 .cursor-progress {
     cursor: progress;
 }
+
+p {
+    word-break: break-all;
+}
+
+pre,
+code {
+    white-space: normal;
+}

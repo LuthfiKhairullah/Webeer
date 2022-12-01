@@ -9,6 +9,24 @@ import { createDiscussionDetailTemplateSkeleton, createDiscussionReplyTemplateSk
 
 const DetailDiscussionPage = {
   async render() {
+    const url = UrlParser.parseActiveUrlWithoutCombiner();
+    const getToken = localStorage.getItem('token');
+    const getRole = localStorage.getItem('role').replaceAll('"', '');
+    if (getToken === null) {
+      document.location = '#/login';
+      localStorage.setItem('login', 'false');
+      window.reload();
+    } else if (getToken !== null && getRole === 'Company') {
+      window.location.href();
+      localStorage.setItem('login', 'true');
+    } else if (getToken !== null && getRole === 'Programmer') {
+      document.location = `#/detaildiscussion/${url.id}`;
+      localStorage.setItem('login', 'true');
+    } else {
+      document.location = '/';
+      localStorage.clear();
+      window.reload();
+    }
     return `
       <div class="container-fluid">
         <div class="d-flex">
@@ -75,7 +93,7 @@ const DetailDiscussionPage = {
       );
       const before_txt = myTextAreaValue.substring(0, myTextArea.selectionStart);
       const after_txt = myTextAreaValue.substring(myTextArea.selectionEnd, myTextAreaValue.length);
-      myTextArea.value = `${before_txt}\n ` + '~Enter Your Code is Here' + `\n ${selected_txt}\n` + 'Dont Delete this~' + `\n${after_txt}`;
+      myTextArea.value = `${before_txt}\n~Enter Your Code is Here\n${selected_txt}\nDont Delete this~\n${after_txt}`;
     });
     const editButton = document.querySelector('#saveEditButton');
     formEditDiscussion.addEventListener('submit', async (e) => {
@@ -159,7 +177,7 @@ const DetailDiscussionPage = {
       );
       const before_txt = myTextAreaValue.substring(0, myTextArea.selectionStart);
       const after_txt = myTextAreaValue.substring(myTextArea.selectionEnd, myTextAreaValue.length);
-      myTextArea.value = `${before_txt}\n ` + '~Enter Your Code is Here' + `\n ${selected_txt}\n` + 'Dont Delete this~' + `\n${after_txt}`;
+      myTextArea.value = `${before_txt}\n~Enter Your Code is Here\n${selected_txt}\nDont Delete this~\n${after_txt}`;
     });
 
     const replyButton = document.querySelector('#form-discussion-reply');

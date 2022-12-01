@@ -5,11 +5,22 @@ import User from '../../data/loginSource';
 
 const PasswordEditPage = {
   async render() {
+    const url = UrlParser.parseActiveUrlWithoutCombiner();
     const getToken = localStorage.getItem('token');
-    console.log(getToken);
+    const getRole = localStorage.getItem('role').replaceAll('"', '');
     if (getToken === null) {
       document.location = '#/login';
       localStorage.setItem('login', 'false');
+      window.reload();
+    } else if (getToken !== null && getRole === 'Company') {
+      window.location.href();
+      localStorage.setItem('login', 'true');
+    } else if (getToken !== null && getRole === 'Programmer') {
+      document.location = `#/changepwd/${url.id}`;
+      localStorage.setItem('login', 'true');
+    } else {
+      document.location = '/';
+      localStorage.clear();
       window.reload();
     }
     return `

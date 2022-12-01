@@ -1,3 +1,8 @@
+.container-forum {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
 .container-fluid search-bar {
     padding-top: 50px;
 }
@@ -97,9 +102,4 @@
 
 .container-item-discussion .card:hover {
     background-color: #EEEEEE;
-}
-
-xmp {
-    text-align: justify;
-    white-space: pre-wrap;
 }

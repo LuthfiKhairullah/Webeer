@@ -168,7 +168,12 @@ const createDiscussionItemTemplate = (discussion) => {
         <div class="main-container">
           <div class="categoryDiscussion">${createCategoryDiscussionTemplate(discussion.categories)}</div>
             <h5>${discussion.title}</h5>
-            <p class="card-text"><xmp>${truncateString(discussion?.discussion.replace(/(?:\r\n|\r|\n)/g, ' ').replace(/~Enter Your Code is Here/g, '').replace(/Dont Delete this~/g, ''), 200)}</xmp></p>
+            <pre>
+              <code class="text-break">
+                  ${truncateString(discussion?.discussion.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/(?:\r\n|\r|\n)/g, ' ').replace(/~Enter Your Code is Here/g, '')
+    .replace(/Dont Delete this~/g, ''), 200)}
+              </code>
+            </pre>
           </div>
         <div class="sub-container">
           <div class="container-reply text-center">
@@ -211,7 +216,12 @@ const createBookmarkItemTemplate = (bookmark) => {
         <div class="main-container">
           <div class="categoryDiscussion">${createCategoryDiscussionTemplate(bookmark.categories)}</div>
             <h5>${bookmark.title}</h5>
-            <p class="card-text">${truncateString(bookmark?.discussion, 200)}</p>
+            <pre>
+              <code>
+              ${truncateString(bookmark?.discussion.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/(?:\r\n|\r|\n)/g, ' ').replace(/~Enter Your Code is Here/g, '')
+    .replace(/Dont Delete this~/g, ''), 200)}
+              </code>
+            </pre>
           </div>
         <div class="sub-container">
           <div class="container-reply text-center">
@@ -274,10 +284,11 @@ const createDiscussionDetailTemplate = (discussion) => {
     isSolvedClass = 'text-success';
     isSolved = '<i class="fa fa-check-circle-o fa-2x " aria-hidden="true"></i>';
   }
-  // const discussionDetail = `<p class="text-justify border-top border-bottom my-lg-2">${(discussion.discussion).replace(/~Enter Your Code is Here/g, '</p><div class="bg-light"><xmp>').replace(/Dont Delete this~/g, '</xmp></div><p class="text-justify border-top border-bottom my-lg-2">')}</p>`;
-  const discussionDetail = discussion.discussion.split('~Enter Your Code is Here').join('Dont Delete this~').split('Dont Delete this~');
+  const discussionDetail = discussion.discussion.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/(?:\r\n|\r|\n)/g, '<br>').split('~Enter Your Code is Here')
+    .join('Dont Delete this~')
+    .split('Dont Delete this~');
   for (let i = 0; i < discussionDetail.length; i++) {
-    if (i % 2 === 0) { discussionDetail[i] = `<p class="text-justify border-top border-bottom my-lg-2">${discussionDetail[i].replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>`; } else { discussionDetail[i] = `<div class="bg-light"><xmp>${discussionDetail[i]}</xmp></div>`; }
+    if (i % 2 === 0) { discussionDetail[i] = `<p class="text-justify border-top border-bottom my-lg-2">${discussionDetail[i]}</p>`; } else { discussionDetail[i] = `<div class="bg-light"><pre><code class="text-break">${discussionDetail[i]}</code></pre></div>`; }
   }
   return `
     <div class="container bg-white padding ">
@@ -353,7 +364,7 @@ const createDiscussionDetailTemplate = (discussion) => {
         <div id="saveButtonContainer"></div>
       </div>
       ${discussionDetail.join('')}
-      <button id="code" class="btn btn-light m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
+      <button id="code" class="btn btn-light m-0 d-block"><i class="fa fa-code" aria-hidden="true"></i></button>
       <form id="form-discussion-reply" class="my-2 ">
         <textarea  name="inputReply" id="inputReply" class="form-control" rows=15"></textarea>
         <button type="submit" class="btn btn-dark ms-1 my-1" id="answerButton">Submit Answer</button>
@@ -407,9 +418,11 @@ const createDiscussionReplyTemplateSkeleton = (count) => {
 };
 
 const createDiscussionReplyTemplate = (discussion) => {
-  const discussionReply = discussion.reply.split('~Enter Your Code is Here').join('Dont Delete this~').split('Dont Delete this~');
+  const discussionReply = discussion.reply.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/(?:\r\n|\r|\n)/g, '<br>').split('~Enter Your Code is Here')
+    .join('Dont Delete this~')
+    .split('Dont Delete this~');
   for (let i = 0; i < discussionReply.length; i++) {
-    if (i % 2 === 0) { discussionReply[i] = `<p style="font-size: 18px">${discussionReply[i].replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>`; } else { discussionReply[i] = `<div class="bg-light"><xmp>${discussionReply[i]}</xmp></div>`; }
+    if (i % 2 === 0) { discussionReply[i] = `<p style="font-size: 18px">${discussionReply[i]}</p>`; } else { discussionReply[i] = `<div class="bg-light"><pre><code class="text-break">${discussionReply[i]}</code></pre></div>`; }
   }
   return `
     <div class="container bg-white border-top">
@@ -1379,7 +1392,7 @@ const createProfileCompany = (user) => `
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary"  data-bs-dismiss="modal">Save</button>
+            <button type="submit" class="btn btn-primary" id="editPwdButton">Save</button>
           </div>
           </form>
       </div>
@@ -1407,7 +1420,7 @@ const createProfileCompany = (user) => `
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" id="delete-this-job" data-bs-dismiss="modal">Save</button>
+            <button type="submit" class="btn btn-primary" id="editSaveButton">Save</button>
           </div>
           </form>
       </div>

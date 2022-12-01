@@ -13,21 +13,31 @@ import {
 const ForumsPage = {
   async render() {
     const getToken = localStorage.getItem('token');
-    console.log(getToken);
+    const getRole = localStorage.getItem('role').replaceAll('"', '');
     if (getToken === null) {
       document.location = '#/login';
       localStorage.setItem('login', 'false');
       window.reload();
+    } else if (getToken !== null && getRole === 'Company') {
+      window.location.href();
+      localStorage.setItem('login', 'true');
+    } else if (getToken !== null && getRole === 'Programmer') {
+      document.location = '#/forums';
+      localStorage.setItem('login', 'true');
+    } else {
+      document.location = '/';
+      localStorage.clear();
+      window.reload();
     }
 
     return `
-      <div class="d-flex">
+      <div class="d-flex container-forum">
         <div class="filterList">
           <div class="filterListSkeleton">
             ${createFilterListTemplateSkeleton()}
           </div>
         </div>
-        <div class="container-fluid forum">
+        <div class="container-fluid">
           <div class="d-flex">
             <button id="filter" aria-label="filter list button" class="btn p-0 mb-2 me-1">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 26px;">
@@ -53,7 +63,7 @@ const ForumsPage = {
   async afterRender() {
     const discussions = await DiscussionSource.getAllDiscussion();
     const searchBarDiscussion = document.querySelector('#searchBarDiscussion');
-    searchBarDiscussion.innerHTML = '<search-discussion class="w-100"></search-discussion>';
+    searchBarDiscussion.innerHTML = '<search-discussion></search-discussion>';
     console.log(discussions);
     const content = document.querySelector('.list');
     content.innerHTML = '<discussion-list></discussion-list>';

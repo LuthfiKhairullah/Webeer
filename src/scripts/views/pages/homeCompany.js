@@ -1,5 +1,22 @@
 const HomeCompany = {
   async render() {
+    const getToken = localStorage.getItem('token');
+    const getRole = localStorage.getItem('role').replaceAll('"', '');
+    if (getToken === null) {
+      document.location = '#/login';
+      localStorage.setItem('login', 'false');
+      window.reload();
+    } else if (getToken !== null && getRole === 'Company') {
+      document.location = '#/dashboard';
+      localStorage.setItem('login', 'true');
+    } else if (getToken !== null && getRole === 'Programmer') {
+      window.location.href();
+      localStorage.setItem('login', 'true');
+    } else {
+      document.location = '/';
+      localStorage.clear();
+      window.reload();
+    }
     return `
     <div class="container-dashboard-company">
     <div class="main-content-company">
@@ -9,7 +26,7 @@ const HomeCompany = {
     <div id="content-text-dashboard">
      <h1 class="fw-bold text-light">Welcome to Webeer</h1>
      <p class="text-light fw-semibold fs-5">Hire skilled programmers, the best of them,people will be interested in reading the job posting content page</p>
-     <a class="btn btn-light fw-bold" style="border-radius:25px;"> Post a Job now </a>
+     <a href="#/addjobs" class="btn btn-light fw-bold" style="border-radius:25px;"> Post a Job now </a>
      </div>
     </div>
         <div class="image-container">

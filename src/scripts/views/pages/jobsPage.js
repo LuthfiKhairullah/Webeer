@@ -8,10 +8,20 @@ import JobSource from '../../data/jobSource';
 const jobsPage = {
   async render() {
     const getToken = localStorage.getItem('token');
-    console.log(getToken);
+    const getRole = localStorage.getItem('role').replaceAll('"', '');
     if (getToken === null) {
       document.location = '#/login';
       localStorage.setItem('login', 'false');
+      window.reload();
+    } else if (getToken !== null && getRole === 'Company') {
+      window.location.href();
+      localStorage.setItem('login', 'true');
+    } else if (getToken !== null && getRole === 'Programmer') {
+      document.location = '#/jobs';
+      localStorage.setItem('login', 'true');
+    } else {
+      document.location = '/';
+      localStorage.clear();
       window.reload();
     }
     return `

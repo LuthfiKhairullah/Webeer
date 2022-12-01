@@ -6,6 +6,23 @@ import { createCardJobCompany, createFormEditJob } from '../templates/template-c
 
 const listJobPage = {
   async render() {
+    const getToken = localStorage.getItem('token');
+    const getRole = localStorage.getItem('role').replaceAll('"', '');
+    if (getToken === null) {
+      document.location = '#/login';
+      localStorage.setItem('login', 'false');
+      window.reload();
+    } else if (getToken !== null && getRole === 'Company') {
+      document.location = '#/list';
+      localStorage.setItem('login', 'true');
+    } else if (getToken !== null && getRole === 'Programmer') {
+      window.location.href();
+      localStorage.setItem('login', 'true');
+    } else {
+      document.location = '/';
+      localStorage.clear();
+      window.reload();
+    }
     return `
     <div class="container-company"></div>
     <message-container></message-container>
@@ -48,7 +65,7 @@ const listJobPage = {
             messageTitle.innerHTML = 'SUCCESS';
             message.show();
 
-            setTimeout(() => document.location = '#/list', 1000);
+            setTimeout(() => document.location.reload(), 1000);
           }
         });
       });
@@ -66,8 +83,10 @@ const listJobPage = {
         const time = document.querySelector('#time-job');
         const place = document.querySelector('#place-job');
         const editJobButton = document.querySelector('#editJobButton');
+        const editModalContainer = document.querySelector('#exampleModal');
         formEdit.addEventListener('submit', async (event) => {
           event.preventDefault();
+          editModalContainer.classList.add('cursor-progress');
           const getLevel = level.value;
           const getTime = time.value;
           const getPlace = place.value;
@@ -87,7 +106,7 @@ const listJobPage = {
            || inputDescriptionProfession.value === ''
            || inputSalary.value === ''
            || inputSalary2.value === ''
-           || inputLink.value === 'https://'
+           || inputLink.value === ''
            || inputQualification.value === ''
           ) {
             if (inputCompany.value === '') {
@@ -114,10 +133,11 @@ const listJobPage = {
             } else if (inputQualification.value === '') {
               messageText.innerHTML = 'Qualification can\'t null';
               inputQualification.focus();
-            } else if (inputLink.value === 'https://') {
+            } else if (inputLink.value === '') {
               messageText.innerHTML = 'Company links can\'t null';
               inputLink.focus();
             }
+            editModalContainer.classList.remove('cursor-progress');
             messageText.classList.remove('text-bg-success');
             messageTitle.classList.remove('text-success');
             messageText.classList.add('text-bg-warning');
@@ -142,6 +162,7 @@ const listJobPage = {
               image: document.querySelector('#image-job').files[0],
             });
             if (dataEdit.error) {
+              editModalContainer.classList.remove('cursor-progress');
               editJobButton.removeAttribute('disabled');
               messageText.classList.remove('text-bg-success');
               messageTitle.classList.remove('text-success');

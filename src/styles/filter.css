@@ -1,4 +1,4 @@
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 950px) {
     #filter {
         display: none;
     }
@@ -19,7 +19,7 @@
     }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 950px) {
 
     filter-list,
     .filterListSkeleton {

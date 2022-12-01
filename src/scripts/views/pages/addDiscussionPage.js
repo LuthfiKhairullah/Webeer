@@ -5,10 +5,20 @@ import { createAddDiscussionTemplateSkeleton, createFilterCategoryTemplate } fro
 const AddDiscussionPage = {
   async render() {
     const getToken = localStorage.getItem('token');
-    console.log(getToken);
+    const getRole = localStorage.getItem('role').replaceAll('"', '');
     if (getToken === null) {
       document.location = '#/login';
       localStorage.setItem('login', 'false');
+      window.reload();
+    } else if (getToken !== null && getRole === 'Company') {
+      window.location.href();
+      localStorage.setItem('login', 'true');
+    } else if (getToken !== null && getRole === 'Programmer') {
+      document.location = '#/adddiscussion';
+      localStorage.setItem('login', 'true');
+    } else {
+      document.location = '/';
+      localStorage.clear();
       window.reload();
     }
 
@@ -52,7 +62,7 @@ const AddDiscussionPage = {
       );
       const before_txt = myTextAreaValue.substring(0, myTextArea.selectionStart);
       const after_txt = myTextAreaValue.substring(myTextArea.selectionEnd, myTextAreaValue.length);
-      myTextArea.value = `${before_txt}\n ` + '~Enter Your Code is Here' + `\n ${selected_txt}\n` + 'Dont Delete this~' + `\n${after_txt}`;
+      myTextArea.value = `${before_txt}\n~Enter Your Code is Here\n${selected_txt}\nDont Delete this~\n${after_txt}`;
     });
     addDiscussionButton.addEventListener('submit', async (e) => {
       e.preventDefault();

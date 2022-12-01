@@ -4,10 +4,20 @@ import JobSource from '../../data/jobSource';
 const addJobPage = {
   async render() {
     const getToken = localStorage.getItem('token');
-    console.log(getToken);
+    const getRole = localStorage.getItem('role').replaceAll('"', '');
     if (getToken === null) {
       document.location = '#/login';
       localStorage.setItem('login', 'false');
+      window.reload();
+    } else if (getToken !== null && getRole === 'Company') {
+      document.location = '#/addjobs';
+      localStorage.setItem('login', 'true');
+    } else if (getToken !== null && getRole === 'Programmer') {
+      window.location.href();
+      localStorage.setItem('login', 'true');
+    } else {
+      document.location = '/';
+      localStorage.clear();
       window.reload();
     }
     return `
@@ -18,7 +28,7 @@ const addJobPage = {
             <div class="mb-3 row">
                 <label for="exampleInputEmail1" class="col-form-label"><small>Company name</small></label>
                 <div class="col-sm-6">
-                <input type="text" class="form-control  form-control-md" id="company-job" placeholder="Enter your company name" >
+                <input type="text" class="form-control  form-control-md" id="company-job" placeholder="Enter your company name" autofocus>
                 </div>
             </div>
             <div class="mb-3 row">
@@ -97,7 +107,7 @@ const addJobPage = {
                 <input type="file" class="form-control  form-control-md" id="image-job" >
                 </div>
              </div>
-           <button class="btn btn-primary"> Submit </button>
+           <button class="btn btn-primary" id="submitJobButton"> Submit </button>
         </form>
     </div>
     </div>
@@ -114,9 +124,12 @@ const addJobPage = {
     const level = document.querySelector('#level-job');
     const time = document.querySelector('#time-job');
     const place = document.querySelector('#place-job');
+    const companyContainer = document.querySelector('.container-company');
+    const submitJobButton = document.querySelector('#submitJobButton');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-
+      submitJobButton.setAttribute('disabled', '');
+      companyContainer.classList.add('cursor-progress');
       const getLevel = level.value;
       const getTime = time.value;
       const getPlace = place.value;
@@ -129,7 +142,7 @@ const addJobPage = {
       const inputSalary2 = document.querySelector('#salary-job2');
       const inputLink = document.querySelector('#link-job');
       const inputQualification = document.querySelector('#qualification-job');
-      const inputImage = document.querySelector('#image-job').files[0];
+      const inputImage = document.querySelector('#image-job');
       if (inputCompany.value === ''
            || inputProfession.value === ''
            || inputAddress.value === ''
@@ -139,7 +152,7 @@ const addJobPage = {
            || inputSalary2.value === ''
            || inputLink.value === ''
            || inputQualification.value === ''
-           || inputImage === undefined
+           || inputImage.files[0] === undefined
       ) {
         if (inputCompany.value === '') {
           messageText.innerHTML = 'Company name can\'t null';
@@ -166,17 +179,19 @@ const addJobPage = {
           messageText.innerHTML = 'Qualification can\'t null';
           inputQualification.focus();
         } else if (inputLink.value === '') {
-          messageText.innerHTML = 'Company logo can\'t null';
+          messageText.innerHTML = 'Company links can\'t null';
           inputLink.focus();
-        } else if (inputImage === undefined) {
-          messageText.innerHTML = 'Image can\'t null';
+        } else if (inputImage.files[0] === undefined) {
+          messageText.innerHTML = 'Company logo can\'t null';
           inputImage.focus();
         }
+        submitJobButton.removeAttribute('disabled');
+        companyContainer.classList.remove('cursor-progress');
         messageText.classList.remove('text-bg-success');
         messageTitle.classList.remove('text-success');
         messageText.classList.add('text-bg-warning');
         messageTitle.classList.add('text-warning');
-        messageTitle.innerHTML = 'SUCCESS';
+        messageTitle.innerHTML = 'WARNING';
         message.show();
       } else {
         const data = await JobSource.addJobs({
@@ -211,6 +226,7 @@ const addJobPage = {
           messageText.innerHTML = data.data.message;
           messageTitle.innerHTML = 'SUCCESS';
           message.show();
+          setTimeout(() => document.location.reload(), 2000);
         }
       }
     });
