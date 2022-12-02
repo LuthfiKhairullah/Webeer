@@ -3,7 +3,7 @@
     justify-content: center;
 }
 .container-login-main {
-    max-width: 800px;
+    max-width: 1200px;
     margin-top: 70px;
     display: flex;
     background-color: white;
@@ -14,7 +14,10 @@
 }
 #form-login {
     padding: 15px;
-    text-align: center;
+    text-align: center; 
+}
+#form-login input[type=email] , input[type=password], input[type=text]{
+    font-size: 13px;
 }
 #form-login p {
     font-size: 12px;
@@ -35,7 +38,7 @@
     justify-content: center;
 }
 .container-login-main img{
-    width: 400px;
+    width: 350px;
 }
 #submit {
     margin-top: 15px;

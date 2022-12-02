@@ -43,8 +43,9 @@
 }
 .item-jobs {
     width: 500px;
-    height: 600px;
+    height: 700px;
     overflow-y: auto;
+    border-right: 1px solid black;
 }
 
 .scroll-item::-webkit-scrollbar {
@@ -66,8 +67,8 @@
 
 
 .detail-jobs {
-    width: 800px;
-    height: 600px;
+    width: 1200px;
+    height: 700px;
     background-color: white;
     overflow-y: auto;
 }

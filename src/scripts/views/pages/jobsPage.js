@@ -55,29 +55,36 @@ const jobsPage = {
     search.addEventListener('submit', async (event) => {
       event.preventDefault();
       const getInputSearch = inputSearch.value;
-      const getSearch = await JobSource.getJobsSearch(getInputSearch);
-      jobItemContainer.innerHTML = '';
-      console.log(getSearch.data.data.length);
-      if (getSearch.data.data.length > 0) {
-        getSearch.data.data.forEach((jobs) => {
-          jobItemContainer.innerHTML += createItemJob(jobs);
-          const btn = document.querySelectorAll('.btn-detail');
-          console.log(btn);
-          for (let i = 0; i < btn.length; i++) {
-            btn[i].addEventListener('click', async () => {
-              event.preventDefault();
-              const getBtnValue = btn[i].value;
-              const detail = await JobSource.getJobsDetail(getBtnValue);
-              const jobDetailContainer = document.querySelector('#detail');
-              jobDetailContainer.innerHTML = createDetailJob(detail.data.data);
-            });
-          }
-        });
+      if (getInputSearch.length > 0) {
+        const getSearch = await JobSource.getJobsSearch(getInputSearch);
+        jobItemContainer.innerHTML = '';
+        console.log(getSearch.data.data.length);
+        if (getSearch.data.data.length > 0) {
+          getSearch.data.data.forEach((jobs) => {
+            jobItemContainer.innerHTML += createItemJob(jobs);
+            const btn = document.querySelectorAll('.btn-detail');
+            console.log(btn);
+            for (let i = 0; i < btn.length; i++) {
+              btn[i].addEventListener('click', async () => {
+                event.preventDefault();
+                const getBtnValue = btn[i].value;
+                const detail = await JobSource.getJobsDetail(getBtnValue);
+                const jobDetailContainer = document.querySelector('#detail');
+                jobDetailContainer.innerHTML = createDetailJob(detail.data.data);
+              });
+            }
+          });
+        } else {
+          jobItemContainer.innerHTML = `<div class = "card-item text-center">
+          <i class="fa fa-exclamation-triangle fa-4x my-5 text-secondary" aria-hidden="true"></i>
+          <p class="fw-bold fs-6 text-secondary"> Not Found </p>
+          </div>`;
+        }
       } else {
-        jobItemContainer.innerHTML = `<div class = "card-item text-center">
-        <i class="fa fa-exclamation-triangle fa-4x my-5 text-secondary" aria-hidden="true"></i>
-        <p class="fw-bold fs-6 text-secondary"> Not Found </p>
-        </div>`;
+        jobItemContainer.innerHTML = '';
+        job.data.data.forEach((jobs) => {
+          jobItemContainer.innerHTML += createItemJob(jobs);
+        });
       }
     });
     // Detail Click

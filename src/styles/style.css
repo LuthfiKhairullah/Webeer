@@ -19,7 +19,9 @@ html {
 main {
     background-color: #607EAA;
 }
-
+.active{
+    font-weight: bolder;
+}
 .navbar {
     position: fixed;
     background-color: #1C3879;

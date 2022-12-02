@@ -5,7 +5,7 @@ const Login = {
   async render() {
     return `
     <modal-not-login></modal-not-login>
-       <div id="container-login">
+       <div id="container-login" style="text-align:center;">
         <div class ="container-login-main" id="card-login">
           <div>
             <img class="lazyload" src="./asset/hero-login.png">
@@ -17,20 +17,21 @@ const Login = {
             <div class="input-group mb-3" style="border-bottom:1px solid black;">
               <span class="input-group-text" style="background-color:transparent; border:none;"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
               <div class="form-floating">
-                <input style="border:none;" type="email" class="form-control" id="emailUser" placeholder="Enter your email" required>
+                <input style="border:none;" type="email" class="form-control form-control-lg" id="emailUser" placeholder="Enter your email" required>
                 <label for="emailUser">Email Address</label>
               </div>
             </div>
             <div class="input-group mb-3" style="border-bottom:1px solid black;">
               <span class="input-group-text" style="background-color:transparent; border:none;"><i class="fa fa-lock" aria-hidden="true"></i></span>
                   <div class="form-floating">
-                    <input style="border:none;" type="password" class="form-control" id="pwdUser" placeholder="Enter your password">
+                    <input style="border:none;" type="password" class="form-control form-control-lg" id="pwdUser" placeholder="Enter your password">
                     <label for="pwdUser">Password</label>
                   </div>
             </div>
-            <p>You don't have an account yet? <span> <button class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Forget Password</button> </span> </p>
                 <button type="submit" class="btn btn-primary mb-3">Login</button>
           </form>
+          <p class="text-muted" style="font-size:15px;">You forgot password?</p> 
+          <button class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Forget Password</button>
         </div>
       </div>
     </div>
@@ -40,15 +41,21 @@ const Login = {
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title fw-bold" id="exampleModalLabel">FORGET PASSWORD</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="reset-password-user">
-        <input type="email" id="email-reset-password"> 
+      <form id="reset-password-user">
+      <div class="input-group mb-3" style="border:1px solid black">
+          <span class="input-group-text" style="background-color:transparent; border:none;"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+            <div class="form-floating">
+              <input style="border:none;" type="email" class="form-control form-control-lg" id="email-reset-password" placeholder="Enter your email" required>
+            <label for="emailUser">Email Address</label>
+            </div>
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </div>
         </form>
       </div>
@@ -67,7 +74,7 @@ const Login = {
     const messageContainer = document.getElementById('liveToast');
     const message = new Toast(messageContainer);
 
-    // FORM LOGIN
+    // FORM LOGIN"
     formLogin.addEventListener('submit', async (event) => {
       const loginContainer = document.querySelector('#container-login');
       loginContainer.classList.add('cursor-progress');

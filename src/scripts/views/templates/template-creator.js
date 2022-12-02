@@ -71,10 +71,10 @@ const createDetailJobPageTemplate = (jobs) => `
 const createItemJob = (jobs) => `
 <div class = "card-item">
 <img src="${jobs.image}" class="card-image lazyload">
-<h6 class="fw-bold">${jobs.company}</h6>
-<h6>${jobs.profession}</h6>
-<p>${showFormattedDate(jobs.createdAt)}</p>
-<p class="fw-bold">${jobs.address}</p>
+<h6 class="fw-bold fs-5">${jobs.company}</h6>
+<h6 class="fs-5">${jobs.profession}</h6>
+<p class="text-muted fs-6 fst-italic">${showFormattedDate(jobs.createdAt)}</p>
+<p class="text-muted fs-6 fst-italic">${jobs.address}</p>
 <button value=${jobs._id} class="btn btn-primary fw-bold btn-detail btn-sm" id="btnDetailJob">LIHAT</button>
 <a class="btn btn-primary" id="btnDetailOpen" href="#/detailjob/${jobs._id}" target="_blank">Visit</a>
 </div>
@@ -87,39 +87,37 @@ const createDetailJob = (detail) => `
       <img class="lazyload" src="${detail.image}">
     </div>
     <div class="title-detail">
-      <h4>${detail.company}</h4>
-      <p>${detail.address}</p>
-      <p>${showFormattedDate(detail.createdAt)}</p>
+      <h4 class="fw-bold">${detail.company}</h4>
+      <p class="text-muted fst-italic">${detail.address}</p>
+      <p class="text-muted">${showFormattedDate(detail.createdAt)}</p>
+      <a href="#/profilecompany/${detail.companyid}" class="btn btn-secondary btn-sm">Profile Company</a>
     </div>
   </div>
   <div class="description-detail">
-  <h6>Information</h6>
-  <p>${detail.details.descriptionCompany.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+  <h6 class="fw-bold fs-6">Information</h6>
+  <p class="fs-6">${detail.details.descriptionCompany.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
     <div class="work-detail">
       <div class="work-1">
-        <p class="fw-bold">Salary</p>
-        <p>${detail.details.salary}</p>
-        <p class="fw-bold">Level</p>
-        <p>${detail.details.level}</p>
+        <p class="fw-bold fs-6"> Salary</p>
+        <p class="fs-6"><i class="fa fa-usd" aria-hidden="true"></i> ${detail.details.salary} - ${detail.details.salary2} </p>
+        <p class="fw-bold fs-6 ">Level</p>
+        <p class="fs-6"><i class="fa fa-users" aria-hidden="true"></i> ${detail.details.level}</p>
       </div>
       <div class="work-2">
-        <p class="fw-bold">Work from</p>
-        <p>${detail.details.workplace}</p>
-        <p class="fw-bold">Time</p>
-        <p>${detail.details.timeWork}</p>
+        <p class="fw-bold fs-6">Work from</p>
+        <p class="fs-6"><i class="fa fa-briefcase" aria-hidden="true"></i> ${detail.details.workplace}</p>
+        <p class="fw-bold fs-6">Time</p>
+        <p class="fs-6"><i class="fa fa-clock-o" aria-hidden="true"></i> ${detail.details.timeWork}</p>
       </div>
     </div>
   </div>
   <div class="kualifikasi-detail">
-  <p>Job Description</p>
-  <p>${detail.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}}</p>
-  <h6>Requirement</h6>
-  <p>${detail.details.qualification.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+  <p class="fw-bold fs-6">Profession Description</p>
+  <p class="fs-6">${detail.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}}</p>
+  <h6 class="fs-6">Requirement</h6>
+  <p class="fs-6">${detail.details.qualification.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
   </div>
-  <div class="footer-detail">
   <a href="${detail.details.link}"><button type="button" class="detail-link btn btn-primary btn-sm">Apply</button></a>
-  <a href="#/profilecompany/${detail.companyid}" class="btn btn-danger">Profile Company</a>
-  </div>
 </div>
 `;
 
@@ -1137,7 +1135,7 @@ const createNavbarTemplateAfterLogin = () => `
   <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link text-light " aria-current="page" href="#/profile">Profile</a>
+        <a class="nav-link text-light" aria-current="page" href="#/profile">Profile</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-light " aria-current="page" href="#/forums">Forums</a>
@@ -1231,13 +1229,13 @@ const createSidebarCompany = () => `
 </button>
 <ul class="nav nav-pills flex-column mb-auto">
   <li class="nav-item">
-    <a href="#/dashboard" class="nav-link active" aria-current="page">
+    <a href="#/dashboard" class="nav-link text-white" aria-current="page">
     <i class="fa fa-home" aria-hidden="true"></i>
       <span class="nav-text">Home</span>
     </a>
   </li>
   <li>
-    <a href="#/list" class="nav-link text-white">
+    <a href="#/list" class="nav-link text-white ">
     <i class="fa fa-list" aria-hidden="true"></i>
       <span class="nav-text">Dashboard</span>
     </a>
