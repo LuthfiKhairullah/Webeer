@@ -11,6 +11,13 @@ body {
   background: linear-gradient(to left, #B2C4F1, #fff);
 }
 
+#home {
+  font-family: Poppins, "sans-serif";
+  background: linear-gradient(to left, #B2C4F1, #fff);
+  justify-content: center;
+  max-width: 100%;
+}
+
 .navbar {
   background: linear-gradient(to left, #B2C4F1, #fff);
 }
@@ -41,6 +48,10 @@ section.home {
   grid-template-rows: 1fr;
   background: linear-gradient(to left, #B2C4F1, #fff);
   margin-top: -55px;
+}
+
+.section-text {
+  flex-grow: 1;
 }
 
 h4.welcome-text {

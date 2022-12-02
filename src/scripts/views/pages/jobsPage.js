@@ -33,8 +33,8 @@ const jobsPage = {
                 </div>
                 <div class="detail-jobs" id="detail">
                     <div class="card">
-                        <img class="lazyload" src="./asset/hero-jobsDetail.png">
-                        <p> Temukan pekerjaan sesuai dengan passion kamu </p>
+                        <img class="lazyload hero-job" src="./asset/hero-jobsDetail.png">
+                        <p class="fw-bold text-muted"> Find a job according to your passion </p>
                     </div>
                 </div>
             </div>
@@ -42,65 +42,53 @@ const jobsPage = {
         `;
   },
   async afterRender() {
+    // Get data from API
     const job = await JobSource.getJobs();
     const jobItemContainer = document.querySelector('.item-jobs');
     jobItemContainer.innerHTML = '';
     job.data.data.forEach((jobs) => {
       jobItemContainer.innerHTML += createItemJob(jobs);
     });
-    console.log(job.data.data);
+    // Search
     const search = document.querySelector('.searchBar');
     const inputSearch = document.querySelector('#searchInput');
     search.addEventListener('submit', async (event) => {
       event.preventDefault();
       const getInputSearch = inputSearch.value;
       const getSearch = await JobSource.getJobsSearch(getInputSearch);
-      console.log(getSearch);
       jobItemContainer.innerHTML = '';
-      getSearch.data.data.forEach((jobs) => {
-        jobItemContainer.innerHTML += createItemJob(jobs);
-        const btn = document.querySelectorAll('.btn-detail');
-        console.log(btn);
-        for (let i = 0; i < btn.length; i++) {
-          // eslint-disable-next-line no-loop-func
-          btn[i].addEventListener('click', async () => {
-            event.preventDefault();
-            const test = btn[i].value;
-            console.log(test);
-            const detail = await JobSource.getJobsDetail(test);
-            console.log(detail);
-            const jobDetailContainer = document.querySelector('#detail');
-            jobDetailContainer.innerHTML = createDetailJob(detail.data.data);
-            const coba = document.querySelector('.test');
-            detail.data.data.details.qualification.forEach((item) => {
-              const li = document.createElement('li');
-              li.innerText = item;
-              coba.appendChild(li);
+      console.log(getSearch.data.data.length);
+      if (getSearch.data.data.length > 0) {
+        getSearch.data.data.forEach((jobs) => {
+          jobItemContainer.innerHTML += createItemJob(jobs);
+          const btn = document.querySelectorAll('.btn-detail');
+          console.log(btn);
+          for (let i = 0; i < btn.length; i++) {
+            btn[i].addEventListener('click', async () => {
+              event.preventDefault();
+              const getBtnValue = btn[i].value;
+              const detail = await JobSource.getJobsDetail(getBtnValue);
+              const jobDetailContainer = document.querySelector('#detail');
+              jobDetailContainer.innerHTML = createDetailJob(detail.data.data);
             });
-          });
-        }
-      });
+          }
+        });
+      } else {
+        jobItemContainer.innerHTML = `<div class = "card-item text-center">
+        <i class="fa fa-exclamation-triangle fa-4x my-5 text-secondary" aria-hidden="true"></i>
+        <p class="fw-bold fs-6 text-secondary"> Not Found </p>
+        </div>`;
+      }
     });
-
+    // Detail Click
     const btn = document.querySelectorAll('.btn-detail');
-    console.log(btn);
     for (let i = 0; i < btn.length; i++) {
-      // eslint-disable-next-line no-loop-func
       btn[i].addEventListener('click', async (event) => {
         event.preventDefault();
-        const test = btn[i].value;
-        console.log(test);
-        const detail = await JobSource.getJobsDetail(test);
-        console.log(detail);
+        const getBtnValue = btn[i].value;
+        const detail = await JobSource.getJobsDetail(getBtnValue);
         const jobDetailContainer = document.querySelector('#detail');
         jobDetailContainer.innerHTML = createDetailJob(detail.data.data);
-        const coba = document.querySelector('.test');
-        console.log('rest', new Date(detail.data.data.createdAt).getTime());
-        detail.data.data.details.qualification.forEach((item) => {
-          const li = document.createElement('li');
-          li.innerText = item;
-          coba.appendChild(li);
-        });
       });
     }
   },

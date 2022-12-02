@@ -124,7 +124,8 @@ class User {
   }
 
   static async Edit(_id, {
-    username, email, contact, profesi, bio, country, image,
+    username, email, contact, profesi, bio, country, image, address, website, employee,
+    employee2, industry, founded, specialities,
   }) {
     try {
       const jwt = localStorage.getItem('token').replaceAll('"', '');
@@ -142,6 +143,13 @@ class User {
           profesi,
           bio,
           country,
+          address,
+          website,
+          employee,
+          employee2,
+          industry,
+          founded,
+          specialities,
           image,
         },
       });
@@ -188,6 +196,27 @@ class User {
         },
         data: {
           oldPassword,
+          newPassword,
+          confirmPassword,
+        },
+      });
+      if (response.status !== 200) {
+        throw new Error(response.data.message);
+      }
+      return response.data;
+    } catch (err) {
+      return { error: err.response.data.message || err.message };
+    }
+  }
+
+  static async ForgetPwd(id, {
+    newPassword, confirmPassword,
+  }) {
+    try {
+      const response = await axios({
+        url: `${API_ENDPOINT.USER_FORGETPWD(id)}`,
+        method: 'PUT',
+        data: {
           newPassword,
           confirmPassword,
         },

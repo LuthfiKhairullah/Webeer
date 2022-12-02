@@ -1,35 +1,31 @@
 const HomePage = {
   async render() {
     return `
+          <h2>HomePage</h2>
+          <div class="asd"></div>
       <!-- Jumbotron -->
-      <section class="home">
+      <div class="d-flex flex-wrap" id="home">
         <div class="section-text">
-          <h4 class="welcome-text">
-            Selamat Datang di Webeer!
-          </h4>
-          <h1 class="title">
-            Platform  Diskusi
-            <br>Web Developer Indonesia
-          </h1>
-          <p class="title-desc">
-            Gabung untuk saling berinteraksi dengan 
-            <br>sesama web developer di Indonesia
-          </p>
-          <button class="register-btn btn btn-primary"> 
-          <a class="nav-link" href="#/register">Register</a></button>
-          <button class="login-btn">
-          <a class="nav-link" href="#/login">Login</a></button>
+          <h4 class="welcome-text">Welcome to Webeer!</h4>
+          <h1 class="title">Discussion Platform<br>Indonesian Web Developer</h1>
+          <p class="title-desc">Join to interact with each other<br>fellow web developers in Indonesia</p>
+          <div class="d-flex flex-wrap" style="width:500px;">
+            <button class="register-btn btn btn-primary"> 
+            <a class="nav-link" href="#/register">Register</a></button>
+            <button class="login-btn">
+            <a class="nav-link" href="#/login">Login</a></button>
+          </div>
         </div>
 
         <div class="hero-img">
           <img src="image/hero-img.png" alt="hero-img">
           <div class="hero-icon">
-          <img src="image/icon1.png" id="icon1" alt="icon1">
-          <img src="image/icon2.png" alt="icon2" id="icon2">
-          <img src="image/icon3.png" alt="icon3" id="icon3">
-        </div>
+            <img src="image/icon1.png" id="icon1" alt="icon1">
+            <img src="image/icon2.png" alt="icon2" id="icon2">
+            <img src="image/icon3.png" alt="icon3" id="icon3">
+          </div>
       </div>
-      </section>
+      </div>
 
       <!-- About -->
 
@@ -40,10 +36,10 @@ const HomePage = {
       </div>
 
       <div class="about-text">
-        <h2>Mengapa harus Webeer?</h2>
-        <p>Webeer adalah website yang dirancang untuk para 
-          Web Developer Indonesia untuk dapat saling berinteraksi
-          dan juga mencari lowongan pekerjaan.</p>
+        <h2>Why does it have to be Webeer?</h2>
+        <p>Webeer is a website designed for
+        Web Developer Indonesia to be able to interact with each other
+        and also looking for jobs.</p>
       </div>
 
 

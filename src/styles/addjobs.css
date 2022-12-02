@@ -18,3 +18,12 @@ background-color: white;
 .container-add-job select{
     border-radius: 15px;
 }
+.container-company-add{
+    width: 100%;
+    margin-left: 200px;
+}
+@media screen and(max-width:800px) {
+    .container-company-add{
+        margin-left: 80px;
+    }
+}

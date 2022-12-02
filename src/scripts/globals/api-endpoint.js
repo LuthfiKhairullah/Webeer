@@ -26,5 +26,6 @@ const API_ENDPOINT = {
   USER_DETAIL: (_id) => `${CONFIG.BASE_URL}/users/${_id}`,
   USER_DISCUSSION_DETAIL: (_id) => `${CONFIG.BASE_URL}/discussions/user/${_id}`,
   USER_CHANGEPWD: (_id) => `${CONFIG.BASE_URL}/users/changepwd/${_id}`,
+  USER_FORGETPWD: (id) => `${CONFIG.BASE_URL}/users/newPwd/${id}`,
 };
 export default API_ENDPOINT;

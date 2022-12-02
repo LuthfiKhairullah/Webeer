@@ -13,8 +13,15 @@ const DetailJobsSkeleton = (count) => {
   for (let i = 0; i < count; i += 1) {
     template += `
     <div class="placeholder-glow">
-      <div class="card-item placeholder">
-      </div>
+    <div class = "card-item">
+    <img class="card-image placeholder skeleton my-1" style="width:150px; height:130px;">
+    <h6 class="fw-bold"><span class="placeholder">Lorem ipsum dolor sit amet consectetur adipisicing elit.Fuga optio</span></h6>
+    <h6><span class="placeholder">Lorem ipsum dolor sit amet consectetur adipisicing elit/span></h6>
+    <p><span class="placeholder">Lorem ipsum dolor sit amet</span></p>
+    <p class="fw-bold"><span class="placeholder">Lorem ipsum dolor sit amet consectetur</span></p>
+    <button class="btn fw-bold btn-detail  placeholder my-1" id="btnDetailJob"><span class="placeholder">Lorem ipsum </span></button>
+    <a id="btnDetailOpen"><span class="btn placeholder ">Lorem ipsum </span></a>
+    </div>
     </div>`;
   }
   return template;
@@ -23,7 +30,7 @@ const createDetailJobPageTemplate = (jobs) => `
 <div class="container-detail-jobspage">
   <div class="header-detailjob">
   <div class="d-flex" style="align-items:center;">
-  <img src="${jobs.image}" class="image-detailjob">
+  <img src="${jobs.image}" class="lazyload image-detailjob">
       <div class="company-detailjob">
         <h5 class="fw-bold fs-4">${jobs.company}</h5>
         <h6 class="fw-bold fs-5">${jobs.profession}</h6>
@@ -32,12 +39,12 @@ const createDetailJobPageTemplate = (jobs) => `
       </div>
     </div>
   <p class="fw-bold"> Description Company </p>
-  <p style="text-align:justify;">${jobs.details.descriptionCompany}</p>
+  <p style="text-align:justify;">${jobs.details.descriptionCompany.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
   </div>
 <div class="content-detailjob">
 <div class="description-detailjob">
 <p class="fw-bold"> Description Position </p>
-<p>${jobs.details.descriptionProfession}</p>
+<p>${jobs.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
 </div>
 <div class="work-detail">
       <div class="work-1">
@@ -56,6 +63,7 @@ const createDetailJobPageTemplate = (jobs) => `
 <p class="fw-bold my-3"> Requirement :</p>
 <p class="mx-3">${jobs.details.qualification.replace(/\n/g, '<br />')}</p>
 <a href="${jobs.details.link}" class="btn btn-danger">Apply</a>
+<a href="#/profilecompany/${jobs.companyid}" class="btn btn-danger">Profile Company</a>
 </div>
 </div>
 </div>
@@ -86,7 +94,7 @@ const createDetailJob = (detail) => `
   </div>
   <div class="description-detail">
   <h6>Information</h6>
-  <p>${detail.details.descriptionCompany}</p>
+  <p>${detail.details.descriptionCompany.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
     <div class="work-detail">
       <div class="work-1">
         <p class="fw-bold">Salary</p>
@@ -103,16 +111,63 @@ const createDetailJob = (detail) => `
     </div>
   </div>
   <div class="kualifikasi-detail">
-    <h6>Requirement</h6>
-    <p>${detail.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}}</p>
-    <ul class="test"><ul>
+  <p>Job Description</p>
+  <p>${detail.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}}</p>
+  <h6>Requirement</h6>
+  <p>${detail.details.qualification.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
   </div>
   <div class="footer-detail">
   <a href="${detail.details.link}"><button type="button" class="detail-link btn btn-primary btn-sm">Apply</button></a>
+  <a href="#/profilecompany/${detail.companyid}" class="btn btn-danger">Profile Company</a>
   </div>
 </div>
 `;
 
+const createDetailJobPageSkeleton = () => `
+<div class="container-detail-jobspage placeholder-glow">
+  <div class="header-detailjob">
+  <div class="d-flex" style="align-items:center;">
+  <img class="image-detailjob placeholder" >
+      <div class="company-detailjob">
+        <h5 class="fw-bold fs-4 "><span class="placeholder">Lorem ipsum dolor sit amet consectetur adipisicing</span></h5>
+        <h6 class="fw-bold fs-5 "><span class="placeholder">Lorem ipsum dolor</span> </h6>
+        <p class="fst-italic my-0"><span class="placeholder">Lorem ipsum dolor</span></p>
+        <p class="my-0 fs-10 "><span class="placeholder">Lorem ipsum dolor</span></p>
+      </div>
+    </div>
+  <p class="fw-bold"> <span class="placeholder">Lorem ipsum dolor</span> </p>
+  <p style="text-align:justify;" class="placeholder">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat hic suscipit vitae. Ea, iure dignissimos cum, consequuntur labore excepturi possimus est facere expedita placeat laborum nobis eius eos. Eveniet praesentium ducimus perferendis quasi molestias, soluta assumenda iure magni, officiis perspiciatis quod quidem non. Illum ab nemo magnam quis, ut, in laboriosam deleniti perspiciatis voluptatibus esse impedit ducimus placeat commodi dicta? Repellendus, inventore dolorem ex accusantium adipisci quasi? Mollitia veniam nihil esse blanditiis nesciunt in cum temporibus accusantium error officia obcaecati nam sint quaerat tempore, sequi odio, voluptatem sapiente aut, ab optio qui nemo? Vitae unde dolorum, maxime temporibus numquam delectus!</p>
+  </div>
+<div class="content-detailjob">
+<div class="description-detailjob">
+<p class="fw-bold"><span class="placeholder">Lorem ipsum dolor</span> </p>
+<p class="placeholder">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat hic suscipit vitae. Ea, iure dignissimos cum, consequuntur labore excepturi possimus est facere expedita placeat laborum nobis eius eos. Eveniet praesentium ducimus perferendis quasi molestias, soluta assumenda iure magni, officiis perspiciatis quod quidem non. Illum ab nemo magnam quis, ut, in laboriosam deleniti perspiciatis voluptatibus esse impedit ducimus placeat commodi dicta? Repellendus, inventore dolorem ex accusantium adipisci quasi? Mollitia veniam nihil esse blanditiis nesciunt in cum temporibus accusantium error officia obcaecati nam sint quaerat tempore, sequi odio, voluptatem sapiente aut, ab optio qui nemo? Vitae unde dolorum, maxime temporibus numquam delectus!</p>
+</div>
+<div class="work-detail">
+      <div class="work-1">
+        <p ><span class="placeholder">Lorem ipsum dolor</span></p>
+        <p ><span class="placeholder">Lorem ipsum dolor</span> - <span class="placeholder">Lorem ipsum dolor</span></p>
+        <p ><span class="placeholder">Lorem ipsum dolor</span></p>
+        <p ><span class="placeholder">Lorem ipsum dolor</span></p>
+      </div>
+      <div class="work-2">
+        <p><span class="placeholder">Lorem ipsum dolor</span></p>
+        <p><span class="placeholder">Lorem ipsum dolor</span></p>
+        <p><span class="placeholder">Lorem ipsum dolor</span></p>
+        <p><span class="placeholder">Lorem ipsum dolor</span></p>
+      </div>
+</div>
+<p class="fw-bold my-3"><span class="placeholder">Lorem ipsum dolor</span></p>
+<p class="mx-3"><span class="placeholder">Lorem ipsum dolor</span></p>
+<p class="mx-3"><span class="placeholder">Lorem ipsum dolor</span></p>
+<p class="mx-3"><span class="placeholder">Lorem ipsum dolor</span></p>
+<p class="mx-3"><span class="placeholder">Lorem ipsum dolor</span></p>
+
+<a class="btn placeholder">Apply</a>
+</div>
+</div>
+</div>
+`;
 const createDiscussionItemTemplateSkeleton = (count) => {
   let template = '';
 
@@ -645,7 +700,7 @@ const createProfileTemplate = (user) => {
         <p>${user.contact}</p>
         <p>${user.email}</p>
         <h6>About</h6>
-        <p>${user.bio}</p>
+        <p>${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
       </div>
       <div class="card activity">
         <h3>Your Activity </h3>
@@ -744,7 +799,7 @@ const createProfileOtherTemplate = (user) => {
         <p>${user.contact}</p>
         <p>${user.email}</p>
         <h6>About</h6>
-        <p>${user.bio}</p>
+        <p>${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
       </div>
       <div class="card activity">
         <h3>Your Activity </h3>
@@ -1258,37 +1313,37 @@ const createFormEditJob = (job) => `
 <h5>Job Vacancy Details</h5>
 <div class="mb-3 row">
   <label for="exampleInputEmail1" class="col-form-label"><small>Company name</small></label>
-  <div class="col-sm-6">
+  <div class="col">
     <input type="text" class="form-control  form-control-sm" id="company-job" value="${job.company}">
   </div>
 </div>
 <div class="mb-3 row">
   <label for="exampleInputEmail1" class="col-form-label"><small>Job position</small></label>
-  <div class="col-sm-6">
+  <div class="col">
     <input type="text" class="form-control  form-control-sm" id="profession-job" value="${job.profession}" >
   </div>
 </div>
 <div class="mb-3 row">
   <label for="exampleInputEmail1" class="col-form-label"><small>Company's addressn</small></label>
-  <div class="col-sm-6">
+  <div class="col">
     <input type="text" class="form-control  form-control-sm" id="address-job"  value="${job.address}">
   </div>
 </div>
 <div class="mb-3 row">
   <label for="exampleInputEmail1" class="col-form-label"><small>Company logo</small></label>
-    <div class="col-sm-6">
+    <div class="col">
       <input type="file" class="form-control  form-control-sm" id="image-job" >
     </div>
 </div>
 <div class="mb-3 row">
 <label for="exampleInputEmail1" class="col-form-label"><small>Company description</small></label>
-    <div class="col-sm-6">
+    <div class="col">
         <textarea class="form-control" id="description-job" rows="4">${job.details.descriptionCompany}</textarea>
     </div>
 </div>
 <div class="mb-3 row">
 <label for="exampleInputEmail1" class="col-form-label"><small>Job description</small></label>
- <div class="col-sm-6">
+ <div class="col">
      <textarea class="form-control" id="descriptionProfession-job" rows="4" >${job.details.descriptionProfession}</textarea>
  </div>
 </div>
@@ -1335,13 +1390,13 @@ const createFormEditJob = (job) => `
 </div>
 <div class="mb-3 row">
 <label for="exampleInputEmail1" class="col-form-label"><small>Qualification</small></label>
-<div class="col-sm-6">
+<div class="col">
     <textarea class="form-control" id="qualification-job" rows="4">${job.details.qualification}</textarea>
 </div>
 </div>
 <div class="mb-3 row">
 <label for="exampleInputEmail1" class="col-form-label"><small>Company Links</small></label>
-    <div class="col-sm-6">
+    <div class="col">
         <input type="text" class="form-control  form-control-sm" id="link-job" value="${job.details.link}" >
     </div>
 </div>
@@ -1354,18 +1409,66 @@ const createFormEditJob = (job) => `
 </div>
 `;
 
-const createProfileCompany = (user) => `
-<div class="card">
-  <div class="card-header">
-    <img src="${user.image}" class="card-img-top">
-  </div>
-  <div class="card-body">
-    <p>${user.username}</p>
-  </div>
-  <div class="card-footer">
+const createProfileCompany = (user) => {
+  if (user.bio === undefined) {
+    user.bio = '-';
+  }
+  if (user.specialities === undefined) {
+    user.specialities = '-';
+  }
+  if (user.address === undefined) {
+    user.address = '-';
+  }
+  if (user.industry === undefined) {
+    user.industry = '-';
+  }
+  if (user.bio === undefined) {
+    user.bio = '-';
+  }
+  if (user.employee === undefined) {
+    user.employee = '';
+  }
+  if (user.employee2 === undefined) {
+    user.employee2 = '';
+  }
+  if (user.founded === undefined) {
+    user.founded = '-';
+  }
+  if (user.website === undefined) {
+    user.website = '-';
+  }
+  return `
+<div class="container-profile-company">
+  <div class="header-profile-company">
+  <div class="square"></div>
+    <div class="content-header-profile-company">
+    <img src="${user.image}" class="img-profile-company">
+      <div class="profile-company">
+        <p class="fw-bolder fs-2 my-0">${user.username}</p>
+        <p class="text-muted my-0" style="font-size:12px;">${user.specialities} | ${user.address}</p>
+      </div>
+    </div>
+    </div>
+  <div class="body-profile-company">
+    <p class="fw-bold my-0"> Overview </p>
+    <p class="text-muted my-0">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+    <p class="fw-bold my-0">Industry</p>
+    <p class="text-muted my-0">${user.industry}</p>
+    <p class="fw-bold my-0">Company size</p>
+    <p class="text-muted my-0">${user.employee} - ${user.employee2} Employee</p>
+    <p class="fw-bold my-0"> Location </p>
+    <p class="text-muted my-0">${user.address}</p>
+    <p class="fw-bold my-0">Founded</p>
+    <p class="text-muted my-0">${user.founded}</p>
+    <p class="fw-bold my-0">Specialities</p>
+    <p class="text-muted my-0">${user.specialities}</p>
+    <p class="fw-bold my-0">Website</p>
+    <a class="text-primay my-0" href="${user.website}">${user.website}</a>
+    <div class="card-footer my-2">
     <button value="${user._id}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="btn-edit-company"> Change Profile </button>
     <button value="${user._id}" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btn-edit-pwd"> Change Password </button>
-  </div>
+    </div>
+    </div>
 </div>
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered">
@@ -1378,15 +1481,15 @@ const createProfileCompany = (user) => `
       <form id = "edit-password-company">
           <div class="mb-3 row">
             <label for="exampleInputEmail1" class="form-label">Old Password</label>
-            <div class="col-sm-6">
+            <div class="col">
               <input type="password" class="form-control  form-control-sm" id="old-password">
             </div>
             <label for="exampleInputEmail1" class="form-label">New Password</label>
-            <div class="col-sm-6">
+            <div class="col">
               <input type="password" class="form-control  form-control-sm" id="new-password">
             </div>
             <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
-            <div class="col-sm-6">
+            <div class="col">
               <input type="password" class="form-control  form-control-sm" id="confirm-password">
             </div>
           </div>
@@ -1400,7 +1503,7 @@ const createProfileCompany = (user) => `
 </div>
 </div>
 <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered">
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header bg-primary">
         <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PROFILE</h5>
@@ -1409,12 +1512,46 @@ const createProfileCompany = (user) => `
       <div class="modal-body">
       <form id = "edit-profile-company">
           <div class="mb-3 row">
-            <label for="exampleInputEmail1" class="form-label">Username</label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control  form-control-sm" id="edit-username">
+            <label for="exampleInputEmail1" class="form-label">Name Company</label>
+            <div class="col">
+              <input type="text" class="form-control  form-control-sm" id="edit-username" value="${user.username}">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">Address Company</label>
+            <div class="col">
+              <input type="text" class="form-control  form-control-sm" id="edit-address" value="${user.address}">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">About Company</label>
+            <div class="col">
+              <textarea class="form-control  form-control-sm" id="edit-about" rows="10">${user.bio}</textarea>
+            </div>
+            <label for="exampleInputEmail1" class="form-label">Employee Range</label>
+            <div class="mb-3 row">
+            <div class="col-sm-3">
+              <input type="text" class="form-control  form-control-sm" id="edit-employee"value="${user.employee}">
+              </div>
+              -
+              <div class="col-sm-3">
+              <input type="text" class="form-control  form-control-sm" id="edit-employee2"value="${user.employee2}">
+              </div>
+            </div>
+            <label for="exampleInputEmail1" class="form-label">Website</label>
+            <div class="col">
+              <input type="text" class="form-control  form-control-sm" id="edit-website"value="${user.website}">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">Industry</label>
+            <div class="col">
+              <input type="text" class="form-control  form-control-sm" id="edit-industry"value="${user.industry}">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">Founded</label>
+            <div class="col">
+              <input type="text" class="form-control  form-control-sm" id="edit-founded"value="${user.founded}">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">Specialities</label>
+            <div class="col">
+              <input type="text" class="form-control  form-control-sm" id="edit-specialities"value="${user.specialities}">
             </div>
             <label for="exampleInputEmail1" class="form-label">Company Logo</label>
-            <div class="col-sm-6">
+            <div class="col">
               <input type="file" class="form-control  form-control-sm" id="edit-logo-company">
             </div>
           </div>
@@ -1428,7 +1565,143 @@ const createProfileCompany = (user) => `
 </div>
 </div>
 `;
+};
+const createDetailCompanyTemplate = (company) => {
+  if (company.bio === undefined) {
+    company.bio = '-';
+  }
+  if (company.specialities === undefined) {
+    company.specialities = '-';
+  }
+  if (company.address === undefined) {
+    company.address = '-';
+  }
+  if (company.industry === undefined) {
+    company.industry = '-';
+  }
+  if (company.bio === undefined) {
+    company.bio = '-';
+  }
+  if (company.employee === undefined) {
+    company.employee = '';
+  }
+  if (company.employee2 === undefined) {
+    company.employee2 = '';
+  }
+  if (company.founded === undefined) {
+    company.founded = '-';
+  }
+  if (company.website === undefined) {
+    company.website = '-';
+  }
+  return `
+<div class="container-profile-company-other">
+  <div class="header-profile-company-other">
+  <div class="square"></div>
+    <div class="content-header-profile-company">
+    <img src="${company.image}" class="img-profile-company">
+      <div class="profile-company">
+        <p class="fw-bolder fs-2 ">${company.username}</p>
+        <p class="text-muted " style="font-size:12px;">${company.specialities} | ${company.address}</p>
+      </div>
+    </div>
+    </div>
+  <div class="body-profile-company-other">
+  <div class="company-overview">
+    <p class="fw-bold"> Overview </p>
+    <p class="text-muted">${company.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+  </div>
+    <p class="fw-bold ">Industry</p>
+    <p class="text-muted">${company.industry}</p>
+    <p class="fw-bold ">Company size</p>
+    <p class="text-muted">${company.employee} - ${company.employee2} Employee</p>
+    <p class="fw-bold "> Location </p>
+    <p class="text-muted">${company.address}</p>
+    <p class="fw-bold ">Founded</p>
+    <p class="text-muted">${company.founded}</p>
+    <p class="fw-bold ">Specialities</p>
+    <p class="text-muted">${company.specialities}</p>
+    <p class="fw-bold">Website</p>
+    <a class="text-primay " href="${company.website}">${company.website}</a>
+    </div>
+</div>`;
+};
+
+const createDetailCompanySkeletonTemplate = () => `
+<div class="container-profile-company placeholder-glow">
+  <div class="header-profile-company">
+    <div class="content-header-profile-company">
+    <img style="width:200px; height:200px;"class="img-profile-company placeholder">
+      <div class="profile-company">
+        <p class="fw-bolder fs-2 "><span class="placeholder">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi </span></p>
+        <p class="text-muted  style="font-size:12px;"><span class="placeholder">Lorem ipsum  sit amet</span>  <span class="placeholder">Lorem ipsum  sit amet</span></p>
+      </div>
+    </div>
+    </div>
+  <div class="body-profile-company">
+    <p class="fw-bold "><span class="placeholder">Lorem ipsum</span></p>
+    <p class="text-muted "><span class="placeholder">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam eaque eligendi assumenda quis ipsam, dignissimos quod id. Eum nesciunt quasi reiciendis porro quis eligendi corporis architecto? Eius, hic nisi odit magnam, suscipit quis dolorum, iste cum eaque maxime nostrum laudantium sed eveniet aliquam consequuntur in rem ut praesentium qui aliquid.
+
+    </span></p>
+    <p class="fw-bold"><span class="placeholder">Lorem ipsum</span></p>
+    <p class="text-muted "><span class="placeholder">Lorem ipsum</span></p>
+    <p class="fw-bold"><span class="placeholder">Lorem ipsum</span></p>
+    <p class="text-muted "><span class="placeholder">Lorem ipsum</span>  <span class="placeholder">Lorem ipsum</span></p>
+    <p class="fw-bold "><span class="placeholder">Lorem ipsum</span></p>
+    <p class="text-muted "><span class="placeholder">Lorem ipsum</span></p>
+    <p class="fw-bold"><span class="placeholder">Lorem ipsum</span></p>
+    <p class="text-muted"><span class="placeholder">Lorem ipsum</span></p>
+    <p class="fw-bold"><span class="placeholder">Lorem ipsum</span></p>
+    <p class="text-muted "><span class="placeholder">Lorem ipsum</span></p>
+    <p class="fw-bold "><span class="placeholder">Lorem ipsum</span></p>
+    <a class="text-muted " ><span class="placeholder">Lorem ipsum</span></a>
+    <div class="card-footer my-2">
+    <button  class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="btn-edit-company"> <span class="placeholder">Lorem ipsum</span></button>
+    <button  class="btn " data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btn-edit-pwd"> <span class="placeholder">Lorem ipsum</span></button>
+    </div>
+    </div>
+</div>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PASSWORD</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form id = "edit-password-company">
+          <div class="mb-3 row">
+            <label for="exampleInputEmail1" class="form-label">Old Password</label>
+            <div class="col">
+              <input type="password" class="form-control  form-control-sm" id="old-password">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">New Password</label>
+            <div class="col">
+              <input type="password" class="form-control  form-control-sm" id="new-password">
+            </div>
+            <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
+            <div class="col">
+              <input type="password" class="form-control  form-control-sm" id="confirm-password">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary"  data-bs-dismiss="modal">Save</button>
+          </div>
+          </form>
+      </div>
+    </div>
+</div>
+</div>`;
 export {
+  createDetailCompanyTemplate,
+  createDetailCompanySkeletonTemplate,
   DetailJobsSkeleton,
   createDiscussionItemTemplateSkeleton,
   createDiscussionItemTemplate,
@@ -1465,4 +1738,5 @@ export {
   createFormEditJob,
   createProfileCompany,
   createDetailJobPageTemplate,
+  createDetailJobPageSkeleton,
 };
