@@ -1,15 +1,13 @@
-.About {
+/* .About {
     font-size: 50px;
-    margin-top: 200px;
+    margin-top: 80px;
 }
 
-.card {
+.card.container-about {
     width: auto;
     margin: 50px;
-
 }
 
-.card img {
-
+.card.container-about img {
     width: fit-content;
-}
+} */

@@ -1,13 +1,15 @@
 .container-profile {
     display: flex;
     justify-content: center;
-    margin: 0 auto;
+    margin: 0px auto;
+    margin-top: 80px;
     max-width: 1360px;
     flex-wrap: wrap;
     z-index: 1;
 }
 
 .card.profile {
+    width: 300px;
     margin-right: 10px;
     height: 500px;
     border: none;
@@ -19,6 +21,7 @@
 }
 
 .card.activity {
+    width: 300px;
     height: 500px;
     margin-left: 10px;
     text-align: center;
@@ -105,5 +108,18 @@
 
     .card.activity {
         width: 320px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .card.profile {
+        width: auto;
+        max-width: 320px;
+    }
+}
+
+@media screen and (max-width: 200px) {
+    .card.profile img {
+        width: 100%;
     }
 }

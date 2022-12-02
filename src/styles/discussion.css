@@ -103,3 +103,7 @@
 .container-item-discussion .card:hover {
     background-color: #EEEEEE;
 }
+
+#addDiscussion {
+    margin-top: 80px;
+}
