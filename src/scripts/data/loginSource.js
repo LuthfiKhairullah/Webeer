@@ -173,7 +173,7 @@ class User {
           auth: `${jwt}`,
         },
       });
-      if (response.status !== 'OK') {
+      if (response.status !== 200) {
         throw new Error(response.data.message);
       }
       return response.data.data;
@@ -221,12 +221,12 @@ class User {
           confirmPassword,
         },
       });
-      if (response.status !== 'OK') {
+      if (response.status !== 200) {
         throw new Error(response.data.message);
       }
       return response.data;
     } catch (err) {
-      console.log(err)
+      return { error: err.response.data.message || err.message };
     }
   }
 }

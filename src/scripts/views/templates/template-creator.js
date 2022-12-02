@@ -1395,7 +1395,35 @@ const createFormEditJob = (job) => `
 </div>
 `;
 
-const createProfileCompany = (user) => `
+const createProfileCompany = (user) => {
+  if (user.bio === undefined) {
+    user.bio = '-';
+  }
+  if (user.specialities === undefined) {
+    user.specialities = '-';
+  }
+  if (user.address === undefined) {
+    user.address = '-';
+  }
+  if (user.industry === undefined) {
+    user.industry = '-';
+  }
+  if (user.bio === undefined) {
+    user.bio = '-';
+  }
+  if (user.employee === undefined) {
+    user.employee = '';
+  }
+  if (user.employee2 === undefined) {
+    user.employee2 = '';
+  }
+  if (user.founded === undefined) {
+    user.founded = '-';
+  }
+  if (user.website === undefined) {
+    user.website = '-';
+  }
+  return `
 <div class="container-profile-company">
   <div class="header-profile-company">
   <div class="square"></div>
@@ -1523,7 +1551,36 @@ const createProfileCompany = (user) => `
 </div>
 </div>
 `;
-const createDetailCompanyTemplate = (company) => `
+};
+const createDetailCompanyTemplate = (company) => {
+  if (company.bio === undefined) {
+    company.bio = '-';
+  }
+  if (company.specialities === undefined) {
+    company.specialities = '-';
+  }
+  if (company.address === undefined) {
+    company.address = '-';
+  }
+  if (company.industry === undefined) {
+    company.industry = '-';
+  }
+  if (company.bio === undefined) {
+    company.bio = '-';
+  }
+  if (company.employee === undefined) {
+    company.employee = '';
+  }
+  if (company.employee2 === undefined) {
+    company.employee2 = '';
+  }
+  if (company.founded === undefined) {
+    company.founded = '-';
+  }
+  if (company.website === undefined) {
+    company.website = '-';
+  }
+  return `
 <div class="container-profile-company-other">
   <div class="header-profile-company-other">
   <div class="square"></div>
@@ -1554,6 +1611,7 @@ const createDetailCompanyTemplate = (company) => `
     <a class="text-primay " href="${company.website}">${company.website}</a>
     </div>
 </div>`;
+};
 
 const createDetailCompanySkeletonTemplate = () => `
 <div class="container-profile-company placeholder-glow">
