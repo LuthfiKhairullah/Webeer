@@ -229,6 +229,22 @@ class User {
       return { error: err.response.data.message || err.message };
     }
   }
+
+  static async EmailResetPassword({ email }) {
+    try {
+      const url = `${API_ENDPOINT.USER_INPUTFORGET}`;
+      const data = {
+        email,
+      };
+      const response = await axios.post(url, data);
+      if (response.status !== 200) {
+        throw new Error(response.data.message);
+      }
+      return response;
+    } catch (err) {
+      return { error: err.response.data.message || err.message };
+    }
+  }
 }
 
 export default User;
