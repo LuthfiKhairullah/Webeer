@@ -13,6 +13,7 @@ const Login = {
         <div>
           <form id="form-login">
           <h2 class="fw-bolder">LOGIN</h2>
+          <p>You don't have an account yet? <span> <a href="#/register">Sign Up</a> </span> </p>
             <div class="input-group mb-3" style="border-bottom:1px solid black;">
               <span class="input-group-text" style="background-color:transparent; border:none;"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
               <div class="form-floating">
@@ -27,12 +28,33 @@ const Login = {
                     <label for="pwdUser">Password</label>
                   </div>
             </div>
-                <p>You don't have an account yet? <span> <a href="#/register">Sign Up</a> </span> </p>
+            <p>You don't have an account yet? <span> <button class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Forget Password</button> </span> </p>
                 <button type="submit" class="btn btn-primary mb-3">Login</button>
           </form>
         </div>
       </div>
     </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="reset-password-user">
+        <input type="email" id="email-reset-password"> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
         <message-container></message-container>
         `;
   },
@@ -46,7 +68,6 @@ const Login = {
     const message = new Toast(messageContainer);
 
     // FORM LOGIN
-    console.log(message);
     formLogin.addEventListener('submit', async (event) => {
       const loginContainer = document.querySelector('#container-login');
       loginContainer.classList.add('cursor-progress');
@@ -76,6 +97,19 @@ const Login = {
           document.location = '#/profile';
           window.location.reload();
         }, 1500);
+      }
+    });
+    const formReset = document.getElementById('reset-password-user'); 
+    formReset.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      console.log(document.getElementById('email-reset-password').value);
+      const data = await User.EmailResetPassword({
+        email: document.getElementById('email-reset-password').value,
+      });
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        console.log(data.message);
       }
     });
   },
