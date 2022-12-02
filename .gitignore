@@ -1,11 +1,1 @@
 node_modules/
-src/public/asset/hero-about.png
-src/public/asset/hero-about1.png
-src/public/asset/hero-about2.png
-src/public/image/hero-about.png
-src/scripts/views/components/appBar.js
-src/scripts/views/pages/homepage.js
-src/scripts/views/pages/aboutpage.js
-src/styles/about.css
-src/styles/style.css
-src/styles/home.css
