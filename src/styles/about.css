@@ -31,19 +31,23 @@
 .container-about-forums {
     flex-direction: column;
     align-items: center;
-    border: 1px solid rgb(0 0 0 / 75%);
+    border: 1px solid rgb(0, 0, 0, 0.75);
     border-radius: 10px;
     padding: 20px;
     width: 300px;
-    box-shadow: 5px 4px 5px -2px rgb(0 0 0 / 75%);
+    box-shadow: 5px 4px 5px -2px rgb(0, 0, 0, 0.75);
+    -webkit-box-shadow: 5px 4px 5px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 5px 4px 5px -2px rgba(0, 0, 0, 0.75);
 }
 
 .container-about-person {
-    border: 1px solid rgb(0 0 0 / 75%);
+    border: 1px solid rgb(0, 0, 0, 0.75);
     border-radius: 10px;
     padding: 20px;
     width: 300px;
-    box-shadow: 5px 4px 5px -2px rgb(0 0 0 / 75%);
+    box-shadow: 5px 4px 5px -2px rgb(0, 0, 0, 0.75);
+    -webkit-box-shadow: 5px 4px 5px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 5px 4px 5px -2px rgba(0, 0, 0, 0.75);
 }
 
 .container-about-person img {
