@@ -1,3 +1,63 @@
-.container-company{
-    display: flex;
+.container-company-profile{
+    max-width: 100%;
+    margin-left: 200px;
+    padding: 10px;
+}
+.container-company-profile-other{
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+.header-profile-company{
+    max-width: 100%;
+    background-color: white;
+    position: relative;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.header-profile-company-other{
+    max-width: 1200px;
+    background-color: white;
+    position: relative;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.content-header-profile-company{
+    z-index: 1;
+    position: relative;
+    padding: 10px;
+}
+.square{
+    background-color: #344D67;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 100px;
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+}
+.img-profile-company{
+    width: 200px;
+    border: 2px solid white;
+}
+.body-profile-company{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    max-width: 100%;
+    margin-top: 10px;
+    background-color: white;
+    padding: 10px;
+}
+.body-profile-company-other{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-top: 10px;
+    background-color: white;
+    padding: 10px;
+}
+
+@media screen and (max-width:800px) {
+    .container-company-profile{
+        margin-left:80px ;
+    }
 }

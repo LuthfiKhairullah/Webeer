@@ -1,12 +1,13 @@
 import { Toast } from 'bootstrap/dist/js/bootstrap.bundle';
 import User from '../../data/loginSource';
-import { createProfileCompany } from '../templates/template-creator';
+import { createDetailCompanySkeletonTemplate, createProfileCompany } from '../templates/template-creator';
 
 const profileCompany = {
 
   async render() {
     return `
-        <div class="container-company">
+        <div class="container-company-profile">
+        ${createDetailCompanySkeletonTemplate()}
         </div>
         <message-container></message-container>
         `;
@@ -18,8 +19,7 @@ const profileCompany = {
     const messageContainer = document.getElementById('liveToast');
     const message = new Toast(messageContainer);
     const data = await User.getUser();
-    console.log(data);
-    const container = document.querySelector('.container-company');
+    const container = document.querySelector('.container-company-profile');
     container.innerHTML = createProfileCompany(data);
     const formPwd = document.querySelector('#edit-password-company');
     const btnPwd = document.querySelector('#btn-edit-pwd').value;
@@ -56,6 +56,14 @@ const profileCompany = {
       event.preventDefault();
       const data = await User.Edit(btnEditCompany, {
         username: document.querySelector('#edit-username').value,
+        bio: document.querySelector('#edit-about').value,
+        address: document.querySelector('#edit-address').value,
+        industry: document.querySelector('#edit-industry').value,
+        employee: document.querySelector('#edit-employee').value,
+        employee2: document.querySelector('#edit-employee2').value,
+        founded: document.querySelector('#edit-founded').value,
+        website: document.querySelector('#edit-website').value,
+        specialities: document.querySelector('#edit-specialities').value,
         image: document.querySelector('#edit-logo-company').files[0],
       });
       if (data.error) {

@@ -11,7 +11,7 @@ const addJobPage = {
       window.reload();
     }
     return `
-    <div class="container-company">
+    <div class="container-company-add">
         <div class="container-add-job">
         <form id="job-form">
         <h3>Post a Job to Webeer</h3>

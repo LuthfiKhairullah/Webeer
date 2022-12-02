@@ -8,13 +8,14 @@ const verificationPage = {
       <div class="card">
         <img src="./asset/verified.png" class="card-img-top lazyload">
         <div class="card-body text-center">
-          <p>Silahkan cek email anda, jika kode tidak terkirim silahkan tekan kirim ulang</p>
-          <button class =" btn btn-primary mb-5" id="resend">Kirim Ulang </button>
+        <h5 class="fw-bold">Verification</h5>
+          <p>Please check your email, if the code was not sent, please press resend</p>
+          <button class =" btn btn-primary mb-5" id="resend">Resend OTP</button>
           <form id="verifikasi-user">
             <div class="mb-4">
-              <input type="text" class="form-control" id="otp" placeholder="Masukkan Kode OTP Anda" required>
+              <input type="text" class="form-control" id="otp" placeholder="Enter your OTP code" required>
             </div>
-            <button class="btn btn-primary" id="submit">Submit</button>
+            <button class="btn btn-primary" id="submit" style="width:100px; border-radius:30px;">Submit</button>
           </form>
         </div>
       </div>
