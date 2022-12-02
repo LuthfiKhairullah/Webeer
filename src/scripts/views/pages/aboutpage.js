@@ -1,6 +1,27 @@
 const AboutPage = {
   async render() {
     return `
+    <div class="container-about-bg">
+      <div class="container">
+        <div class="d-flex align-items-center">
+          <div class="text-white text-center container-about-description">
+            <h1 class="text-center">About Us</h1>
+            <p>
+              Webeer is a website that accommodates developers for discussions. Webeer has features such as creating discussions and searching for jobs.
+            </p>
+          </div>
+          <div class="container-about-img">
+            <img class="w-100" src="../image/hero-about-us.png" alt="image about us">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-about-features">
+      <div class="text-center">
+        <h1>Features</h1>
+        <p>Weber has several features such as :</p>
+      </div>
+    </div>
       <!--<div class="About">
         <div class="card container-about">
           <div class="card-header text-center">
