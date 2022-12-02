@@ -1,8 +1,15 @@
 .About {
     font-size: 50px;
-    margin-top: 80px;
+    margin-top: 200px;
 }
 
-/* .container-about {
+.card {
     width: auto;
-} */
+    margin: 50px;
+
+}
+
+.card img {
+
+    width: fit-content;
+}
