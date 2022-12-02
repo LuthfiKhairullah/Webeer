@@ -124,7 +124,7 @@ const addJobPage = {
     const level = document.querySelector('#level-job');
     const time = document.querySelector('#time-job');
     const place = document.querySelector('#place-job');
-    const companyContainer = document.querySelector('.container-company');
+    const companyContainer = document.querySelector('.container-company-add');
     const submitJobButton = document.querySelector('#submitJobButton');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();

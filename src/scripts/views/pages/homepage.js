@@ -46,7 +46,7 @@ const HomePage = {
               </div>
             </div>
           </div>
-
+          <footer-bar></footer-bar>
         `;
   },
 
