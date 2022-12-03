@@ -9,17 +9,17 @@ import { createBookmarkEmpty, createDiscussionEmpty, createProfileTemplateSkelet
 const ProfilePage = {
   async render() {
     const getToken = localStorage.getItem('token');
-    const getRole = localStorage.getItem('role').replaceAll('"', '');
+    const getRole = localStorage.getItem('role');
     console.log(getToken);
     if (getToken === null) {
       document.location = '#/login';
       localStorage.setItem('login', 'false');
       window.reload();
-    } else if (getToken !== null && getRole === 'Company') {
+    } else if (getToken !== null && getRole.replaceAll('"', '') === 'Company') {
       document.location = '#/dashboard';
       localStorage.setItem('login', 'true');
       window.reload();
-    } else if (getToken !== null && getRole === 'Programmer') {
+    } else if (getToken !== null && getRole.replaceAll('"', '') === 'Programmer') {
       document.location = '#/profile';
       localStorage.setItem('login', 'true');
     } else {

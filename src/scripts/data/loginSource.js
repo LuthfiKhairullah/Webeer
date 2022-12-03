@@ -82,6 +82,7 @@ class User {
         throw new Error(response.data.message);
       }
       localStorage.removeItem('token');
+      localStorage.removeItem('role');
       window.location.reload();
       return response.data;
     } catch (err) {

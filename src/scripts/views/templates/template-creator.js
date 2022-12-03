@@ -221,8 +221,8 @@ const createDiscussionItemTemplate = (discussion) => {
         <div class="main-container">
           <div class="categoryDiscussion">${createCategoryDiscussionTemplate(discussion.categories)}</div>
             <h5>${discussion.title}</h5>
-            <pre>
-              <code class="text-break">
+            <pre class="pre-discussion-item">
+              <code class="text-break code-discussion-item">
                   ${truncateString(discussion?.discussion.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/(?:\r\n|\r|\n)/g, ' ').replace(/~Enter Your Code is Here/g, '')
     .replace(/Dont Delete this~/g, ''), 200)}
               </code>
@@ -269,8 +269,8 @@ const createBookmarkItemTemplate = (bookmark) => {
         <div class="main-container">
           <div class="categoryDiscussion">${createCategoryDiscussionTemplate(bookmark.categories)}</div>
             <h5>${bookmark.title}</h5>
-            <pre>
-              <code>
+            <pre class="pre-discussion-item">
+              <code class="code-discussion-item">
               ${truncateString(bookmark?.discussion.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/(?:\r\n|\r|\n)/g, ' ').replace(/~Enter Your Code is Here/g, '')
     .replace(/Dont Delete this~/g, ''), 200)}
               </code>
@@ -821,7 +821,7 @@ const createProfileOtherTemplate = (user) => {
   `;
 };
 const createNavbarTemplateBeforeLogin = () => `
-<nav class="navbar fixed-top navbar-expand-lg  ">
+<nav class="navbar fixed-top navbar-expand-lg " id="navbar">
 <div class="container-fluid">
   <a class="navbar-brand text-light fw-bold" href="#"><i class="fa fa-code fw-bold" aria-hidden="true"></i> WEBEER</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -1131,7 +1131,7 @@ const createProfileEditTemplate = (user) => {
   `;
 };
 const createNavbarTemplateAfterLogin = () => `
-<nav class="navbar fixed-top navbar-expand-lg ">
+<nav class="navbar fixed-top navbar-expand-lg " id="navbar">
 <div class="container-fluid">
 <a class="navbar-brand text-light fw-bold" href="#"><i class="fa fa-code fw-bold" aria-hidden="true"></i> WEBEER</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

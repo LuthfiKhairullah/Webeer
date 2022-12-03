@@ -5,15 +5,15 @@ import { createAddDiscussionTemplateSkeleton, createFilterCategoryTemplate } fro
 const AddDiscussionPage = {
   async render() {
     const getToken = localStorage.getItem('token');
-    const getRole = localStorage.getItem('role').replaceAll('"', '');
+    const getRole = localStorage.getItem('role');
     if (getToken === null) {
       document.location = '#/login';
       localStorage.setItem('login', 'false');
       window.reload();
-    } else if (getToken !== null && getRole === 'Company') {
+    } else if (getToken !== null && getRole.replaceAll('"', '') === 'Company') {
       window.location.href();
       localStorage.setItem('login', 'true');
-    } else if (getToken !== null && getRole === 'Programmer') {
+    } else if (getToken !== null && getRole.replaceAll('"', '') === 'Programmer') {
       document.location = '#/adddiscussion';
       localStorage.setItem('login', 'true');
     } else {

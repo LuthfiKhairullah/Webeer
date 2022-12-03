@@ -85,7 +85,7 @@ const addJobPage = {
               <div class="d-flex">
                 <div class="col-md-2">
                     <input type="text" class="form-control  form-control-md" id="salary-job" placeholder="Rp 0.000.000" >
-                </div> - 
+                </div>&nbsp;-&nbsp;
                 <div class="col-md-2">
                 <input type="text" class="form-control  form-control-md" id="salary-job2" placeholder="Rp 0.000.000">
                 </div>

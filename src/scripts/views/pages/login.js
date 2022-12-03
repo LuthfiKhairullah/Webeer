@@ -3,6 +3,18 @@ import User from '../../data/loginSource';
 
 const Login = {
   async render() {
+    const getToken = localStorage.getItem('token');
+    const getRole = localStorage.getItem('role');
+    if (getToken !== null && getRole.replaceAll('"', '') === 'Company') {
+      document.location = '#/dashboard';
+      localStorage.setItem('login', 'true');
+    } else if (getToken !== null && getRole.replaceAll('"', '') === 'Programmer') {
+      document.location = '#/profile';
+      localStorage.setItem('login', 'true');
+    } else {
+      document.location = '#/login';
+      localStorage.setItem('login', 'false');
+    }
     return `
     <modal-not-login></modal-not-login>
        <div id="container-login" style="text-align:center;">
@@ -99,10 +111,21 @@ const Login = {
         messageText.innerHTML = `${data.data.message}`;
         messageTitle.innerHTML = 'SUCCESS';
         message.show();
-        setTimeout(() => {
-          document.location = '#/profile';
-          document.location.reload(true);
-        }, 1500);
+        const getToken = localStorage.getItem('token');
+        const getRole = localStorage.getItem('role');
+        if (getToken !== null && getRole.replaceAll('"', '') === 'Company') {
+          setTimeout(() => {
+            document.location = '#/dashboard';
+            document.location.reload();
+          }, 2000);
+          localStorage.setItem('login', 'true');
+        } else if (getToken !== null && getRole.replaceAll('"', '') === 'Programmer') {
+          setTimeout(() => {
+            document.location = '#/profile';
+            document.location.reload();
+          }, 2000);
+          localStorage.setItem('login', 'true');
+        }
       }
     });
     const formReset = document.getElementById('reset-password-user');

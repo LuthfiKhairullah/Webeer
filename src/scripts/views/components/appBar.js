@@ -10,25 +10,23 @@ class AppBar extends HTMLElement {
   render() {
     const getTokenStorage = localStorage.getItem('token');
     let getRoleStorage = localStorage.getItem('role');
-    console.log(getRoleStorage);
     if (getRoleStorage !== null) {
       getRoleStorage = localStorage.getItem('role').replaceAll('"', '');
     }
     if (getTokenStorage === null) {
       this.innerHTML += createNavbarTemplateBeforeLogin();
       const navItem = document.querySelectorAll('.nav-link');
-      console.log(navItem);
       const url = UrlParser.parseActiveUrlWithCombiner();
       for (let i = 0; i < navItem.length; i++) {
         if (navItem[i].getAttribute('href') === `#${url}`) {
-          navItem[i].classList.add('active');
+          navItem[i].classList.add('actived');
         } else {
-          navItem[i].classList.remove('active');
+          navItem[i].classList.remove('actived');
         }
         navItem[i].addEventListener('click', () => {
           for (let j = 0; j < navItem.length; j++) {
-            navItem[j].classList.remove('active');
-            navItem[i].classList.add('active');
+            navItem[j].classList.remove('actived');
+            navItem[i].classList.add('actived');
           }
         });
       }
@@ -41,24 +39,24 @@ class AppBar extends HTMLElement {
         if (response.error) {
           console.log(response.error);
         } else {
-          localStorage.clear();
+          localStorage.remove('role');
+          localStorage.remove('token');
           document.location = '#/';
           window.location.reload();
         }
       });
       const navItem = document.querySelectorAll('.nav-link');
-      console.log(navItem);
       const url = UrlParser.parseActiveUrlWithCombiner();
       for (let i = 0; i < navItem.length; i++) {
         if (navItem[i].getAttribute('href') === `#${url}`) {
-          navItem[i].classList.add('active');
+          navItem[i].classList.add('actived');
         } else {
-          navItem[i].classList.remove('active');
+          navItem[i].classList.remove('actived');
         }
         navItem[i].addEventListener('click', () => {
           for (let j = 0; j < navItem.length; j++) {
-            navItem[j].classList.remove('active');
-            navItem[i].classList.add('active');
+            navItem[j].classList.remove('actived');
+            navItem[i].classList.add('actived');
           }
         });
       }
@@ -71,12 +69,13 @@ class AppBar extends HTMLElement {
         if (response.error) {
           console.log(response.error);
         } else {
+          localStorage.remove('role');
+          localStorage.remove('token');
           document.location = '#/';
-          window.location.reload();
+          document.location.reload();
         }
       });
       const navItem = document.querySelectorAll('.nav-link');
-      console.log(navItem);
       const url = UrlParser.parseActiveUrlWithCombiner();
       for (let i = 0; i < navItem.length; i++) {
         if (navItem[i].getAttribute('href') === `#${url}`) {
@@ -87,7 +86,7 @@ class AppBar extends HTMLElement {
         navItem[i].addEventListener('click', () => {
           for (let j = 0; j < navItem.length; j++) {
             navItem[j].classList.remove('active');
-            this.classList.add('active');
+            navItem[i].classList.add('active');
           }
         });
       }
