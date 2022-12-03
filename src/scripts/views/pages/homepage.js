@@ -1,5 +1,12 @@
 const HomePage = {
   async render() {
+    const getToken = localStorage.getItem('token');
+    const getRole = localStorage.getItem('role').replaceAll('"', '');
+    if (getToken !== null && getRole === 'Company') {
+      document.location = '#/dashboard';
+      localStorage.setItem('login', 'true');
+      window.reload();
+    }
     return `
           <div class="container-homepage">
             <div class="container-main-homepage">
