@@ -313,11 +313,11 @@ const createDiscussionDetailTemplateSkeleton = () => `
       </div>
       <div class="text-capitalize placeholder">Lorem</div>
       <h1><span class="placeholder">Lorem ipsum dolor</span></h1>
-      <div class="d-flex align-items-center">
-        <h3 class="fs-6 font-monospace pt-1 mx-1 m-0"><span class="placeholder">31 Desember 2022</span></h3>
-        <span class="placeholder">0000</span>
+      <div class="container-discussion-detail d-flex align-items-center">
+        <h3 class="fs-6 font-monospace mx-1 m-0"><span class="placeholder">31 Desember 2022</span></h3>
+        <span class="placeholder">000</span>
         <span class="mx-1 placeholder">999</span>
-        <div class="placeholder">0000</div>
+        <div class="placeholder me-1">0000</div>
         <div class="placeholder">0000</div>
       </div>
       <p class="text-justify border-top border-bottom my-lg-2"><span class="placeholder">Lorem ipsum dolor lorem ipsum dolor</span></p>
@@ -347,12 +347,12 @@ const createDiscussionDetailTemplate = (discussion) => {
   }
   return `
     <div class="container bg-white padding ">
-      <div class="d-flex justify-content-between">
+      <div class="container-discussion-detail d-flex justify-content-between">
         <div class="d-flex align-items-center">
           <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion lazyload">
           <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;"><span class="ms-1 username fw-bolder font-monospace text-body">${discussion.username}</span></a>
         </div>
-        <div class = "d-flex d-none" id="user-only">
+        <div class = "d-flex d-none container-discussion-detail-button" id="user-only">
           <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn">
             <i class="fa fa-pencil-square-o fa-2x text-primary" aria-label="edit discussion"></i>
           </button>
@@ -408,13 +408,15 @@ const createDiscussionDetailTemplate = (discussion) => {
       </div>
       <div class="text-capitalize">${createCategoryDiscussionTemplate(discussion.categories)}</div>
       <h1>${discussion.title}</h1>
-      <div class="d-flex align-items-center">
-        <h3 class="text-muted fs-6 font-monospace pt-1 mx-1 m-0" >${discussion.date}</h3>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-          <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-        </svg>
-        <span class="lengthReply mx-1">0</span>
+      <div class="container-discussion-detail d-flex align-items-center">
+        <h3 class="text-muted fs-6 font-monospace mx-1 m-0" >${discussion.date}</h3>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
+            <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+            <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
+          </svg>
+          <span class="lengthReply mx-1">0</span>
+        </div>
         <div class="${isSolvedClass}">${isSolved}</div>
         <div id="saveButtonContainer"></div>
       </div>

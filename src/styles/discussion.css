@@ -107,3 +107,8 @@
 #addDiscussion {
     margin-top: 80px;
 }
+
+.container-discussion-detail-button,
+.container-discussion-detail {
+    flex-wrap: wrap;
+}
