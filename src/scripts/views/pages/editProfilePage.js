@@ -56,6 +56,7 @@ const ProfileEditPage = {
       const inputContact = document.querySelector('#edit-contact').value;
       const inputProfesi = document.querySelector('#edit-profesi').value;
       const inputBio = document.querySelector('#edit-bio').value;
+      const inputSkill = document.querySelector('#edit-skill').value;
       if (inputUsername === '') {
         profileContainer.classList.remove('cursor-progress');
         messageText.classList.remove('text-bg-success');
@@ -73,6 +74,7 @@ const ProfileEditPage = {
           bio: inputBio,
           image: document.querySelector('#edit-photo').files[0],
           country: text,
+          specialities: inputSkill,
         });
         if (data.error) {
           profileContainer.classList.remove('cursor-progress');

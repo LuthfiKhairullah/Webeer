@@ -3,8 +3,12 @@ import User from '../../data/loginSource';
 import BookmarkDiscussionIdb from '../../data/bookmark-discussion-idb';
 import '../components/userProfile';
 import '../components/bookmarkList';
-import { createBookmarkEmpty, createDiscussionEmpty, createProfileTemplateSkeleton } from '../templates/template-creator';
-// import { UserDiscussionSkeleton } from '../templates/template-creator';
+import {
+  createAboutProfileTemplate,
+  createBookmarkEmpty,
+  createDiscussionEmpty,
+  createProfileTemplateSkeleton,
+} from '../templates/template-creator';
 
 const ProfilePage = {
   async render() {
@@ -39,7 +43,6 @@ const ProfilePage = {
     const userProfile = await User.getUser();
     const userDiscussion = await DiscussionSource.getUserDiscussion();
     const userReply = await DiscussionSource.getDiscussionReply(userProfile._id);
-    console.log('test', userProfile);
     const userProfileElement = document.querySelector('user-profile');
     userProfileElement.user = userProfile;
     const countDiscussion = document.querySelector('.length-disscussion-user');
@@ -51,30 +54,35 @@ const ProfilePage = {
       countReply.innerHTML = userReply.length;
     }
     const lenDiscussion = userDiscussion.length;
-    const lenReply = countReply.innerHTML;
+    const lenReply = userReply.length;
+    const sumDisRep = lenDiscussion + lenReply;
+    console.log(lenDiscussion, lenReply);
     const grade = document.querySelector('.grade-user');
-    if (lenDiscussion >= 0 && lenDiscussion <= 10 && lenReply >= 0 && lenReply <= 10) {
+    if (sumDisRep >= 0 && sumDisRep <= 20) {
       grade.innerHTML = 'D';
-    } else if (lenDiscussion >= 11 && lenDiscussion <= 20 && lenReply >= 11 && lenReply <= 20) {
+    } else if (sumDisRep >= 21 && sumDisRep <= 40) {
       grade.innerHTML = 'C';
+    } else if (sumDisRep >= 41 && sumDisRep <= 60) {
+      grade.innerHTML = 'B';
+    } else if (sumDisRep >= 61 && sumDisRep <= 80) {
+      grade.innerHTML = 'A';
+    } else if (sumDisRep >= 81 && sumDisRep <= 100) {
+      grade.innerHTML = 'S';
+    } else if (sumDisRep >= 101) {
+      grade.innerHTML = 'SS';
     } else {
       grade.innerHTML = 'E';
     }
 
-    const content = document.querySelector('.container-discussion-user');
-    if (userDiscussion.length > 0) {
-      content.innerHTML = '<discussion-list></discussion-list>';
-      const userDiscussionElement = document.querySelector('discussion-list');
-      userDiscussionElement.discussions = userDiscussion;
-    } else {
-      content.innerHTML = createDiscussionEmpty();
-    }
-    const BtnBookmark = document.querySelector('#btn-bookmark');
-    const BtnDiscussion = document.querySelector('#btn-discussion');
+    const content = document.querySelector('.content-profile-user');
+    const BtnBookmark = document.querySelector('#buttonBookmarkProfile');
+    const BtnDiscussion = document.querySelector('#buttonDiscussionProfile');
+    const BtnAbout = document.querySelector('#buttonAboutProfile');
     BtnBookmark.addEventListener('click', async (event) => {
       event.preventDefault();
-      BtnDiscussion.classList.remove('onactive');
-      BtnBookmark.classList.add('onactive');
+      BtnAbout.classList.remove('afterClick');
+      BtnDiscussion.classList.remove('afterClick');
+      BtnBookmark.classList.add('afterClick');
       const userBookmark = await BookmarkDiscussionIdb.getAllDiscussions();
       console.log(userBookmark);
       const discussions = await DiscussionSource.getAllDiscussion();
@@ -96,8 +104,9 @@ const ProfilePage = {
     });
     BtnDiscussion.addEventListener('click', async (event) => {
       event.preventDefault();
-      BtnBookmark.classList.remove('onactive');
-      BtnDiscussion.classList.add('onactive');
+      BtnBookmark.classList.remove('afterClick');
+      BtnAbout.classList.remove('afterClick');
+      BtnDiscussion.classList.add('afterClick');
       const userDiscussion = await DiscussionSource.getUserDiscussion();
       if (userDiscussion.length > 0) {
         content.innerHTML = '<discussion-list></discussion-list>';
@@ -106,6 +115,13 @@ const ProfilePage = {
       } else {
         content.innerHTML = createDiscussionEmpty();
       }
+    });
+    BtnAbout.addEventListener('click', async (event) => {
+      event.preventDefault();
+      BtnBookmark.classList.remove('afterClick');
+      BtnDiscussion.classList.remove('afterClick');
+      BtnAbout.classList.add('afterClick');
+      content.innerHTML = createAboutProfileTemplate(userProfile);
     });
   },
 };
