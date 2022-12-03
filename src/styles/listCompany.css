@@ -10,10 +10,12 @@
     height: 100%;
     position: fixed;
 }
-#sidebar li a{
+
+#sidebar li a {
     padding: 11px;
 }
-#sidebar li a:hover{
+
+#sidebar li a:hover {
     background-color: #0d6efd;
 }
 .card-job-company{
@@ -26,20 +28,25 @@
     #sidebar{
         width: 80px;
     }
-    #sidebar li{
+
+    #sidebar li {
         width: 50px;
     }
-    .nav-text{
+
+    .nav-text {
         display: none;
     }
-    .container-company{
+
+    .container-company {
         margin-left: 100px;
     }
-    #sidebar li a{
+
+    #sidebar li a {
         text-align: center;
-        
+
     }
-    .company{
+
+    .company {
         justify-content: center;
     }
 }

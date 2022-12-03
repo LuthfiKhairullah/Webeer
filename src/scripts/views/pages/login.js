@@ -28,10 +28,9 @@ const Login = {
                     <label for="pwdUser">Password</label>
                   </div>
             </div>
-                <button type="submit" class="btn btn-primary mb-3">Login</button>
+            <button type="submit" class="btn btn-primary mb-3">Login</button>
           </form>
-          <p class="text-muted" style="font-size:15px;">You forgot password?</p> 
-          <button class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Forget Password</button>
+          <p>Forgot password? <span> <button class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Forget Password</button> </span> </p>
         </div>
       </div>
     </div>

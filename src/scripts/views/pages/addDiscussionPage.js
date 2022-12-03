@@ -50,6 +50,7 @@ const AddDiscussionPage = {
       categoryList.innerHTML += createFilterCategoryTemplate(categoryitem);
     });
     const categorySelect = document.getElementsByName('categoryFilter');
+    const categorySelectElement = document.querySelector('.categoryFilter');
     console.log(categorySelect);
     const codeDiscussion = document.querySelector('#code');
     codeDiscussion.addEventListener('click', (event) => {
@@ -72,15 +73,18 @@ const AddDiscussionPage = {
           arrcategory.push(c.value);
         }
       });
-      const inputTitle = document.getElementById('inputTitle').value;
-      const inputDiscussion = document.getElementById('inputDiscussion').value;
-      if (arrcategory.length === 0 || inputTitle === '' || inputDiscussion === '') {
+      const inputTitle = document.querySelector('#inputTitle');
+      const inputDiscussion = document.querySelector('#inputDiscussion');
+      if (arrcategory.length === 0 || inputTitle.value === '' || inputDiscussion.value === '') {
         if (arrcategory.length === 0) {
           messageText.innerHTML = 'Error! Please choose one category first!';
-        } else if (inputTitle === '') {
+          categorySelectElement.focus();
+        } else if (inputTitle.value === '') {
           messageText.innerHTML = 'Error! Please type your title discussion';
-        } else if (inputDiscussion === '') {
+          inputTitle.focus();
+        } else if (inputDiscussion.value === '') {
           messageText.innerHTML = 'Error! Please type your discussion';
+          inputDiscussion.focus();
         }
         messageText.classList.remove('text-bg-success');
         messageTitle.classList.remove('text-success');
@@ -91,9 +95,9 @@ const AddDiscussionPage = {
       } else {
         addDiscussionContainer.classList.add('cursor-progress');
         const addDiscussion = await DiscussionSource.addDiscussion({
-          title: inputTitle,
+          title: inputTitle.value,
           categories: arrcategory,
-          discussion: inputDiscussion,
+          discussion: inputDiscussion.value,
         });
 
         if (addDiscussion.error) {
@@ -114,7 +118,10 @@ const AddDiscussionPage = {
           messageText.innerHTML = 'Add discussion successfully';
           messageTitle.innerHTML = 'SUCCESS';
           message.show();
-          setTimeout(() => document.location = '#/forums', 2000);
+          setTimeout(() => {
+            document.location = '#/forums';
+            document.location.reload();
+          }, 2000);
         }
       }
     });

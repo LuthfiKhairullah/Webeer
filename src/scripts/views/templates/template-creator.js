@@ -612,7 +612,7 @@ const createFilterCategoryTemplateSkeleton = (count) => {
 };
 
 const createFilterCategoryTemplate = (category) => `
-  <input type="checkbox" class="btn-check" name="categoryFilter" id="${category.name}" value="${category.name}" autocomplete="off">
+  <input type="checkbox" class="btn-check categoryFilter" name="categoryFilter" id="${category.name}" value="${category.name}" autocomplete="off">
   <label class="btn btn-outline-primary mb-1" for="${category.name}">${category.name}</label>
 `;
 
@@ -827,6 +827,9 @@ const createNavbarTemplateBeforeLogin = () => `
   </button>
   <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
     <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link text-light" href="#">Home</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link text-light" href="#/about">About</a>
       </li>
