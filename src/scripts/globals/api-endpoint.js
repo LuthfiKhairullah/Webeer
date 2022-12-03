@@ -13,6 +13,7 @@ const API_ENDPOINT = {
   JOB_DETAIL: (_id) => `${CONFIG.BASE_URL}/jobs/detail/${_id}`,
   JOB_SEARCH: (keyword) => `${CONFIG.BASE_URL}/jobs?profession=${keyword}`,
   GET_JOB: `${CONFIG.BASE_URL}/jobs/company`,
+  GET_JOBOTHER: (id) => `${CONFIG.BASE_URL}/jobs/${id}`,
   JOB_DELETE: (id) => `${CONFIG.BASE_URL}/jobs/${id}`,
   JOB_ADD: `${CONFIG.BASE_URL}/jobs`,
   JOB_EDIT: (id) => `${CONFIG.BASE_URL}/jobs/${id}`,

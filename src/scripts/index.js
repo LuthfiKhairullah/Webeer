@@ -18,6 +18,7 @@ import '../styles/about.css';
 import '../styles/resetpassword.css';
 import '../styles/listCompany.css';
 import '../styles/dashboardJob.css';
+import '../styles/jobother.css';
 import './views/components/appBar';
 import './views/components/footer';
 import './views/components/searchBar';

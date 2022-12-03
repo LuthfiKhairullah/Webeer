@@ -1,8 +1,7 @@
 import { Toast } from 'bootstrap/dist/js/bootstrap.bundle';
-import User from '../../data/loginSource';
 import '../components/userProfile';
 import JobSource from '../../data/jobSource';
-import { createCardJobCompany, createFormEditJob } from '../templates/template-creator';
+import { createCardJobCompany, createCardJobCompanySkeleton, createFormEditJob } from '../templates/template-creator';
 
 const listJobPage = {
   async render() {
@@ -24,7 +23,9 @@ const listJobPage = {
       window.reload();
     }
     return `
-    <div class="container-company"></div>
+    <div class="container-company-list">
+    ${createCardJobCompanySkeleton(6)}
+    </div>
     <message-container></message-container>
         `;
   },
@@ -32,12 +33,12 @@ const listJobPage = {
     const messageText = document.querySelector('.toast-body');
     const messageTitle = document.querySelector('.toast-title');
     const messageContainer = document.getElementById('liveToast');
+    const container = document.querySelector('.container-company-list');
     const message = new Toast(messageContainer);
-    const user = await User.getUser();
-    console.log(user);
     const itemJob = await JobSource.getCompanyJob();
+    container.innerHTML = '';
     itemJob.data.data.forEach((job) => {
-      document.querySelector('.container-company').innerHTML += createCardJobCompany(job);
+      container.innerHTML += createCardJobCompany(job);
     });
     const btnDelete = document.querySelectorAll('#delete-job');
     for (let i = 0; i < btnDelete.length; i++) {
