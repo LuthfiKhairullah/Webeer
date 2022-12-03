@@ -24,6 +24,15 @@
     margin: 20px;
     padding: 10px;
 }
+.card-job-company .card-body{
+    margin-top:5px;
+     height:300px;
+}
+@media screen and (max-width:320px){
+    .card-job-company .card-body , .card-job-company{
+        height: 100%;
+    }
+}
 @media screen  and (max-width:800px){
     #sidebar{
         width: 80px;
