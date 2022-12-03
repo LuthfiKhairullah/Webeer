@@ -1269,9 +1269,9 @@ const createSidebarCompany = () => `
 const createCardJobCompany = (job) => `
 <div class="card-job-company">
   <div class="card-header" style="text-align:center;">
-    <img src="${job.image}" style="width:200px; height:200px;">
+    <img src="${job.image}">
   </div>
-  <div class = "card-body" style="margin-top:5px;">
+  <div class = "card-body">
     <h6>${job.company}</h6>
     <p>${truncateString(job?.details.descriptionCompany, 200)}
   </div>

@@ -24,6 +24,15 @@
     margin: 20px;
     padding: 10px;
 }
+.card-job-company .card-body{
+    margin-top:5px;
+     height:300px;
+}
+@media screen and (max-width:320px){
+    .card-job-company .card-body , .card-job-company{
+        height: 100%;
+    }
+}
 @media screen  and (max-width:800px){
     #sidebar{
         width: 80px;
@@ -37,8 +46,8 @@
         display: none;
     }
 
-    .container-company {
-        margin-left: 100px;
+    .container-company-list {
+        margin-left: 80px;
     }
 
     #sidebar li a {
@@ -48,5 +57,15 @@
 
     .company {
         justify-content: center;
+    }
+}
+.container-company-list .card-job-company img {
+width: 200px;
+height: 200px;
+}
+@media screen and (max-width:400px) {
+    .container-company-list .card-job-company img {
+        width: 100px;
+        height: 100px;
     }
 }
