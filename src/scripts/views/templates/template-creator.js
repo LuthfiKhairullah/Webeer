@@ -71,11 +71,11 @@ const createDetailJobPageTemplate = (jobs) => `
 const createItemJob = (jobs) => `
 <div class = "card-item">
 <img src="${jobs.image}" class="card-image lazyload">
-<h6 class="fw-bold">${jobs.company}</h6>
-<h6>${jobs.profession}</h6>
-<p>${showFormattedDate(jobs.createdAt)}</p>
-<p class="fw-bold">${jobs.address}</p>
-<button value=${jobs._id} class="btn btn-primary fw-bold btn-detail btn-sm" id="btnDetailJob">LIHAT</button>
+<h6 class="fw-bold fs-5">${jobs.company}</h6>
+<h6 class="fs-5">${jobs.profession}</h6>
+<p class="text-muted fs-6 fst-italic">${showFormattedDate(jobs.createdAt)}</p>
+<p class="text-muted fs-6 fst-italic">${jobs.address}</p>
+<button value=${jobs._id} class="btn btn-primary fw-bold btn-detail btn-sm" id="btnDetailJob">Visit</button>
 <a class="btn btn-primary" id="btnDetailOpen" href="#/detailjob/${jobs._id}" target="_blank">Visit</a>
 </div>
 `;
@@ -87,39 +87,37 @@ const createDetailJob = (detail) => `
       <img class="lazyload" src="${detail.image}">
     </div>
     <div class="title-detail">
-      <h4>${detail.company}</h4>
-      <p>${detail.address}</p>
-      <p>${showFormattedDate(detail.createdAt)}</p>
+      <h4 class="fw-bold">${detail.company}</h4>
+      <p class="text-muted fst-italic">${detail.address}</p>
+      <p class="text-muted">${showFormattedDate(detail.createdAt)}</p>
+      <a href="#/profilecompany/${detail.companyid}" class="btn btn-secondary btn-sm">Profile Company</a>
     </div>
   </div>
   <div class="description-detail">
-  <h6>Information</h6>
-  <p>${detail.details.descriptionCompany.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+  <h6 class="fw-bold fs-6">Information</h6>
+  <p class="fs-6">${detail.details.descriptionCompany.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
     <div class="work-detail">
       <div class="work-1">
-        <p class="fw-bold">Salary</p>
-        <p>${detail.details.salary}</p>
-        <p class="fw-bold">Level</p>
-        <p>${detail.details.level}</p>
+        <p class="fw-bold fs-6"> Salary</p>
+        <p class="fs-6"><i class="fa fa-usd" aria-hidden="true"></i> ${detail.details.salary} - ${detail.details.salary2} </p>
+        <p class="fw-bold fs-6 ">Level</p>
+        <p class="fs-6"><i class="fa fa-users" aria-hidden="true"></i> ${detail.details.level}</p>
       </div>
       <div class="work-2">
-        <p class="fw-bold">Work from</p>
-        <p>${detail.details.workplace}</p>
-        <p class="fw-bold">Time</p>
-        <p>${detail.details.timeWork}</p>
+        <p class="fw-bold fs-6">Work from</p>
+        <p class="fs-6"><i class="fa fa-briefcase" aria-hidden="true"></i> ${detail.details.workplace}</p>
+        <p class="fw-bold fs-6">Time</p>
+        <p class="fs-6"><i class="fa fa-clock-o" aria-hidden="true"></i> ${detail.details.timeWork}</p>
       </div>
     </div>
   </div>
   <div class="kualifikasi-detail">
-  <p>Job Description</p>
-  <p>${detail.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}}</p>
-  <h6>Requirement</h6>
-  <p>${detail.details.qualification.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+  <p class="fw-bold fs-6">Profession Description</p>
+  <p class="fs-6">${detail.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}}</p>
+  <h6 class="fs-6">Requirement</h6>
+  <p class="fs-6">${detail.details.qualification.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
   </div>
-  <div class="footer-detail">
   <a href="${detail.details.link}"><button type="button" class="detail-link btn btn-primary btn-sm">Apply</button></a>
-  <a href="#/profilecompany/${detail.companyid}" class="btn btn-danger">Profile Company</a>
-  </div>
 </div>
 `;
 
@@ -823,7 +821,7 @@ const createProfileOtherTemplate = (user) => {
 const createNavbarTemplateBeforeLogin = () => `
 <nav class="navbar fixed-top navbar-expand-lg  ">
 <div class="container-fluid">
-  <a class="navbar-brand text-light fw-bold" href="#">WEBEER</a>
+  <a class="navbar-brand text-light fw-bold" href="#"><i class="fa fa-code fw-bold" aria-hidden="true"></i> WEBEER</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -1133,14 +1131,14 @@ const createProfileEditTemplate = (user) => {
 const createNavbarTemplateAfterLogin = () => `
 <nav class="navbar fixed-top navbar-expand-lg ">
 <div class="container-fluid">
-  <a class="navbar-brand text-light fw-bold" href="#">Webeer</a>
+<a class="navbar-brand text-light fw-bold" href="#"><i class="fa fa-code fw-bold" aria-hidden="true"></i> WEBEER</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link text-light " aria-current="page" href="#/profile">Profile</a>
+        <a class="nav-link text-light" aria-current="page" href="#/profile">Profile</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-light " aria-current="page" href="#/forums">Forums</a>
@@ -1234,13 +1232,13 @@ const createSidebarCompany = () => `
 </button>
 <ul class="nav nav-pills flex-column mb-auto">
   <li class="nav-item">
-    <a href="#/dashboard" class="nav-link active" aria-current="page">
+    <a href="#/dashboard" class="nav-link text-white" aria-current="page">
     <i class="fa fa-home" aria-hidden="true"></i>
       <span class="nav-text">Home</span>
     </a>
   </li>
   <li>
-    <a href="#/list" class="nav-link text-white">
+    <a href="#/list" class="nav-link text-white ">
     <i class="fa fa-list" aria-hidden="true"></i>
       <span class="nav-text">Dashboard</span>
     </a>
@@ -1269,15 +1267,15 @@ const createSidebarCompany = () => `
 `;
 
 const createCardJobCompany = (job) => `
-<div class="card">
+<div class="card-job-company">
   <div class="card-header" style="text-align:center;">
-    <img src="${job.image}" class="card-img-top w-75">
+    <img src="${job.image}" style="width:200px; height:200px;">
   </div>
-  <div class = "card-body">
+  <div class = "card-body" style="margin-top:5px;">
     <h6>${job.company}</h6>
     <p>${truncateString(job?.details.descriptionCompany, 200)}
   </div>
-  <div class ="card-footer">
+  <div class ="card-footer" style="border-top:1px solid gray; padding:5px;">
     <button value="${job._id}" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit-job">Edit</button>
     <button value="${job._id}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="delete-job">Delete</button>
   </div>
@@ -1304,6 +1302,26 @@ const createCardJobCompany = (job) => `
   </div>
 </div>
 `;
+const createCardJobCompanySkeleton = (count) => {
+  let template = '';
+  for (let i = 0; i < count; i += 1) {
+    template += `
+<div class="card-job-company">
+    <div class="card-header placeholder-wave" style="text-align:center;">
+      <img class=" placeholder" style="width:200px; height:200px;">
+    </div>
+    <div class = "card-body placeholder-wave" style="margin-top:5px;">
+      <h6><span class="placeholder">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, consequatur!</span></h6>
+      <p><span class="placeholder">${truncateString('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque veniam cum quaerat nam at similique error aliquam, vitae neque blanditiis atque, culpa doloremque tenetur, ad repellat enim hic distinctio ipsam quasi perspiciatis natus id ducimus. Beatae omnis sint possimus reiciendis itaque sit accusamus veniam iure! Et obcaecati id aspernatur, soluta temporibus quos ut quis voluptate pariatur explicabo sequi debitis magni tempore aperiam autem perspiciatis nam, assumenda quas magnam ipsa impedit corrupti iusto in officiis. Quaerat, beatae. Itaque totam autem laborum esse numquam et rerum quia a, sequi eligendi voluptates veniam sint consequatur nulla repudiandae laboriosam excepturi exercitationem inventore pariatur, id minima? Aspernatur necessitatibus eveniet iure officiis numquam voluptas rem perferendis? Inventore placeat, fugiat veritatis dolorum et beatae ab odio delectus ipsum sequi voluptatem dolorem earum consectetur, aspernatur qui est accusamus fugit totam minima dicta sit! Rem, nulla! Praesentium voluptate explicabo consectetur vero accusamus odio quaerat possimus, sed nulla dolorum quod at impedit suscipit quae consequuntur amet debitis, neque repellat. Facere nesciunt dignissimos esse suscipit placeat iste dolorem omnis nostrum, fugit repudiandae! Tempora distinctio reiciendis neque voluptas, autem beatae. Deleniti omnis tenetur distinctio alias ullam, quod magni. Dicta ratione adipisci incidunt, repellat officiis molliti', 200)}</span></p>
+    </div>
+    <div class ="card-footer placeholder-wave">
+      <button class="btn  placeholder "  data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit-job" >Edit</button>
+      <button  class="btn  placeholder" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="delete-job">Delete</button>
+    </div>
+</div>`;
+  }
+  return template;
+};
 const createFormEditJob = (job) => `
 <div class="modal-content">
 <div class="modal-header bg-primary">
@@ -1608,6 +1626,10 @@ const createDetailCompanyTemplate = (company) => {
         <p class="text-muted " style="font-size:12px;">${company.specialities} | ${company.address}</p>
       </div>
     </div>
+    <div class="footer-profile-company">
+    <button class="btn m-1 activated" id="about-other-company">About</button>
+    <button class="btn m-1 " id="jobs-other-company">Jobs</button>
+    </div>
     </div>
   <div class="body-profile-company-other">
   <div class="company-overview">
@@ -1629,7 +1651,51 @@ const createDetailCompanyTemplate = (company) => {
     </div>
 </div>`;
 };
-
+const createBodyOtherCompany = (company) => {
+  if (company.bio === undefined) {
+    company.bio = '-';
+  }
+  if (company.specialities === undefined) {
+    company.specialities = '-';
+  }
+  if (company.address === undefined) {
+    company.address = '-';
+  }
+  if (company.industry === undefined) {
+    company.industry = '-';
+  }
+  if (company.bio === undefined) {
+    company.bio = '-';
+  }
+  if (company.employee === undefined) {
+    company.employee = '';
+  }
+  if (company.employee2 === undefined) {
+    company.employee2 = '';
+  }
+  if (company.founded === undefined) {
+    company.founded = '-';
+  }
+  if (company.website === undefined) {
+    company.website = '-';
+  }
+  return `<div class="company-overview">
+    <p class="fw-bold"> Overview </p>
+    <p class="text-muted">${company.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+  </div>
+    <p class="fw-bold ">Industry</p>
+    <p class="text-muted">${company.industry}</p>
+    <p class="fw-bold ">Company size</p>
+    <p class="text-muted">${company.employee} - ${company.employee2} Employee</p>
+    <p class="fw-bold "> Location </p>
+    <p class="text-muted">${company.address}</p>
+    <p class="fw-bold ">Founded</p>
+    <p class="text-muted">${company.founded}</p>
+    <p class="fw-bold ">Specialities</p>
+    <p class="text-muted">${company.specialities}</p>
+    <p class="fw-bold">Website</p>
+    <a class="text-primay " href="${company.website}">${company.website}</a>`;
+};
 const createDetailCompanySkeletonTemplate = () => `
 <div class="container-profile-company placeholder-glow">
   <div class="header-profile-company">
@@ -1702,6 +1768,18 @@ const createDetailCompanySkeletonTemplate = () => `
     </div>
 </div>
 </div>`;
+
+const createItemJobCompanyOther = (job) => `
+  <div class="container-job-other">
+  <img src="${job.image}" class="job-other-img">
+    <div class="text-job-other">
+    <h5>${job.company}</h5>
+    <h6>${job.profession}</h6>
+    <p class="text-muted">${showFormattedDate(job.createdAt)}</p>
+    <a class="btn btn-primary btn-sm" href="#/detailjob/${job._id}"> VISIT </a>
+    </div>
+  </div>
+  `;
 export {
   createDetailCompanyTemplate,
   createDetailCompanySkeletonTemplate,
@@ -1742,4 +1820,7 @@ export {
   createProfileCompany,
   createDetailJobPageTemplate,
   createDetailJobPageSkeleton,
+  createItemJobCompanyOther,
+  createBodyOtherCompany,
+  createCardJobCompanySkeleton,
 };

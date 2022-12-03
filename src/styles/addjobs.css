@@ -22,7 +22,7 @@ background-color: white;
     width: 100%;
     margin-left: 200px;
 }
-@media screen and(max-width:800px) {
+@media screen and (max-width:800px) {
     .container-company-add{
         margin-left: 80px;
     }

@@ -141,6 +141,26 @@ class JobSource {
       return { error: err.response.data.message || err.message };
     }
   }
+
+  static async getCompanyJobOther(id) {
+    try {
+      const jwt = localStorage.getItem('token').replaceAll('"', '');
+      const response = await axios({
+        url: `${API_ENDPOINT.GET_JOBOTHER(id)}`,
+        method: 'GET',
+        headers: {
+          auth: `${jwt}`,
+        },
+      });
+      if (response.status !== 200) {
+        throw new Error(response.data.message);
+      }
+      return response.data.data;
+    } catch (err) {
+      console.log(err);
+      return { error: err.response.data.message || err.message };
+    }
+  }
 }
 
 export default JobSource;
