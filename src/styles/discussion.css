@@ -59,14 +59,16 @@
 }
 
 .container-item-discussion .main-container {
-    width: 350px;
-    flex-grow: 0.3;
+    /* width: 350px; */
+    width: 100%;
+    /* flex-grow: 0.3; */
     text-align: justify;
-    margin-right: 30px;
+    /* margin-right: 30px; */
 }
 
 .container-item-discussion .sub-container {
-    width: 700px;
+    /* width: 700px; */
+    width: 100%;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
