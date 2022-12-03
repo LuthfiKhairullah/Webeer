@@ -1,5 +1,15 @@
 const HomePage = {
   async render() {
+    const getToken = localStorage.getItem('token');
+    const getRole = localStorage.getItem('role');
+    if (getToken !== null && getRole.replaceAll('"', '') === 'Company') {
+      document.location = '#/dashboard';
+      localStorage.setItem('login', 'true');
+      window.reload();
+    } else {
+      document.location = '#';
+      localStorage.setItem('login', 'false');
+    }
     return `
           <div class="container-homepage">
             <div class="container-main-homepage">
@@ -48,6 +58,9 @@ const HomePage = {
           </div>
           <footer-bar></footer-bar>
         `;
+  },
+  async afterRender() {
+    this.render();
   },
 
 };

@@ -819,7 +819,7 @@ const createProfileOtherTemplate = (user) => {
   `;
 };
 const createNavbarTemplateBeforeLogin = () => `
-<nav class="navbar fixed-top navbar-expand-lg  ">
+<nav class="navbar fixed-top navbar-expand-lg " id="navbar">
 <div class="container-fluid">
   <a class="navbar-brand text-light fw-bold" href="#"><i class="fa fa-code fw-bold" aria-hidden="true"></i> WEBEER</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -1129,7 +1129,7 @@ const createProfileEditTemplate = (user) => {
   `;
 };
 const createNavbarTemplateAfterLogin = () => `
-<nav class="navbar fixed-top navbar-expand-lg ">
+<nav class="navbar fixed-top navbar-expand-lg " id="navbar">
 <div class="container-fluid">
 <a class="navbar-brand text-light fw-bold" href="#"><i class="fa fa-code fw-bold" aria-hidden="true"></i> WEBEER</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
