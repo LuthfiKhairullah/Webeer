@@ -1,13 +1,8 @@
-.container-add-job {
-display: flex;
-justify-content: center;
-width: 100%;
-background-color: white;
-}
+
 .container-add-job form{
     background-color: white;
     padding: 10px;
-    width: 100%;
+
 }
 .container-add-job input{
     border-radius: 15px;
@@ -19,7 +14,7 @@ background-color: white;
     border-radius: 15px;
 }
 .container-company-add{
-    width: 100%;
+
     margin-left: 200px;
 }
 @media screen and (max-width:800px) {
