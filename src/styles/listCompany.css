@@ -37,8 +37,8 @@
         display: none;
     }
 
-    .container-company {
-        margin-left: 100px;
+    .container-company-list {
+        margin-left: 80px;
     }
 
     #sidebar li a {
@@ -48,5 +48,15 @@
 
     .company {
         justify-content: center;
+    }
+}
+.container-company-list .card-job-company img {
+width: 200px;
+height: 200px;
+}
+@media screen and (max-width:400px) {
+    .container-company-list .card-job-company img {
+        width: 100px;
+        height: 100px;
     }
 }

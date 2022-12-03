@@ -1269,7 +1269,7 @@ const createSidebarCompany = () => `
 const createCardJobCompany = (job) => `
 <div class="card-job-company">
   <div class="card-header" style="text-align:center;">
-    <img src="${job.image}" style="width:200px; height:200px;">
+    <img src="${job.image}">
   </div>
   <div class = "card-body" style="margin-top:5px;">
     <h6>${job.company}</h6>
