@@ -128,10 +128,16 @@ const ForumsPage = {
     const filterButton = document.querySelector('#form-filter');
     filterButton.addEventListener('reset', async (e) => {
       e.preventDefault();
+      sort.forEach((s) => {
+        if (s.value === 'latest') {
+          s.checked = true;
+        } else {
+          s.checked = false;
+        }
+      });
       check.forEach((c) => {
         c.checked = false;
       });
-      discussionListElement.discussions = await DiscussionSource.getAllDiscussion(`search=${searchInput.value}`);
     });
     filterButton.addEventListener('submit', async (e) => {
       e.preventDefault();
