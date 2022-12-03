@@ -77,17 +77,19 @@ const ProfilePage = {
       BtnBookmark.classList.add('onactive');
       const userBookmark = await BookmarkDiscussionIdb.getAllDiscussions();
       console.log(userBookmark);
-      userBookmark.forEach(async (b) => {
-        const discussions = await DiscussionSource.getDiscussion(b.id);
-        if (discussions === null) {
-          await BookmarkDiscussionIdb.deleteDiscussion(b.id);
+      const discussions = await DiscussionSource.getAllDiscussion();
+      userBookmark.forEach(async (ub) => {
+        const check = discussions.filter((discussion) => discussion._id.toString().includes(ub.id)).map((discussion) => discussion._id).join('').includes(ub.id);
+        if (check === false) {
+          await BookmarkDiscussionIdb.deleteDiscussion(ub.id);
         }
       });
-      console.log(userBookmark.length);
-      if (userBookmark.length > 0) {
+      const updateBookmark = await BookmarkDiscussionIdb.getAllDiscussions();
+      console.log(updateBookmark.length);
+      if (updateBookmark.length > 0) {
         content.innerHTML = '<bookmark-list></bookmark-list>';
         const userBookmarkElement = document.querySelector('bookmark-list');
-        userBookmarkElement.bookmarks = userBookmark;
+        userBookmarkElement.bookmarks = updateBookmark;
       } else {
         content.innerHTML = createBookmarkEmpty();
       }
