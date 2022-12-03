@@ -84,6 +84,13 @@ const ProfilePage = {
       BtnDiscussion.classList.remove('afterClick');
       BtnBookmark.classList.add('afterClick');
       const userBookmark = await BookmarkDiscussionIdb.getAllDiscussions();
+      console.log(userBookmark);
+      userBookmark.forEach(async (b) => {
+        const discussions = await DiscussionSource.getDiscussion(b.id);
+        if (discussions === null) {
+          await BookmarkDiscussionIdb.deleteDiscussion(b.id);
+        }
+      });
       console.log(userBookmark.length);
       if (userBookmark.length > 0) {
         content.innerHTML = '<bookmark-list></bookmark-list>';
