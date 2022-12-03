@@ -619,50 +619,61 @@ const createFilterCategoryTemplate = (category) => `
 `;
 
 const createProfileTemplateSkeleton = () => `
-  <div class="container-profile">
-    <div class="container-profile-main">
-      <div class="card profile">
-        <div class="semi-circle"></div>
-        <img style="width:200px; height: 200px;" class="card-img-top skeleton">
-        <div class="card-body text-center placeholder-glow">
-          <p><span class="placeholder">Lorem ipsum dolor</span></p>
-          <button class="btn btn-sm btn-primary text-primary disabled placeholder" style="padding:11px;">Change Profile</button>
-          <button class="btn btn-sm btn-primary text-primary disabled placeholder" style="padding:11px;">Change Password</button>
+<div class="container-profile placeholder-glow">
+      <div class="container-profile-main">
+        <div class="card profile">
+          <img style="width:200px; height:200px;" class="placeholder">
+          <div class="container-activity">
+              <p  class="fw-bold"  style="text-align:left; border-bottom:3px solid grey;"><span class="placeholder">lorem ipsum</span></p>
+              <h6> <span class="placeholder">lorem ipsum</span> </h6>
+              <h2 class="grade-user fw-bold"><span class="placeholder">lorem</span></h2>
+              <h6><span class="placeholder">lorem ipsum</span></h6>
+              <p class="length-disscussion-user"><span class="placeholder">lorem</span></p>
+              <h6><span class="placeholder">lorem ipsum domet</span></h6>
+              <p class="length-reply-user"><span class="placeholder">lorem</span></p>
+          </div>
+          <div class="container-myskill" style="padding:10px;">
+          <p class=" fw-bold" style="border-bottom:3px solid grey;"><span class="placeholder">lorem ipsum</span> </p>
+          <p class="fw-bold "><span class="placeholder">lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum 
+          lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum </span></p>
+          </div>
+            <div class="card-body text-center">
+            <a class=" btn" style="padding:11px;"><span class="placeholder">lorem ipsum</span></a>
+            <a class=" btn" style="padding:11px;"><span class="placeholder">lorem ipsum</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="container-about-profile-user scroll-item">
+        <h2 class="fw-bold"><span class="placeholder">lorem ipsum domet ipsum domet ipsum domet</span></h2>
+        <p class="fw-bold "><span class="placeholder">lorem ipsum domet ipsum</span></p>
+        <h6><span class="placeholder">lorem ipsum</span></h6>
+        <p><span class="placeholder">lorem ipsum</span></p>
+        <div class="d-flex" style="border-bottom:3px solid grey; ">
+          <button class="btn " id="buttonAboutProfile" style="margin-bottom:5px;"><span class="placeholder">lorem ipsum</span></button>
+          <button class="btn " id="buttonDiscussionProfile" style="margin-bottom:5px;"><span class="placeholder">lorem ipsum</span></button>
+          <button class="btn " id="buttonBookmarkProfile" style="margin-bottom:5px;"><span class="placeholder">lorem ipsum</span></button>
+        </div>
+        <div class="content-profile-user">
+          <h6><span class="placeholder">lorem ipsum</span></h6>
+          <p><span class="placeholder">lorem ipsum domet</span></p>
+          <h6> <span class="placeholder">lorem ipsum</span> </h6>
+          <p><span class="placeholder">lorem ipsum ipsum domet</span></p>
+          <h6><span class="placeholder">lorem ipsum</span></h6>
+          <p style="text-align:justify;"><span class="placeholder">lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+          </span></p>
         </div>
       </div>
     </div>
-    <div class="card about placeholder-glow">
-      <h6><span class="placeholder">Profession</span></h6>
-      <p class="placeholder">-</p>
-      <h6><span class="placeholder">Country</span></h6>
-      <p class="placeholder">-</p>
-      <h6><span class="placeholder">Contact</span></h6>
-      <p><span class="placeholder">1234567890123</span></p>
-      <p class="placeholder">-</p>
-      <h6><span class="placeholder">About</span></h6>
-      <p class="placeholder">-</p>
     </div>
-    <div class="card activity placeholder-glow">
-      <h3><span class="placeholder">Your Activity</span></h3>
-      <h2><span class="placeholder">AA</span></h2>
-      <h6><span class="placeholder">Your Discussion</span></h6>
-      <p><span class="placeholder">999</span></p>
-      <h6><span class="placeholder">Your Answer Discussion</span></h6>
-      <p><span class="placeholder">999</span></p>
-    </div>
-  </div>
-    <div class="container-fluid">
-      <div class="header-btn">
-        <div class="d-flex placeholder-glow">
-          <button class="btn btn-sm btn-primary text-primary disabled placeholder">Discussion</button>
-          <button class="btn btn-sm btn-light text-light disabled placeholder">Bookmark</button>
-        </div>
-        <div class="container-discussion-user">
-          ${createDiscussionItemTemplateSkeleton(5)}
-        </div>
-      </div>
-    </div>
-  </div>
 `;
 
 const createProfileTemplate = (user) => {
@@ -678,92 +689,130 @@ const createProfileTemplate = (user) => {
   if (user.country === undefined) {
     user.country = '-';
   }
+  if (user.specialities === undefined) {
+    user.specialities = '-';
+  }
+
   return `
     <div class="container-profile">
       <div class="container-profile-main">
         <div class="card profile">
-          <div class="semi-circle"></div>
           <img src="${user.image}" class="card-img-top lazyload">
-          <div class="card-body text-center">
-            <p>${user.username}</p>
+          <div class="container-activity">
+              <p  class="text-muted fw-bold"  style="text-align:left; border-bottom:3px solid grey;">Activity </p>
+              <h6> Grade </h6>
+              <h2 class="grade-user fw-bold"></h2>
+              <h6> Your Discussion</h6>
+              <p class="length-disscussion-user"></p>
+              <h6> Your Answer Discussion</h6>
+              <p class="length-reply-user"></p>
+          </div>
+          <div class="container-myskill" style="padding:10px;">
+          <p class="text-muted fw-bold" style="border-bottom:3px solid grey;"> My Skills </p>
+          <p class="fw-bold text-muted">${user.specialities.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+          </div>
+            <div class="card-body text-center">
             <a class=" btn btn-primary btn-sm" href="#/editprofile/${user._id}" style="padding:11px;">Change Profile</a>
             <a class=" btn btn-primary btn-sm" href="#/changepwd/${user._id}" style="padding:11px;">Change Password</a>
           </div>
         </div>
       </div>
-      <div class="card about">
-        <h6>Profession</h6>
-        <p>${user.profesi}</p>
+      <div class="container-about-profile-user scroll-item">
+        <h2 class="fw-bold">${user.username}</h2>
+        <p class="fw-bold" style="color:#607EAA;">${user.profesi}</p>
         <h6>Country</h6>
         <p>${user.country}</p>
-        <h6>Contact</h6>
-        <p>${user.contact}</p>
-        <p>${user.email}</p>
-        <h6>About</h6>
-        <p>${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
-      </div>
-      <div class="card activity">
-        <h3>Your Activity </h3>
-        <h2 class="grade-user"></h2>
-        <h6> Your Discussion</h6>
-        <p class="length-disscussion-user"></p>
-        <h6> Your Answer Discussion</h6>
-        <p class="length-reply-user"></p>
-      </div>
-    </div>
-    <div class="container-fluid">
-      <div class="header-btn">
-        <div class="d-flex">
-          <button class="btn btn-sm onactive fw-bold" id="btn-discussion">Discussion</button>
-          <button class="btn btn-sm fw-bold" id="btn-bookmark">Bookmark</button>
+        <div class="d-flex" style="border-bottom:3px solid grey; ">
+          <button class="btn afterClick " id="buttonAboutProfile" style="margin-bottom:5px;"><i class="fa fa-user" aria-hidden="true"></i> About</button>
+          <button class="btn " id="buttonDiscussionProfile" style="margin-bottom:5px;"><i class="fa fa-comments-o" aria-hidden="true"></i> Discussion</button>
+          <button class="btn " id="buttonBookmarkProfile" style="margin-bottom:5px;"><i class="fa fa-bookmark" aria-hidden="true"></i> Bookmark</button>
         </div>
-        <div class="container-discussion-user"></div>
+        <div class="content-profile-user">
+          <h6>Contact</h6>
+          <p>${user.contact}</p>
+          <h6> Email </h6>
+          <p>${user.email}</p>
+          <h6>About</h6>
+          <p style="text-align:justify;">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+        </div>
       </div>
     </div>
-  `;
+    </div>
+    `;
+};
+
+const createAboutProfileTemplate = (user) => {
+  if (user.bio === undefined) {
+    user.bio = '-';
+  }
+  if (user.contact === undefined) {
+    user.contact = '';
+  }
+  if (user.profesi === undefined) {
+    user.profesi = '-';
+  }
+  return `
+  <div class="content-profile-user">
+    <h6>Contact</h6>
+    <p>${user.contact}</p>
+    <h6> Email </h6>
+    <p>${user.email}</p>
+    <h6>About</h6>
+    <p style="text-align:justify;">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+`;
 };
 
 const createProfileOtherTemplateSkeleton = () => `
-  <div class="container-profile">
-    <div class="container-profile-main">
-      <div class="card profile">
-        <div class="semi-circle"></div>
-        <img style="width:200px; height: 200px;" class="card-img-top skeleton">
-        <div class="card-body text-center placeholder-glow">
-          <p><span class="placeholder">Lorem ipsum dolor</span></p>
-        </div>
-      </div>
+<div class="container-profile placeholder-glow">
+<div class="container-profile-main">
+  <div class="card profile">
+    <img style="width:200px; height:200px;" class="placeholder">
+    <div class="container-activity">
+        <p  class="fw-bold"  style="text-align:left; border-bottom:3px solid grey;"><span class="placeholder">lorem ipsum</span></p>
+        <h6> <span class="placeholder">lorem ipsum</span> </h6>
+        <h2 class="grade-user fw-bold"><span class="placeholder">lorem</span></h2>
+        <h6><span class="placeholder">lorem ipsum</span></h6>
+        <p class="length-disscussion-user"><span class="placeholder">lorem</span></p>
+        <h6><span class="placeholder">lorem ipsum domet</span></h6>
+        <p class="length-reply-user"><span class="placeholder">lorem</span></p>
     </div>
-    <div class="card about placeholder-glow">
-      <h6><span class="placeholder">Profession</span></h6>
-      <p class="placeholder">-</p>
-      <h6><span class="placeholder">Country</span></h6>
-      <p class="placeholder">-</p>
-      <h6><span class="placeholder">Contact</span></h6>
-      <p><span class="placeholder">1234567890123</span></p>
-      <p class="placeholder">-</p>
-      <h6><span class="placeholder">About</span></h6>
-      <p class="placeholder">-</p>
-    </div>
-    <div class="card activity placeholder-glow">
-      <h3><span class="placeholder">Your Activity</span></h3>
-      <h2><span class="placeholder">AA</span></h2>
-      <h6><span class="placeholder">Your Discussion</span></h6>
-      <p><span class="placeholder">999</span></p>
-      <h6><span class="placeholder">Your Answer Discussion</span></h6>
-      <p><span class="placeholder">999</span></p>
+    <div class="container-myskill" style="padding:10px;">
+    <p class=" fw-bold" style="border-bottom:3px solid grey;"><span class="placeholder">lorem ipsum</span> </p>
+    <p class="fw-bold "><span class="placeholder">lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum 
+    lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum </span></p>
     </div>
   </div>
-  <div class="container-fluid">
-    <div class="header-btn">
-      <div class="d-flex placeholder-glow">
-        <button class="btn btn-sm btn-primary text-primary disabled placeholder">Discussion</button>
-      </div>
-      <div class="container-discussion-user">
-        ${createDiscussionItemTemplateSkeleton(5)}
-      </div>
-    </div>
+</div>
+<div class="container-about-profile-user scroll-item">
+  <h2 class="fw-bold"><span class="placeholder">lorem ipsum domet ipsum domet ipsum domet</span></h2>
+  <p class="fw-bold "><span class="placeholder">lorem ipsum domet ipsum</span></p>
+  <h6><span class="placeholder">lorem ipsum</span></h6>
+  <p><span class="placeholder">lorem ipsum</span></p>
+  <div class="d-flex" style="border-bottom:3px solid grey; ">
+    <button class="btn " id="buttonAboutProfile" style="margin-bottom:5px;"><span class="placeholder">lorem ipsum</span></button>
+    <button class="btn " id="buttonDiscussionProfile" style="margin-bottom:5px;"><span class="placeholder">lorem ipsum</span></button>
   </div>
+  <div class="content-profile-user">
+    <h6><span class="placeholder">lorem ipsum</span></h6>
+    <p><span class="placeholder">lorem ipsum domet</span></p>
+    <h6> <span class="placeholder">lorem ipsum</span> </h6>
+    <p><span class="placeholder">lorem ipsum ipsum domet</span></p>
+    <h6><span class="placeholder">lorem ipsum</span></h6>
+    <p style="text-align:justify;"><span class="placeholder">lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    </span></p>
+  </div>
+</div>
+</div>
+</div>
 `;
 
 const createProfileOtherTemplate = (user) => {
@@ -771,7 +820,7 @@ const createProfileOtherTemplate = (user) => {
     user.bio = '-';
   }
   if (user.contact === undefined) {
-    user.contact = '-';
+    user.contact = '';
   }
   if (user.profesi === undefined) {
     user.profesi = '-';
@@ -779,46 +828,50 @@ const createProfileOtherTemplate = (user) => {
   if (user.country === undefined) {
     user.country = '-';
   }
+  if (user.specialities === undefined) {
+    user.specialities = '-';
+  }
+
   return `
     <div class="container-profile">
       <div class="container-profile-main">
         <div class="card profile">
-          <div class="semi-circle"></div>
           <img src="${user.image}" class="card-img-top lazyload">
-          <div class="card-body text-center">
-            <p>${user.username}</p>
+          <div class="container-activity">
+              <p  class="text-muted fw-bold"  style="text-align:left; border-bottom:3px solid grey;">Activity </p>
+              <h6> Grade </h6>
+              <h2 class="grade-user fw-bold"></h2>
+              <h6> Your Discussion</h6>
+              <p class="length-disscussion-user"></p>
+              <h6> Your Answer Discussion</h6>
+              <p class="length-reply-user"></p>
+          </div>
+          <div class="container-myskill" style="padding:10px;">
+          <p class="text-muted fw-bold" style="border-bottom:3px solid grey;"> My Skills </p>
+          <p class="fw-bold text-muted">${user.specialities.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
           </div>
         </div>
       </div>
-      <div class="card about">
-        <h6>Profession</h6>
-        <p>${user.profesi}</p>
+      <div class="container-about-profile-user scroll-item">
+        <h2 class="fw-bold">${user.username}</h2>
+        <p class="fw-bold" style="color:#607EAA;">${user.profesi}</p>
         <h6>Country</h6>
         <p>${user.country}</p>
-        <h6>Contact</h6>
-        <p>${user.contact}</p>
-        <p>${user.email}</p>
-        <h6>About</h6>
-        <p>${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
-      </div>
-      <div class="card activity">
-        <h3>Your Activity </h3>
-        <h2 class="grade-user"></h2>
-        <h6>Your Discussion</h6>
-        <p class="length-disscussion-user"></p>
-        <h6>Your Answer Discussion</h6>
-        <p class="length-reply-user"></p>
-      </div>
-    </div>
-    <div class="container-fluid">
-      <div class="header-btn">
-        <div class="d-flex">
-          <button class="btn btn-sm onactive fw-bold" id="btn-discussion">Discussion</button>
+        <div class="d-flex" style="border-bottom:3px solid grey; ">
+          <button class="btn afterClick " id="buttonAboutProfile" style="margin-bottom:5px;"><i class="fa fa-user" aria-hidden="true"></i> About</button>
+          <button class="btn " id="buttonDiscussionProfile" style="margin-bottom:5px;"><i class="fa fa-comments-o" aria-hidden="true"></i> Discussion</button>        </div>
+        <div class="content-profile-user">
+          <h6>Contact</h6>
+          <p>${user.contact}</p>
+          <h6> Email </h6>
+          <p>${user.email}</p>
+          <h6>About</h6>
+          <p style="text-align:justify;">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
         </div>
-        <div class="container-discussion-user"></div>
       </div>
     </div>
-  `;
+    </div>
+    `;
 };
 const createNavbarTemplateBeforeLogin = () => `
 <nav class="navbar fixed-top navbar-expand-lg " id="navbar">
@@ -851,6 +904,9 @@ const createProfileEditTemplate = (user) => {
   }
   if (user.profesi === undefined) {
     user.profesi = '-';
+  }
+  if (user.specialities === undefined) {
+    user.specialities = '-';
   }
   return `
     <div class="container-edit-profile">
@@ -1119,6 +1175,10 @@ const createProfileEditTemplate = (user) => {
               <h5>Bio</h5>
               <textarea class="form-control" id="edit-bio" placeholder="Type your bio">${user.bio}</textarea>
             </div>
+            <div class="mb-4">
+            <h5>My Skills</h5>
+            <textarea class="form-control" id="edit-skill" placeholder="Type your skills">${user.specialities}</textarea>
+          </div>
             <div class="mb-4">
               <h5>Profile Picture</h5>
               <input class="form-control" type="file" id="edit-photo">
@@ -1825,4 +1885,5 @@ export {
   createItemJobCompanyOther,
   createBodyOtherCompany,
   createCardJobCompanySkeleton,
+  createAboutProfileTemplate,
 };

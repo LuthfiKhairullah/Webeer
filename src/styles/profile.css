@@ -6,78 +6,18 @@
     max-width: 1360px;
     flex-wrap: wrap;
     z-index: 1;
-}
-
-.card.profile {
-    width: 300px;
-    margin-right: 10px;
-    height: 500px;
-    border: none;
-}
-
-.card.about {
-    padding: 10px;
-    width: 50%;
-}
-
-.card.activity {
-    width: 300px;
-    height: 500px;
-    margin-left: 10px;
-    text-align: center;
     padding: 10px;
 }
-
-/* .card-item-discussion-user {
-    background-color: white;
-    max-width: 1200px;
-    height: 120px;
-    margin: 50px auto;
-    border-radius: 5px;
-} */
 .card.profile img {
     width: 200px;
-    border-radius: 50%;
-    margin: 10px auto;
-    border: 1px solid black;
-    z-index: 1;
+    margin: 10px auto;  
 }
-
-.semi-circle {
-    height: 150px;
-    width: 100%;
-    border-radius: 0 0 150px 150px;
-    margin: 0;
-    padding: 0;
-    background-color: #344D67;
-    z-index: 0;
-    position: absolute;
+.container-about-profile-user{
+    width: 900px;
+    padding: 10px;
+    background-color: white;
+    height: 830px;
 }
-
-.header-btn {
-    max-width: 1300px;
-    margin: 20px auto;
-}
-
-.container-discussion-user {
-    height: 700px;
-    overflow-y: auto;
-}
-
-.header-btn .btn {
-    background-color: #f8f9fa;
-    padding: 11px;
-}
-
-.header-btn .btn:hover {
-    background-color: #0d6efd;
-}
-
-.btn.onactive {
-    background-color: #0d6efd;
-    color: white;
-}
-
 .edit-profile {
     background-color: #f8f9fa;
     max-width: 800px;
@@ -85,16 +25,41 @@
     padding: 10px;
     border-radius: 15px;
 }
-
+.container-activity{
+    text-align: center;
+    padding: 10px;
+}
+.content-profile-user{
+    height: 550px;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+.card.profile {
+    border-radius: 0px;
+    height: 830px;
+    width: 300px;
+}
+.container-myskill{
+    height: 250px;
+    overflow-y: auto;
+}
+.btn.afterClick{
+    color: #607EAA;
+    border-bottom: 4px solid #607EAA;
+    font-weight: bold;
+    border-radius: 0px;
+}
 @media screen and (max-width: 1240px) {
-    .card.activity {
-        margin-top: 20px;
-        height: 100%;
-        margin-left: 0;
-        width: calc(310px + 50%);
+    .card.profile{
+        width: 900px;
     }
 }
-
+@media screen and (max-width:925px) {
+    .card.profile{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
 @media screen and (max-width: 620px) {
     .card.profile {
         margin-right: 0;

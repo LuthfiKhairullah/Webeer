@@ -22,7 +22,8 @@ main {
 
 #navbarNav .nav-link.actived {
     background-color: #1a2633 !important;
-    border-radius: 5px;
+    border-radius: 15px;
+    font-weight: bolder;
 }
 
 .navbar {
