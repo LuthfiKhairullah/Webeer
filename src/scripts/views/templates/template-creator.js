@@ -422,7 +422,7 @@ const createDiscussionDetailTemplate = (discussion) => {
       <button id="code" class="btn btn-light m-0 d-block"><i class="fa fa-code" aria-hidden="true"></i></button>
       <form id="form-discussion-reply" class="my-2 ">
         <textarea  name="inputReply" id="inputReply" class="form-control" rows=15"></textarea>
-        <button type="submit" class="btn btn-dark ms-1 my-1" id="answerButton">Submit Answer</button>
+        <button type="submit" class="btn btn-dark ms-1 my-2" id="answerButton">Submit Answer</button>
       </form>
     </div>
   `;
