@@ -5,7 +5,7 @@ const HomePage = {
             <div class="container-main-homepage">
               <div class="container-main-text-homepage">
                 <h2 class="text-dark fw-bold">Welcome to Webeer!
-                </h2><p class="fw-bold fs-5">
+                </h2><p class="fs-5">
                 Discussion Platform
                 Indonesian Web Developer<br>
                 Join to interact with each other
@@ -38,7 +38,7 @@ const HomePage = {
                   Find answers
                   <br>your problem!
                 </h4>
-                <p class="text-dark fw-bold">
+                <p class="text-dark">
                   With Webeer, ask your problem or
                   <br>contribute to solving problems
                 <br>Other Web Developers.

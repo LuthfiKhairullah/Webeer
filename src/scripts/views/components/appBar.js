@@ -16,6 +16,22 @@ class AppBar extends HTMLElement {
     }
     if (getTokenStorage === null) {
       this.innerHTML += createNavbarTemplateBeforeLogin();
+      const navItem = document.querySelectorAll('.nav-link');
+      console.log(navItem);
+      const url = UrlParser.parseActiveUrlWithCombiner();
+      for (let i = 0; i < navItem.length; i++) {
+        if (navItem[i].getAttribute('href') === `#${url}`) {
+          navItem[i].classList.add('active');
+        } else {
+          navItem[i].classList.remove('active');
+        }
+        navItem[i].addEventListener('click', () => {
+          for (let j = 0; j < navItem.length; j++) {
+            navItem[j].classList.remove('active');
+            navItem[i].classList.add('active');
+          }
+        });
+      }
     } else if (getTokenStorage != null && getRoleStorage === 'Programmer') {
       this.innerHTML += createNavbarTemplateAfterLogin();
       const logout = document.querySelector('#logout');
@@ -30,6 +46,22 @@ class AppBar extends HTMLElement {
           window.location.reload();
         }
       });
+      const navItem = document.querySelectorAll('.nav-link');
+      console.log(navItem);
+      const url = UrlParser.parseActiveUrlWithCombiner();
+      for (let i = 0; i < navItem.length; i++) {
+        if (navItem[i].getAttribute('href') === `#${url}`) {
+          navItem[i].classList.add('active');
+        } else {
+          navItem[i].classList.remove('active');
+        }
+        navItem[i].addEventListener('click', () => {
+          for (let j = 0; j < navItem.length; j++) {
+            navItem[j].classList.remove('active');
+            navItem[i].classList.add('active');
+          }
+        });
+      }
     } else {
       this.innerHTML += createSidebarCompany();
       const logout = document.querySelector('#logout');
@@ -43,22 +75,22 @@ class AppBar extends HTMLElement {
           window.location.reload();
         }
       });
-    }
-    const navItem = document.querySelectorAll('.nav-link');
-    console.log(navItem);
-    const url = UrlParser.parseActiveUrlWithCombiner();
-    for (let i = 0; i < navItem.length; i++) {
-      if (navItem[i].getAttribute('href') === `#${url}`) {
-        navItem[i].classList.add('active');
-      } else {
-        navItem[i].classList.remove('active');
-      }
-      navItem[i].addEventListener('click', () => {
-        for (let j = 0; j < navItem.length; j++) {
-          navItem[j].classList.remove('active');
-          this.classList.add('active');
+      const navItem = document.querySelectorAll('.nav-link');
+      console.log(navItem);
+      const url = UrlParser.parseActiveUrlWithCombiner();
+      for (let i = 0; i < navItem.length; i++) {
+        if (navItem[i].getAttribute('href') === `#${url}`) {
+          navItem[i].classList.add('active');
+        } else {
+          navItem[i].classList.remove('active');
         }
-      });
+        navItem[i].addEventListener('click', () => {
+          for (let j = 0; j < navItem.length; j++) {
+            navItem[j].classList.remove('active');
+            this.classList.add('active');
+          }
+        });
+      }
     }
   }
 }

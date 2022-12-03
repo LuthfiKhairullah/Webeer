@@ -19,12 +19,14 @@ html {
 main {
     background-color: #607EAA;
 }
-.active{
-    font-weight: bolder;
+.nav-link.active{
+    background-color:  #1a2633 !important;
+    border-radius: 5px;
 }
+
 .navbar {
     position: fixed;
-    background-color: #1C3879;
+    background-color: #344D67;
 }
 
 #sidebar {
@@ -54,7 +56,7 @@ code {
     padding: 20px;
     color: black;
     font-weight: 500;
-    background-color: #1C3879;
+    background-color: #344D67;
     color: white;
 }
 
