@@ -66,17 +66,18 @@ const DetailDiscussionPage = {
     discussionCategory.forEach((categoryitem) => {
       if (discussions.categories.includes(categoryitem.name.toString())) {
         categoryList.innerHTML += `
-          <input type="checkbox" class="btn-check" name="categoryFilter" id="${categoryitem.name}" value="${categoryitem.name}" autocomplete="off" checked>
+          <input type="checkbox" class="btn-check categoryFilter" name="categoryFilter" id="${categoryitem.name}" value="${categoryitem.name}" autocomplete="off" checked>
           <label class="btn btn-outline-primary mb-1" for="${categoryitem.name}">${categoryitem.name}</label>
         `;
       } else {
         categoryList.innerHTML += `
-          <input type="checkbox" class="btn-check" name="categoryFilter" id="${categoryitem.name}" value="${categoryitem.name}" autocomplete="off">
+          <input type="checkbox" class="btn-check categoryFilter" name="categoryFilter" id="${categoryitem.name}" value="${categoryitem.name}" autocomplete="off">
           <label class="btn btn-outline-primary mb-1" for="${categoryitem.name}">${categoryitem.name}</label>
         `;
       }
     });
     const categorySelect = document.getElementsByName('categoryFilter');
+    const categorySelectElement = document.querySelector('.categoryFilter');
     const isSolvedCheck = document.getElementById('issolved');
     if (discussions.isSolved.toString() === 'true') {
       isSolvedCheck.setAttribute('checked', '');
@@ -99,21 +100,24 @@ const DetailDiscussionPage = {
     formEditDiscussion.addEventListener('submit', async (e) => {
       e.preventDefault();
       const arrcategory = [];
-      const inputTitle = document.getElementById('inputTitle').value;
-      const inputDiscussion = document.getElementById('inputDiscussion').value;
+      const inputTitle = document.getElementById('inputTitle');
+      const inputDiscussion = document.getElementById('inputDiscussion');
       editButton.setAttribute('disabled', '');
       categorySelect.forEach((c) => {
         if (c.checked) {
           arrcategory.push(c.value);
         }
       });
-      if (arrcategory.length === 0 || inputTitle === '' || inputDiscussion === '') {
+      if (arrcategory.length === 0 || inputTitle.value === '' || inputDiscussion.value === '') {
         if (arrcategory.length === 0) {
           messageText.innerHTML = 'Error! Please choose one category first!';
-        } else if (inputTitle === '') {
+          categorySelectElement.focus();
+        } else if (inputTitle.value === '') {
           messageText.innerHTML = 'Error! Please type your title discussion';
+          inputTitle.focus();
         } else {
           messageText.innerHTML = 'Error! Please type your discussion';
+          inputDiscussion.focus();
         }
         messageText.classList.remove('text-bg-success');
         messageTitle.classList.remove('text-success');
@@ -126,9 +130,9 @@ const DetailDiscussionPage = {
         const editDiscussion = await DiscussionSource.editDiscussion(
           url.id,
           {
-            title: inputTitle,
+            title: inputTitle.value,
             categories: arrcategory,
-            discussion: inputDiscussion,
+            discussion: inputDiscussion.value,
             isSolved: isSolvedCheck.checked,
           },
         );
@@ -204,22 +208,34 @@ const DetailDiscussionPage = {
           message.show();
           answerButton.removeAttribute('disabled');
         } else {
-          messageText.classList.remove('text-bg-warning');
-          messageTitle.classList.remove('text-warning');
-          messageText.classList.add('text-bg-success');
-          messageTitle.classList.add('text-success');
-          messageText.innerHTML = 'Added reply successfully';
-          messageTitle.innerHTML = 'SUCCESS';
-          message.show();
-          answerButton.removeAttribute('disabled');
-          inputReply.value = '';
           const updateDiscussions = await DiscussionSource.getDiscussion(url.id);
-          lengthReply.innerText = updateDiscussions.reply.length;
           const updateDiscussionReply = await DiscussionSource.getDiscussionReply(url.id);
-          discussionReplyListElement.innerHTML = '';
-          updateDiscussionReply.forEach((reply) => {
-            discussionReplyListElement.replies = reply;
-          });
+          inputReply.value = '';
+          console.log(updateDiscussionReply[0]._id.includes(addDiscussionReply._id.toString()));
+          if (updateDiscussionReply[0]._id.includes(addDiscussionReply._id.toString())) {
+            lengthReply.innerText = updateDiscussions.reply.length;
+            discussionReplyListElement.innerHTML = '';
+            updateDiscussionReply.forEach((reply) => {
+              discussionReplyListElement.replies = reply;
+            });
+            messageText.classList.remove('text-bg-warning');
+            messageTitle.classList.remove('text-warning');
+            messageText.classList.add('text-bg-success');
+            messageTitle.classList.add('text-success');
+            messageText.innerHTML = 'Added reply successfully';
+            messageTitle.innerHTML = 'SUCCESS';
+            message.show();
+            answerButton.removeAttribute('disabled');
+          } else {
+            messageText.classList.remove('text-bg-warning');
+            messageTitle.classList.remove('text-warning');
+            messageText.classList.add('text-bg-success');
+            messageTitle.classList.add('text-success');
+            messageText.innerHTML = 'Added reply successfully';
+            messageTitle.innerHTML = 'SUCCESS';
+            message.show();
+            setTimeout(() => document.location.reload(), 1000);
+          }
         }
       } else {
         messageText.classList.remove('text-bg-success');

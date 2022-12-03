@@ -25,37 +25,37 @@ const addJobPage = {
         <div class="container-add-job">
         <form id="job-form">
         <h3>Post a Job to Webeer</h3>
-            <div class="mb-3 row">
+            <div class="mb-3">
                 <label for="exampleInputEmail1" class="col-form-label"><small>Company name</small></label>
                 <div class="col-sm-6">
                 <input type="text" class="form-control  form-control-md" id="company-job" placeholder="Enter your company name" autofocus>
                 </div>
             </div>
-            <div class="mb-3 row">
+            <div class="mb-3">
                 <label for="exampleInputEmail1" class=" col-form-label"><small>Job position</small></label>
                 <div class="col-sm-6">
                 <input type="text" class="form-control  form-control-md" id="profession-job" placeholder="Enter the job position">
                 </div>
             </div>
-            <div class="mb-3 row">
+            <div class="mb-3">
                 <label for="exampleInputEmail1" class=" col-form-label"><small>Company's address</small></label>
                 <div class="col-sm-6">
                 <input type="text" class="form-control  form-control-md" id="address-job" placeholder="Enter the company address">
                 </div>
             </div>
-            <div class="mb-3 row">
+            <div class="mb-3">
                 <label for="exampleInputEmail1" class=" col-form-label"><small>Company description</small></label>
                     <div class="col-sm-6">
                         <textarea class="form-control" id="description-job" rows="4" placeholder="Enter a company description"></textarea>
                     </div>
              </div>
-             <div class="mb-3 row">
+             <div class="mb-3">
              <label for="exampleInputEmail1" class="col-form-label"><small>Job description</small></label>
                  <div class="col-sm-6">
                      <textarea class="form-control" id="descriptionProfession-job" rows="4" placeholder="Enter a job description"></textarea>
                  </div>
             </div>
-             <div class="mb-3 row">
+             <div class="mb-3">
                  <label for="exampleInputEmail1" class="col-form-label"><small>Level</small></label>
                     <div class="col-sm-2">
                         <select class="form-select form-select-md" aria-label="Default select example"  id="level-job">
@@ -80,28 +80,30 @@ const addJobPage = {
                 </select>
                     </div>
             </div>
-          <div class="mb-3 row">
+          <div class="mb-3">
             <label for="exampleInputEmail1" class=" col-form-label"><small>Range Salary</small></label>
-                <div class="col-sm-2">
+              <div class="d-flex">
+                <div class="col-md-2">
                     <input type="text" class="form-control  form-control-md" id="salary-job" placeholder="Rp 0.000.000" >
-                </div> -
-                <div class="col-sm-2">
+                </div>&nbsp;-&nbsp;
+                <div class="col-md-2">
                 <input type="text" class="form-control  form-control-md" id="salary-job2" placeholder="Rp 0.000.000">
-                </div>  
+                </div>
+              </div>
            </div>
-           <div class="mb-3 row">
+           <div class="mb-3">
             <label for="exampleInputEmail1" class="col-form-label"><small>Qualification</small></label>
                 <div class="col-sm-6">
                     <textarea class="form-control" id="qualification-job" rows="4" placeholder="Enter the required qualifications"></textarea>
                 </div>
             </div>
-            <div class="mb-3 row">
+            <div class="mb-3">
                     <label for="exampleInputEmail1" class="col-form-label"><small>Company Links</small></label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control  form-control-md" id="link-job" placeholder="https://" >
                     </div>
            </div>
-           <div class="mb-3 row">
+           <div class="mb-3">
                 <label for="exampleInputEmail1" class=" col-form-label"><small>Company logo</small></label>
                 <div class="col-sm-6">
                 <input type="file" class="form-control  form-control-md" id="image-job" >

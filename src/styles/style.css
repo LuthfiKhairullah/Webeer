@@ -19,8 +19,9 @@ html {
 main {
     background-color: #607EAA;
 }
-#navbarNav .nav-link.actived{
-    background-color:  #1a2633 !important;
+
+#navbarNav .nav-link.actived {
+    background-color: #1a2633 !important;
     border-radius: 5px;
 }
 
@@ -49,6 +50,11 @@ p {
 
 pre,
 code {
+    white-space: pre-wrap;
+}
+
+pre.pre-discussion-item,
+code.code-discussion-item {
     white-space: normal;
 }
 

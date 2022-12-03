@@ -25,7 +25,7 @@
     .filterListSkeleton {
         background-color: #607EAA;
         margin: 0;
-        position: absolute;
+        position: fixed;
         top: 56px;
         transform: translate(-100%, 0);
         width: 100%;

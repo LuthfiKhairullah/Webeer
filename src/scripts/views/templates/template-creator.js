@@ -35,7 +35,7 @@ const createDetailJobPageTemplate = (jobs) => `
         <h5 class="fw-bold fs-4">${jobs.company}</h5>
         <h6 class="fw-bold fs-5">${jobs.profession}</h6>
         <p class="fst-italic my-0">${jobs.address}</p>
-        <p class="text-muted my-0 fs-10">${showFormattedDate(jobs.createdAt)}</p>
+        <p class="text-muted my-0 fs-10">${showFormattedDate(jobs.updatedAt)}</p>
       </div>
     </div>
   <p class="fw-bold"> Description Company </p>
@@ -73,7 +73,7 @@ const createItemJob = (jobs) => `
 <img src="${jobs.image}" class="card-image lazyload">
 <h6 class="fw-bold fs-5">${jobs.company}</h6>
 <h6 class="fs-5">${jobs.profession}</h6>
-<p class="text-muted fs-6 fst-italic">${showFormattedDate(jobs.createdAt)}</p>
+<p class="text-muted fs-6 fst-italic">${showFormattedDate(jobs.updatedAt)}</p>
 <p class="text-muted fs-6 fst-italic">${jobs.address}</p>
 <button value=${jobs._id} class="btn btn-primary fw-bold btn-detail btn-sm" id="btnDetailJob">Visit</button>
 <a class="btn btn-primary" id="btnDetailOpen" href="#/detailjob/${jobs._id}" target="_blank">Visit</a>
@@ -89,7 +89,7 @@ const createDetailJob = (detail) => `
     <div class="title-detail">
       <h4 class="fw-bold">${detail.company}</h4>
       <p class="text-muted fst-italic">${detail.address}</p>
-      <p class="text-muted">${showFormattedDate(detail.createdAt)}</p>
+      <p class="text-muted">${showFormattedDate(detail.updatedAt)}</p>
       <a href="#/profilecompany/${detail.companyid}" class="btn btn-secondary btn-sm">Profile Company</a>
     </div>
   </div>
@@ -221,8 +221,8 @@ const createDiscussionItemTemplate = (discussion) => {
         <div class="main-container">
           <div class="categoryDiscussion">${createCategoryDiscussionTemplate(discussion.categories)}</div>
             <h5>${discussion.title}</h5>
-            <pre>
-              <code class="text-break">
+            <pre class="pre-discussion-item">
+              <code class="text-break code-discussion-item">
                   ${truncateString(discussion?.discussion.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/(?:\r\n|\r|\n)/g, ' ').replace(/~Enter Your Code is Here/g, '')
     .replace(/Dont Delete this~/g, ''), 200)}
               </code>
@@ -241,7 +241,7 @@ const createDiscussionItemTemplate = (discussion) => {
             <img src="${discussion.userimage}" class="img-profile-discussion lazyload">
               <div class"sub-profile">
                 <p class="fw-bold username fs-6">${discussion.username}</p>
-                <p class="fw-light fs-6">${discussion.date}</p>
+                <p class="fw-light fs-6">${showFormattedDate(discussion.date)}</p>
               </div>
           </div>
           <span class="${isSolvedClass} p-1 rounded indicator-solved">${isSolved}</span>
@@ -269,8 +269,8 @@ const createBookmarkItemTemplate = (bookmark) => {
         <div class="main-container">
           <div class="categoryDiscussion">${createCategoryDiscussionTemplate(bookmark.categories)}</div>
             <h5>${bookmark.title}</h5>
-            <pre>
-              <code>
+            <pre class="pre-discussion-item">
+              <code class="code-discussion-item">
               ${truncateString(bookmark?.discussion.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/(?:\r\n|\r|\n)/g, ' ').replace(/~Enter Your Code is Here/g, '')
     .replace(/Dont Delete this~/g, ''), 200)}
               </code>
@@ -289,7 +289,7 @@ const createBookmarkItemTemplate = (bookmark) => {
             <img src="${bookmark.userimage}" class="img-profile-discussion lazyload">
               <div class"sub-profile">
                 <p class="fw-bold username fs-6">${bookmark.username}</p>
-                <p class="fw-light fs-6">${bookmark.date}</p>
+                <p class="fw-light fs-6">${showFormattedDate(bookmark.date)}</p>
               </div>
           </div>
           <span class="${isSolvedClass} p-1 rounded indicator-solved">${bookmark.isSolved}</span>
@@ -311,11 +311,11 @@ const createDiscussionDetailTemplateSkeleton = () => `
       </div>
       <div class="text-capitalize placeholder">Lorem</div>
       <h1><span class="placeholder">Lorem ipsum dolor</span></h1>
-      <div class="d-flex align-items-center">
-        <h3 class="fs-6 font-monospace pt-1 mx-1 m-0"><span class="placeholder">31 Desember 2022</span></h3>
-        <span class="placeholder">0000</span>
+      <div class="container-discussion-detail d-flex align-items-center">
+        <h3 class="fs-6 font-monospace mx-1 m-0"><span class="placeholder">31 Desember 2022</span></h3>
+        <span class="placeholder">000</span>
         <span class="mx-1 placeholder">999</span>
-        <div class="placeholder">0000</div>
+        <div class="placeholder me-1">0000</div>
         <div class="placeholder">0000</div>
       </div>
       <p class="text-justify border-top border-bottom my-lg-2"><span class="placeholder">Lorem ipsum dolor lorem ipsum dolor</span></p>
@@ -345,12 +345,12 @@ const createDiscussionDetailTemplate = (discussion) => {
   }
   return `
     <div class="container bg-white padding ">
-      <div class="d-flex justify-content-between">
+      <div class="container-discussion-detail d-flex justify-content-between">
         <div class="d-flex align-items-center">
           <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion lazyload">
           <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;"><span class="ms-1 username fw-bolder font-monospace text-body">${discussion.username}</span></a>
         </div>
-        <div class = "d-flex d-none" id="user-only">
+        <div class = "d-flex d-none container-discussion-detail-button" id="user-only">
           <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn">
             <i class="fa fa-pencil-square-o fa-2x text-primary" aria-label="edit discussion"></i>
           </button>
@@ -406,13 +406,15 @@ const createDiscussionDetailTemplate = (discussion) => {
       </div>
       <div class="text-capitalize">${createCategoryDiscussionTemplate(discussion.categories)}</div>
       <h1>${discussion.title}</h1>
-      <div class="d-flex align-items-center">
-        <h3 class="text-muted fs-6 font-monospace pt-1 mx-1 m-0" >${discussion.date}</h3>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-          <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-        </svg>
-        <span class="lengthReply mx-1">0</span>
+      <div class="container-discussion-detail d-flex align-items-center">
+        <h3 class="text-muted fs-6 font-monospace mx-1 m-0" >${showFormattedDate(discussion.date)}</h3>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
+            <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+            <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
+          </svg>
+          <span class="lengthReply mx-1">0</span>
+        </div>
         <div class="${isSolvedClass}">${isSolved}</div>
         <div id="saveButtonContainer"></div>
       </div>
@@ -486,7 +488,7 @@ const createDiscussionReplyTemplate = (discussion) => {
         </div>
         <div class="ms-2">
           <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;" class="text-dark"><h2 style="font-size: 20px">${discussion.username}</h2></a>
-          <h3 class="mb-2 text-muted" style="font-size: 14px">${discussion.date}</h3>
+          <h3 class="mb-2 text-muted" style="font-size: 14px">${showFormattedDate(discussion.date)}</h3>
           ${discussionReply.join('')}
         </div>
       </div>
