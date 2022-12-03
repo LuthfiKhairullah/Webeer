@@ -1,4 +1,4 @@
-@media screen and (min-width: 950px) {
+@media screen and (min-width: 800px) {
     #filter {
         display: none;
     }
@@ -14,12 +14,16 @@
         display: none;
     }
 
+    #filter-drawer {
+        width: 300px;
+    }
+
     .filterList {
         margin-left: 12px;
     }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 800px) {
 
     filter-list,
     .filterListSkeleton {
@@ -42,10 +46,15 @@
         padding: 30px;
     }
 
+    #filter-drawer {
+        padding-bottom: 80px;
+    }
+
     .open-filter {
         -webkit-transform: translate(0, 0);
         background-color: #607EAA;
         height: 100vh;
+        overflow: auto;
         transform: translate(100%, 0);
         transition: transform 1s ease;
     }
