@@ -35,6 +35,8 @@ const HomeCompany = {
         <svg id="blob3" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="fill" x1="0%" y1="0%" x2="100%" y2="0%" gradientTransform="rotate(45 0.5 0.5)"><stop offset="0%" stop-color="#4F46E5"></stop><stop offset="100%" stop-color="#ff003d"></stop></linearGradient></defs><path d="M77.5,64Q84,78,70,81.5Q56,85,42,86.5Q28,88,18,76.5Q8,65,26,56.5Q44,48,37.5,32.5Q31,17,43,18Q55,19,68.5,21.5Q82,24,76.5,37Q71,50,77.5,64Z" stroke="none" stroke-width="0" fill="url(#fill)"></path></svg>
     </div>`;
   },
-
+  async afterRender() {
+    this.render();
+  },
 };
 export default HomeCompany;

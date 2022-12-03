@@ -1,8 +1,8 @@
 const AboutPage = {
   async render() {
     const getToken = localStorage.getItem('token');
-    const getRole = localStorage.getItem('role').replaceAll('"', '');
-    if (getToken !== null && getRole === 'Company') {
+    const getRole = localStorage.getItem('role');
+    if (getToken !== null && getRole.replaceAll('"', '') === 'Company') {
       document.location = '#/dashboard';
       localStorage.setItem('login', 'true');
       window.reload();
@@ -148,6 +148,9 @@ const AboutPage = {
       <br></br>
       -->
     `;
+  },
+  async afterRender() {
+    this.render();
   },
 };
 export default AboutPage;
