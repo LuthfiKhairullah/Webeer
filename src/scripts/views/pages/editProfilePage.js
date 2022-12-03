@@ -7,15 +7,15 @@ const ProfileEditPage = {
   async render() {
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const getToken = localStorage.getItem('token');
-    const getRole = localStorage.getItem('role').replaceAll('"', '');
+    const getRole = localStorage.getItem('role');
     if (getToken === null) {
       document.location = '#/login';
       localStorage.setItem('login', 'false');
       window.reload();
-    } else if (getToken !== null && getRole === 'Company') {
+    } else if (getToken !== null && getRole.replaceAll('"', '') === 'Company') {
       window.location.href();
       localStorage.setItem('login', 'true');
-    } else if (getToken !== null && getRole === 'Programmer') {
+    } else if (getToken !== null && getRole.replaceAll('"', '') === 'Programmer') {
       document.location = `#/editprofile/${url.id}`;
       localStorage.setItem('login', 'true');
     } else {
@@ -56,6 +56,7 @@ const ProfileEditPage = {
       const inputContact = document.querySelector('#edit-contact').value;
       const inputProfesi = document.querySelector('#edit-profesi').value;
       const inputBio = document.querySelector('#edit-bio').value;
+      const inputSkill = document.querySelector('#edit-skill').value;
       if (inputUsername === '') {
         profileContainer.classList.remove('cursor-progress');
         messageText.classList.remove('text-bg-success');
@@ -73,6 +74,7 @@ const ProfileEditPage = {
           bio: inputBio,
           image: document.querySelector('#edit-photo').files[0],
           country: text,
+          specialities: inputSkill,
         });
         if (data.error) {
           profileContainer.classList.remove('cursor-progress');

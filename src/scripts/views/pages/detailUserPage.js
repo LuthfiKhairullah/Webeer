@@ -2,22 +2,24 @@ import DiscussionSource from '../../data/discussionSource';
 import User from '../../data/loginSource';
 import UrlParser from '../../routes/urlParser';
 import '../components/userOtherProfile';
-import { createProfileOtherTemplateSkeleton } from '../templates/template-creator';
-// import { UserDiscussionSkeleton } from '../templates/template-creator';
+import {
+  createProfileOtherTemplateSkeleton,
+  createAboutProfileTemplate,
+} from '../templates/template-creator';
 
 const DetailProfilePage = {
   async render() {
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const getToken = localStorage.getItem('token');
-    const getRole = localStorage.getItem('role').replaceAll('"', '');
+    const getRole = localStorage.getItem('role');
     if (getToken === null) {
       document.location = '#/login';
       localStorage.setItem('login', 'false');
       window.reload();
-    } else if (getToken !== null && getRole === 'Company') {
+    } else if (getToken !== null && getRole.replaceAll('"', '') === 'Company') {
       window.location.href();
       localStorage.setItem('login', 'true');
-    } else if (getToken !== null && getRole === 'Programmer') {
+    } else if (getToken !== null && getRole.replaceAll('"', '') === 'Programmer') {
       document.location = `#/detailprofile/${url.id}`;
       localStorage.setItem('login', 'true');
     } else {
@@ -51,19 +53,47 @@ const DetailProfilePage = {
     }
     lengthReply.innerHTML = userDiscussion.length;
     const lenDiscussion = userDiscussion.length;
-    const lenReply = countReply.innerHTML;
+    const lenReply = userReply.length;
+    const sumDisRep = lenDiscussion + lenReply;
     const grade = document.querySelector('.grade-user');
-    if (lenDiscussion >= 0 && lenDiscussion <= 10 && lenReply >= 0 && lenReply <= 10) {
+    if (sumDisRep >= 0 && sumDisRep <= 20) {
       grade.innerHTML = 'D';
-    } else if (lenDiscussion >= 11 && lenDiscussion <= 20 && lenReply >= 11 && lenReply <= 20) {
+    } else if (sumDisRep >= 21 && sumDisRep <= 40) {
       grade.innerHTML = 'C';
+    } else if (sumDisRep >= 41 && sumDisRep <= 60) {
+      grade.innerHTML = 'B';
+    } else if (sumDisRep >= 61 && sumDisRep <= 80) {
+      grade.innerHTML = 'A';
+    } else if (sumDisRep >= 81 && sumDisRep <= 100) {
+      grade.innerHTML = 'S';
+    } else if (sumDisRep >= 101) {
+      grade.innerHTML = 'SS';
     } else {
       grade.innerHTML = 'E';
     }
-    const content = document.querySelector('.container-discussion-user');
-    content.innerHTML = '<discussion-list></discussion-list>';
-    const userDiscussionElement = document.querySelector('discussion-list');
-    userDiscussionElement.discussions = userDiscussion;
+    const content = document.querySelector('.content-profile-user');
+    const BtnDiscussion = document.querySelector('#buttonDiscussionProfile');
+    const BtnAbout = document.querySelector('#buttonAboutProfile');
+
+    BtnDiscussion.addEventListener('click', async (event) => {
+      event.preventDefault();
+      BtnAbout.classList.remove('afterClick');
+      BtnDiscussion.classList.add('afterClick');
+      const userDiscussion = await DiscussionSource.getUserDiscussion();
+      if (userDiscussion.length > 0) {
+        content.innerHTML = '<discussion-list></discussion-list>';
+        const userDiscussionElement = document.querySelector('discussion-list');
+        userDiscussionElement.discussions = userDiscussion;
+      } else {
+        content.innerHTML = createDiscussionEmpty();
+      }
+    });
+    BtnAbout.addEventListener('click', async (event) => {
+      event.preventDefault();
+      BtnDiscussion.classList.remove('afterClick');
+      BtnAbout.classList.add('afterClick');
+      content.innerHTML = createAboutProfileTemplate(userProfile);
+    });
   },
 };
 

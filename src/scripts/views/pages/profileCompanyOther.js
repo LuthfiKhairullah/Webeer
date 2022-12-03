@@ -22,7 +22,6 @@ const profileCompanyOther = {
     const btnJob = document.querySelector('#jobs-other-company');
     const btnAbout = document.querySelector('#about-other-company');
     const job = await JobSource.getCompanyJobOther(url.id);
-    console.log(job);
 
     btnJob.addEventListener('click', async (event) => {
       event.preventDefault();
