@@ -95,7 +95,7 @@ const Login = {
         message.show();
         setTimeout(() => {
           document.location = '#/profile';
-          document.location.reload();
+          document.location.reload(true);
         }, 1500);
       }
     });

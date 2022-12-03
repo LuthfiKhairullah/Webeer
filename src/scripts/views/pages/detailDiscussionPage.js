@@ -208,22 +208,34 @@ const DetailDiscussionPage = {
           message.show();
           answerButton.removeAttribute('disabled');
         } else {
-          messageText.classList.remove('text-bg-warning');
-          messageTitle.classList.remove('text-warning');
-          messageText.classList.add('text-bg-success');
-          messageTitle.classList.add('text-success');
-          messageText.innerHTML = 'Added reply successfully';
-          messageTitle.innerHTML = 'SUCCESS';
-          message.show();
-          answerButton.removeAttribute('disabled');
-          inputReply.value = '';
           const updateDiscussions = await DiscussionSource.getDiscussion(url.id);
-          lengthReply.innerText = updateDiscussions.reply.length;
           const updateDiscussionReply = await DiscussionSource.getDiscussionReply(url.id);
-          discussionReplyListElement.innerHTML = '';
-          updateDiscussionReply.forEach((reply) => {
-            discussionReplyListElement.replies = reply;
-          });
+          inputReply.value = '';
+          console.log(updateDiscussionReply[0]._id.includes(addDiscussionReply._id.toString()));
+          if (updateDiscussionReply[0]._id.includes(addDiscussionReply._id.toString())) {
+            lengthReply.innerText = updateDiscussions.reply.length;
+            discussionReplyListElement.innerHTML = '';
+            updateDiscussionReply.forEach((reply) => {
+              discussionReplyListElement.replies = reply;
+            });
+            messageText.classList.remove('text-bg-warning');
+            messageTitle.classList.remove('text-warning');
+            messageText.classList.add('text-bg-success');
+            messageTitle.classList.add('text-success');
+            messageText.innerHTML = 'Added reply successfully';
+            messageTitle.innerHTML = 'SUCCESS';
+            message.show();
+            answerButton.removeAttribute('disabled');
+          } else {
+            messageText.classList.remove('text-bg-warning');
+            messageTitle.classList.remove('text-warning');
+            messageText.classList.add('text-bg-success');
+            messageTitle.classList.add('text-success');
+            messageText.innerHTML = 'Added reply successfully';
+            messageTitle.innerHTML = 'SUCCESS';
+            message.show();
+            setTimeout(() => document.location.reload(), 1000);
+          }
         }
       } else {
         messageText.classList.remove('text-bg-success');

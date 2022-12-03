@@ -35,7 +35,7 @@ const createDetailJobPageTemplate = (jobs) => `
         <h5 class="fw-bold fs-4">${jobs.company}</h5>
         <h6 class="fw-bold fs-5">${jobs.profession}</h6>
         <p class="fst-italic my-0">${jobs.address}</p>
-        <p class="text-muted my-0 fs-10">${showFormattedDate(jobs.createdAt)}</p>
+        <p class="text-muted my-0 fs-10">${showFormattedDate(jobs.updatedAt)}</p>
       </div>
     </div>
   <p class="fw-bold"> Description Company </p>
@@ -73,7 +73,7 @@ const createItemJob = (jobs) => `
 <img src="${jobs.image}" class="card-image lazyload">
 <h6 class="fw-bold">${jobs.company}</h6>
 <h6>${jobs.profession}</h6>
-<p>${showFormattedDate(jobs.createdAt)}</p>
+<p>${showFormattedDate(jobs.updatedAt)}</p>
 <p class="fw-bold">${jobs.address}</p>
 <button value=${jobs._id} class="btn btn-primary fw-bold btn-detail btn-sm" id="btnDetailJob">LIHAT</button>
 <a class="btn btn-primary" id="btnDetailOpen" href="#/detailjob/${jobs._id}" target="_blank">Visit</a>
@@ -89,7 +89,7 @@ const createDetailJob = (detail) => `
     <div class="title-detail">
       <h4>${detail.company}</h4>
       <p>${detail.address}</p>
-      <p>${showFormattedDate(detail.createdAt)}</p>
+      <p>${showFormattedDate(detail.updatedAt)}</p>
     </div>
   </div>
   <div class="description-detail">
@@ -243,7 +243,7 @@ const createDiscussionItemTemplate = (discussion) => {
             <img src="${discussion.userimage}" class="img-profile-discussion lazyload">
               <div class"sub-profile">
                 <p class="fw-bold username fs-6">${discussion.username}</p>
-                <p class="fw-light fs-6">${discussion.date}</p>
+                <p class="fw-light fs-6">${showFormattedDate(discussion.date)}</p>
               </div>
           </div>
           <span class="${isSolvedClass} p-1 rounded indicator-solved">${isSolved}</span>
@@ -291,7 +291,7 @@ const createBookmarkItemTemplate = (bookmark) => {
             <img src="${bookmark.userimage}" class="img-profile-discussion lazyload">
               <div class"sub-profile">
                 <p class="fw-bold username fs-6">${bookmark.username}</p>
-                <p class="fw-light fs-6">${bookmark.date}</p>
+                <p class="fw-light fs-6">${showFormattedDate(bookmark.date)}</p>
               </div>
           </div>
           <span class="${isSolvedClass} p-1 rounded indicator-solved">${bookmark.isSolved}</span>
@@ -409,7 +409,7 @@ const createDiscussionDetailTemplate = (discussion) => {
       <div class="text-capitalize">${createCategoryDiscussionTemplate(discussion.categories)}</div>
       <h1>${discussion.title}</h1>
       <div class="container-discussion-detail d-flex align-items-center">
-        <h3 class="text-muted fs-6 font-monospace mx-1 m-0" >${discussion.date}</h3>
+        <h3 class="text-muted fs-6 font-monospace mx-1 m-0" >${showFormattedDate(discussion.date)}</h3>
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
             <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -490,7 +490,7 @@ const createDiscussionReplyTemplate = (discussion) => {
         </div>
         <div class="ms-2">
           <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;" class="text-dark"><h2 style="font-size: 20px">${discussion.username}</h2></a>
-          <h3 class="mb-2 text-muted" style="font-size: 14px">${discussion.date}</h3>
+          <h3 class="mb-2 text-muted" style="font-size: 14px">${showFormattedDate(discussion.date)}</h3>
           ${discussionReply.join('')}
         </div>
       </div>

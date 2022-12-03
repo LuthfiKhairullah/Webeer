@@ -120,7 +120,7 @@ const AddDiscussionPage = {
           message.show();
           setTimeout(() => {
             document.location = '#/forums';
-            document.location.reload();
+            document.location.reload(true);
           }, 2000);
         }
       }
