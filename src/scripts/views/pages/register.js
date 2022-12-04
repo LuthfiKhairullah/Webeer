@@ -4,6 +4,7 @@ import User from '../../data/loginSource';
 const Register = {
   async render() {
     return `
+    <login-modal></login-modal>
          <div id="container-register">
           <div class ="container-login-main" id="card-login">
               <div>

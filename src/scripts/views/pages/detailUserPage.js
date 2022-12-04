@@ -13,7 +13,7 @@ const DetailProfilePage = {
     const getToken = localStorage.getItem('token');
     const getRole = localStorage.getItem('role');
     if (getToken === null) {
-      document.location = '#/login';
+      document.location = '/';
       localStorage.setItem('login', 'false');
       window.reload();
     } else if (getToken !== null && getRole.replaceAll('"', '') === 'Company') {
@@ -79,7 +79,7 @@ const DetailProfilePage = {
       event.preventDefault();
       BtnAbout.classList.remove('afterClick');
       BtnDiscussion.classList.add('afterClick');
-      const userDiscussion = await DiscussionSource.getUserDiscussion();
+      const userDiscussion = await DiscussionSource.getUserOtherDisscussion(url.id);
       if (userDiscussion.length > 0) {
         content.innerHTML = '<discussion-list></discussion-list>';
         const userDiscussionElement = document.querySelector('discussion-list');
