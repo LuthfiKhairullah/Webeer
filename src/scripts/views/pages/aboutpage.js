@@ -24,7 +24,7 @@ const AboutPage = {
             </p>
           </div>
           <div class="container-about-img">
-            <img class="w-100" src="../image/hero-about-us.png" alt="image about us">
+            <img class="w-100" src="../asset/hero-about-us.png" alt="image about us">
           </div>
         </div>
       </div>

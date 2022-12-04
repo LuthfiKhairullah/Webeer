@@ -32,6 +32,9 @@ const DetailProfilePage = {
         <user-profile-other>
           ${createProfileOtherTemplateSkeleton()}
         </user-profile-other>
+        <div class="p-3 border-rbl" style="background-color:#f3f2ef;">
+        <footer-lite></footer-lite>
+      </div
     `;
   },
 

@@ -15,6 +15,7 @@ import HomeCompany from '../views/pages/homeCompany';
 import DetailJobPage from '../views/pages/detailJobPage';
 import profileCompanyOther from '../views/pages/profileCompanyOther';
 import ResetPassword from '../views/pages/resetPasswordPage';
+import resetPwdPage from '../views/pages/forgotPwdPage';
 
 const routes = {
   '/': HomePage,
@@ -34,6 +35,7 @@ const routes = {
   '/detailjob/:id': DetailJobPage,
   '/profilecompany/:id': profileCompanyOther,
   '/resetpassword/:id': ResetPassword,
+  '/resetpwd': resetPwdPage,
 };
 
 export default routes;

@@ -11,7 +11,7 @@ const Register = {
                 <img  class="lazyload hero-register" src="./asset/hero-login.png">
               </div>
             <div>  
-              <form id="form-login">
+              <form id="form-register">
               <h2 class="fw-bolder">REGISTER</h2>
                 <p>You already have an account? <span> <a href="#/login">Sign in</a> </span> </p>
                   <div class="input-group mb-3" style="border-bottom:1px solid black;">
@@ -40,17 +40,18 @@ const Register = {
                       <option value="1">Programmer</option>
                       <option value="2">Company</option>
                     </select>
-                    <button type="submit" class="btn btn-primary mb-3" id="submit">Register</button>
+                    <button type="submit" class="btn mb-3 w-100 text-light p-3" style="background-color:#344D67;" id="submit">Register</button>
                 </form>
               </div>
             </div>
           </div>
          <message-container></message-container>
+         <footer-lite class="p-3 footer-lite-profile" style="background-color:#f3f2ef;"></footer-lite>
           `;
   },
   async afterRender() {
     const getPwd = document.querySelector('#pwdUser');
-    const form = document.querySelector('#form-login');
+    const form = document.querySelector('#form-register');
     const Username = document.querySelector('#Username');
     const email = document.querySelector('#emailUser');
     const selected = document.getElementById('role-user');
@@ -94,6 +95,51 @@ const Register = {
         localStorage.setItem('email', JSON.stringify(data.email));
         localStorage.setItem('idUser', JSON.stringify(data.idUser));
         setTimeout(() => document.location = '#/verification', 1500);
+      }
+    });
+    const formLogin = document.querySelector('#form-login');
+    const idUser = document.querySelector('#emailUser');
+    const pwUser = document.querySelector('#pwdUser');
+    formLogin.addEventListener('submit', async (event) => {
+      const loginContainer = document.querySelector('#container-login');
+      loginContainer.classList.add('cursor-progress');
+      event.preventDefault();
+      const data = await User.Login({
+        email: idUser.value,
+        password: pwUser.value,
+      });
+      if (data.error) {
+        loginContainer.classList.remove('cursor-progress');
+        messageText.classList.remove('text-bg-success');
+        messageTitle.classList.remove('text-success');
+        messageText.classList.add('text-bg-warning');
+        messageTitle.classList.add('text-warning');
+        messageText.innerHTML = `${data.error}`;
+        messageTitle.innerHTML = 'WARNING';
+        message.show();
+      } else {
+        messageText.classList.remove('text-bg-warning');
+        messageTitle.classList.remove('text-warning');
+        messageText.classList.add('text-bg-success');
+        messageTitle.classList.add('text-success');
+        messageText.innerHTML = `${data.data.message}`;
+        messageTitle.innerHTML = 'SUCCESS';
+        message.show();
+        const getToken = localStorage.getItem('token');
+        const getRole = localStorage.getItem('role');
+        if (getToken !== null && getRole.replaceAll('"', '') === 'Company') {
+          setTimeout(() => {
+            document.location = '#/dashboard';
+            document.location.reload();
+          }, 2000);
+          localStorage.setItem('login', 'true');
+        } else if (getToken !== null && getRole.replaceAll('"', '') === 'Programmer') {
+          setTimeout(() => {
+            document.location = '#/profile';
+            document.location.reload();
+          }, 2000);
+          localStorage.setItem('login', 'true');
+        }
       }
     });
   },

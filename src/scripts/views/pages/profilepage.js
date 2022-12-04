@@ -91,16 +91,17 @@ const ProfilePage = {
       BtnBookmark.classList.add('afterClick');
       const userBookmark = await BookmarkDiscussionIdb.getAllDiscussions();
       console.log(userBookmark);
-      userBookmark.forEach(async (b) => {
-        const discussions = await DiscussionSource.getDiscussion(b.id);
-        if (discussions === null) {
-          await BookmarkDiscussionIdb.deleteDiscussion(b.id);
+      const discussions = await DiscussionSource.getAllDiscussion();
+      userBookmark.forEach(async (ub) => {
+        const check = discussions.filter((discussion) => discussion._id.toString().includes(ub.id)).map((discussion) => discussion._id).join('').includes(ub.id);
+        if (check === false) {
+          await BookmarkDiscussionIdb.deleteDiscussion(ub.id);
         }
       });
       if (userBookmark.length > 0) {
         content.innerHTML = '<bookmark-list></bookmark-list>';
         const userBookmarkElement = document.querySelector('bookmark-list');
-        userBookmarkElement.bookmarks = userBookmark;
+        userBookmarkElement.bookmarks = updateBookmark;
       } else {
         content.innerHTML = createBookmarkEmpty();
       }
@@ -228,7 +229,7 @@ const ProfilePage = {
         messageText.innerText = `${data.message}`;
         messageTitle.innerHTML = 'SUCCESS';
         message.show();
-        setTimeout(() => document.location = '#/profile', 1000);
+        setTimeout(() => document.location.reload(), 1000);
       }
     });
   },

@@ -1,4 +1,4 @@
-.add {
+.btn.add {
     border-radius: 50%;
     bottom: 16px;
     font-size: 30px;
@@ -6,6 +6,42 @@
     position: fixed;
     right: 16px;
     width: 50px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.btn.adddiscuss {
+    bottom: 16px;
+    right: 16px;
+    font-size: 50px;
+    padding: 0;
+    margin: 0;
+    border-radius: 50%;
+    position: fixed;
+    height: 50px;
+    width: 50px;
+}
+
+.bg-dark-blue {
+    background-color: #344D67;
+    color: #FFFFFF;
+}
+
+.btn.bg-dark-blue {
+    background-color: #344D67;
+    border-color: #344D67;
+    color: #FFFFFF;
+}
+
+.btn.bg-dark-blue:hover {
+    background-color: rgba(52, 77, 103, 0.9);
+    color: #FFFFFF;
+}
+
+.btn.border-dark-blue,
+.form-control.border-dark-blue {
+    border-color: #344D67;
 }
 
 .container-adddiscussion {

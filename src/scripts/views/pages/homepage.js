@@ -117,31 +117,6 @@ const HomePage = {
         }
       }
     });
-    const formReset = document.getElementById('reset-password-user');
-    formReset.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      console.log(document.getElementById('email-reset-password').value);
-      const data = await User.EmailResetPassword({
-        email: document.getElementById('email-reset-password').value,
-      });
-      if (data.error) {
-        messageText.classList.remove('text-bg-success');
-        messageTitle.classList.remove('text-success');
-        messageText.classList.add('text-bg-warning');
-        messageTitle.classList.add('text-warning');
-        messageText.innerHTML = data.error;
-        messageTitle.innerHTML = 'WARNING';
-        message.show();
-      } else {
-        messageText.classList.remove('text-bg-warning');
-        messageTitle.classList.remove('text-warning');
-        messageText.classList.add('text-bg-success');
-        messageTitle.classList.add('text-success');
-        messageText.innerHTML = data.data.message;
-        messageTitle.innerHTML = 'SUCCESS';
-        message.show();
-      }
-    });
   },
 
 };

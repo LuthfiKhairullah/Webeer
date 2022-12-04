@@ -23,6 +23,12 @@ class Footer extends HTMLElement {
               <a href="#/jobs" class="footer-features"><li>Jobs</li></a>
             </div>
           </div>
+          <div class="my-2">
+            <h3>Webeer</h3>
+            <div>
+              <a href="#/about" class="footer-about"><li>About</li></a>
+            </div>
+          </div>
         </div>
         <p class="text-center fw-bold">Copyright &copy; 2022 Webeer</p>
       </footer>
