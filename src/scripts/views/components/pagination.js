@@ -5,7 +5,7 @@ class Pagination extends HTMLElement {
 
   render() {
     this.innerHTML = `
-              <nav class="pagination-container d-flex justify-content-center align-items-center">
+              <nav class="pagination-container d-flex justify-content-center align-items-center text-center">
                 <button class="pagination-button" id="prev-button" aria-label="Previous page" title="Previous page">
                   &laquo;
                 </button>

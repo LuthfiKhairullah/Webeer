@@ -135,10 +135,15 @@
 
 .pagination-number:hover,
 .pagination-button:not(.disabled):hover {
-    background: #344D67;
+    background-color: #344D67;
+    color: #FFFFFF;
 }
 
 .pagination-number.active {
     color: #FFFFFF;
     background: #344D67;
+}
+
+.bg-white.circle {
+    border-radius: 50%;
 }

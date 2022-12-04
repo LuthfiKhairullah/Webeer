@@ -498,7 +498,7 @@ const createDiscussionReplyTemplate = (discussion) => {
 
 const createAddDiscussionButtonTemplate = () => `
   <!--<button aria-label="Add Discussion" class="add btn bg-dark text-center text-white border-0 fw-bold" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><span>+</span></button>-->
-  <button aria-label="Add Discussion" class="adddiscuss btn" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><i class="fa fa-plus-circle bg-white" aria-hidden="true"></i></button>
+  <button aria-label="Add Discussion" class="adddiscuss btn bg-white d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
 `;
 
 const createAddDiscussionTemplate = () => `
@@ -607,12 +607,12 @@ const createFilterCategoryTemplateSkeleton = (count) => {
 
 const createFilterCategoryTemplate = (category) => `
   <input type="checkbox" class="btn-check categoryFilter category" name="categoryFilter" id="${category.name}" value="${category.name}" autocomplete="off">
-  <label class="btn btn-category" for="${category.name}">${category.name}</label>
+  <label class="btn btn-category text-capitalize" for="${category.name}">${category.name}</label>
 `;
 
 const createFilterCategoryTemplateAddDiscussion = (category) => `
   <input type="checkbox" class="btn-check categoryFilterAddDiscussion category" name="categoryFilterAddDiscussion" id="${category.name}1" value="${category.name}" autocomplete="off">
-  <label class="btn btn-category" for="${category.name}1">${category.name}</label>
+  <label class="btn btn-category text-capitalize" for="${category.name}1">${category.name}</label>
 `;
 
 const createProfileTemplateSkeleton = () => `
@@ -1265,21 +1265,21 @@ const createBookmarkEmpty = () => `
 <div class="container-fluid bg-light p-2">
 <h6> You haven't bookmarked a discussion yet </h6>
 </div>
-<a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
+${createAddDiscussionButtonTemplate()}
 `;
 
 const createDiscussionEmpty = () => `
 <div class="container-fluid bg-light p-2">
 <h6> You have no discussions yet </h6>
 </div>
-<a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
+${createAddDiscussionButtonTemplate()}
 `;
 
 const createSearchDiscussionEmpty = () => `
 <div class="container-fluid p-2" style="border:3px solid #ffc107; background-color:#FFF56D;">
 <h6 class="fw-bold p-2"> Oops, Discussion not found </h6>
 </div>
-<a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
+${createAddDiscussionButtonTemplate()}
 `;
 const createSidebarCompany = () => `
 <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" id="sidebar">

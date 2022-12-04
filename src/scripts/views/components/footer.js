@@ -10,10 +10,10 @@ class Footer extends HTMLElement {
           <div class="my-2">
             <h3>Contact Us</h3>
             <div>
-              <a href="#" class="contact-person"><li>Jovita Amelinda</li></a>
-              <a href="#" class="contact-person"><li>Muhammad Fajar Yudhistira H</li></a>
-              <a href="#" class="contact-person"><li>Muhammad Luthfi Khairullah</li></a>
-              <a href="#" class="contact-person"><li>Siti Mujadilah</li></a>
+              <a href="https://www.linkedin.com/in/jovitaamelinda/" class="contact-person" target="_blank"><li>Jovita Amelinda</li></a>
+              <a href="https://www.linkedin.com/in/muhamad-fajar-yudhistira-herjanto-33b761249/" class="contact-person" target="_blank"><li>Muhammad Fajar Yudhistira H</li></a>
+              <a href="https://www.linkedin.com/in/luthfi-khairullah-876667216/" class="contact-person" target="_blank"><li>Muhammad Luthfi Khairullah</li></a>
+              <a href="#" class="contact-person" target="_blank"><li>Siti Mujadilah</li></a>
             </div>
           </div>
           <div class="my-2">
