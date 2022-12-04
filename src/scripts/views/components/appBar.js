@@ -15,21 +15,6 @@ class AppBar extends HTMLElement {
     }
     if (getTokenStorage === null) {
       this.innerHTML += createNavbarTemplateBeforeLogin();
-      const navItem = document.querySelectorAll('.nav-link');
-      const url = UrlParser.parseActiveUrlWithCombiner();
-      for (let i = 0; i < navItem.length; i++) {
-        if (navItem[i].getAttribute('href') === `#${url}`) {
-          navItem[i].classList.add('actived');
-        } else {
-          navItem[i].classList.remove('actived');
-        }
-        navItem[i].addEventListener('click', () => {
-          for (let j = 0; j < navItem.length; j++) {
-            navItem[j].classList.remove('actived');
-            navItem[i].classList.add('actived');
-          }
-        });
-      }
     } else if (getTokenStorage != null && getRoleStorage === 'Programmer') {
       this.innerHTML += createNavbarTemplateAfterLogin();
       const logout = document.querySelector('#logout');

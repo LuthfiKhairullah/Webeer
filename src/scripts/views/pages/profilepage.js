@@ -1,3 +1,4 @@
+import { Toast } from 'bootstrap/dist/js/bootstrap.bundle';
 import DiscussionSource from '../../data/discussionSource';
 import User from '../../data/loginSource';
 import BookmarkDiscussionIdb from '../../data/bookmark-discussion-idb';
@@ -16,7 +17,7 @@ const ProfilePage = {
     const getRole = localStorage.getItem('role');
     console.log(getToken);
     if (getToken === null) {
-      document.location = '#/login';
+      document.location = '/';
       localStorage.setItem('login', 'false');
       window.reload();
     } else if (getToken !== null && getRole.replaceAll('"', '') === 'Company') {
@@ -27,7 +28,7 @@ const ProfilePage = {
       document.location = '#/profile';
       localStorage.setItem('login', 'true');
     } else {
-      document.location = '#/login';
+      document.location = '/';
       localStorage.setItem('login', 'false');
       window.reload();
     }
@@ -36,10 +37,15 @@ const ProfilePage = {
         <user-profile>
           ${createProfileTemplateSkeleton()}
         </user-profile>
+        <message-container></message-container>
     `;
   },
 
   async afterRender() {
+    const messageText = document.querySelector('.toast-body');
+    const messageTitle = document.querySelector('.toast-title');
+    const messageContainer = document.getElementById('liveToast');
+    const message = new Toast(messageContainer);
     const userProfile = await User.getUser();
     const userDiscussion = await DiscussionSource.getUserDiscussion();
     const userReply = await DiscussionSource.getDiscussionReply(userProfile._id);
@@ -92,9 +98,7 @@ const ProfilePage = {
           await BookmarkDiscussionIdb.deleteDiscussion(ub.id);
         }
       });
-      const updateBookmark = await BookmarkDiscussionIdb.getAllDiscussions();
-      console.log(updateBookmark.length);
-      if (updateBookmark.length > 0) {
+      if (userBookmark.length > 0) {
         content.innerHTML = '<bookmark-list></bookmark-list>';
         const userBookmarkElement = document.querySelector('bookmark-list');
         userBookmarkElement.bookmarks = updateBookmark;
@@ -122,6 +126,111 @@ const ProfilePage = {
       BtnDiscussion.classList.remove('afterClick');
       BtnAbout.classList.add('afterClick');
       content.innerHTML = createAboutProfileTemplate(userProfile);
+    });
+
+    const countrySelected = document.getElementsByName('countryselect');
+    countrySelected.forEach((country) => {
+      if (userProfile.country === country.value) {
+        country.setAttribute('selected', '');
+      }
+    });
+    const containerImg = document.querySelector('.container-img');
+
+    document.querySelector('#edit-photo').addEventListener('change', function () {
+      const reader = new FileReader();
+      reader.addEventListener('load', () => {
+        const uploaded_image = reader.result;
+        containerImg.style.backgroundImage = `url(${uploaded_image})`;
+      });
+      reader.readAsDataURL(this.files[0]);
+    });
+    const form = document.querySelector('#edit-user');
+    const test = document.querySelector('#edit-country');
+    const editButton = document.querySelector('#edit-simpan');
+    const profileContainer = document.querySelector('.container-edit-profile');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      profileContainer.classList.add('cursor-progress');
+      const { text } = test.options[test.selectedIndex];
+      const inputUsername = document.querySelector('#edit-username').value;
+      const inputContact = document.querySelector('#edit-contact').value;
+      const inputProfesi = document.querySelector('#edit-profesi').value;
+      const inputBio = document.querySelector('#edit-bio').value;
+      const inputSkill = document.querySelector('#edit-skill').value;
+      if (inputUsername === '') {
+        profileContainer.classList.remove('cursor-progress');
+        messageText.classList.remove('text-bg-success');
+        messageTitle.classList.remove('text-success');
+        messageText.classList.add('text-bg-warning');
+        messageTitle.classList.add('text-warning');
+        messageText.innerHTML = 'Error! Name can\'t null';
+        messageTitle.innerHTML = 'WARNING';
+        message.show();
+      } else {
+        const data = await User.Edit(userProfile._id, {
+          username: inputUsername,
+          contact: inputContact,
+          profesi: inputProfesi,
+          bio: inputBio,
+          image: document.querySelector('#edit-photo').files[0],
+          country: text,
+          specialities: inputSkill,
+        });
+        if (data.error) {
+          profileContainer.classList.remove('cursor-progress');
+          messageText.classList.remove('text-bg-success');
+          messageTitle.classList.remove('text-success');
+          messageText.classList.add('text-bg-warning');
+          messageTitle.classList.add('text-warning');
+          messageText.innerHTML = `${data.error}`;
+          messageTitle.innerHTML = 'WARNING';
+          message.show();
+        } else {
+          editButton.setAttribute('disabled', '');
+          messageText.classList.remove('text-bg-warning');
+          messageTitle.classList.remove('text-warning');
+          messageText.classList.add('text-bg-success');
+          messageTitle.classList.add('text-success');
+          messageText.innerHTML = `${data.data.message}`;
+          messageTitle.innerHTML = 'SUCCESS';
+          message.show();
+          setTimeout(() => {
+            document.location.reload();
+          }, 2000);
+        }
+      }
+    });
+    const editButtonPwd = document.querySelector('#editButton');
+    const formPwd = document.querySelector('#form-changepwd');
+    const changePasswordContainer = document.querySelector('.container-change-page');
+    formPwd.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      changePasswordContainer.classList.add('cursor-progress');
+      const data = await User.changePwdUser(userProfile._id, {
+        oldPassword: document.querySelector('#oldPwd').value,
+        newPassword: document.querySelector('#newPwd').value,
+        confirmPassword: document.querySelector('#confirmPwd').value,
+      });
+      if (data.error) {
+        changePasswordContainer.classList.remove('cursor-progress');
+        messageText.classList.remove('text-bg-success');
+        messageTitle.classList.remove('text-success');
+        messageText.classList.add('text-bg-warning');
+        messageTitle.classList.add('text-warning');
+        messageText.innerText = `${data.error}`;
+        messageTitle.innerHTML = 'WARNING';
+        message.show();
+      } else {
+        editButtonPwd.setAttribute('disabled', '');
+        messageText.classList.remove('text-bg-warning');
+        messageTitle.classList.remove('text-warning');
+        messageText.classList.add('text-bg-success');
+        messageTitle.classList.add('text-success');
+        messageText.innerText = `${data.message}`;
+        messageTitle.innerHTML = 'SUCCESS';
+        message.show();
+        setTimeout(() => document.location.reload(), 1000);
+      }
     });
   },
 };
