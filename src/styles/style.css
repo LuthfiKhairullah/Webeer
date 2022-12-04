@@ -12,12 +12,10 @@
     background: linear-gradient(to left, #B2C4F1, #fff);
 } */
 
-html {
-    background-color: #607EAA;
-}
 
-main {
-    background-color: #607EAA;
+
+main, html {
+    background-color: #f3f2ef;
 }
 
 #navbarNav .nav-link.actived {
@@ -30,7 +28,9 @@ main {
     position: fixed;
     background-color: #344D67;
 }
-
+.btn.loginNav:hover{
+    background-color: #e5d19f !important ;
+}
 #sidebar {
     width: 200px;
     height: 100%;

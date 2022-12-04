@@ -5,22 +5,18 @@ const verificationPage = {
   async render() {
     return `
     <div class="container-verification">
-      <div class="card">
-        <img src="./asset/verified.png" class="card-img-top lazyload">
-        <div class="card-body text-center">
-        <h5 class="fw-bold">Verification</h5>
+        <h2 class="fw-bold">Verification</h2>
           <p>Please check your email, if the code was not sent, please press resend</p>
-          <button class =" btn btn-primary mb-5" id="resend">Resend OTP</button>
+          <button class =" btn text-light mb-5" id="resend" style="background-color:#344D67;">Resend OTP</button>
           <form id="verifikasi-user">
-            <div class="mb-4">
-              <input type="text" class="form-control" id="otp" placeholder="Enter your OTP code" required>
+            <div class="mb-3">
+              <input type="text" class="form-control form-control-lg" id="otp" placeholder="Enter your OTP code" required>
             </div>
-            <button class="btn btn-primary" id="submit" style="width:100px; border-radius:30px;">Submit</button>
+            <button class="btn w-100 text-light" id="submit" style="background-color:#344D67;">Submit</button>
           </form>
-        </div>
-      </div>
     </div>
     <message-container></message-container>
+    <footer-lite class="p-3 footer-lite-profile" style="background-color:#f3f2ef;"></footer-lite>
     `;
   },
   async afterRender() {

@@ -4,27 +4,27 @@ import UrlParser from '../../routes/urlParser';
 
 const ResetPassword = {
   async render() {
-    return `<div class="container-reset-password d-flex flex-wrap align-items-center justify-content-center" style="height:300px;">
-    <img src="./asset/hero-forgot.png" style="width:200px; margin:20px;">
+    return `<div class="container-reset-password" style="padding:10px;">
     <form id="reset-password" >
-    <h2 class="fw-bold"> RESET PASSWORD </h2>
-      <div class="input-group mb-3 password-container" style="border-bottom:1px solid black;">
-      <span class="input-group-text" style="background-color:transparent; border:none;"><i class="fa fa-lock" aria-hidden="true"></i></span>
+    <h2 class="fw-bold" style="border-bottom:3px solid gray; margin-bottom:20px;"> RESET PASSWORD </h2>
+      <div class="input-group mb-3 password-container">
+      <span class="input-group-text text-light" style="background-color:#344D67;"><i class="fa fa-lock" aria-hidden="true"></i></span>
         <div class="form-floating">
-          <input style="border:none;" type="password" class="form-control" id="inputPassword" placeholder="Enter your password" required>
+          <input type="password" class="form-control" id="inputPassword" placeholder="Enter your password" required>
           <label for="pwdUser"> New Password</label>
         </div>
       </div>
-  <div class="input-group mb-3 password-container" style="border-bottom:1px solid black;">
-  <span class="input-group-text" style="background-color:transparent; border:none;"><i class="fa fa-lock" aria-hidden="true"></i></span>
+  <div class="input-group mb-3 password-container">
+  <span class="input-group-text text-light" style="background-color:#344D67;"><i class="fa fa-lock" aria-hidden="true"></i></span>
     <div class="form-floating">
-      <input style="border:none;" type="password" class="form-control" id="inputPasswordConfirm" placeholder="Enter your password" required>
+      <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="Enter your password" required>
       <label for="pwdUser">Confirm Password</label>
     </div>
   </div>
-    <button class="btn btn-primary">Confirm</button>
+    <button class="btn w-100 text-light p-3" style="background-color:#344D67;">Confirm</button>
     </form>
     </div>
+    <footer-lite class="p-3 footer-lite-profile" style="background-color:#f3f2ef;"></footer-lite>
     <message-container></message-container>`;
   },
   async afterRender() {

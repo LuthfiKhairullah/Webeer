@@ -1,3 +1,6 @@
+user-profile{
+    background-color: #f3f2ef;    
+}
 .container-profile {
     display: flex;
     justify-content: center;
@@ -7,6 +10,7 @@
     flex-wrap: wrap;
     z-index: 1;
     padding: 10px;
+    background-color: #f3f2ef;
 }
 
 .card.profile img {
@@ -23,13 +27,17 @@
 
 .edit-profile {
     background-color: #f8f9fa;
-    max-width: 800px;
     margin: 0 auto;
     padding: 10px;
     border-radius: 15px;
 }
-
-.container-activity {
+.container-edit-profile .container-img{
+    width: 200px;
+    height: 200px;
+    border:1px solid black;
+    background-size: cover;
+}
+.container-activity{
     text-align: center;
     padding: 10px;
 }

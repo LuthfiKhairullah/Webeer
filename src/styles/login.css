@@ -1,18 +1,3 @@
-#container-login {
-    display: flex;
-    justify-content: center;
-}
-
-.container-login-main {
-    max-width: 1200px;
-    margin-top: 70px;
-    display: flex;
-    background-color: white;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    border-radius: 15px;
-}
 
 #form-login {
     padding: 15px;
@@ -27,18 +12,6 @@ input[type=text] {
 
 #form-login p {
     font-size: 12px;
-}
-
-.pwdProgress.hide {
-    display: none;
-}
-
-.pwdProgress {
-    color: white;
-    display: block;
-    border-radius: 15px;
-    height: 15px;
-    margin-top: 10px;
 }
 
 #container-register {
@@ -74,4 +47,16 @@ input[type=text] {
 
 .btn.button-forgot-password {
     text-decoration: underline;
+}
+
+.container-resetpwd{
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 100px;
+    height: 700px;
+    padding: 5px;
+}
+.container-resetpwd h2{
+    border-bottom: 3px solid gray;
+    margin-bottom: 20px;
 }

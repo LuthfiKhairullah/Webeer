@@ -693,7 +693,7 @@ const createProfileTemplate = (user) => {
   return `
     <div class="container-profile">
       <div class="container-profile-main">
-        <div class="card profile">
+        <div class="card profile" style="border-radius:5px; border:1px solid #c6c3be;">
           <img src="${user.image}" class="card-img-top lazyload">
           <div class="container-activity">
               <p  class="text-muted fw-bold"  style="text-align:left; border-bottom:3px solid grey;">Activity </p>
@@ -706,15 +706,15 @@ const createProfileTemplate = (user) => {
           </div>
           <div class="container-myskill" style="padding:10px;">
           <p class="text-muted fw-bold" style="border-bottom:3px solid grey;"> My Skills </p>
-          <p class="fw-bold text-muted">${user.specialities.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+          <h6>${user.specialities.replace(/(?:\r\n|\r|\n)/g, '<br>')}</h6>
           </div>
             <div class="card-body text-center">
-            <a class=" btn btn-primary btn-sm" href="#/editprofile/${user._id}" style="padding:11px;">Change Profile</a>
-            <a class=" btn btn-primary btn-sm" href="#/changepwd/${user._id}" style="padding:11px;">Change Password</a>
+            <button class=" btn text-light btn-sm" value="${user._id}" style="padding:11px; background-color:#344D67;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Change Profile</button>
+            <button class=" btn text-light btn-sm"  style="padding:11px; background-color:#344D67;"data-bs-toggle="modal" data-bs-target="#staticBackdropChangePassword">Change Password</button>
           </div>
         </div>
       </div>
-      <div class="container-about-profile-user">
+      <div class="container-about-profile-user" style="border-radius:5px; border:1px solid #c6c3be;">
         <h2 class="fw-bold">${user.username}</h2>
         <p class="fw-bold" style="color:#607EAA;">${user.profesi}</p>
         <h6>Country</h6>
@@ -733,187 +733,29 @@ const createProfileTemplate = (user) => {
           <p style="text-align:justify;">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
         </div>
       </div>
-      <div class="p-3 bg-white footer-lite-profile">
+      <div class="p-3 footer-lite-profile" style="background-color:#f3f2ef;">
         <footer-lite></footer-lite>
       </div>
-    </div>
-    `;
-};
-
-const createAboutProfileTemplate = (user) => {
-  if (user.bio === undefined) {
-    user.bio = '-';
-  }
-  if (user.contact === undefined) {
-    user.contact = '';
-  }
-  if (user.profesi === undefined) {
-    user.profesi = '-';
-  }
-  return `
-  <div class="content-profile-user">
-    <h6>Contact</h6>
-    <p>${user.contact}</p>
-    <h6> Email </h6>
-    <p>${user.email}</p>
-    <h6>About</h6>
-    <p style="text-align:justify;">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
-`;
-};
-
-const createProfileOtherTemplateSkeleton = () => `
-<div class="container-profile placeholder-glow">
-<div class="container-profile-main">
-  <div class="card profile">
-    <img style="width:200px; height:200px;" class="placeholder">
-    <div class="container-activity">
-        <p  class="fw-bold"  style="text-align:left; border-bottom:3px solid grey;"><span class="placeholder">lorem ipsum</span></p>
-        <h6> <span class="placeholder">lorem ipsum</span> </h6>
-        <h2 class="grade-user fw-bold"><span class="placeholder">lorem</span></h2>
-        <h6><span class="placeholder">lorem ipsum</span></h6>
-        <p class="length-disscussion-user"><span class="placeholder">lorem</span></p>
-        <h6><span class="placeholder">lorem ipsum domet</span></h6>
-        <p class="length-reply-user"><span class="placeholder">lorem</span></p>
-    </div>
-    <div class="container-myskill" style="padding:10px;">
-    <p class=" fw-bold" style="border-bottom:3px solid grey;"><span class="placeholder">lorem ipsum</span> </p>
-    <p class="fw-bold "><span class="placeholder">lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum 
-    lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum </span></p>
-    </div>
-  </div>
-</div>
-<div class="container-about-profile-user scroll-item">
-  <h2 class="fw-bold"><span class="placeholder">lorem ipsum domet ipsum domet ipsum domet</span></h2>
-  <p class="fw-bold "><span class="placeholder">lorem ipsum domet ipsum</span></p>
-  <h6><span class="placeholder">lorem ipsum</span></h6>
-  <p><span class="placeholder">lorem ipsum</span></p>
-  <div class="d-flex" style="border-bottom:3px solid grey; ">
-    <button class="btn " id="buttonAboutProfile" style="margin-bottom:5px;"><span class="placeholder">lorem ipsum</span></button>
-    <button class="btn " id="buttonDiscussionProfile" style="margin-bottom:5px;"><span class="placeholder">lorem ipsum</span></button>
-  </div>
-  <div class="content-profile-user">
-    <h6><span class="placeholder">lorem ipsum</span></h6>
-    <p><span class="placeholder">lorem ipsum domet</span></p>
-    <h6> <span class="placeholder">lorem ipsum</span> </h6>
-    <p><span class="placeholder">lorem ipsum ipsum domet</span></p>
-    <h6><span class="placeholder">lorem ipsum</span></h6>
-    <p style="text-align:justify;"><span class="placeholder">lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
-    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
-    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
-    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
-    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
-    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
-    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
-    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
-    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
-    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
-    </span></p>
-  </div>
-</div>
-</div>
-</div>
-`;
-
-const createProfileOtherTemplate = (user) => {
-  if (user.bio === undefined) {
-    user.bio = '-';
-  }
-  if (user.contact === undefined) {
-    user.contact = '';
-  }
-  if (user.profesi === undefined) {
-    user.profesi = '-';
-  }
-  if (user.country === undefined) {
-    user.country = '-';
-  }
-  if (user.specialities === undefined) {
-    user.specialities = '-';
-  }
-
-  return `
-    <div class="container-profile">
-      <div class="container-profile-main">
-        <div class="card profile">
-          <img src="${user.image}" class="card-img-top lazyload">
-          <div class="container-activity">
-              <p  class="text-muted fw-bold"  style="text-align:left; border-bottom:3px solid grey;">Activity </p>
-              <h6> Grade </h6>
-              <h2 class="grade-user fw-bold"></h2>
-              <h6> Your Discussion</h6>
-              <p class="length-disscussion-user"></p>
-              <h6> Your Answer Discussion</h6>
-              <p class="length-reply-user"></p>
-          </div>
-          <div class="container-myskill" style="padding:10px;">
-          <p class="text-muted fw-bold" style="border-bottom:3px solid grey;"> My Skills </p>
-          <p class="fw-bold text-muted">${user.specialities.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
-          </div>
-        </div>
       </div>
-      <div class="container-about-profile-user scroll-item">
-        <h2 class="fw-bold">${user.username}</h2>
-        <p class="fw-bold" style="color:#607EAA;">${user.profesi}</p>
-        <h6>Country</h6>
-        <p>${user.country}</p>
-        <div class="d-flex" style="border-bottom:3px solid grey; ">
-          <button class="btn afterClick " id="buttonAboutProfile" style="margin-bottom:5px;"><i class="fa fa-user" aria-hidden="true"></i> About</button>
-          <button class="btn " id="buttonDiscussionProfile" style="margin-bottom:5px;"><i class="fa fa-comments-o" aria-hidden="true"></i> Discussion</button>        </div>
-        <div class="content-profile-user">
-          <h6>Contact</h6>
-          <p>${user.contact}</p>
-          <h6> Email </h6>
-          <p>${user.email}</p>
-          <h6>About</h6>
-          <p style="text-align:justify;">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
-        </div>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Change Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <div class="modal-body">
+      <div class="container-edit-profile">
+    <div class="edit-profile" style="flex-wrap:wrap; justify-content:center;">
+    <div class="header-edit-profile" style="position:relative;">
+    <div class="square"></div>
+    <div class="container-img" style="background-image:url('${user.image}'); width: 200px; height:200px; background-size:200px 200px; position:relative; z-index:1; margin:0 auto; border:5px solid white; top:10px;"></div>
     </div>
-    </div>
-    `;
-};
-const createNavbarTemplateBeforeLogin = () => `
-<nav class="navbar fixed-top navbar-expand-lg " id="navbar">
-<div class="container-fluid">
-  <a class="navbar-brand text-light fw-bold" href="#"><i class="fa fa-code fw-bold" aria-hidden="true"></i> WEBEER</a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link text-light" href="#">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" href="#/about">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" href="#/login">Login</a>
-      </li>
-    </ul>
-  </div>
-</div>
-</nav>`;
-const createProfileEditTemplate = (user) => {
-  if (user.bio === undefined) {
-    user.bio = '-';
-  }
-  if (user.contact === undefined) {
-    user.contact = '-';
-  }
-  if (user.profesi === undefined) {
-    user.profesi = '-';
-  }
-  if (user.specialities === undefined) {
-    user.specialities = '-';
-  }
-  return `
-    <div class="container-edit-profile">
-    <div class="d-flex edit-profile" style="flex-wrap:wrap; justify-content:center; margin-top:100px;">
-            <div class="container-img">
-              <img src="${user.image}" alt="Picture Profile" class="picture-profile lazyload" style="border:1px solid black; margin:15px;">
-            </div>
-            <form id= "edit-user">
+    <form id= "edit-user">
+            <div class="mb-4">
+            <h5>Profile Picture</h5>
+            <input class="form-control" type="file" id="edit-photo"  accept=".jpg, .jpeg, .png">
+          </div>
             <div class="mb-4">
               <h5>Username</h5>
               <input type="text" class="form-control" id="edit-username" placeholder="Type your username" value="${user.username}">
@@ -1172,31 +1014,221 @@ const createProfileEditTemplate = (user) => {
             </div>
             <div class="mb-4">
               <h5>Bio</h5>
-              <textarea class="form-control" id="edit-bio" placeholder="Type your bio">${user.bio}</textarea>
+              <textarea class="form-control" id="edit-bio" placeholder="Type your bio" rows="8">${user.bio}</textarea>
             </div>
             <div class="mb-4">
             <h5>My Skills</h5>
-            <textarea class="form-control" id="edit-skill" placeholder="Type your skills">${user.specialities}</textarea>
-          </div>
-            <div class="mb-4">
-              <h5>Profile Picture</h5>
-              <input class="form-control" type="file" id="edit-photo">
+            <textarea class="form-control" id="edit-skill" placeholder="Type your skills" rows="5">${user.specialities}</textarea>
             </div>
-              <a href="#/profile" class="btn btn-primary"> Back </a>
-              <button class="btn btn-light border-dark" id="edit-simpan">Save</button>  
+            <button  type="button" class="btn btn-primary" data-bs-dismiss="modal"> Back </button>
+            <button class="btn btn-light border-dark" type="submit" id="edit-simpan">Save</button>  
             </form>
           </div>
+          </div>
+      </div>
     </div>
-  `;
+  </div>
+</div>
+<div class="modal fade" id="staticBackdropChangePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Change Password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="container-change-page">
+      <div class="change-page">
+        <div class="header-change-page">
+          <img class="lazyload" src="./asset/hero-changepwd.png">
+        </div>
+        <form id="form-changepwd">
+          <div class="mb-3">
+          <input type="password" class="form-control form-control-lg" id="oldPwd" placeholder="Enter your old password" required>
+          </div>
+          <div class="mb-3">
+          <input type="password" class="form-control" id="newPwd" placeholder="Enter your new password" required>
+          </div>
+          <div class="mb-3">
+          <input type="password" class="form-control" id="confirmPwd" placeholder="Confirm your new password" required>
+          </div>
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Back</button>
+          <button type="submit" class="btn btn-primary" id="editButton"> Submit </button>
+        </form>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</div> `;
 };
+
+const createAboutProfileTemplate = (user) => {
+  if (user.bio === undefined) {
+    user.bio = '-';
+  }
+  if (user.contact === undefined) {
+    user.contact = '';
+  }
+  if (user.profesi === undefined) {
+    user.profesi = '-';
+  }
+  return `
+  <div class="content-profile-user">
+    <h6>Contact</h6>
+    <p>${user.contact}</p>
+    <h6> Email </h6>
+    <p>${user.email}</p>
+    <h6>About</h6>
+    <p style="text-align:justify;">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+`;
+};
+
+const createProfileOtherTemplateSkeleton = () => `
+<div class="container-profile placeholder-glow">
+<div class="container-profile-main">
+  <div class="card profile">
+    <img style="width:200px; height:200px;" class="placeholder">
+    <div class="container-activity">
+        <p  class="fw-bold"  style="text-align:left; border-bottom:3px solid grey;"><span class="placeholder">lorem ipsum</span></p>
+        <h6> <span class="placeholder">lorem ipsum</span> </h6>
+        <h2 class="grade-user fw-bold"><span class="placeholder">lorem</span></h2>
+        <h6><span class="placeholder">lorem ipsum</span></h6>
+        <p class="length-disscussion-user"><span class="placeholder">lorem</span></p>
+        <h6><span class="placeholder">lorem ipsum domet</span></h6>
+        <p class="length-reply-user"><span class="placeholder">lorem</span></p>
+    </div>
+    <div class="container-myskill" style="padding:10px;">
+    <p class=" fw-bold" style="border-bottom:3px solid grey;"><span class="placeholder">lorem ipsum</span> </p>
+    <p class="fw-bold "><span class="placeholder">lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum 
+    lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum </span></p>
+    </div>
+  </div>
+</div>
+<div class="container-about-profile-user scroll-item">
+  <h2 class="fw-bold"><span class="placeholder">lorem ipsum domet ipsum domet ipsum domet</span></h2>
+  <p class="fw-bold "><span class="placeholder">lorem ipsum domet ipsum</span></p>
+  <h6><span class="placeholder">lorem ipsum</span></h6>
+  <p><span class="placeholder">lorem ipsum</span></p>
+  <div class="d-flex" style="border-bottom:3px solid grey; ">
+    <button class="btn " id="buttonAboutProfile" style="margin-bottom:5px;"><span class="placeholder">lorem ipsum</span></button>
+    <button class="btn " id="buttonDiscussionProfile" style="margin-bottom:5px;"><span class="placeholder">lorem ipsum</span></button>
+  </div>
+  <div class="content-profile-user">
+    <h6><span class="placeholder">lorem ipsum</span></h6>
+    <p><span class="placeholder">lorem ipsum domet</span></p>
+    <h6> <span class="placeholder">lorem ipsum</span> </h6>
+    <p><span class="placeholder">lorem ipsum ipsum domet</span></p>
+    <h6><span class="placeholder">lorem ipsum</span></h6>
+    <p style="text-align:justify;"><span class="placeholder">lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsumlorem ipsumlorem ipsum
+    </span></p>
+  </div>
+</div>
+</div>
+</div>
+`;
+
+const createProfileOtherTemplate = (user) => {
+  if (user.bio === undefined) {
+    user.bio = '-';
+  }
+  if (user.contact === undefined) {
+    user.contact = '';
+  }
+  if (user.profesi === undefined) {
+    user.profesi = '-';
+  }
+  if (user.country === undefined) {
+    user.country = '-';
+  }
+  if (user.specialities === undefined) {
+    user.specialities = '-';
+  }
+
+  return `
+    <div class="container-profile">
+      <div class="container-profile-main">
+        <div class="card profile">
+          <img src="${user.image}" class="card-img-top lazyload">
+          <div class="container-activity">
+              <p  class="text-muted fw-bold"  style="text-align:left; border-bottom:3px solid grey;">Activity </p>
+              <h6> Grade </h6>
+              <h2 class="grade-user fw-bold"></h2>
+              <h6> Your Discussion</h6>
+              <p class="length-disscussion-user"></p>
+              <h6> Your Answer Discussion</h6>
+              <p class="length-reply-user"></p>
+          </div>
+          <div class="container-myskill" style="padding:10px;">
+          <p class="text-muted fw-bold" style="border-bottom:3px solid grey;"> My Skills </p>
+          <p class="fw-bold text-muted">${user.specialities.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+          </div>
+        </div>
+      </div>
+      <div class="container-about-profile-user scroll-item">
+        <h2 class="fw-bold">${user.username}</h2>
+        <p class="fw-bold" style="color:#607EAA;">${user.profesi}</p>
+        <h6>Country</h6>
+        <p>${user.country}</p>
+        <div class="d-flex" style="border-bottom:3px solid grey; ">
+          <button class="btn afterClick " id="buttonAboutProfile" style="margin-bottom:5px;"><i class="fa fa-user" aria-hidden="true"></i> About</button>
+          <button class="btn " id="buttonDiscussionProfile" style="margin-bottom:5px;"><i class="fa fa-comments-o" aria-hidden="true"></i> Discussion</button>        </div>
+        <div class="content-profile-user">
+          <h6>Contact</h6>
+          <p>${user.contact}</p>
+          <h6> Email </h6>
+          <p>${user.email}</p>
+          <h6>About</h6>
+          <p style="text-align:justify;">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+        </div>
+      </div>
+    </div>
+    </div>
+    `;
+};
+const createNavbarTemplateBeforeLogin = () => `
+<nav class="navbar fixed-top navbar-expand-lg " id="navbar">
+<div class="container-fluid">
+  <a class="navbar-brand text-light fw-bold" href="#"><i class="fa fa-code fw-bold" aria-hidden="true"></i> WEBEER</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link text-light mx-1" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light  mx-1" href="#/about">About</a>
+      </li>
+      <li class="nav-item">
+        <button class="btn  mx-1 loginNav" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#FFE9B1; width:80px;">Login</button>
+      </li>
+      <li class="nav-item">
+      <a class="btn btn-light mx-1" href="#/register" style="width:80px;">Register</a>
+    </li>
+    </ul>
+  </div>
+</div>
+</nav>`;
+
 const createNavbarTemplateAfterLogin = () => `
 <nav class="navbar fixed-top navbar-expand-lg " id="navbar">
 <div class="container-fluid">
 <a class="navbar-brand text-light fw-bold" href="#"><i class="fa fa-code fw-bold" aria-hidden="true"></i> WEBEER</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <i class="fa fa-bars text-white" aria-hidden="true"></i>
   </button>
-  <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
+  <div class="collapse navbar-collapse nav justify-content-center" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link text-light" aria-current="page" href="#/profile">Profile</a>
@@ -1227,28 +1259,6 @@ const UserDiscussionSkeleton = (count) => {
   return template;
 };
 
-const changePasswordTemplate = () => `
-<div class="container-change-page">
-  <div class="change-page">
-    <div class="header-change-page">
-      <img class="lazyload" src="./asset/hero-changepwd.png">
-    </div>
-    <form id="form-changepwd">
-    <div class="mb-3">
-      <input type="password" class="form-control" id="oldPwd" placeholder="Enter your old password" required>
-      </div>
-      <div class="mb-3">
-      <input type="password" class="form-control" id="newPwd" placeholder="Enter your new password" required>
-      </div>
-      <div class="mb-3">
-      <input type="password" class="form-control" id="confirmPwd" placeholder="Confirm your new password" required>
-      </div>
-      <a href= "#/profile" class="btn btn-dark">Back</a>
-      <button type="submit" class="btn btn-primary" id="editButton"> Submit </button>
-    </form>
-  </div>
-</div>
-`;
 const createSaveDiscussionButtonTemplate = () => `
   <button aria-label="like this restaurant" id="likeButton" class="like btn" style="border:none; background-color:transparent;">
   <i class="fa fa-bookmark-o fa-2x" aria-hidden="true"></i>
@@ -1865,8 +1875,6 @@ export {
   createNavbarTemplateAfterLogin,
   createNavbarTemplateBeforeLogin,
   UserDiscussionSkeleton,
-  createProfileEditTemplate,
-  changePasswordTemplate,
   createSaveDiscussionButtonTemplate,
   createUnsaveDiscussionButtonTemplate,
   createBookmarkItemTemplate,
