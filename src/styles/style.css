@@ -68,14 +68,16 @@ code.code-discussion-item {
 }
 
 #footer .contact-person,
-#footer .footer-features {
+#footer .footer-features,
+#footer .footer-about {
     text-decoration: none;
     color: white;
 }
 
 #footer li:hover,
 #footer .contact-person:hover,
-#footer .footer-features:hover {
+#footer .footer-features:hover,
+#footer .footer-about:hover {
     background-color: white;
     color: black;
     border-radius: 5px;
@@ -84,6 +86,27 @@ code.code-discussion-item {
 #footer .container-footer {
     display: flex;
     justify-content: space-around;
+}
+
+#footer-lite {
+    display: flex;
+    background-color: #FFFFFF;
+    border-top: 1px solid rgba(0, 0, 0, 0.175);
+    padding: 10px;
+}
+
+.border-rbl {
+    border: 1px solid rgba(0, 0, 0, 0.175);
+    border-top: none;
+}
+
+#footer-lite a {
+    text-decoration: none;
+}
+
+.footer-lite-profile {
+    width: 1200px;
+    border-top: 1px solid rgba(0, 0, 0, 0.175);
 }
 
 @media screen and (max-width: 695px) {
@@ -97,5 +120,11 @@ code.code-discussion-item {
 
     #footer li {
         list-style-type: none;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .footer-lite-profile {
+        width: 900px;
     }
 }

@@ -1,6 +1,6 @@
 import { Toast } from 'bootstrap/dist/js/bootstrap.bundle';
 import DiscussionSource from '../../data/discussionSource';
-import { createAddDiscussionTemplateSkeleton, createFilterCategoryTemplate } from '../templates/template-creator';
+import { createFilterCategoryTemplate } from '../templates/template-creator';
 
 const AddDiscussionPage = {
   async render() {

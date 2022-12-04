@@ -8,16 +8,19 @@
     z-index: 1;
     padding: 10px;
 }
+
 .card.profile img {
     width: 200px;
-    margin: 10px auto;  
+    margin: 10px auto;
 }
-.container-about-profile-user{
+
+.container-about-profile-user {
     width: 900px;
     padding: 10px;
     background-color: white;
     height: 830px;
 }
+
 .edit-profile {
     background-color: #f8f9fa;
     max-width: 800px;
@@ -25,41 +28,49 @@
     padding: 10px;
     border-radius: 15px;
 }
-.container-activity{
+
+.container-activity {
     text-align: center;
     padding: 10px;
 }
-.content-profile-user{
+
+.content-profile-user {
     height: 550px;
     overflow-y: auto;
     margin-top: 10px;
 }
+
 .card.profile {
     border-radius: 0px;
     height: 830px;
     width: 300px;
 }
-.container-myskill{
+
+.container-myskill {
     height: 250px;
     overflow-y: auto;
 }
-.btn.afterClick{
+
+.btn.afterClick {
     color: #607EAA;
     border-bottom: 4px solid #607EAA;
     font-weight: bold;
     border-radius: 0px;
 }
+
 @media screen and (max-width: 1240px) {
-    .card.profile{
+    .card.profile {
         width: 900px;
     }
 }
+
 @media screen and (max-width:925px) {
-    .card.profile{
+    .card.profile {
         width: 100%;
         margin-bottom: 10px;
     }
 }
+
 @media screen and (max-width: 620px) {
     .card.profile {
         margin-right: 0;

@@ -497,43 +497,35 @@ const createDiscussionReplyTemplate = (discussion) => {
 };
 
 const createAddDiscussionButtonTemplate = () => `
-  <a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
-`;
-
-const createAddDiscussionTemplateSkeleton = () => `
-  <div class="card w-100 border-0">
-      <div class="card-body placeholder-glow">
-          <form id="form-discussion" method="POST" enctype="multipart/form-data">
-              <h2 class="card-title text-center"><span class="placeholder">Add Dicussion</span></h2>
-              <h3 class="card-text"><span class="placeholder">Category</span></h3>
-              <div>${createFilterCategoryTemplateSkeleton(5)}</div>
-              <h3 class="card-text"><span class="placeholder">Dicussion</span></h3>
-              <input type="text" class="form-control mb-2 bg-secondary placeholder" disabled>
-              <button class="btn btn-secondary text-secondary m-0 placeholder disabled"><i class="fa fa-code" aria-hidden="true"></i></button>
-              <textarea cols="30" rows="10" class="form-control mb-2 bg-secondary placeholder" disabled></textarea>
-              <button class="btn btn-secondary text-secondary disabled">Back</button>
-              <button class="btn btn-primary text-primary disabled">Send</button>
-          </form>
-      </div>
-  </div>
+  <!--<button aria-label="Add Discussion" class="add btn bg-dark text-center text-white border-0 fw-bold" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><span>+</span></button>-->
+  <button aria-label="Add Discussion" class="adddiscuss btn" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><i class="fa fa-plus-circle bg-white" aria-hidden="true"></i></button>
 `;
 
 const createAddDiscussionTemplate = () => `
-  <div class="card w-100 border-0">
-      <div class="card-body">
-          <form id="form-discussion" method="POST" enctype="multipart/form-data">
-              <h2 class="card-title text-center">Add Dicussion</h2>
-              <h3 class="card-text">Category</h3>
-              <div id="listCategoryForSelected"></div>
-              <h3 class="card-text">Dicussion</h3>
-              <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" placeholder="Type your title discussion here">
-              <button id="code" class="btn btn-light m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
-              <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
-              placeholder="Type your discussion here"></textarea>
-              <button type="button" class="btn btn-secondary border" id="closeButton">Back</button>
-              <button type="submit" class="btn btn-primary" id="addButton">Send</button>
-          </form>
+  <div class="modal fade modal-xl" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" id="modal-add-discussion">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0">
+        <div class="modal-header bg-dark-blue">
+          <h1 class="modal-title fs-5">Add Discussion</h1>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="form-add-discussion">
+          <div class="modal-body">
+            <h5 class="card-text">Category</h5>
+            <div id="listCategoryForSelected"></div>
+            <h5 class="card-text my-2">Discussion</h5>
+            <input type="text" name="inputTitle" id="inputTitle" class="form-control border-dark-blue mb-2" placeholder="Type your title discussion here">
+            <button id="code" class="btn btn-light border-dark-blue m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
+            <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control border-dark-blue my-2"
+            placeholder="Type your discussion here"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn bg-dark-blue" id="addButton">Send</button>
+          </div>
+        </form>
       </div>
+    </div>
   </div>
 `;
 
@@ -541,29 +533,29 @@ const createFilterListTemplateSkeleton = () => `
   <div id="filter-drawer-skeleton" class="bg-white placeholder-glow">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
-        <h2><span class="placeholder">Filter</span></h2>
+        <h4><span class="placeholder">Filter</span></h4>
       </div>
       <button id="close-filter" class="btn fw-bold">X</button>
     </div>
     <form id="form-filter">
       <div class="my-2">
-        <h3><span class="placeholder">Sort</span></h3>
+        <h5><span class="placeholder">Sort</span></h5>
         <input type="radio" class="btn-check" name="sort" id="latest">
-        <label class="btn btn-secondary text-secondary disabled placeholder mb-1" for="latest">Latest</label>
+        <label class="btn btn-secondary text-secondary w-110 disabled placeholder mb-1" for="latest">Latest</label>
         <input type="radio" class="btn-check" name="sort" id="oldest">
-        <label class="btn btn-secondary text-secondary disabled placeholder mb-1" for="oldest">Oldest</label>
+        <label class="btn btn-secondary text-secondary w-110 disabled placeholder mb-1" for="oldest">Oldest</label>
         <input type="radio" class="btn-check" name="sort" id="solved">
-        <label class="btn btn-secondary text-secondary disabled placeholder mb-1" for="solved">Solved</label>
+        <label class="btn btn-secondary text-secondary w-110 disabled placeholder mb-1" for="solved">Solved</label>
         <input type="radio" class="btn-check" name="sort" id="unsolved">
-        <label class="btn btn-secondary text-secondary disabled placeholder mb-1" for="unsolved">Unsolved</label>
+        <label class="btn btn-secondary text-secondary w-110 disabled placeholder mb-1" for="unsolved">Unsolved</label>
       </div>
       <div class="my-2">
-        <h3><span class="placeholder">Category</span></h3>
+        <h5><span class="placeholder">Category</span></h5>
         <div class="filterCategory">${createFilterCategoryTemplateSkeleton(5)}</div>
       </div>
       <div>
-        <button type="button" class="btn btn-danger text-danger disabled placeholder">Reset</button>
-        <button type="button" class="btn btn-primary text-primary disabled placeholder">Filter</button>
+        <button type="button" class="btn btn-secondary text-secondary w-110 disabled placeholder">Reset</button>
+        <button type="button" class="btn btn-secondary text-secondary w-110 disabled placeholder">Filter</button>
       </div>
     </form>
   </div>
@@ -573,29 +565,29 @@ const createFilterListTemplate = () => `
   <div id="filter-drawer" class="bg-white">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
-        <h2>Filter</h2>
+        <h4>Filter</h4>
       </div>
       <button id="close-filter" class="btn fw-bold">X</button>
     </div>
     <form id="form-filter">
       <div class="my-2">
-        <h3>Sort</h3>
-        <input type="radio" class="btn-check" name="sort" id="latest" autocomplete="off" value="latest" checked>
-        <label class="btn btn-outline-primary mb-1" for="latest">Latest</label>
-        <input type="radio" class="btn-check" name="sort" id="oldest" autocomplete="off" value="oldest">
-        <label class="btn btn-outline-primary mb-1" for="oldest">Oldest</label>
-        <input type="radio" class="btn-check" name="sort" id="solved" autocomplete="off" value="solved">
-        <label class="btn btn-outline-primary mb-1" for="solved">Solved</label>
-        <input type="radio" class="btn-check" name="sort" id="unsolved" autocomplete="off" value="unsolved">
-        <label class="btn btn-outline-primary mb-1" for="unsolved">Unsolved</label>
+        <h5>Sort</h5>
+        <input type="radio" class="btn-check category" name="sort" id="latest" autocomplete="off" value="latest" checked>
+        <label class="btn btn-category" for="latest">Latest</label>
+        <input type="radio" class="btn-check category" name="sort" id="oldest" autocomplete="off" value="oldest">
+        <label class="btn btn-category" for="oldest">Oldest</label>
+        <input type="radio" class="btn-check category" name="sort" id="solved" autocomplete="off" value="solved">
+        <label class="btn btn-category" for="solved">Solved</label>
+        <input type="radio" class="btn-check category" name="sort" id="unsolved" autocomplete="off" value="unsolved">
+        <label class="btn btn-category" for="unsolved">Unsolved</label>
       </div>
       <div class="my-2">
-        <h3>Category</h3>
+        <h5>Category</h5>
         <div class="filterCategory"></div>
       </div>
       <div>
-        <button type="reset" class="btn btn-danger">Reset</button>
-        <button type="submit" class="btn btn-primary">Filter</button>
+        <button type="reset" class="btn btn-dark-red mb-2">Reset</button>
+        <button type="submit" class="btn btn-dark-blue mb-2">Filter</button>
       </div>
     </form>
   </div>
@@ -607,15 +599,20 @@ const createFilterCategoryTemplateSkeleton = (count) => {
   for (let i = 0; i < count; i++) {
     template += `
       <input type="checkbox" class="btn-check" id="lorem">
-      <label class="btn btn-secondary text-secondary disabled placeholder mb-1" for="lorem">lorem</label>
+      <label class="btn btn-secondary text-secondary w-110 disabled placeholder mb-1" for="lorem">lorem</label>
     `;
   }
   return template;
 };
 
 const createFilterCategoryTemplate = (category) => `
-  <input type="checkbox" class="btn-check categoryFilter" name="categoryFilter" id="${category.name}" value="${category.name}" autocomplete="off">
-  <label class="btn btn-outline-primary mb-1" for="${category.name}">${category.name}</label>
+  <input type="checkbox" class="btn-check categoryFilter category" name="categoryFilter" id="${category.name}" value="${category.name}" autocomplete="off">
+  <label class="btn btn-category" for="${category.name}">${category.name}</label>
+`;
+
+const createFilterCategoryTemplateAddDiscussion = (category) => `
+  <input type="checkbox" class="btn-check categoryFilterAddDiscussion category" name="categoryFilterAddDiscussion" id="${category.name}1" value="${category.name}" autocomplete="off">
+  <label class="btn btn-category" for="${category.name}1">${category.name}</label>
 `;
 
 const createProfileTemplateSkeleton = () => `
@@ -717,7 +714,7 @@ const createProfileTemplate = (user) => {
           </div>
         </div>
       </div>
-      <div class="container-about-profile-user scroll-item">
+      <div class="container-about-profile-user">
         <h2 class="fw-bold">${user.username}</h2>
         <p class="fw-bold" style="color:#607EAA;">${user.profesi}</p>
         <h6>Country</h6>
@@ -727,7 +724,7 @@ const createProfileTemplate = (user) => {
           <button class="btn " id="buttonDiscussionProfile" style="margin-bottom:5px;"><i class="fa fa-comments-o" aria-hidden="true"></i> Discussion</button>
           <button class="btn " id="buttonBookmarkProfile" style="margin-bottom:5px;"><i class="fa fa-bookmark" aria-hidden="true"></i> Bookmark</button>
         </div>
-        <div class="content-profile-user">
+        <div class="content-profile-user scroll-item">
           <h6>Contact</h6>
           <p>${user.contact}</p>
           <h6> Email </h6>
@@ -736,7 +733,9 @@ const createProfileTemplate = (user) => {
           <p style="text-align:justify;">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
         </div>
       </div>
-    </div>
+      <div class="p-3 bg-white footer-lite-profile">
+        <footer-lite></footer-lite>
+      </div>
     </div>
     `;
 };
@@ -1850,11 +1849,11 @@ export {
   createDiscussionItemTemplate,
   createDiscussionDetailTemplateSkeleton,
   createDiscussionDetailTemplate,
-  createAddDiscussionTemplateSkeleton,
   createAddDiscussionTemplate,
   createAddDiscussionButtonTemplate,
   createFilterListTemplateSkeleton,
   createFilterListTemplate,
+  createFilterCategoryTemplateAddDiscussion,
   createFilterCategoryTemplateSkeleton,
   createFilterCategoryTemplate,
   createDiscussionReplyTemplateSkeleton,

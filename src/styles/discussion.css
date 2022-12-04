@@ -114,3 +114,31 @@
 .container-discussion-detail {
     flex-wrap: wrap;
 }
+
+.pagination-container {
+    background-color: #FFFFFF;
+    width: 100%;
+    padding: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.175);
+    border-bottom: none;
+}
+
+.pagination-number,
+.pagination-button {
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+}
+
+.pagination-number:hover,
+.pagination-button:not(.disabled):hover {
+    background: #344D67;
+}
+
+.pagination-number.active {
+    color: #FFFFFF;
+    background: #344D67;
+}
