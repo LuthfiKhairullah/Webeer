@@ -1,13 +1,19 @@
-import 'regenerator-runtime';
 import CacheHelper from './utils/cache-helper';
 
 const assetsToCache = [
   './',
-  './asset/hero-changepwd.png',
-  './asset/hero-dashboard-company.png',
-  './asset/hero-jobsDetail.png',
-  './asset/hero-login.png',
-  './asset/verified.png',
+  './assetpng/hero-about-us.png',
+  './assetpng/hero-dashboard-company.png',
+  './assetpng/hero-jobsDetail.png',
+  './assetpng/hero-login.png',
+  './assetpng/hero-img.png',
+  './assetpng/loker.png',
+  './assetpng/picture.png',
+  './assetpng/fordis.png',
+  './asset/fajar.jpeg',
+  './asset/jovita.jpg',
+  './asset/Luthfi.jpg',
+  './asset/muja.jpg',
   './icons/maskable_icon.png',
   './icons/maskable_icon_x48.png',
   './icons/maskable_icon_x72.png',
@@ -24,12 +30,10 @@ const assetsToCache = [
 ];
 
 self.addEventListener('install', (event) => {
-  console.log('Installing Service Worker ...');
   event.waitUntil(CacheHelper.cachingAppShell([...assetsToCache]));
 });
 
 self.addEventListener('activate', (event) => {
-  console.log('Activating Service Worker ...');
   event.waitUntil(CacheHelper.deleteOldCache());
 });
 
