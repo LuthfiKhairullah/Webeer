@@ -8,8 +8,11 @@ const Register = {
          <div id="container-register">
           <div class ="container-login-main" id="card-login">
               <div>
-                <img  class="lazyload hero-register" src="./asset/hero-login.png">
-              </div>
+              <picture>
+              <source media="(max-width:600px)" srcset="./assetpng/hero-login-small.png">
+                <img  class="lazyload hero-register" src="./assetpng/hero-login-large.png" alt="hero register">
+              </picture>
+                </div>
             <div>  
               <form id="form-register">
               <h2 class="fw-bolder">REGISTER</h2>

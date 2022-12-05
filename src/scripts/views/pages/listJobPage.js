@@ -8,7 +8,7 @@ const listJobPage = {
     const getToken = localStorage.getItem('token');
     const getRole = localStorage.getItem('role');
     if (getToken === null) {
-      document.location = '#/login';
+      document.location = '/';
       localStorage.setItem('login', 'false');
       window.reload();
     } else if (getToken !== null && getRole.replaceAll('"', '') === 'Company') {

@@ -16,7 +16,10 @@ class Login extends HTMLElement {
             <div id="container-login" style="text-align:center;">
                 <div class ="container-login-main" id="card-login">
                     <div>
-                        <img class="lazyload" src="./asset/hero-login.png">
+                    <picture>
+                    <source media="(max-width:600px)" srcset="./assetpng/hero-login-small.png">
+                      <img  class="lazyload" src="./assetpng/hero-login-large.png" alt="hero-login">
+                    </picture>
                     </div>
                 <div>
                 <form id="form-login">

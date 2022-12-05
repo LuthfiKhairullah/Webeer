@@ -28,16 +28,25 @@ const HomePage = {
                 </p>
                 <a class="btn text-light fw-bold" style="border-radius:30px; background-color:#344D67;" href="#/login" id="buttonHomePage">Get Started</a>
               </div>
-              <img src="./asset/hero-img.png" class="main-image-homepage" >
+              <picture>
+              <source media ="(max-width:600px)" srcset="./assetpng/hero-img-small.png">
+              <img src="./assetpng/hero-img-large.png" class="main-image-homepage" alt="hero homepage" >
+              </picture>
             </div>
             <div class="container-about-homepage">
               <div class="container-about-card-homepage">
                 <div class="card" style="width: 18rem;">
-                  <img src="./asset/fordis.png"  style="width:200px;  height:200px; padding:20px; margin:0 auto;">
+                <picture>
+                  <source media ="(max-width:600px)" srcset="./assetpns/fordis-small.png">
+                  <img src="./assetpng/fordis-large.png"  style="width:200px;  height:200px; padding:20px; margin:0 auto;" alt="picture forum">
+                 </picture> 
                   <h3 class="fw-bolder">Discussion Forum</h3>
                 </div>
                 <div class="card" style="width: 18rem;">
-                  <img src="./asset/loker.png" style="width:200px; height:200px; padding:20px;  margin:0 auto;">
+                  <picture>
+                  <source media ="(max-width:600px)" srcset="./assetpng/loker-small.png">
+                  <img src="./assetpng/loker-large.png" style="width:200px; height:200px; padding:20px;  margin:0 auto;" alt="picture job">
+                  </picture>
                   <h3 class="fw-bolder">Job Vacancy</h3>
                 </div>
               </div>
@@ -47,7 +56,10 @@ const HomePage = {
               and also looking for jobs.</p>
             </div>
             <div class="container-end-homepage">
-            <img src="./asset/picture.png" class="image-end-homepage">
+            <picture>
+            <source media ="(max-width:600px)" srcset="./assetpng/picture-small.png">
+              <img src="./assetpng/picture-large.png" class="image-end-homepage" alt="picture end homepage">
+            </picture>
               <div class="container-end-text-homepage">
                   <h2 class="text-dark fw-bold">
                   Find answers
