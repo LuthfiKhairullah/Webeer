@@ -42,7 +42,7 @@ const jobsPage = {
                 </div>
             </div>
         </div>
-        <div class="p-3 border-rbl" style="background-color:#f3f2ef;">
+        <div class="p-3" style="background-color:#f3f2ef;">
         <footer-lite></footer-lite>
       </div
         `;

@@ -4,28 +4,8 @@
     width: 110px;
 }
 
-.btn.btn-dark-blue {
-    background-color: #344D67;
-    border-color: #344D67;
-    color: #FFFFFF;
+.btn.w-110 {
     width: 110px;
-}
-
-.btn.btn-dark-blue:hover {
-    background-color: rgba(52, 77, 103, 0.9);
-    color: #FFFFFF;
-}
-
-.btn.btn-dark-red {
-    background-color: #880014;
-    border-color: #880014;
-    color: #FFFFFF;
-    width: 110px;
-}
-
-.btn.btn-dark-red:hover {
-    background-color: rgba(136, 0, 20, 0.9);
-    color: #FFFFFF;
 }
 
 .btn.btn-category:checked {

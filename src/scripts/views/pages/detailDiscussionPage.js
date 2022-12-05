@@ -66,13 +66,13 @@ const DetailDiscussionPage = {
     discussionCategory.forEach((categoryitem) => {
       if (discussions.categories.includes(categoryitem.name.toString())) {
         categoryList.innerHTML += `
-          <input type="checkbox" class="btn-check categoryFilter" name="categoryFilter" id="${categoryitem.name}" value="${categoryitem.name}" autocomplete="off" checked>
-          <label class="btn btn-outline-primary mb-1" for="${categoryitem.name}">${categoryitem.name}</label>
+          <input type="checkbox" class="btn-check categoryFilter category" name="categoryFilter" id="${categoryitem.name}" value="${categoryitem.name}" autocomplete="off" checked>
+          <label class="btn btn-outline-secondary btn-category text-capitalize" for="${categoryitem.name}">${categoryitem.name}</label>
         `;
       } else {
         categoryList.innerHTML += `
-          <input type="checkbox" class="btn-check categoryFilter" name="categoryFilter" id="${categoryitem.name}" value="${categoryitem.name}" autocomplete="off">
-          <label class="btn btn-outline-primary mb-1" for="${categoryitem.name}">${categoryitem.name}</label>
+          <input type="checkbox" class="btn-check categoryFilter category" name="categoryFilter" id="${categoryitem.name}" value="${categoryitem.name}" autocomplete="off">
+          <label class="btn btn-outline-secondary btn-category text-capitalize" for="${categoryitem.name}">${categoryitem.name}</label>
         `;
       }
     });
@@ -108,14 +108,17 @@ const DetailDiscussionPage = {
           arrcategory.push(c.value);
         }
       });
-      if (arrcategory.length === 0 || inputTitle.value === '' || inputDiscussion.value === '') {
+      if (arrcategory.length === 0 || arrcategory.length > 3 || inputTitle.value === '' || inputDiscussion.value === '') {
         if (arrcategory.length === 0) {
           messageText.innerHTML = 'Error! Please choose one category first!';
+          categorySelectElement.focus();
+        } else if (arrcategory.length > 3) {
+          messageText.innerHTML = 'Error! Category discussion max 3!';
           categorySelectElement.focus();
         } else if (inputTitle.value === '') {
           messageText.innerHTML = 'Error! Please type your title discussion';
           inputTitle.focus();
-        } else {
+        } else if (inputDiscussion === '') {
           messageText.innerHTML = 'Error! Please type your discussion';
           inputDiscussion.focus();
         }

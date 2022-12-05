@@ -98,7 +98,8 @@ const ProfilePage = {
           await BookmarkDiscussionIdb.deleteDiscussion(ub.id);
         }
       });
-      if (userBookmark.length > 0) {
+      const updateBookmark = await BookmarkDiscussionIdb.getAllDiscussions();
+      if (updateBookmark.length > 0) {
         content.innerHTML = '<bookmark-list></bookmark-list>';
         const userBookmarkElement = document.querySelector('bookmark-list');
         userBookmarkElement.bookmarks = updateBookmark;
@@ -136,7 +137,7 @@ const ProfilePage = {
     });
     const containerImg = document.querySelector('.container-img');
 
-    document.querySelector('#edit-photo').addEventListener('change', function () {
+    document.querySelector('#edit-photo').addEventListener('change', () => {
       const reader = new FileReader();
       reader.addEventListener('load', () => {
         const uploaded_image = reader.result;

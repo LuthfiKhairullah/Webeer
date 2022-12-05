@@ -17,6 +17,7 @@ const resetPwdPage = {
       </form>
     </div>
     <message-container></message-container>
+    <login-modal></login-modal>
     <footer-lite class="p-3 footer-lite-profile" style="background-color:#f3f2ef;"></footer-lite>`;
   },
   async afterRender() {

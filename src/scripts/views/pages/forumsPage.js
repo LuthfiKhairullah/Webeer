@@ -63,7 +63,7 @@ const ForumsPage = {
           </div>
           </div>
           </div>
-          <div class="p-3 border-rbl" style="background-color:#f3f2ef;">
+          <div class="p-3" style="background-color:#f3f2ef;">
             <footer-lite></footer-lite>
           </div>
           ${createAddDiscussionTemplate()}
@@ -122,14 +122,17 @@ const ForumsPage = {
           arrcategory.push(c.value);
         }
       });
-      if (arrcategory.length === 0 || inputTitle.value === '' || inputDiscussion.value === '') {
+      if (arrcategory.length === 0 || arrcategory.length > 3 || inputTitle.value === '' || inputDiscussion.value === '') {
         if (arrcategory.length === 0) {
           messageText.innerHTML = 'Error! Please choose one category first!';
+          categorySelectElement.focus();
+        } else if (arrcategory.length > 3) {
+          messageText.innerHTML = 'Error! Category discussion max 3';
           categorySelectElement.focus();
         } else if (inputTitle.value === '') {
           messageText.innerHTML = 'Error! Please type your title discussion';
           inputTitle.focus();
-        } else {
+        } else if (inputDiscussion.value === '') {
           messageText.innerHTML = 'Error! Please type your discussion';
           inputDiscussion.focus();
         }

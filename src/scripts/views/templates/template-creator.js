@@ -166,37 +166,40 @@ const createDetailJobPageSkeleton = () => `
 </div>
 </div>
 `;
+
 const createDiscussionItemTemplateSkeleton = (count) => {
   let template = '';
 
   for (let i = 0; i < count; i++) {
     template += `
-      <div class="container-item-discussion fluid">
-        <a class="border-0 text-start text-decoration-none text-dark w-100 test">
-          <div class="card w-100 m-0">
-            <div class="card-body">
-              <div class="main-container placeholder-glow">
-                <div class="categoryDiscussion">${createCategoryDiscussionTemplateSkeleton()}</div>
-                  <h5><span class="placeholder">Lorem ipsum dolor</span></h5>
-                  <p class="card-text placeholder">Lorem ipsum dolor lorem ipsum dolor</p>
-                </div>
-              <div class="sub-container placeholder-glow">
-                <div class="container-reply text-center placeholder-glow">
-                  <span class="placeholder">0000</span>
-                  <span class="placeholder">999</span>
-                </div>
-                <div class="container-discussion-profile d-flex placeholder-glow">
-                  <img class="img-profile-discussion placeholder">
-                  <div class"sub-profile">
-                    <p class="fw-bold username fs-6"><span class="placeholder">Lorem ipsum dolor</span></p>
-                    <p class="fw-light fs-6"><span class="placeholder">31 Desember 2022</span></p>
-                  </div>
-                </div>
-                <span class="placeholder p-1 rounded indicator-solved">0000</span>
-              </div>  
+      <div class="container-discussion-item">
+        <div class="card m-0 borderless">
+          <div class="card-body placeholder-glow">
+            <div class="categoryDiscussion">${createCategoryDiscussionTemplateSkeleton(3)}</div>
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+              <div class="d-flex justify-content-start align-items-center my-1 flex-wrap">
+                <img class="img-discussion-item placeholder">
+                <p class="ms-2 fw-bold m-0 placeholder">Lorem ipsum dolor</p>
+                <p class="m-0 placeholder">&nbsp;•&nbsp;</p>
+                <p class="fw-light m-0 placeholder">31 Desember 2022</p>
+              </div>
+              <div>
+                <span class="ms-2 p-1 rounded indicator-solved placeholder"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i></span>
+              </div>
+            </div>
+            <h5><span class="placeholder">Lorem ipsum dolor lorem</span></h5>
+            <pre class="pre-discussion-item">
+              <code class="text-break code-discussion-item text-code placeholder">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, ducimus officia amet, omnis voluptates impedit adipisci obcaecati repellat voluptatum maxime tempora vitae voluptatibus consectetur corrupti illo neque velit dolore? Dolores.
+              </code>
+            </pre>
+            <div class="d-flex align-items-center flex-wrap">
+              <span class="placeholder">000</span>
+              <p class="m-0 ms-2 placeholder">0000</p>
+              <p class="m-0 discussion-item-text-reply placeholder">&nbsp;Discussion</p>
             </div>
           </div>
-        </a>
+        </div>
       </div>
     `;
   }
@@ -208,123 +211,148 @@ const createDiscussionItemTemplate = (discussion) => {
   let isSolved = '';
   if (discussion.isSolved === false) {
     isSolvedClass = 'text-secondary';
-    isSolved = '<i class="fa fa-check-circle-o fa-3x" aria-hidden="true"></i>';
+    isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>';
   } else {
     isSolvedClass = 'text-success';
-    isSolved = '<i class="fa fa-check-circle-o fa-3x" aria-hidden="true"></i>';
+    isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>';
   }
   return `
-<div class="container-item-discussion fluid">
-  <a href="/#/detaildiscussion/${discussion._id}" class="border-0 text-start text-decoration-none text-dark w-100 test">
-    <div class="card w-100 m-0">
-      <div class="card-body">
-        <div class="main-container">
-          <div class="categoryDiscussion">${createCategoryDiscussionTemplate(discussion.categories)}</div>
+    <div class="container-discussion-item">
+      <a href="/#/detaildiscussion/${discussion._id}" class="border-0 text-start text-decoration-none text-dark">
+        <div class="card m-0 borderless">
+          <div class="card-body">
+            <div class="categoryDiscussion">${createCategoryDiscussionTemplate(discussion.categories)}</div>
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+              <div class="d-flex justify-content-start align-items-center my-1 flex-wrap">
+                <img src="${discussion.userimage}" class="img-discussion-item lazyload">
+                <p class="ms-2 fw-bold m-0">${discussion.username}</p>
+                <p class="m-0">&nbsp;•&nbsp;</p>
+                <p class="fw-light m-0">${showFormattedDate(discussion.date)}</p>
+              </div>
+              <div class="">
+                <span class="${isSolvedClass} ms-2 p-1 rounded indicator-solved">${isSolved}</span>
+              </div>
+            </div>
             <h5>${discussion.title}</h5>
             <pre class="pre-discussion-item">
-              <code class="text-break code-discussion-item">
+              <code class="text-break code-discussion-item text-code">
                   ${truncateString(discussion?.discussion.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/(?:\r\n|\r|\n)/g, ' ').replace(/~Enter Your Code is Here/g, '')
     .replace(/Dont Delete this~/g, ''), 200)}
               </code>
             </pre>
+            <div class="d-flex align-items-center flex-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
+                <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
+              </svg>
+              <p class="m-0 ms-2">${discussion.reply.length}</p>
+              <p class="m-0 discussion-item-text-reply">&nbsp;Discussion</p>
+            </div>
           </div>
-        <div class="sub-container">
-          <div class="container-reply text-center">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-          <path
-            d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-          </svg>
-            <span>${discussion.reply.length}</span>
-          </div>
-          <div class="container-discussion-profile d-flex">
-            <img src="${discussion.userimage}" class="img-profile-discussion lazyload">
-              <div class"sub-profile">
-                <p class="fw-bold username fs-6">${discussion.username}</p>
-                <p class="fw-light fs-6">${showFormattedDate(discussion.date)}</p>
-              </div>
-          </div>
-          <span class="${isSolvedClass} p-1 rounded indicator-solved">${isSolved}</span>
-        </div>  
-      </div>
+        </div>
+      </a>
     </div>
-  </a>
-</div>
   `;
 };
+
 const createBookmarkItemTemplate = (bookmark) => {
   let isSolvedClass = '';
+  let isSolved = '';
   if (bookmark.isSolved === false) {
     isSolvedClass = 'text-secondary';
-    bookmark.isSolved = '<i class="fa fa-check-circle-o fa-3x" aria-hidden="true"></i>';
+    isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>';
   } else {
     isSolvedClass = 'text-success';
-    bookmark.isSolved = '<i class="fa fa-check-circle-o fa-3x" aria-hidden="true"></i>';
+    isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>';
   }
   return `
-<div class="container-item-discussion fluid">
-  <a href="/#/detaildiscussion/${bookmark.id}" class="border-0 text-start text-decoration-none text-dark w-100 test">
-    <div class="card w-100 m-0">
-      <div class="card-body">
-        <div class="main-container">
-          <div class="categoryDiscussion">${createCategoryDiscussionTemplate(bookmark.categories)}</div>
+    <div class="container-discussion-item">
+      <a href="/#/detaildiscussion/${bookmark.id}" class="border-0 text-start text-decoration-none text-dark">
+        <div class="card m-0 borderless">
+          <div class="card-body">
+            <div class="categoryDiscussion">${createCategoryDiscussionTemplate(bookmark.categories)}</div>
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+              <div class="d-flex justify-content-start align-items-center my-1 flex-wrap">
+                <img src="${bookmark.userimage}" class="img-discussion-item lazyload">
+                <p class="ms-2 fw-bold m-0">${bookmark.username}</p>
+                <p class="m-0">&nbsp;•&nbsp;</p>
+                <p class="fw-light m-0">${showFormattedDate(bookmark.date)}</p>
+              </div>
+              <div class="">
+                <span class="${isSolvedClass} ms-2 p-1 rounded indicator-solved">${isSolved}</span>
+              </div>
+            </div>
             <h5>${bookmark.title}</h5>
             <pre class="pre-discussion-item">
-              <code class="code-discussion-item">
-              ${truncateString(bookmark?.discussion.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/(?:\r\n|\r|\n)/g, ' ').replace(/~Enter Your Code is Here/g, '')
+              <code class="text-break code-discussion-item text-code">
+                  ${truncateString(bookmark?.discussion.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/(?:\r\n|\r|\n)/g, ' ').replace(/~Enter Your Code is Here/g, '')
     .replace(/Dont Delete this~/g, ''), 200)}
               </code>
             </pre>
+            <div class="d-flex align-items-center flex-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
+                <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
+              </svg>
+              <p class="m-0 ms-2">${bookmark.reply.length}</p>
+              <p class="m-0 discussion-item-text-reply">&nbsp;Discussion</p>
+            </div>
           </div>
-        <div class="sub-container">
-          <div class="container-reply text-center">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-          <path
-            d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-          </svg>
-            <span>${bookmark.reply.length}</span>
-          </div>
-          <div class="container-discussion-profile d-flex">
-            <img src="${bookmark.userimage}" class="img-profile-discussion lazyload">
-              <div class"sub-profile">
-                <p class="fw-bold username fs-6">${bookmark.username}</p>
-                <p class="fw-light fs-6">${showFormattedDate(bookmark.date)}</p>
-              </div>
-          </div>
-          <span class="${isSolvedClass} p-1 rounded indicator-solved">${bookmark.isSolved}</span>
-        </div>  
-      </div>
+        </div>
+      </a>
     </div>
-  </a>
-</div>
   `;
 };
 
 const createDiscussionDetailTemplateSkeleton = () => `
   <div class="container bg-white padding placeholder-glow">
-      <div class="d-flex justify-content-between">
-        <div class="d-flex align-items-center">
-          <img style="height: 20px; width: 20px;" class="picture-profile-discussion placeholder">
-          <a style="text-decoration:none;"><span class="ms-1 username font-monospace placeholder">Lorem ipsum dolor</span></a>
+    <div class="d-flex justify-content-between align-items-center flex-wrap">
+      <div class="d-flex justify-content-start align-items-center flex-wrap">
+        <div class="d-flex align-items-center flex-wrap">
+          <img class="picture-profile-discussion placeholder">
+          <a><p class="ms-1 fw-bold m-0 text-body placeholder">Lorem ipsum dolor</p></a>
         </div>
+        <p class="m-0"><span class="placeholder">&nbsp;•&nbsp;</span></p>
+        <p class="fw-light ms-1 m-0"><span class="placeholder">31 Desember 2022</span></p>
       </div>
-      <div class="text-capitalize placeholder">Lorem</div>
-      <h1><span class="placeholder">Lorem ipsum dolor</span></h1>
-      <div class="container-discussion-detail d-flex align-items-center">
-        <h3 class="fs-6 font-monospace mx-1 m-0"><span class="placeholder">31 Desember 2022</span></h3>
-        <span class="placeholder">000</span>
-        <span class="mx-1 placeholder">999</span>
-        <div class="placeholder me-1">0000</div>
-        <div class="placeholder">0000</div>
-      </div>
-      <p class="text-justify border-top border-bottom my-lg-2"><span class="placeholder">Lorem ipsum dolor lorem ipsum dolor</span></p>
-      <button class="btn m-0 btn-secondary text-secondary disabled placeholder">000</button>
-      <form id="form-discussion-reply" class="my-2 ">
-        <textarea class="form-control disabled placeholder" rows=15" disabled></textarea>
-        <button type="button" class="btn ms-1 my-1 btn-dark text-dark disabled placeholder">Submit Answer</button>
-      </form>
     </div>
+    <div>${createCategoryDiscussionTemplateSkeleton(3)}</div>
+    <h4><span class="placeholder">Lorem ipsum dolor</span></h4>
+    <div class="flex-wrap d-flex align-items-center">
+      <span class="placeholder"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i></span>
+      <span class="placeholder"><i class="fa fa-bookmark-o fa-2x" aria-hidden="true"></i></span>
+    </div>
+    <p class="text-justify border-top border-bottom my-lg-2">
+      <span class="placeholder">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo velit dolorum illo sapiente ab perferendis,
+        placeat numquam, non voluptates ad assumenda ducimus, est quo minima deserunt quaerat quod nisi similique
+        repudiandae quidem aspernatur exercitationem. Dolorem libero esse voluptatum consequatur veritatis quas odit
+        eveniet, distinctio deserunt nihil praesentium enim reiciendis inventore! Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Officia illo, impedit molestias eos provident iusto eligendi commodi minima facere, non
+        quaerat necessitatibus vero explicabo consequatur? Doloremque molestias voluptatum provident iusto. Lorem, ipsum
+        dolor sit amet consectetur adipisicing elit. Est maiores officia beatae iusto laborum nemo, natus optio ea vitae
+        voluptate voluptates delectus libero rerum laboriosam illo quod quaerat voluptatibus. Voluptate.
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo velit dolorum illo sapiente ab perferendis,
+        placeat numquam, non voluptates ad assumenda ducimus, est quo minima deserunt quaerat quod nisi similique
+        repudiandae quidem aspernatur exercitationem. Dolorem libero esse voluptatum consequatur veritatis quas odit
+        eveniet, distinctio deserunt nihil praesentium enim reiciendis inventore! Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Officia illo, impedit molestias eos provident iusto eligendi commodi minima facere, non
+        quaerat necessitatibus vero explicabo consequatur? Doloremque molestias voluptatum provident iusto. Lorem, ipsum
+        dolor sit amet consectetur adipisicing elit. Est maiores officia beatae iusto laborum nemo, natus optio ea vitae
+        voluptate voluptates delectus libero rerum laboriosam illo quod quaerat voluptatibus. Voluptate.
+      </span>
+    </p>
+    <div class="d-flex align-items-center flex-wrap my-2">
+      <span class="placeholder">000</span>
+      <span class="mx-1 placeholder">000</span>
+      <span class="placeholder">&nbsp;Discussion</span>
+    </div>
+    <button class="btn m-0 btn-secondary text-secondary disabled placeholder"><i class="fa fa-code" aria-hidden="true"></i></button>
+    <form id="form-discussion-reply" class="my-2 ">
+      <textarea class="form-control disabled placeholder" rows=15" disabled></textarea>
+      <button class="btn ms-1 my-1 btn-secondary text-secondary disabled placeholder">Submit Answer</button>
+    </form>
+  </div>
 `;
 
 const createDiscussionDetailTemplate = (discussion) => {
@@ -344,13 +372,17 @@ const createDiscussionDetailTemplate = (discussion) => {
     if (i % 2 === 0) { discussionDetail[i] = `<p class="text-justify border-top border-bottom my-lg-2">${discussionDetail[i]}</p>`; } else { discussionDetail[i] = `<div class="bg-light"><pre><code class="text-break">${discussionDetail[i]}</code></pre></div>`; }
   }
   return `
-    <div class="container bg-white padding ">
-      <div class="container-discussion-detail d-flex justify-content-between">
-        <div class="d-flex align-items-center">
-          <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion lazyload">
-          <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;"><span class="ms-1 username fw-bolder font-monospace text-body">${discussion.username}</span></a>
+    <div class="container bg-white padding "> 
+      <div class="d-flex justify-content-between align-items-center flex-wrap">
+        <div class="d-flex justify-content-start align-items-center flex-wrap">
+          <div class="d-flex align-items-center flex-wrap">
+            <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion lazyload">
+            <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;"><p class="ms-1 fw-bold m-0 text-body">${discussion.username}</p></a>
+          </div>
+          <p class="m-0">&nbsp;•&nbsp;</p>
+          <p class="fw-light m-0">${showFormattedDate(discussion.date)}</p>
         </div>
-        <div class = "d-flex d-none container-discussion-detail-button" id="user-only">
+        <div class = "d-flex d-none flex-wrap" id="user-only">
           <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn">
             <i class="fa fa-pencil-square-o fa-2x text-primary" aria-label="edit discussion"></i>
           </button>
@@ -375,74 +407,77 @@ const createDiscussionDetailTemplate = (discussion) => {
             </div>
           </div>
         </div>
-        <div class="modal fade modal-xl" id="modal-edit">
+        <div class="modal fade modal-xl" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" id="modal-edit">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5">Edit Discussion</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
               <form id="form-edit-discussion">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5">Edit Discussion</h1>
+                  <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
                 <div class="modal-body">
-                  <h3 class="card-text">Category</h3>
-                  <!--<select name="categoryList" id="categoryList" class="form-select mb-2"></select>-->
+                  <h5 class="card-text">Category</h5>
                   <div id="listCategoryForSelected"></div>
-                  <h3 class="card-text">Discussion</h3>
-                  <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" value="${discussion.title}" placeholder="Type your title discussion here">
-                  <button id="codeDiscussion" class="btn btn-light m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
-                  <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
+                  <h5 class="card-text my-2">Discussion</h5>
+                  <input type="text" name="inputTitle" id="inputTitle" class="form-control border-dark-blue mb-2" value="${discussion.title}" placeholder="Type your title discussion here">
+                  <button id="codeDiscussion" class="btn btn-light border-dark-blue m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
+                  <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control border-dark-blue my-2"
                   placeholder="Type your discussion here">${discussion.discussion}</textarea>
-                  <input class="form-check-input" type="checkbox" id="issolved" value="solved">
-                  <label class="form-check-label" for="issolved">Solved</label>
+                  <input class="form-check-input bg-dark-blue border-dark-blue" role="button" type="checkbox" id="issolved" value="solved">
+                  <label class="form-check-label" role="button" for="issolved">Solved</label>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary" id="saveEditButton">Save</button>
+                  <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-secondary" id="saveEditButton" style="background-color: #344D67;">Save</button>
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
-      <div class="text-capitalize">${createCategoryDiscussionTemplate(discussion.categories)}</div>
-      <h1>${discussion.title}</h1>
-      <div class="container-discussion-detail d-flex align-items-center">
-        <h3 class="text-muted fs-6 font-monospace mx-1 m-0" >${showFormattedDate(discussion.date)}</h3>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
-            <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-            <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
-          </svg>
-          <span class="lengthReply mx-1">0</span>
-        </div>
+      <div>${createCategoryDiscussionTemplate(discussion.categories)}</div>
+      <h4>${discussion.title}</h4>
+      <div class="flex-wrap d-flex align-items-center">
         <div class="${isSolvedClass}">${isSolved}</div>
         <div id="saveButtonContainer"></div>
       </div>
       ${discussionDetail.join('')}
-      <button id="code" class="btn btn-light m-0 d-block"><i class="fa fa-code" aria-hidden="true"></i></button>
+      <div class="d-flex align-items-center flex-wrap my-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
+          <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+          <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
+        </svg>
+        <p class="lengthReply mx-1 m-0">0</p>
+        <p class="m-0 discussion-item-text-reply">&nbsp;Discussion</p>
+      </div>
+      <button id="code" class="btn btn-light m-0 d-block" title="Code Button"><i class="fa fa-code" aria-hidden="true"></i></button>
       <form id="form-discussion-reply" class="my-2 ">
         <textarea  name="inputReply" id="inputReply" class="form-control" rows=15"></textarea>
-        <button type="submit" class="btn btn-dark ms-1 my-2" id="answerButton">Submit Answer</button>
+        <button type="submit" class="btn btn-secondary ms-1 my-2" id="answerButton" style="background-color: #344D67;">Submit Answer</button>
       </form>
     </div>
   `;
 };
 
-const createCategoryDiscussionTemplateSkeleton = () => `
-  <span class="placeholder">0000</span>
-`;
+const createCategoryDiscussionTemplateSkeleton = (count) => {
+  let template = '';
+  for (let i = 0; i < count; i++) {
+    template += '<span class="me-1 placeholder">000000</span>';
+  }
+  return template;
+};
 
 const createCategoryDiscussionTemplate = (categories) => {
   let categoryElement = '';
   if ((typeof (categories)).includes('object')) {
     categories.forEach((category) => {
       categoryElement += `
-        <span class="badge text-bg-warning">${category}</span>
+        <span class="badge text-dark" style="background-color: #FFE9B1;">${category}</span>
       `;
     });
   } else {
     categoryElement += `
-      <span class="badge text-bg-warning">${category}</span>
+      <span class="badge text-dark" style="background-color: #FFE9B1;">${category}</span>
     `;
   }
 
@@ -458,12 +493,16 @@ const createDiscussionReplyTemplateSkeleton = (count) => {
         <p class="placeholder">Answer from</p>
         <div class="d-flex align-items-top p-2">
           <div class="container-img-reply">
-            <img style="height: 30px; width: 30px" class="picture-profile-reply placeholder">
+            <img class="picture-profile-reply placeholder">
           </div>
           <div class="ms-2">
-            <a style="text-decoration:none;"><h2 style="font-size: 20px" class="placeholder">Lorem ipsum dolor</h2></a>
-            <h3 class="mb-2" style="font-size: 14px"><span class="placeholder">31 Desember 2022</span></h3>
-            <p style="font-size: 18px" class="placeholder">Lorem ipsum dolor lorem ipsum dolor</p>
+            <a><p class=" fw-bold m-0 placeholder">Lorem ipsum dolor</p></a>
+            <p class="fw-light m-0"><span class="placeholder">31 Desember 2022</span></p>
+            <p style="font-size: 18px" class="placeholder">
+              Lorem ipsum dolor lorem ipsum dolor
+              Lorem ipsum dolor lorem ipsum dolor
+              Lorem ipsum dolor lorem ipsum dolor
+            </p>
           </div>
         </div>
       </div>
@@ -487,8 +526,8 @@ const createDiscussionReplyTemplate = (discussion) => {
           <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-reply lazyload">
         </div>
         <div class="ms-2">
-          <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;" class="text-dark"><h2 style="font-size: 20px">${discussion.username}</h2></a>
-          <h3 class="mb-2 text-muted" style="font-size: 14px">${showFormattedDate(discussion.date)}</h3>
+          <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;" class="text-dark"><p class="fw-bold m-0 text-body">${discussion.username}</p></a>
+          <p class="fw-light m-0">${showFormattedDate(discussion.date)}</p>
           ${discussionReply.join('')}
         </div>
       </div>
@@ -498,30 +537,30 @@ const createDiscussionReplyTemplate = (discussion) => {
 
 const createAddDiscussionButtonTemplate = () => `
   <!--<button aria-label="Add Discussion" class="add btn bg-dark text-center text-white border-0 fw-bold" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><span>+</span></button>-->
-  <button aria-label="Add Discussion" class="adddiscuss btn" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><i class="fa fa-plus-circle bg-white" aria-hidden="true"></i></button>
+  <button type="button" aria-label="Add Discussion Button" title="Add Discussion Button" class="adddiscuss btn bg-white d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
 `;
 
 const createAddDiscussionTemplate = () => `
   <div class="modal fade modal-xl" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" id="modal-add-discussion">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content border-0">
-        <div class="modal-header bg-dark-blue">
-          <h1 class="modal-title fs-5">Add Discussion</h1>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
         <form id="form-add-discussion">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">Add Discussion</h1>
+            <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
           <div class="modal-body">
             <h5 class="card-text">Category</h5>
             <div id="listCategoryForSelected"></div>
             <h5 class="card-text my-2">Discussion</h5>
             <input type="text" name="inputTitle" id="inputTitle" class="form-control border-dark-blue mb-2" placeholder="Type your title discussion here">
-            <button id="code" class="btn btn-light border-dark-blue m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
+            <button id="code" class="btn btn-light border-dark-blue m-0" title="Code Button"><i class="fa fa-code" aria-hidden="true"></i></button>
             <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control border-dark-blue my-2"
             placeholder="Type your discussion here"></textarea>
           </div>
           <div class="modal-footer">
             <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn bg-dark-blue" id="addButton">Send</button>
+            <button type="submit" class="btn btn-secondary" id="addButton" style="background-color: #344D67;">Send</button>
           </div>
         </form>
       </div>
@@ -573,21 +612,21 @@ const createFilterListTemplate = () => `
       <div class="my-2">
         <h5>Sort</h5>
         <input type="radio" class="btn-check category" name="sort" id="latest" autocomplete="off" value="latest" checked>
-        <label class="btn btn-category" for="latest">Latest</label>
+        <label class="btn btn-outline-secondary btn-category" for="latest">Latest</label>
         <input type="radio" class="btn-check category" name="sort" id="oldest" autocomplete="off" value="oldest">
-        <label class="btn btn-category" for="oldest">Oldest</label>
+        <label class="btn btn-outline-secondary btn-category" for="oldest">Oldest</label>
         <input type="radio" class="btn-check category" name="sort" id="solved" autocomplete="off" value="solved">
-        <label class="btn btn-category" for="solved">Solved</label>
+        <label class="btn btn-outline-secondary btn-category" for="solved">Solved</label>
         <input type="radio" class="btn-check category" name="sort" id="unsolved" autocomplete="off" value="unsolved">
-        <label class="btn btn-category" for="unsolved">Unsolved</label>
+        <label class="btn btn-outline-secondary btn-category" for="unsolved">Unsolved</label>
       </div>
       <div class="my-2">
         <h5>Category</h5>
         <div class="filterCategory"></div>
       </div>
       <div>
-        <button type="reset" class="btn btn-dark-red mb-2">Reset</button>
-        <button type="submit" class="btn btn-dark-blue mb-2">Filter</button>
+        <button type="reset" class="btn btn-secondary w-110 mb-2" style="background-color: #880014;">Reset</button>
+        <button type="submit" class="btn btn-secondary w-110 mb-2" style="background-color: #344D67;">Filter</button>
       </div>
     </form>
   </div>
@@ -607,12 +646,12 @@ const createFilterCategoryTemplateSkeleton = (count) => {
 
 const createFilterCategoryTemplate = (category) => `
   <input type="checkbox" class="btn-check categoryFilter category" name="categoryFilter" id="${category.name}" value="${category.name}" autocomplete="off">
-  <label class="btn btn-category" for="${category.name}">${category.name}</label>
+  <label class="btn btn-outline-secondary btn-category text-capitalize" for="${category.name}">${category.name}</label>
 `;
 
 const createFilterCategoryTemplateAddDiscussion = (category) => `
   <input type="checkbox" class="btn-check categoryFilterAddDiscussion category" name="categoryFilterAddDiscussion" id="${category.name}1" value="${category.name}" autocomplete="off">
-  <label class="btn btn-category" for="${category.name}1">${category.name}</label>
+  <label class="btn btn-outline-secondary btn-category text-capitalize" for="${category.name}1">${category.name}</label>
 `;
 
 const createProfileTemplateSkeleton = () => `
@@ -709,8 +748,8 @@ const createProfileTemplate = (user) => {
           <h6>${user.specialities.replace(/(?:\r\n|\r|\n)/g, '<br>')}</h6>
           </div>
             <div class="card-body text-center">
-            <button class=" btn text-light btn-sm" value="${user._id}" style="padding:11px; background-color:#344D67;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Change Profile</button>
-            <button class=" btn text-light btn-sm"  style="padding:11px; background-color:#344D67;"data-bs-toggle="modal" data-bs-target="#staticBackdropChangePassword">Change Password</button>
+            <button class=" btn btn-secondary text-light btn-sm" value="${user._id}" style="padding:11px; background-color:#344D67;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Change Profile</button>
+            <button class=" btn btn-secondary text-light btn-sm"  style="padding:11px; background-color:#344D67;"data-bs-toggle="modal" data-bs-target="#staticBackdropChangePassword">Change Password</button>
           </div>
         </div>
       </div>
@@ -1202,7 +1241,7 @@ const createNavbarTemplateBeforeLogin = () => `
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse nav justify-content-end" id="navbarNav">
+  <div class="collapse navbar-collapse nav nav-responsive" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link text-light mx-1" href="#">Home</a>
@@ -1228,8 +1267,8 @@ const createNavbarTemplateAfterLogin = () => `
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <i class="fa fa-bars text-white" aria-hidden="true"></i>
   </button>
-  <div class="collapse navbar-collapse nav justify-content-center" id="navbarNav">
-    <ul class="navbar-nav">
+  <div class="collapse navbar-collapse nav nav-responsive" id="navbarNav">
+    <ul class="navbar-nav text-center">
       <li class="nav-item">
         <a class="nav-link text-light" aria-current="page" href="#/profile">Profile</a>
       </li>
@@ -1275,21 +1314,21 @@ const createBookmarkEmpty = () => `
 <div class="container-fluid bg-light p-2">
 <h6> You haven't bookmarked a discussion yet </h6>
 </div>
-<a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
+${createAddDiscussionButtonTemplate()}
 `;
 
 const createDiscussionEmpty = () => `
 <div class="container-fluid bg-light p-2">
 <h6> You have no discussions yet </h6>
 </div>
-<a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
+${createAddDiscussionButtonTemplate()}
 `;
 
 const createSearchDiscussionEmpty = () => `
 <div class="container-fluid p-2" style="border:3px solid #ffc107; background-color:#FFF56D;">
 <h6 class="fw-bold p-2"> Oops, Discussion not found </h6>
 </div>
-<a href="#/adddiscussion" aria-label="Add Discussion" class="add bg-dark text-center text-white border-0 fw-bold text-decoration-none">+</a>
+${createAddDiscussionButtonTemplate()}
 `;
 const createSidebarCompany = () => `
 <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" id="sidebar">
