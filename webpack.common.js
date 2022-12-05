@@ -1,6 +1,9 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
+const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
+const imageminMozjpeg = require('imagemin-mozjpeg');
+const imageminPngquant = require('imagemin-pngquant');
 
 module.exports = {
   entry: {
@@ -45,6 +48,18 @@ module.exports = {
           from: path.resolve(__dirname, 'src/public/'),
           to: path.resolve(__dirname, 'dist/'),
         },
+      ],
+    }),
+    new ImageminWebpackPlugin({
+      plugins: [
+        imageminMozjpeg({
+          quality: 50,
+          progressive: true,
+        }),
+        imageminPngquant({
+          quality: [0.3, 0.5],
+          progressive: true,
+        }),
       ],
     }),
   ],

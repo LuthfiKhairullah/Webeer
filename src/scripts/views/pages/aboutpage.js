@@ -24,7 +24,10 @@ const AboutPage = {
             </p>
           </div>
           <div class="container-about-img">
-            <img class="w-100" src="../asset/hero-about-us.png" alt="image about us">
+          <picture>
+          <source media="(max-width:600px)" srcset="./assetpng-herou-about-us-small.png">
+            <img class="w-100" src="./assetpng/hero-about-us-large.png" alt="image about us">
+          </picture>
           </div>
         </div>
       </div>
@@ -61,22 +64,34 @@ const AboutPage = {
         <p>Our team members :</p>
         <div class="container-about-team-person my-4 d-flex justify-content-center">
           <div class="container-about-person m-4">
-            <img src="../asset/fajar.jpeg" class="card-img-top" alt="team photo">
+            <picture>
+            <source media="(max-width:600px)" srcset="./asset/fajar-small.jpg">
+            <img src="./asset/fajar-large.jpg" class="card-img-top" alt="team photo">
+            </picture>
             <h3 class="">Muhammad Fajar Yudhistira H</h3>
             <p>Front-End Web and Back-End<br>SIB Batch 3 X Dicoding</p>
           </div>
           <div class="container-about-person m-4">
-            <img src="../asset/Luthfi.jpg" class="card-img-top" alt="team photo">
+            <picture>
+            <source media="(max-width:600px)" srcset="./asset/Luthfi-small.jpg">
+            <img src="./asset/Luthfi-large.jpg" class="card-img-top" alt="team photo">
+            </picture>
             <h3 class="">Muhammad Luthfi Khairullah</h3>
             <p>Front-End Web and Back-End<br>SIB Batch 3 X Dicoding</p>
           </div>
           <div class="container-about-person m-4">
-            <img src="../asset/muja.jpg" class="card-img-top" alt="team photo">
+            <picture>
+            <source media="(max-width:600px)" srcset="./asset/muja-small.jpg">
+            <img src="./asset/muja-large.jpg" class="card-img-top" alt="team photo">
+            </picture>
             <h3 class="">Siti Mujadilah</h3>
             <p>Front-End Web and Back-End<br>SIB Batch 3 X Dicoding</p>
           </div>
           <div class="container-about-person m-4">
-            <img src="../asset/jovita.jpg" class="card-img-top" alt="team photo">
+            <picture>
+            <source media="(max-width:600px)" srcset="./asset/jovita-small.jpg">
+            <img src="./asset/jovita-large.jpg" class="card-img-top" alt="team photo">
+            </picture>
             <h3 class="">Jovita Amelinda</h3>
             <p>Front-End Web and Back-End<br>SIB Batch 3 X Dicoding</p>
           </div>
