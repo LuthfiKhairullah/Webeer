@@ -7,7 +7,7 @@ class SearchDiscussion extends HTMLElement {
     this.innerHTML = `
       <form class="d-flex mb-2" id="form-searchDiscussion">
         <input class="form-control" id="searchDiscussion" type="search" placeholder="Search by title" aria-label="Search">
-        <button class="btn bg-dark-blue ms-1" type="submit">Search</button>
+        <button class="btn btn-secondary ms-1" type="submit" style="background-color: #344D67;">Search</button>
       </form>
     `;
   }

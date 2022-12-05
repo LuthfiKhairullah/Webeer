@@ -14,7 +14,8 @@
 
 
 
-main, html {
+main,
+html {
     background-color: #f3f2ef;
 }
 
@@ -28,9 +29,21 @@ main, html {
     position: fixed;
     background-color: #344D67;
 }
-.btn.loginNav:hover{
-    background-color: #e5d19f !important ;
+
+nav .nav.nav-responsive {
+    justify-content: end;
 }
+
+@media screen and (max-width: 991.9px) {
+    nav .nav.nav-responsive {
+        justify-content: center;
+    }
+}
+
+.btn.loginNav:hover {
+    background-color: #e5d19f !important;
+}
+
 #sidebar {
     width: 200px;
     height: 100%;
@@ -95,18 +108,12 @@ code.code-discussion-item {
     padding: 10px;
 }
 
-.border-rbl {
-    border: 1px solid rgba(0, 0, 0, 0.175);
-    border-top: none;
-}
-
 #footer-lite a {
     text-decoration: none;
 }
 
 .footer-lite-profile {
     width: 1200px;
-    border-top: 1px solid rgba(0, 0, 0, 0.175);
 }
 
 @media screen and (max-width: 695px) {

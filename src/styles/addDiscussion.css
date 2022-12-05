@@ -1,4 +1,4 @@
-.btn.add {
+/* .btn.add {
     border-radius: 50%;
     bottom: 16px;
     font-size: 30px;
@@ -9,7 +9,7 @@
     align-items: center;
     justify-content: center;
     display: flex;
-}
+} */
 
 .btn.adddiscuss {
     bottom: 16px;
@@ -23,38 +23,14 @@
     width: 40px;
 }
 
-.bg-dark-blue {
-    background-color: #344D67;
-    color: #FFFFFF;
-}
-
-.btn.bg-dark-blue {
-    background-color: #344D67;
-    border-color: #344D67;
-    color: #FFFFFF;
-}
-
-.btn.bg-dark-blue:hover,
-.btn.bg-dark-blue:focus {
-    background-color: rgba(52, 77, 103, 0.9);
-    color: #FFFFFF;
-}
-
 .btn.border-dark-blue,
-.form-control.border-dark-blue {
+.form-control.border-dark-blue,
+.form-check-input.bg-dark-blue {
     border-color: #344D67;
 }
 
 .form-check-input.bg-dark-blue:checked {
     background-color: #344D67;
-}
-
-.form-check-input.border-dark-blue {
-    border-color: #344D67;
-}
-
-.form-check-input .form-check-label {
-    cursor: pointer;
 }
 
 .container-adddiscussion {
