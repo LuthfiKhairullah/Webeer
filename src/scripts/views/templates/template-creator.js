@@ -453,7 +453,7 @@ const createDiscussionDetailTemplate = (discussion) => {
         <p class="lengthReply mx-1 m-0">0</p>
         <p class="m-0 discussion-item-text-reply">&nbsp;Discussion</p>
       </div>
-      <button id="code" class="btn btn-light m-0 d-block"><i class="fa fa-code" aria-hidden="true"></i></button>
+      <button id="code" class="btn btn-light m-0 d-block" title="Code Button"><i class="fa fa-code" aria-hidden="true"></i></button>
       <form id="form-discussion-reply" class="my-2 ">
         <textarea  name="inputReply" id="inputReply" class="form-control" rows=15"></textarea>
         <button type="submit" class="btn btn-secondary ms-1 my-2" id="answerButton" style="background-color: #344D67;">Submit Answer</button>
@@ -540,7 +540,7 @@ const createDiscussionReplyTemplate = (discussion) => {
 
 const createAddDiscussionButtonTemplate = () => `
   <!--<button aria-label="Add Discussion" class="add btn bg-dark text-center text-white border-0 fw-bold" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><span>+</span></button>-->
-  <button type="button" aria-label="Add Discussion" class="adddiscuss btn bg-white d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+  <button type="button" aria-label="Add Discussion Button" title="Add Discussion Button" class="adddiscuss btn bg-white d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
 `;
 
 const createAddDiscussionTemplate = () => `
@@ -557,7 +557,7 @@ const createAddDiscussionTemplate = () => `
             <div id="listCategoryForSelected"></div>
             <h5 class="card-text my-2">Discussion</h5>
             <input type="text" name="inputTitle" id="inputTitle" class="form-control border-dark-blue mb-2" placeholder="Type your title discussion here">
-            <button id="code" class="btn btn-light border-dark-blue m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
+            <button id="code" class="btn btn-light border-dark-blue m-0" title="Code Button"><i class="fa fa-code" aria-hidden="true"></i></button>
             <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control border-dark-blue my-2"
             placeholder="Type your discussion here"></textarea>
           </div>
