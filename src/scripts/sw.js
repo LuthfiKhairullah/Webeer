@@ -1,21 +1,27 @@
-import 'regenerator-runtime';
 import CacheHelper from './utils/cache-helper';
 
 const assetsToCache = [
   './',
-  './asset/hero-changepwd.png',
-  './asset/hero-dashboard-company.png',
-  './asset/hero-jobsDetail.png',
-  './asset/hero-login.png',
-  './asset/verified.png',
-  './icons/maskable_icon.png',
-  './icons/maskable_icon_x48.png',
-  './icons/maskable_icon_x72.png',
-  './icons/maskable_icon_x96.png',
-  './icons/maskable_icon_x128.png',
-  './icons/maskable_icon_x192.png',
-  './icons/maskable_icon_x384.png',
-  './icons/maskable_icon_x512.png',
+  './asset/fajar.jpeg',
+  './asset/jovita.jpg',
+  './asset/Luthfi.jpg',
+  './asset/muja.jpg',
+  './assetpng/fordis.png',
+  './assetpng/hero-about-us.png',
+  './assetpng/hero-dashboard-company.png',
+  './assetpng/hero-img.png',
+  './assetpng/hero-jobsDetail.png',
+  './assetpng/login.png',
+  './assetpng/loker.png',
+  './assetpng/picture.png',
+  // './icons/icon.png',
+  './icons/icon-48x48.png',
+  './icons/icon-72x72.png',
+  './icons/icon-96x96.png',
+  './icons/icon-128x128.png',
+  './icons/icon-192x192.png',
+  './icons/icon-384x384.png',
+  './icons/icon-512x512.png',
   './index.html',
   './favicon.png',
   './app.bundle.js',
@@ -34,5 +40,6 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  console.log('Ini revalidatecache');
   event.respondWith(CacheHelper.revalidateCache(event.request));
 });

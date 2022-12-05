@@ -40,7 +40,7 @@ class Login extends HTMLElement {
                 </div>
                 <button type="submit" class="btn mb-3 w-100 text-light p-3" style="background-color:#344D67;">Login</button>
                 </form>
-                <a href="#/resetpwd" id="forget-pwd"> Forget Password </a>
+                <a href="#/resetpwd" id="forget-pwd"><button class="text-primary" data-bs-dismiss="modal" style="background-color: transparent; border: transparent; text-decoration: underline;"> Forget Password </button></a>
             </div>
         </div>
     </div>
@@ -50,9 +50,9 @@ class Login extends HTMLElement {
     document.querySelector('#sign-up-link').addEventListener('click', () => {
       setTimeout(() => document.location.reload('#/register'), 500);
     });
-    document.querySelector('#forget-pwd').addEventListener('click', () => {
-      setTimeout(() => document.location.reload('#/resetpwd'), 500);
-    });
+    // document.querySelector('#forget-pwd').addEventListener('click', () => {
+    //   setTimeout(() => document.location.reload('#/resetpwd'), 500);
+    // });
   }
 }
 customElements.define('login-modal', Login);
