@@ -34,7 +34,8 @@
     color: #FFFFFF;
 }
 
-.btn.bg-dark-blue:hover {
+.btn.bg-dark-blue:hover,
+.btn.bg-dark-blue:focus {
     background-color: rgba(52, 77, 103, 0.9);
     color: #FFFFFF;
 }
@@ -42,6 +43,18 @@
 .btn.border-dark-blue,
 .form-control.border-dark-blue {
     border-color: #344D67;
+}
+
+.form-check-input.bg-dark-blue:checked {
+    background-color: #344D67;
+}
+
+.form-check-input.border-dark-blue {
+    border-color: #344D67;
+}
+
+.form-check-input .form-check-label {
+    cursor: pointer;
 }
 
 .container-adddiscussion {

@@ -375,7 +375,7 @@ const createDiscussionDetailTemplate = (discussion) => {
             </div>
           </div>
         </div>
-        <div class="modal fade modal-xl" id="modal-edit">
+        <div class="modal fade modal-xl" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" id="modal-edit">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
@@ -384,20 +384,19 @@ const createDiscussionDetailTemplate = (discussion) => {
               </div>
               <form id="form-edit-discussion">
                 <div class="modal-body">
-                  <h3 class="card-text">Category</h3>
-                  <!--<select name="categoryList" id="categoryList" class="form-select mb-2"></select>-->
+                  <h5 class="card-text">Category</h5>
                   <div id="listCategoryForSelected"></div>
-                  <h3 class="card-text">Discussion</h3>
-                  <input type="text" name="inputTitle" id="inputTitle" class="form-control mb-2" value="${discussion.title}" placeholder="Type your title discussion here">
-                  <button id="codeDiscussion" class="btn btn-light m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
-                  <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control mb-2"
+                  <h5 class="card-text my-2">Discussion</h5>
+                  <input type="text" name="inputTitle" id="inputTitle" class="form-control border-dark-blue mb-2" value="${discussion.title}" placeholder="Type your title discussion here">
+                  <button id="codeDiscussion" class="btn btn-light border-dark-blue m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
+                  <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control border-dark-blue my-2"
                   placeholder="Type your discussion here">${discussion.discussion}</textarea>
-                  <input class="form-check-input" type="checkbox" id="issolved" value="solved">
-                  <label class="form-check-label" for="issolved">Solved</label>
+                  <input class="form-check-input bg-dark-blue border-dark-blue" role="button" type="checkbox" id="issolved" value="solved">
+                  <label class="form-check-label" role="button" for="issolved">Solved</label>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary" id="saveEditButton">Save</button>
+                  <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn bg-dark-blue" id="saveEditButton">Save</button>
                 </div>
               </form>
             </div>
@@ -422,7 +421,7 @@ const createDiscussionDetailTemplate = (discussion) => {
       <button id="code" class="btn btn-light m-0 d-block"><i class="fa fa-code" aria-hidden="true"></i></button>
       <form id="form-discussion-reply" class="my-2 ">
         <textarea  name="inputReply" id="inputReply" class="form-control" rows=15"></textarea>
-        <button type="submit" class="btn btn-dark ms-1 my-2" id="answerButton">Submit Answer</button>
+        <button type="submit" class="btn bg-dark-blue ms-1 my-2" id="answerButton">Submit Answer</button>
       </form>
     </div>
   `;
@@ -505,9 +504,9 @@ const createAddDiscussionTemplate = () => `
   <div class="modal fade modal-xl" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" id="modal-add-discussion">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content border-0">
-        <div class="modal-header bg-dark-blue">
+        <div class="modal-header">
           <h1 class="modal-title fs-5">Add Discussion</h1>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form id="form-add-discussion">
           <div class="modal-body">

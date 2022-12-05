@@ -66,13 +66,13 @@ const DetailDiscussionPage = {
     discussionCategory.forEach((categoryitem) => {
       if (discussions.categories.includes(categoryitem.name.toString())) {
         categoryList.innerHTML += `
-          <input type="checkbox" class="btn-check categoryFilter" name="categoryFilter" id="${categoryitem.name}" value="${categoryitem.name}" autocomplete="off" checked>
-          <label class="btn btn-outline-primary mb-1" for="${categoryitem.name}">${categoryitem.name}</label>
+          <input type="checkbox" class="btn-check categoryFilter category" name="categoryFilter" id="${categoryitem.name}" value="${categoryitem.name}" autocomplete="off" checked>
+          <label class="btn btn-category text-capitalize" for="${categoryitem.name}">${categoryitem.name}</label>
         `;
       } else {
         categoryList.innerHTML += `
-          <input type="checkbox" class="btn-check categoryFilter" name="categoryFilter" id="${categoryitem.name}" value="${categoryitem.name}" autocomplete="off">
-          <label class="btn btn-outline-primary mb-1" for="${categoryitem.name}">${categoryitem.name}</label>
+          <input type="checkbox" class="btn-check categoryFilter category" name="categoryFilter" id="${categoryitem.name}" value="${categoryitem.name}" autocomplete="off">
+          <label class="btn btn-category text-capitalize" for="${categoryitem.name}">${categoryitem.name}</label>
         `;
       }
     });
