@@ -8,7 +8,7 @@ class searchBar extends HTMLElement {
       <div class="search">
         <form class="d-flex searchBar">
           <input class="form-control me-2" id="searchInput" type="search" placeholder="Search by job" aria-label="Search">
-          <button class="btn btn-dark" type="submit">Search</button>
+          <button class="btn btn-secondary" type="submit" style="background-color: #344D67">Search</button>
         </form>
       </div>
     `;

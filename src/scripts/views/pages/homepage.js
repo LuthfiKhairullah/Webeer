@@ -26,7 +26,7 @@ const HomePage = {
                 Join to interact with each other
                 fellow web developers in Indonesia
                 </p>
-                <a class="btn text-light fw-bold" style="border-radius:30px; background-color:#344D67;" href="#/login" id="buttonHomePage">Get Started</a>
+                <button class="btn text-light fw-bold" style="border-radius:30px; background-color:#344D67;" data-bs-toggle="modal" data-bs-target="#exampleModal" id="buttonHomePage">Get Started</button>
               </div>
               <picture>
               <source media ="(max-width:600px)" srcset="./assetpng/hero-img-small.png">

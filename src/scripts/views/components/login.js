@@ -22,8 +22,8 @@ class Login extends HTMLElement {
                     </picture>
                     </div>
                 <div>
+                <p class="fs-6">You don't have an account yet? <span> <a href="#/register" id="sign-up-link"><button class="text-primary" data-bs-dismiss="modal" style="background-color: transparent; border: transparent; text-decoration: underline;">Sign Up</button></a></span> </p>
                 <form id="form-login">
-                <p class="fs-6">You don't have an account yet? <span> <a href="#/register" id="sign-up-link">Sign Up </a></span> </p>
                 <div class="input-group mb-3" style="border-bottom:1px solid black;">
                     <span class="input-group-text" style="background-color:transparent; border:none;"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
                     <div class="form-floating">
@@ -47,9 +47,9 @@ class Login extends HTMLElement {
 </div>
 
 `;
-    document.querySelector('#sign-up-link').addEventListener('click', () => {
-      setTimeout(() => document.location.reload('#/register'), 500);
-    });
+    // document.querySelector('#sign-up-link').addEventListener('click', () => {
+    //   setTimeout(() => document.location.reload('#/register'), 500);
+    // });
     // document.querySelector('#forget-pwd').addEventListener('click', () => {
     //   setTimeout(() => document.location.reload('#/resetpwd'), 500);
     // });

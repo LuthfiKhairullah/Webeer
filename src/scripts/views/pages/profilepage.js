@@ -103,6 +103,7 @@ const ProfilePage = {
         content.innerHTML = '<bookmark-list></bookmark-list>';
         const userBookmarkElement = document.querySelector('bookmark-list');
         userBookmarkElement.bookmarks = updateBookmark;
+        content.innerHTML += '<add-discussion></add-discussion>';
       } else {
         content.innerHTML = createBookmarkEmpty();
       }
@@ -117,6 +118,7 @@ const ProfilePage = {
         content.innerHTML = '<discussion-list></discussion-list>';
         const userDiscussionElement = document.querySelector('discussion-list');
         userDiscussionElement.discussions = userDiscussion;
+        content.innerHTML += '<add-discussion></add-discussion>';
       } else {
         content.innerHTML = createDiscussionEmpty();
       }

@@ -26,7 +26,11 @@ const profileCompanyOther = {
     }
     return `<div class="container-company-profile-other">
     ${createDetailCompanySkeletonTemplate()}
-        </div>`;
+        </div>
+        <div class="p-3" style="background-color:#f3f2ef;">
+          <footer-lite></footer-lite>
+        </div>
+      `;
   },
 
   async afterRender() {

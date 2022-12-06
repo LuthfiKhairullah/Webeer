@@ -18,7 +18,7 @@ class Footer extends HTMLElement {
           </div>
           <div class="my-2">
             <h3>Features</h3>
-            <div>
+            <div id="link-to">
               <a href="#/forums" class="footer-features"><li>Forums</li></a>
               <a href="#/jobs" class="footer-features"><li>Jobs</li></a>
             </div>
@@ -32,7 +32,38 @@ class Footer extends HTMLElement {
         </div>
         <p class="text-center fw-bold">Copyright &copy; 2022 Webeer</p>
       </footer>
+      <login-modal></login-modal>
     `;
+    const linkto = document.querySelector('#link-to');
+    const getToken = localStorage.getItem('token');
+    const getRole = localStorage.getItem('role');
+    if (getToken === null) {
+      linkto.innerHTML = `
+        <div class="w-100">
+          <button class="footer-features w-100 text-start" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: transparent; border: transparent;"><li>Forums</li></button>
+        </div>
+        <div class="w-100">
+          <button class="footer-features w-100 text-start" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: transparent; border: transparent;"><li>Jobs</li></button>
+        </div>
+      `;
+      localStorage.setItem('login', 'false');
+    } else if (getToken !== null && getRole.replaceAll('"', '') === 'Company') {
+      window.location.href();
+      localStorage.setItem('login', 'true');
+    } else if (getToken !== null && getRole.replaceAll('"', '') === 'Programmer') {
+      document.location = '#/forums';
+      localStorage.setItem('login', 'true');
+    } else {
+      linkto.innerHTML = `
+        <div class="w-100">
+          <button class="footer-features w-100 text-start" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: transparent; border: transparent;"><li>Forums</li></button>
+        </div>
+        <div class="w-100">
+          <button class="footer-features w-100 text-start" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: transparent; border: transparent;"><li>Jobs</li></button>
+        </div>
+      `;
+      localStorage.clear();
+    }
   }
 }
 customElements.define('footer-bar', Footer);
