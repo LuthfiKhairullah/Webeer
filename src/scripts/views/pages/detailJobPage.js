@@ -29,7 +29,7 @@ const DetailJobPage = {
         </div>
         <div class="p-3" style="background-color:#f3f2ef;">
         <footer-lite></footer-lite>
-      </div
+      </div>
         `;
   },
   async afterRender() {

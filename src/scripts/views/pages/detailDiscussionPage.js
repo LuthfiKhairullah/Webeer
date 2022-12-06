@@ -97,6 +97,31 @@ const DetailDiscussionPage = {
       myTextArea.value = `${before_txt}\n~Enter Your Code is Here\n${selected_txt}\nDont Delete this~\n${after_txt}`;
     });
     const editButton = document.querySelector('#saveEditButton');
+    const allCategorySelectElement = document.querySelectorAll('.categoryFilter');
+    formEditDiscussion.addEventListener('reset', async () => {
+      allCategorySelectElement.forEach((cse) => {
+        cse.removeAttribute('disabled');
+      });
+    });
+    formEditDiscussion.addEventListener('change', async () => {
+      const arrcategory = [];
+      categorySelect.forEach((c) => {
+        if (c.checked) {
+          arrcategory.push(c.value);
+        }
+      });
+      if (arrcategory.length > 2) {
+        allCategorySelectElement.forEach((cse) => {
+          if (!(cse.checked)) {
+            cse.setAttribute('disabled', '');
+          }
+        });
+      } else {
+        allCategorySelectElement.forEach((cse) => {
+          cse.removeAttribute('disabled');
+        });
+      }
+    });
     formEditDiscussion.addEventListener('submit', async (e) => {
       e.preventDefault();
       const arrcategory = [];
@@ -118,7 +143,7 @@ const DetailDiscussionPage = {
         } else if (inputTitle.value === '') {
           messageText.innerHTML = 'Error! Please type your title discussion';
           inputTitle.focus();
-        } else if (inputDiscussion === '') {
+        } else if (inputDiscussion.value === '') {
           messageText.innerHTML = 'Error! Please type your discussion';
           inputDiscussion.focus();
         }

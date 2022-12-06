@@ -6,7 +6,7 @@ class FooterLite extends HTMLElement {
   render() {
     this.innerHTML = `
       <footer id="footer-lite" class="footer-general" style="background-color:#f3f2ef;">
-        <p class="text-muted">Copyright &copy; 2022 Webeer</p>
+        <p class="text-muted" tabindex="0">Copyright &copy; 2022 Webeer</p>
         <a href="#/about" class="text-muted">&nbsp;• About Us</a>
       </footer>
     `;

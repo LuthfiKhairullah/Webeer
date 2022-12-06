@@ -91,6 +91,16 @@ const profileCompany = {
     inputWebsite.value = data.website;
     inputSpecialities.value = data.specialities;
     const formEditProfile = document.querySelector('#edit-profile-company');
+    const containerImg = document.querySelector('.container-img');
+
+    document.querySelector('#edit-logo-company').addEventListener('change', () => {
+      const reader = new FileReader();
+      reader.addEventListener('load', () => {
+        const uploaded_image = reader.result;
+        containerImg.style.backgroundImage = `url(${uploaded_image})`;
+      });
+      reader.readAsDataURL(this.files[0]);
+    });
     formEditProfile.addEventListener('submit', async (event) => {
       event.preventDefault();
       const editSaveButton = document.querySelector('#editSaveButton');

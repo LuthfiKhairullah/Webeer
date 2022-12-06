@@ -46,13 +46,13 @@ const addJobPage = {
             <div class="mb-3">
                 <label for="exampleInputEmail1" class=" col-form-label"><small>Company description</small></label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" id="description-job" rows="4" placeholder="Enter a company description"></textarea>
+                        <textarea class="form-control" id="description-job" rows="6" placeholder="Enter a company description"></textarea>
                     </div>
              </div>
              <div class="mb-3">
              <label for="exampleInputEmail1" class="col-form-label"><small>Job description</small></label>
                  <div class="col-sm-6">
-                     <textarea class="form-control" id="descriptionProfession-job" rows="4" placeholder="Enter a job description"></textarea>
+                     <textarea class="form-control" id="descriptionProfession-job" rows="6" placeholder="Enter a job description"></textarea>
                  </div>
             </div>
              <div class="mb-3">
@@ -94,7 +94,7 @@ const addJobPage = {
            <div class="mb-3">
             <label for="exampleInputEmail1" class="col-form-label"><small>Qualification</small></label>
                 <div class="col-sm-6">
-                    <textarea class="form-control" id="qualification-job" rows="4" placeholder="Enter the required qualifications"></textarea>
+                    <textarea class="form-control" id="qualification-job" rows="6" placeholder="Enter the required qualifications"></textarea>
                 </div>
             </div>
             <div class="mb-3">

@@ -62,26 +62,27 @@ const createDetailJobPageTemplate = (jobs) => `
     </div>
 <p class="fw-bold my-3"> Requirement :</p>
 <p class="mx-3">${jobs.details.qualification.replace(/\n/g, '<br />')}</p>
-<a href="${jobs.details.link}" class="btn btn-danger">Apply</a>
-<a href="#/profilecompany/${jobs.companyid}" class="btn btn-danger">Profile Company</a>
+<a href="${jobs.details.link}" class="btn btn-secondary" style="background-color: #344D67">Apply</a>
+<a href="#/profilecompany/${jobs.companyid}" class="btn btn-secondary">Profile Company</a>
 </div>
 </div>
 </div>
 `;
 const createItemJob = (jobs) => `
-<div class = "card-item">
+<div class = "card-item" tabindex="0">
 <img src="${jobs.image}" class="card-image lazyload">
+<p>${jobs.details.level}</p>
 <h6 class="fw-bold fs-5">${jobs.company}</h6>
 <h6 class="fs-5">${jobs.profession}</h6>
 <p class="text-muted fs-6 fst-italic">${showFormattedDate(jobs.updatedAt)}</p>
 <p class="text-muted fs-6 fst-italic">${jobs.address}</p>
-<button value=${jobs._id} class="btn btn-primary fw-bold btn-detail btn-sm" id="btnDetailJob">Visit</button>
-<a class="btn btn-primary" id="btnDetailOpen" href="#/detailjob/${jobs._id}" target="_blank">Visit</a>
+<button value=${jobs._id} class="btn btn-secondary fw-bold btn-detail btn-sm" style="background-color: #344D67;" id="btnDetailJob">Visit</button>
+<a class="btn btn-secondary" id="btnDetailOpen" href="#/detailjob/${jobs._id}" target="_blank" style="background-color: #344D67;">Visit</a>
 </div>
 `;
 
 const createDetailJob = (detail) => `
-<div class="detail-container">
+<div class="detail-container" tabindex="0">
   <div class="header-detail">
     <div class="image-detail">
       <img class="lazyload" src="${detail.image}">
@@ -117,7 +118,7 @@ const createDetailJob = (detail) => `
   <h6 class="fs-6">Requirement</h6>
   <p class="fs-6">${detail.details.qualification.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
   </div>
-  <a href="${detail.details.link}"><button type="button" class="detail-link btn btn-primary btn-sm">Apply</button></a>
+  <a href="${detail.details.link}"><button type="button" class="detail-link btn btn-secondary btn-sm" style="background-color: #344D67">Apply</button></a>
 </div>
 `;
 
@@ -184,7 +185,7 @@ const createDiscussionItemTemplateSkeleton = (count) => {
                 <p class="fw-light m-0 placeholder">31 Desember 2022</p>
               </div>
               <div>
-                <span class="ms-2 p-1 rounded indicator-solved placeholder"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i></span>
+                <span class="rounded indicator-solved placeholder"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i></span>
               </div>
             </div>
             <h5><span class="placeholder">Lorem ipsum dolor lorem</span></h5>
@@ -211,10 +212,10 @@ const createDiscussionItemTemplate = (discussion) => {
   let isSolved = '';
   if (discussion.isSolved === false) {
     isSolvedClass = 'text-secondary';
-    isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>';
+    isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-label="unsolved discussion"></i>';
   } else {
     isSolvedClass = 'text-success';
-    isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>';
+    isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-label="solved discussion"></i>';
   }
   return `
     <div class="container-discussion-item">
@@ -229,8 +230,8 @@ const createDiscussionItemTemplate = (discussion) => {
                 <p class="m-0">&nbsp;•&nbsp;</p>
                 <p class="fw-light m-0">${showFormattedDate(discussion.date)}</p>
               </div>
-              <div class="">
-                <span class="${isSolvedClass} ms-2 p-1 rounded indicator-solved">${isSolved}</span>
+              <div>
+                <span class="${isSolvedClass} rounded indicator-solved">${isSolved}</span>
               </div>
             </div>
             <h5>${discussion.title}</h5>
@@ -260,10 +261,10 @@ const createBookmarkItemTemplate = (bookmark) => {
   let isSolved = '';
   if (bookmark.isSolved === false) {
     isSolvedClass = 'text-secondary';
-    isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>';
+    isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-hidden="unsolved discussion"></i>';
   } else {
     isSolvedClass = 'text-success';
-    isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>';
+    isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-hidden="solved discussion"></i>';
   }
   return `
     <div class="container-discussion-item">
@@ -278,8 +279,8 @@ const createBookmarkItemTemplate = (bookmark) => {
                 <p class="m-0">&nbsp;•&nbsp;</p>
                 <p class="fw-light m-0">${showFormattedDate(bookmark.date)}</p>
               </div>
-              <div class="">
-                <span class="${isSolvedClass} ms-2 p-1 rounded indicator-solved">${isSolved}</span>
+              <div>
+                <span class="${isSolvedClass} rounded indicator-solved">${isSolved}</span>
               </div>
             </div>
             <h5>${bookmark.title}</h5>
@@ -320,7 +321,7 @@ const createDiscussionDetailTemplateSkeleton = () => `
     <h4><span class="placeholder">Lorem ipsum dolor</span></h4>
     <div class="flex-wrap d-flex align-items-center">
       <span class="placeholder"><i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i></span>
-      <span class="placeholder"><i class="fa fa-bookmark-o fa-2x" aria-hidden="true"></i></span>
+      <span class="placeholder mx-3"><i class="fa fa-bookmark-o fa-2x" aria-hidden="true"></i></span>
     </div>
     <p class="text-justify border-top border-bottom my-lg-2">
       <span class="placeholder">
@@ -360,10 +361,10 @@ const createDiscussionDetailTemplate = (discussion) => {
   let isSolved = '';
   if (discussion.isSolved === false) {
     isSolvedClass = 'text-secondary';
-    isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>';
+    isSolved = '<i class="fa fa-check-circle-o fa-2x" aria-label="unsolved discussion"></i>';
   } else {
     isSolvedClass = 'text-success';
-    isSolved = '<i class="fa fa-check-circle-o fa-2x " aria-hidden="true"></i>';
+    isSolved = '<i class="fa fa-check-circle-o fa-2x " aria-label="solved discussion"></i>';
   }
   const discussionDetail = discussion.discussion.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/(?:\r\n|\r|\n)/g, '<br>').split('~Enter Your Code is Here')
     .join('Dont Delete this~')
@@ -377,24 +378,24 @@ const createDiscussionDetailTemplate = (discussion) => {
         <div class="d-flex justify-content-start align-items-center flex-wrap">
           <div class="d-flex align-items-center flex-wrap">
             <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion lazyload">
-            <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;"><p class="ms-1 fw-bold m-0 text-body">${discussion.username}</p></a>
+            <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;"><p class="ms-1 fw-bold m-0 text-body" aria-label="question from ${discussion.username}">${discussion.username}</p></a>
           </div>
           <p class="m-0">&nbsp;•&nbsp;</p>
-          <p class="fw-light m-0">${showFormattedDate(discussion.date)}</p>
+          <p class="fw-light m-0" tabindex="0">${showFormattedDate(discussion.date)}</p>
         </div>
         <div class = "d-flex d-none flex-wrap" id="user-only">
-          <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn">
-            <i class="fa fa-pencil-square-o fa-2x text-primary" aria-label="edit discussion"></i>
+          <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn p-0 mx-2 border-0" title="Edit Discussion Button">
+            <i class="fa fa-pencil-square-o fa-2x" style="color: #344D67;" aria-label="edit this discussion"></i>
           </button>
-          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <i class="fa fa-trash-o fa-2x text-danger" aria-label="delete discussion"></i>
+          <button type="button" class="btn p-0 mx-2 border-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop" title="Delete Discussion Button">
+            <i class="fa fa-trash-o fa-2x" style="color: #880014;" aria-label="delete this discussion"></i>
           </button>
         </div>
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title text-danger fw-bold" id="staticBackdropLabel">DELETE</h5>
+                <h5 class="modal-title fw-bold" id="staticBackdropLabel" style="color: #880014;">DELETE</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -402,7 +403,7 @@ const createDiscussionDetailTemplate = (discussion) => {
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="delete-discussion">Delete</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="delete-discussion" style="background-color: #880014;">Delete</button>
               </div>
             </div>
           </div>
@@ -442,7 +443,7 @@ const createDiscussionDetailTemplate = (discussion) => {
         <div id="saveButtonContainer"></div>
       </div>
       ${discussionDetail.join('')}
-      <div class="d-flex align-items-center flex-wrap my-2">
+      <div class="d-flex align-items-center flex-wrap my-2" tabindex="0">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 24px;">
           <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
           <path d="M447.1 0h-384c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7l124.9-93.68h144c35.25 0 64-28.75 64-63.1V63.1C511.1 28.75 483.2 0 447.1 0zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
@@ -519,14 +520,14 @@ const createDiscussionReplyTemplate = (discussion) => {
     if (i % 2 === 0) { discussionReply[i] = `<p style="font-size: 18px">${discussionReply[i]}</p>`; } else { discussionReply[i] = `<div class="bg-light"><pre><code class="text-break">${discussionReply[i]}</code></pre></div>`; }
   }
   return `
-    <div class="container bg-white border-top">
+    <div class="container bg-white border-top" tabindex="0">
       <p>Answer from</p>
       <div class="d-flex align-items-top p-2">
         <div class="container-img-reply">
-          <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-reply lazyload">
+          <img src="${discussion.userimage}" alt="Picture Profile ${discussion.username}" class="picture-profile-reply lazyload">
         </div>
         <div class="ms-2">
-          <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;" class="text-dark"><p class="fw-bold m-0 text-body">${discussion.username}</p></a>
+          <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;" class="text-dark"><p class="fw-bold m-0 text-body" aria-label="answer from ${discussion.username}">${discussion.username}</p></a>
           <p class="fw-light m-0">${showFormattedDate(discussion.date)}</p>
           ${discussionReply.join('')}
         </div>
@@ -537,7 +538,7 @@ const createDiscussionReplyTemplate = (discussion) => {
 
 const createAddDiscussionButtonTemplate = () => `
   <!--<button aria-label="Add Discussion" class="add btn bg-dark text-center text-white border-0 fw-bold" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><span>+</span></button>-->
-  <button type="button" aria-label="Add Discussion Button" title="Add Discussion Button" class="adddiscuss btn bg-white d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+  <button type="button" aria-label="Add Discussion Button" title="Add Discussion Button" class="adddiscuss btn btn-secondary bg-white d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#modal-add-discussion" tabindex="0"><i class="fa fa-plus-circle" aria-hidden="true" style="color: #344D67"></i></button>
 `;
 
 const createAddDiscussionTemplate = () => `
@@ -552,6 +553,9 @@ const createAddDiscussionTemplate = () => `
           <div class="modal-body">
             <h5 class="card-text">Category</h5>
             <div id="listCategoryForSelected"></div>
+            <div class="mt-2" style="border-top: 1px solid black;">
+              <span class="text-small">Select a minimum of 1 category and a maximum of 3 categories</span>
+            </div>
             <h5 class="card-text my-2">Discussion</h5>
             <input type="text" name="inputTitle" id="inputTitle" class="form-control border-dark-blue mb-2" placeholder="Type your title discussion here">
             <button id="code" class="btn btn-light border-dark-blue m-0" title="Code Button"><i class="fa fa-code" aria-hidden="true"></i></button>
@@ -604,24 +608,24 @@ const createFilterListTemplate = () => `
   <div id="filter-drawer" class="bg-white">
     <div class="d-flex justify-content-between">
       <div class="d-flex">
-        <h4>Filter</h4>
+        <h4 tabindex="0">Filter</h4>
       </div>
       <button id="close-filter" class="btn fw-bold">X</button>
     </div>
-    <form id="form-filter">
+    <form id="form-filter" tabindex="-1">
       <div class="my-2">
-        <h5>Sort</h5>
+        <h5 tabindex="0">Sort</h5>
         <input type="radio" class="btn-check category" name="sort" id="latest" autocomplete="off" value="latest" checked>
-        <label class="btn btn-outline-secondary btn-category" for="latest">Latest</label>
+        <label tabindex="0" class="btn btn-outline-secondary btn-category" for="latest">Latest</label>
         <input type="radio" class="btn-check category" name="sort" id="oldest" autocomplete="off" value="oldest">
-        <label class="btn btn-outline-secondary btn-category" for="oldest">Oldest</label>
+        <label tabindex="0" class="btn btn-outline-secondary btn-category" for="oldest">Oldest</label>
         <input type="radio" class="btn-check category" name="sort" id="solved" autocomplete="off" value="solved">
-        <label class="btn btn-outline-secondary btn-category" for="solved">Solved</label>
+        <label tabindex="0" class="btn btn-outline-secondary btn-category" for="solved">Solved</label>
         <input type="radio" class="btn-check category" name="sort" id="unsolved" autocomplete="off" value="unsolved">
-        <label class="btn btn-outline-secondary btn-category" for="unsolved">Unsolved</label>
+        <label tabindex="0" class="btn btn-outline-secondary btn-category" for="unsolved">Unsolved</label>
       </div>
       <div class="my-2">
-        <h5>Category</h5>
+        <h5 tabindex="0">Category</h5>
         <div class="filterCategory"></div>
       </div>
       <div>
@@ -674,8 +678,8 @@ const createProfileTemplateSkeleton = () => `
           lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum lorem ipsum ipsum ipsum </span></p>
           </div>
             <div class="card-body text-center">
-            <a class=" btn" style="padding:11px;"><span class="placeholder">lorem ipsum</span></a>
-            <a class=" btn" style="padding:11px;"><span class="placeholder">lorem ipsum</span></a>
+            <button class=" btn btn-sm btn-secondary text-secondary disabled placeholder" style="padding:11px;">Change Profile</button>
+            <button class=" btn btn-sm btn-secondary text-secondary disabled placeholder" style="padding:11px;">Change Password</button>
           </div>
         </div>
       </div>
@@ -713,35 +717,35 @@ const createProfileTemplateSkeleton = () => `
 `;
 
 const createProfileTemplate = (user) => {
-  if (user.bio === undefined) {
+  if (user.bio === undefined || user.bio === '') {
     user.bio = '-';
   }
   if (user.contact === undefined) {
     user.contact = '';
   }
-  if (user.profesi === undefined) {
+  if (user.profesi === undefined || user.profesi === '') {
     user.profesi = '-';
   }
-  if (user.country === undefined) {
+  if (user.country === undefined || user.country === '') {
     user.country = '-';
   }
-  if (user.specialities === undefined) {
+  if (user.specialities === undefined || user.specialities === '') {
     user.specialities = '-';
   }
 
   return `
     <div class="container-profile">
-      <div class="container-profile-main">
+      <div class="container-profile-main" tabindex="0">
         <div class="card profile" style="border-radius:5px; border:1px solid #c6c3be;">
-          <img src="${user.image}" class="card-img-top lazyload">
-          <div class="container-activity">
-              <p  class="text-muted fw-bold"  style="text-align:left; border-bottom:3px solid grey;">Activity </p>
-              <h6> Grade </h6>
-              <h2 class="grade-user fw-bold"></h2>
-              <h6> Your Discussion</h6>
-              <p class="length-disscussion-user"></p>
-              <h6> Your Answer Discussion</h6>
-              <p class="length-reply-user"></p>
+          <img tabindex= "0" src="${user.image}" class="card-img-top lazyload" alt="user-profile">
+          <div tabindex= "0" class="container-activity">
+              <p tabindex= "0" class="text-muted fw-bold"  style="text-align:left; border-bottom:3px solid grey;">Activity </p>
+              <h6 tabindex= "0"> Grade </h6>
+              <h2 tabindex= "0" class="grade-user fw-bold"></h2>
+              <h6 tabindex= "0" > Your Discussion</h6>
+              <p tabindex= "0" class="length-disscussion-user"></p>
+              <h6 tabindex= "0" > Your Answer Discussion</h6>
+              <p tabindex= "0" class="length-reply-user"></p>
           </div>
           <div class="container-myskill" style="padding:10px;">
           <p class="text-muted fw-bold" style="border-bottom:3px solid grey;"> My Skills </p>
@@ -753,7 +757,7 @@ const createProfileTemplate = (user) => {
           </div>
         </div>
       </div>
-      <div class="container-about-profile-user" style="border-radius:5px; border:1px solid #c6c3be;">
+      <div class="container-about-profile-user" tabindex="0" style="border-radius:5px; border:1px solid #c6c3be;">
         <h2 class="fw-bold">${user.username}</h2>
         <p class="fw-bold" style="color:#607EAA;">${user.profesi}</p>
         <h6>Country</h6>
@@ -775,14 +779,15 @@ const createProfileTemplate = (user) => {
       <div class="p-3 footer-lite-profile" style="background-color:#f3f2ef;">
         <footer-lite></footer-lite>
       </div>
-      </div>
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Change Profile</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+    </div>
+    <form id= "edit-user">
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Change Profile</h5>
+              <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
       <div class="modal-body">
       <div class="container-edit-profile">
     <div class="edit-profile" style="flex-wrap:wrap; justify-content:center;">
@@ -790,7 +795,6 @@ const createProfileTemplate = (user) => {
     <div class="square"></div>
     <div class="container-img" style="background-image:url('${user.image}'); width: 200px; height:200px; background-size:200px 200px; position:relative; z-index:1; margin:0 auto; border:5px solid white; top:10px;"></div>
     </div>
-    <form id= "edit-user">
             <div class="mb-4">
             <h5>Profile Picture</h5>
             <input class="form-control" type="file" id="edit-photo"  accept=".jpg, .jpeg, .png">
@@ -1059,47 +1063,48 @@ const createProfileTemplate = (user) => {
             <h5>My Skills</h5>
             <textarea class="form-control" id="edit-skill" placeholder="Type your skills" rows="5">${user.specialities}</textarea>
             </div>
-            <button  type="button" class="btn btn-primary" data-bs-dismiss="modal"> Back </button>
-            <button class="btn btn-light border-dark" type="submit" id="edit-simpan">Save</button>  
-            </form>
+            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal"> Back </button>
+            <button type="submit" class="btn btn-secondary" style="background-color: #344D67;" id="edit-simpan">Save</button>
           </div>
           </div>
       </div>
     </div>
   </div>
 </div>
-<div class="modal fade" id="staticBackdropChangePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Change Password</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <div class="container-change-page">
-      <div class="change-page">
-        <div class="header-change-page">
-          <img class="lazyload" src="./asset/hero-changepwd.png">
+</form>
+<form id="form-changepwd">
+  <div class="modal fade" id="staticBackdropChangePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Change Password</h5>
+          <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form id="form-changepwd">
-          <div class="mb-3">
-          <input type="password" class="form-control form-control-lg" id="oldPwd" placeholder="Enter your old password" required>
+        <div class="modal-body">
+          <div class="container-change-page">
+            <div class="change-page">
+              <div class="header-change-page">
+                <img class="lazyload" src="./asset/hero-changepwd.png">
+              </div>
+              <div class="mb-3">
+                <input type="password" class="form-control form-control-lg" id="oldPwd" placeholder="Enter your old password" required>
+              </div>
+              <div class="mb-3">
+                <input type="password" class="form-control" id="newPwd" placeholder="Enter your new password" required>
+              </div>
+              <div class="mb-3">
+                <input type="password" class="form-control" id="confirmPwd" placeholder="Confirm your new password" required>
+              </div>
+              <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal"> Back </button>
+              <button type="submit" class="btn btn-secondary" style="background-color: #344D67" id="editButton">Save</button>
+            </div>
           </div>
-          <div class="mb-3">
-          <input type="password" class="form-control" id="newPwd" placeholder="Enter your new password" required>
-          </div>
-          <div class="mb-3">
-          <input type="password" class="form-control" id="confirmPwd" placeholder="Confirm your new password" required>
-          </div>
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Back</button>
-          <button type="submit" class="btn btn-primary" id="editButton"> Submit </button>
-        </form>
-      </div>
-    </div>
+        </div>
       </div>
     </div>
   </div>
-</div> `;
+</form>
+`;
 };
 
 const createAboutProfileTemplate = (user) => {
@@ -1279,9 +1284,6 @@ const createNavbarTemplateAfterLogin = () => `
         <a class="nav-link text-light " href="#/jobs">Jobs</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light " href="#/about">About</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link text-light " href="#" id="logout">Logout</a>
       </li>
     </ul>
@@ -1299,13 +1301,13 @@ const UserDiscussionSkeleton = (count) => {
 };
 
 const createSaveDiscussionButtonTemplate = () => `
-  <button aria-label="like this restaurant" id="likeButton" class="like btn" style="border:none; background-color:transparent;">
+  <button aria-label="save this discussion" id="likeButton" class="like btn p-0 mx-3" style="border:none; background-color:transparent;" title="Save Discussion Button">
   <i class="fa fa-bookmark-o fa-2x" aria-hidden="true"></i>
   </button>
 `;
 
 const createUnsaveDiscussionButtonTemplate = () => `
-  <button aria-label="unsave this discussion" id="likeButton" class="like btn" style="border:none; background-color:transparent;">
+  <button aria-label="unsave this discussion" id="likeButton" class="like btn p-0 mx-3" style="border:none; background-color:transparent;" title="Unsave Discussion Button">
   <i class="fa fa-bookmark fa-2x" aria-hidden="true"></i>
   </button>
 `;
@@ -1377,13 +1379,13 @@ const createSidebarCompany = () => `
 `;
 
 const createCardJobCompany = (job) => `
-<div class="card-job-company">
+<div tabindex="0" class="card-job-company">
   <div class="card-header" style="text-align:center;">
     <img src="${job.image}">
   </div>
-  <div class = "card-body">
-    <h6>${job.profession}</h6>
-    <p>${truncateString(job?.details.descriptionCompany, 200)}
+  <div tabindex="0" class = "card-body">
+    <h6 tabindex="0" >${job.profession}</h6>
+    <p tabindex="0">${truncateString(job?.details.descriptionCompany, 200)}
   </div>
   <div class ="card-footer" style="border-top:1px solid gray; padding:5px;">
     <button value="${job._id}" class="btn text-light" style=" background-color: #344D67;"  data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit-job">Edit</button>
@@ -1569,27 +1571,27 @@ const createProfileCompany = (user) => {
   <div class="header-profile-company">
   <div class="square"></div>
     <div class="content-header-profile-company">
-    <img src="${user.image}" class="img-profile-company">
-      <div class="profile-company">
-        <p class="fw-bolder fs-2 my-0">${user.username}</p>
-        <p class="text-muted my-0" style="font-size:12px;">${user.specialities} | ${user.address}</p>
+    <img tabindex= "0" src="${user.image}" class="lazyload img-profile-company" alt="image profile company">
+      <div tabindex= "0" class="profile-company">
+        <p tabindex= "0" class="fw-bolder fs-2 my-0">${user.username}</p>
+        <p tabindex= "0" class="text-muted my-0" style="font-size:12px;">${user.specialities} | ${user.address}</p>
       </div>
     </div>
     </div>
-  <div class="body-profile-company">
-    <p class="fw-bold my-0"> Overview </p>
-    <p class="text-muted my-0">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
-    <p class="fw-bold my-0">Industry</p>
-    <p class="text-muted my-0">${user.industry}</p>
-    <p class="fw-bold my-0">Company size</p>
-    <p class="text-muted my-0">${user.employee} - ${user.employee2} Employee</p>
-    <p class="fw-bold my-0"> Location </p>
-    <p class="text-muted my-0">${user.address}</p>
-    <p class="fw-bold my-0">Founded</p>
-    <p class="text-muted my-0">${user.founded}</p>
-    <p class="fw-bold my-0">Specialities</p>
-    <p class="text-muted my-0">${user.specialities}</p>
-    <p class="fw-bold my-0">Website</p>
+  <div tabindex= "0" class="body-profile-company">
+    <p tabindex= "0" class="fw-bold my-0"> Overview </p>
+    <p tabindex= "0" class="text-muted my-0">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+    <p tabindex= "0" class="fw-bold my-0">Industry</p>
+    <p tabindex= "0" class="text-muted my-0">${user.industry}</p>
+    <p tabindex= "0" class="fw-bold my-0">Company size</p>
+    <p tabindex= "0" class="text-muted my-0">${user.employee} - ${user.employee2} Employee</p>
+    <p tabindex= "0" class="fw-bold my-0"> Location </p>
+    <p tabindex= "0" class="text-muted my-0">${user.address}</p>
+    <p tabindex= "0" class="fw-bold my-0">Founded</p>
+    <p tabindex= "0" class="text-muted my-0">${user.founded}</p>
+    <p tabindex= "0" class="fw-bold my-0">Specialities</p>
+    <p tabindex= "0" class="text-muted my-0">${user.specialities}</p>
+    <p tabindex= "0" class="fw-bold my-0">Website</p>
     <a class="text-primay my-0" href="${user.website}">${user.website}</a>
     <div class="card-footer my-2">
     <button value="${user._id}" class="btn text-light" style=" background-color: #344D67;"  data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="btn-edit-company"> Change Profile </button>
@@ -1637,8 +1639,14 @@ const createProfileCompany = (user) => {
         <button type="button" class="btn-close" style="background-color:white;" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+      <div class="container-img" style="background-image:url('${user.image}'); width: 200px; height:200px; background-size:200px 200px; margin: 0 auto; border:2px solid grey;"> </div>
+
       <form id = "edit-profile-company">
           <div class="mb-3 row">
+          <label for="exampleInputEmail1" class="form-label">Company Logo</label>
+          <div class="col">
+            <input type="file" class="form-control  form-control-sm" id="edit-logo-company" accept=".jpg, .jpeg, .png">
+          </div>
             <label for="exampleInputEmail1" class="form-label">Name Company</label>
             <div class="col">
               <input type="text" class="form-control  form-control-sm" id="edit-username" value="${user.username}">
@@ -1676,10 +1684,6 @@ const createProfileCompany = (user) => {
             <label for="exampleInputEmail1" class="form-label">Specialities</label>
             <div class="col">
               <input type="text" class="form-control  form-control-sm" id="edit-specialities"value="${user.specialities}">
-            </div>
-            <label for="exampleInputEmail1" class="form-label">Company Logo</label>
-            <div class="col">
-              <input type="file" class="form-control  form-control-sm" id="edit-logo-company">
             </div>
           </div>
           <div class="modal-footer">
@@ -1727,7 +1731,7 @@ const createDetailCompanyTemplate = (company) => {
   <div class="square"></div>
     <div class="content-header-profile-company">
     <img src="${company.image}" class="img-profile-company">
-      <div class="profile-company">
+      <div class="profile-company" tabindex="0">
         <p class="fw-bolder fs-2 ">${company.username}</p>
         <p class="text-muted " style="font-size:12px;">${company.specialities} | ${company.address}</p>
       </div>
@@ -1737,7 +1741,7 @@ const createDetailCompanyTemplate = (company) => {
     <button class="btn m-1 " id="jobs-other-company">Jobs</button>
     </div>
     </div>
-  <div class="body-profile-company-other">
+  <div class="body-profile-company-other" tabindex="0">
   <div class="company-overview">
     <p class="fw-bold"> Overview </p>
     <p class="text-muted">${company.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
@@ -1876,13 +1880,13 @@ const createDetailCompanySkeletonTemplate = () => `
 </div>`;
 
 const createItemJobCompanyOther = (job) => `
-  <div class="container-job-other">
+  <div class="container-job-other" tabindex="0">
   <img src="${job.image}" class="job-other-img">
     <div class="text-job-other">
     <h5>${job.company}</h5>
     <h6>${job.profession}</h6>
     <p class="text-muted">${showFormattedDate(job.createdAt)}</p>
-    <a class="btn btn-primary btn-sm" href="#/detailjob/${job._id}"> VISIT </a>
+    <a class="btn btn-secondary btn-sm" style="background-color: #344D67;" href="#/detailjob/${job._id}"> VISIT </a>
     </div>
   </div>
   `;

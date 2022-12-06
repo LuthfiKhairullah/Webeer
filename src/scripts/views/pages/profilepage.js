@@ -62,7 +62,6 @@ const ProfilePage = {
     const lenDiscussion = userDiscussion.length;
     const lenReply = userReply.length;
     const sumDisRep = lenDiscussion + lenReply;
-    console.log(lenDiscussion, lenReply);
     const grade = document.querySelector('.grade-user');
     if (sumDisRep >= 0 && sumDisRep <= 20) {
       grade.innerHTML = 'D';
@@ -90,7 +89,6 @@ const ProfilePage = {
       BtnDiscussion.classList.remove('afterClick');
       BtnBookmark.classList.add('afterClick');
       const userBookmark = await BookmarkDiscussionIdb.getAllDiscussions();
-      console.log(userBookmark);
       const discussions = await DiscussionSource.getAllDiscussion();
       userBookmark.forEach(async (ub) => {
         const check = discussions.filter((discussion) => discussion._id.toString().includes(ub.id)).map((discussion) => discussion._id).join('').includes(ub.id);
@@ -103,6 +101,7 @@ const ProfilePage = {
         content.innerHTML = '<bookmark-list></bookmark-list>';
         const userBookmarkElement = document.querySelector('bookmark-list');
         userBookmarkElement.bookmarks = updateBookmark;
+        content.innerHTML += '<add-discussion></add-discussion>';
       } else {
         content.innerHTML = createBookmarkEmpty();
       }
@@ -117,6 +116,7 @@ const ProfilePage = {
         content.innerHTML = '<discussion-list></discussion-list>';
         const userDiscussionElement = document.querySelector('discussion-list');
         userDiscussionElement.discussions = userDiscussion;
+        content.innerHTML += '<add-discussion></add-discussion>';
       } else {
         content.innerHTML = createDiscussionEmpty();
       }

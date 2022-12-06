@@ -111,8 +111,7 @@ const listJobPage = {
             const uploaded_image = reader.result;
             containerImg.style.backgroundImage = `url(${uploaded_image})`;
           });
-          console.log(this.file[0])
-          reader.readAsDataURL(this.files[0]);
+          console.log(reader.readAsDataURL(this.files[0]));
         });
         formEdit.addEventListener('submit', async (event) => {
           event.preventDefault();

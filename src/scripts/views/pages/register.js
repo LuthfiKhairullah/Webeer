@@ -14,7 +14,8 @@ const Register = {
               </picture>
                 </div>
             <div>  
-              <form id="form-register">
+            <p>You already have an account? <span><button class="text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: transparent; border: transparent; text-decoration: underline;">Sign in</button></span> </p>
+            <form id="form-register">
               <h2 class="fw-bolder">REGISTER</h2>
                 <p>You already have an account? <span> <a href="#/login">Sign in</a> </span> </p>
                   <div class="input-group mb-3">
@@ -48,6 +49,7 @@ const Register = {
               </div>
             </div>
           </div>
+          <login-modal></login-modal>
          <message-container></message-container>
          <footer-lite class="p-3 footer-lite-profile" style="background-color:#f3f2ef;"></footer-lite>
           `;
