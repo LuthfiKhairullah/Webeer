@@ -17,24 +17,24 @@ const Register = {
               <form id="form-register">
               <h2 class="fw-bolder">REGISTER</h2>
                 <p>You already have an account? <span> <a href="#/login">Sign in</a> </span> </p>
-                  <div class="input-group mb-3" style="border-bottom:1px solid black;">
-                    <span class="input-group-text" style="background-color:transparent; border:none;"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text text-light" style="background-color:#344D67; border:none;"><i class="fa fa-user-o" aria-hidden="true"></i></span>
                     <div class="form-floating">
-                      <input style="border:none;" type="text" class="form-control form" id="Username" placeholder="Enter your username" required>
+                      <input style="border:none;" type="text" class="form-control form" id="UsernameRegister" placeholder="Enter your username" required>
                       <label for="Username">Username</label>
                     </div>
                   </div>
-                  <div class="input-group mb-3" style="border-bottom:1px solid black;">
-                    <span class="input-group-text" style="background-color:transparent; border:none;"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text text-light" style="background-color:#344D67; border:none;"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
                       <div class="form-floating">
-                        <input style="border:none;" type="email" class="form-control" id="emailUser" placeholder="Enter your email" required>
+                        <input style="border:none;" type="email" class="form-control" id="emailUserRegister" placeholder="Enter your email" required>
                         <label for="emailUser">Email Address</label>
                       </div>
                   </div>
-                  <div class="input-group mb-3 password-container" style="border-bottom:1px solid black;">
-                      <span class="input-group-text" style="background-color:transparent; border:none;"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                  <div class="input-group mb-3 password-container">
+                      <span class="input-group-text text-light" style="background-color:#344D67; border:none;"><i class="fa fa-lock" aria-hidden="true"></i></span>
                         <div class="form-floating">
-                          <input style="border:none;" type="password" class="form-control" id="pwdUser" placeholder="Enter your password" required>
+                          <input style="border:none;" type="password" class="form-control" id="pwdUserRegister" placeholder="Enter your password" required>
                           <label for="pwdUser">Password</label>
                         </div>
                   </div>
@@ -53,10 +53,10 @@ const Register = {
           `;
   },
   async afterRender() {
-    const getPwd = document.querySelector('#pwdUser');
+    const getPwd = document.querySelector('#pwdUserRegister');
     const form = document.querySelector('#form-register');
-    const Username = document.querySelector('#Username');
-    const email = document.querySelector('#emailUser');
+    const Username = document.querySelector('#UsernameRegister');
+    const email = document.querySelector('#emailUserRegister');
     const selected = document.getElementById('role-user');
     const messageText = document.querySelector('.toast-body');
     const messageTitle = document.querySelector('.toast-title');

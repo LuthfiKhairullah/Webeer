@@ -146,13 +146,13 @@ const ProfilePage = {
       reader.readAsDataURL(this.files[0]);
     });
     const form = document.querySelector('#edit-user');
-    const test = document.querySelector('#edit-country');
+    const countryUser = document.querySelector('#edit-country');
     const editButton = document.querySelector('#edit-simpan');
     const profileContainer = document.querySelector('.container-edit-profile');
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       profileContainer.classList.add('cursor-progress');
-      const { text } = test.options[test.selectedIndex];
+      const { text } = countryUser.options[countryUser.selectedIndex];
       const inputUsername = document.querySelector('#edit-username').value;
       const inputContact = document.querySelector('#edit-contact').value;
       const inputProfesi = document.querySelector('#edit-profesi').value;

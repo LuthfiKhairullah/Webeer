@@ -85,6 +85,35 @@ const listJobPage = {
         const place = document.querySelector('#place-job');
         const editJobButton = document.querySelector('#editJobButton');
         const editModalContainer = document.querySelector('#exampleModal');
+        const levelSelected = document.getElementsByName('levelselect');
+        levelSelected.forEach((level) => {
+          if (data.data.data.details.level === level.value) {
+            level.setAttribute('selected', '');
+            console.log(level);
+          }
+        });
+        const workSelected = document.getElementsByName('jobselect');
+        workSelected.forEach((work) => {
+          if (data.data.data.details.workplace === work.value) {
+            work.setAttribute('selected', '');
+          }
+        });
+        const timeSelected = document.getElementsByName('timeselect');
+        timeSelected.forEach((times) => {
+          if (data.data.data.details.timeWork === times.value) {
+            times.setAttribute('selected', '');
+          }
+        });
+        const containerImg = document.querySelector('.container-img');
+        document.querySelector('#image-job').addEventListener('change', () => {
+          const reader = new FileReader();
+          reader.addEventListener('load', () => {
+            const uploaded_image = reader.result;
+            containerImg.style.backgroundImage = `url(${uploaded_image})`;
+          });
+          console.log(this.file[0])
+          reader.readAsDataURL(this.files[0]);
+        });
         formEdit.addEventListener('submit', async (event) => {
           event.preventDefault();
           editModalContainer.classList.add('cursor-progress');

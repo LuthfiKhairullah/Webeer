@@ -1382,11 +1382,11 @@ const createCardJobCompany = (job) => `
     <img src="${job.image}">
   </div>
   <div class = "card-body">
-    <h6>${job.company}</h6>
+    <h6>${job.profession}</h6>
     <p>${truncateString(job?.details.descriptionCompany, 200)}
   </div>
   <div class ="card-footer" style="border-top:1px solid gray; padding:5px;">
-    <button value="${job._id}" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit-job">Edit</button>
+    <button value="${job._id}" class="btn text-light" style=" background-color: #344D67;"  data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit-job">Edit</button>
     <button value="${job._id}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="delete-job">Delete</button>
   </div>
 </div>
@@ -1400,7 +1400,7 @@ const createCardJobCompany = (job) => `
         <div class="modal-body">
         Do you want to delete this job vacancy?
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer"> 
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-danger" id="delete-this-job" data-bs-dismiss="modal">Delete</button>
         </div>
@@ -1408,7 +1408,7 @@ const createCardJobCompany = (job) => `
   </div>
   </div>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" id="container-edit">
+  <div class="modal-dialog modal-dialog-scrollable  modal-xl" id="container-edit">
   </div>
 </div>
 `;
@@ -1434,14 +1434,19 @@ const createCardJobCompanySkeleton = (count) => {
 };
 const createFormEditJob = (job) => `
 <div class="modal-content">
-<div class="modal-header bg-primary">
+<div class="modal-header" style="background-color: #344D67;">
   <h5 class="modal-title text-light fw-bold" id="exampleModalLabel">Edit Job Vacancy</h5>
-  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <button type="button" class="btn-close" style="background-color:white;" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
-<img src="${job.image}" class="card-img-top">
+<div class="container-img" style="background-image:url('${job.image}'); width: 200px; height:200px; background-size:200px 200px; margin: 0 auto; border:2px solid grey;"> </div>
 <form id="form-edit-job">
-<h5>Job Vacancy Details</h5>
+<div class="mb-3 row">
+  <label for="exampleInputEmail1" class="col-form-label"><small>Company logo</small></label>
+    <div class="col">
+      <input type="file" class="form-control  form-control-sm" id="image-job" accept=".jpg, .jpeg, .png" >
+    </div>
+</div>
 <div class="mb-3 row">
   <label for="exampleInputEmail1" class="col-form-label"><small>Company name</small></label>
   <div class="col">
@@ -1461,31 +1466,24 @@ const createFormEditJob = (job) => `
   </div>
 </div>
 <div class="mb-3 row">
-  <label for="exampleInputEmail1" class="col-form-label"><small>Company logo</small></label>
-    <div class="col">
-      <input type="file" class="form-control  form-control-sm" id="image-job" >
-    </div>
-</div>
-<div class="mb-3 row">
 <label for="exampleInputEmail1" class="col-form-label"><small>Company description</small></label>
     <div class="col">
-        <textarea class="form-control" id="description-job" rows="4">${job.details.descriptionCompany}</textarea>
+        <textarea class="form-control" id="description-job" rows="7">${job.details.descriptionCompany}</textarea>
     </div>
 </div>
 <div class="mb-3 row">
 <label for="exampleInputEmail1" class="col-form-label"><small>Job description</small></label>
  <div class="col">
-     <textarea class="form-control" id="descriptionProfession-job" rows="4" >${job.details.descriptionProfession}</textarea>
+     <textarea class="form-control" id="descriptionProfession-job" rows="5" >${job.details.descriptionProfession}</textarea>
  </div>
 </div>
 <div class="mb-3 row">
  <label for="exampleInputEmail1" class="col-form-label"><small>Level</small></label>
     <div class="col-sm-5">
         <select class="form-select form-select-sm" aria-label="Default select example"  id="level-job">
-        <option selected value="${job.details.level}">${job.details.level}</option>
-            <option value="Entry">Entry</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="Expert">Expert</option>
+            <option  name="levelselect" value="Entry">Entry</option>
+            <option  name="levelselect" value="Intermediate">Intermediate</option>
+            <option  name="levelselect" value="Expert">Expert</option>
         </select>
     </div>
 </div>
@@ -1493,10 +1491,9 @@ const createFormEditJob = (job) => `
 <label for="exampleInputEmail1" class=" col-form-label"><small>Work from</small></label>
 <div class="col-sm-5">
     <select class="form-select form-select-sm" aria-label="Default select example"  id="place-job">
-    <option selected value="${job.details.workplace}">${job.details.workplace}</option>
-        <option value="Onsite">Onsite</option>
-        <option value="Remote">Remote</option>
-        <option value="Hybrid">Hybrid</option>
+        <option name="jobselect" value="Onsite">Onsite</option>
+        <option name="jobselect" value="Remote">Remote</option>
+        <option name="jobselect" value="Hybrid">Hybrid</option>
     </select>
 </div>
 </div>
@@ -1504,9 +1501,8 @@ const createFormEditJob = (job) => `
 <label for="exampleInputEmail1" class="col-form-label"><small>Time</small></label>
   <div class="col-sm-5">
     <select class="form-select form-select-sm" aria-label="Default select example" id="time-job">
-      <option selected value="${job.details.timeWork}">${job.details.timeWork}</option>
-      <option value="Full Time">Full Time</option>
-      <option value="Part Time">Part Time</option>
+      <option name="timeselect" value="Full Time">Full Time</option>
+      <option name="timeselect" value="Part Time">Part Time</option>
     </select>
   </div>
 </div>
@@ -1522,7 +1518,7 @@ const createFormEditJob = (job) => `
 <div class="mb-3 row">
 <label for="exampleInputEmail1" class="col-form-label"><small>Qualification</small></label>
 <div class="col">
-    <textarea class="form-control" id="qualification-job" rows="4">${job.details.qualification}</textarea>
+    <textarea class="form-control" id="qualification-job" rows="5">${job.details.qualification}</textarea>
 </div>
 </div>
 <div class="mb-3 row">
@@ -1596,7 +1592,7 @@ const createProfileCompany = (user) => {
     <p class="fw-bold my-0">Website</p>
     <a class="text-primay my-0" href="${user.website}">${user.website}</a>
     <div class="card-footer my-2">
-    <button value="${user._id}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="btn-edit-company"> Change Profile </button>
+    <button value="${user._id}" class="btn text-light" style=" background-color: #344D67;"  data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="btn-edit-company"> Change Profile </button>
     <button value="${user._id}" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btn-edit-pwd"> Change Password </button>
     </div>
     </div>
@@ -1604,9 +1600,9 @@ const createProfileCompany = (user) => {
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header bg-primary">
+      <div class="modal-header" style=" background-color: #344D67;">
         <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PASSWORD</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" style="background-color:white;" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
       <form id = "edit-password-company">
@@ -1626,7 +1622,7 @@ const createProfileCompany = (user) => {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" id="editPwdButton">Save</button>
+            <button type="submit" class="btn text-light" style=" background-color: #344D67;"  id="editPwdButton">Save</button>
           </div>
           </form>
       </div>
@@ -1634,11 +1630,11 @@ const createProfileCompany = (user) => {
 </div>
 </div>
 <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-xl">
     <div class="modal-content">
-      <div class="modal-header bg-primary">
+      <div class="modal-header" style=" background-color: #344D67;">
         <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PROFILE</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" style="background-color:white;" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
       <form id = "edit-profile-company">
@@ -1688,7 +1684,7 @@ const createProfileCompany = (user) => {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" id="editSaveButton">Save</button>
+            <button type="submit" class="btn text-light" style=" background-color: #344D67;" id="editSaveButton">Save</button>
           </div>
           </form>
       </div>
