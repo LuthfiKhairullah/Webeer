@@ -10,14 +10,13 @@ const Register = {
               <div>
               <picture>
               <source media="(max-width:600px)" srcset="./assetpng/hero-login-small.png">
-                <img  class="lazyload hero-register" src="./assetpng/hero-login-large.png" alt="hero register">
+                <img tabindex= "0" class="lazyload hero-register" src="./assetpng/hero-login-large.png" alt="hero register">
               </picture>
                 </div>
             <div>  
-            <p>You already have an account? <span><button class="text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: transparent; border: transparent; text-decoration: underline;">Sign in</button></span> </p>
+            <p tabindex= "0">You already have an account? <span><button class="text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: transparent; border: transparent; text-decoration: underline;">Sign in</button></span> </p>
             <form id="form-register">
               <h2 class="fw-bolder">REGISTER</h2>
-                <p>You already have an account? <span> <a href="#/login">Sign in</a> </span> </p>
                   <div class="input-group mb-3">
                     <span class="input-group-text text-light" style="background-color:#344D67; border:none;"><i class="fa fa-user-o" aria-hidden="true"></i></span>
                     <div class="form-floating">
@@ -39,7 +38,7 @@ const Register = {
                           <label for="pwdUser">Password</label>
                         </div>
                   </div>
-                    <p>Register as</p>
+                    <p tabindex= "0" >Register as</p>
                     <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="role-user" >
                       <option value="1">Programmer</option>
                       <option value="2">Company</option>
