@@ -239,7 +239,6 @@ const DetailDiscussionPage = {
           const updateDiscussions = await DiscussionSource.getDiscussion(url.id);
           const updateDiscussionReply = await DiscussionSource.getDiscussionReply(url.id);
           inputReply.value = '';
-          console.log(updateDiscussionReply[0]._id.includes(addDiscussionReply._id.toString()));
           if (updateDiscussionReply[0]._id.includes(addDiscussionReply._id.toString())) {
             lengthReply.innerText = updateDiscussions.reply.length;
             discussionReplyListElement.innerHTML = '';

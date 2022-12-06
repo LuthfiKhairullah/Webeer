@@ -60,7 +60,7 @@ const ProfilePage = {
       countReply.innerHTML = userReply.length;
     }
     const lenDiscussion = userDiscussion.length;
-    const lenReply = userReply.length;
+    const lenReply = countReply.innerHTML;
     const sumDisRep = lenDiscussion + lenReply;
     console.log(lenDiscussion, lenReply);
     const grade = document.querySelector('.grade-user');
@@ -103,10 +103,10 @@ const ProfilePage = {
         content.innerHTML = '<bookmark-list></bookmark-list>';
         const userBookmarkElement = document.querySelector('bookmark-list');
         userBookmarkElement.bookmarks = updateBookmark;
-        content.innerHTML += '<add-discussion></add-discussion>';
       } else {
         content.innerHTML = createBookmarkEmpty();
       }
+      content.innerHTML += '<add-discussion></add-discussion>';
     });
     BtnDiscussion.addEventListener('click', async (event) => {
       event.preventDefault();
@@ -118,10 +118,10 @@ const ProfilePage = {
         content.innerHTML = '<discussion-list></discussion-list>';
         const userDiscussionElement = document.querySelector('discussion-list');
         userDiscussionElement.discussions = userDiscussion;
-        content.innerHTML += '<add-discussion></add-discussion>';
       } else {
         content.innerHTML = createDiscussionEmpty();
       }
+      content.innerHTML += '<add-discussion></add-discussion>';
     });
     BtnAbout.addEventListener('click', async (event) => {
       event.preventDefault();

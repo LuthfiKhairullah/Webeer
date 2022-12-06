@@ -596,8 +596,8 @@ const createFilterListTemplateSkeleton = () => `
         <div class="filterCategory">${createFilterCategoryTemplateSkeleton(5)}</div>
       </div>
       <div>
-        <button type="button" class="btn btn-secondary text-secondary w-110 disabled placeholder">Reset</button>
-        <button type="button" class="btn btn-secondary text-secondary w-110 disabled placeholder">Filter</button>
+        <button type="button" class="btn btn-secondary text-secondary w-110 disabled placeholder mb-2">Reset</button>
+        <button type="button" class="btn btn-secondary text-secondary w-110 disabled placeholder mb-2">Filter</button>
       </div>
     </form>
   </div>
