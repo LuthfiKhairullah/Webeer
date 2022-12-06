@@ -62,7 +62,6 @@ const ProfilePage = {
     const lenDiscussion = userDiscussion.length;
     const lenReply = countReply.innerHTML;
     const sumDisRep = lenDiscussion + lenReply;
-    console.log(lenDiscussion, lenReply);
     const grade = document.querySelector('.grade-user');
     if (sumDisRep >= 0 && sumDisRep <= 20) {
       grade.innerHTML = 'D';
@@ -90,7 +89,6 @@ const ProfilePage = {
       BtnDiscussion.classList.remove('afterClick');
       BtnBookmark.classList.add('afterClick');
       const userBookmark = await BookmarkDiscussionIdb.getAllDiscussions();
-      console.log(userBookmark);
       const discussions = await DiscussionSource.getAllDiscussion();
       userBookmark.forEach(async (ub) => {
         const check = discussions.filter((discussion) => discussion._id.toString().includes(ub.id)).map((discussion) => discussion._id).join('').includes(ub.id);
@@ -148,13 +146,13 @@ const ProfilePage = {
       reader.readAsDataURL(this.files[0]);
     });
     const form = document.querySelector('#edit-user');
-    const test = document.querySelector('#edit-country');
+    const countryUser = document.querySelector('#edit-country');
     const editButton = document.querySelector('#edit-simpan');
     const profileContainer = document.querySelector('.container-edit-profile');
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       profileContainer.classList.add('cursor-progress');
-      const { text } = test.options[test.selectedIndex];
+      const { text } = countryUser.options[countryUser.selectedIndex];
       const inputUsername = document.querySelector('#edit-username').value;
       const inputContact = document.querySelector('#edit-contact').value;
       const inputProfesi = document.querySelector('#edit-profesi').value;

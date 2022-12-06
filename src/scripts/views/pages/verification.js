@@ -5,8 +5,8 @@ const verificationPage = {
   async render() {
     return `
     <div class="container-verification">
-        <h2 class="fw-bold">Verification</h2>
-          <p>Please check your email, if the code was not sent, please press resend</p>
+        <h2 tabindex= "0" class="fw-bold">Verification</h2>
+          <p tabindex= "0" >Please check your email, if the code was not sent, please press resend</p>
           <button class =" btn text-light mb-5" id="resend" style="background-color:#344D67;">Resend OTP</button>
           <form id="verifikasi-user">
             <div class="mb-3">

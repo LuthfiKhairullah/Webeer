@@ -35,8 +35,8 @@ const jobsPage = {
                     <div class="card">
                     <picture>
                         <source media="(max-width:600px)" srcset="./assetpng/hero-jobsDetail.png-small">
-                        <img class="lazyload hero-job" src="./assetpng/hero-jobsDetail-large.png" alt="hero jobdetail">
-                        <p class="fw-bold text-muted"> Find a job according to your passion </p>
+                        <img tabindex= "0" class="lazyload hero-job" src="./assetpng/hero-jobsDetail-large.png" alt="hero jobdetail">
+                        <p  tabindex= "0" class="fw-bold text-muted"> Find a job according to your passion </p>
                     </picture>
                     </div>
                 </div>

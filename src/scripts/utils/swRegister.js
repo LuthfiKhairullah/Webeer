@@ -1,6 +1,6 @@
 const swRegister = async () => {
   if (!('serviceWorker' in navigator)) {
-    console.log('Browser tidak mendukung Service Worker');
+    console.log('Service Worker not supported in the browser');
     return;
   }
 

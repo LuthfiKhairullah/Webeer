@@ -13,7 +13,12 @@ input[type=text] {
 #form-login p {
     font-size: 12px;
 }
-
+#form-register{
+    padding: 10px;
+}
+.container-login-main{
+    margin-top: 80px;
+}
 #container-register {
     display: flex;
     justify-content: center;
@@ -21,6 +26,7 @@ input[type=text] {
 
 .container-login-main img {
     width: 350px;
+    height: 350px;
 }
 
 #submit {
@@ -42,6 +48,7 @@ input[type=text] {
 
     .hero-register {
         width: 200px;
+        height: 200px;
     }
 }
 

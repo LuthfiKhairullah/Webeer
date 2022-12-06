@@ -69,12 +69,13 @@ const createDetailJobPageTemplate = (jobs) => `
 </div>
 `;
 const createItemJob = (jobs) => `
-<div class = "card-item" tabindex="0">
-<img src="${jobs.image}" class="card-image lazyload">
-<h6 class="fw-bold fs-5">${jobs.company}</h6>
-<h6 class="fs-5">${jobs.profession}</h6>
-<p class="text-muted fs-6 fst-italic">${showFormattedDate(jobs.updatedAt)}</p>
-<p class="text-muted fs-6 fst-italic">${jobs.address}</p>
+<div tabindex= "0" class = "card-item" tabindex="0">
+<img tabindex= "0" src="${jobs.image}" class="card-image lazyload" alt="job image">
+<p tabindex= "0">${jobs.details.level}</p>
+<h6 tabindex= "0" class="fw-bold fs-5">${jobs.company}</h6>
+<h6 tabindex= "0" class="fs-5">${jobs.profession}</h6>
+<p tabindex= "0" class="text-muted fs-6 fst-italic">${showFormattedDate(jobs.updatedAt)}</p>
+<p tabindex= "0" class="text-muted fs-6 fst-italic">${jobs.address}</p>
 <button value=${jobs._id} class="btn btn-secondary fw-bold btn-detail btn-sm" style="background-color: #344D67;" id="btnDetailJob">Visit</button>
 <a class="btn btn-secondary" id="btnDetailOpen" href="#/detailjob/${jobs._id}" target="_blank" style="background-color: #344D67;">Visit</a>
 </div>
@@ -84,38 +85,38 @@ const createDetailJob = (detail) => `
 <div class="detail-container" tabindex="0">
   <div class="header-detail">
     <div class="image-detail">
-      <img class="lazyload" src="${detail.image}">
+      <img tabindex= "0" class="lazyload" src="${detail.image}" alt="job image">
     </div>
     <div class="title-detail">
-      <h4 class="fw-bold">${detail.company}</h4>
-      <p class="text-muted fst-italic">${detail.address}</p>
-      <p class="text-muted">${showFormattedDate(detail.updatedAt)}</p>
-      <a href="#/profilecompany/${detail.companyid}" class="btn btn-secondary btn-sm">Profile Company</a>
+      <h4 tabindex= "0" class="fw-bold">${detail.company}</h4>
+      <p tabindex= "0" class="text-muted fst-italic">${detail.address}</p>
+      <p tabindex= "0" class="text-muted">${showFormattedDate(detail.updatedAt)}</p>
+      <a tabindex= "0" href="#/profilecompany/${detail.companyid}" class="btn btn-secondary btn-sm">Profile Company</a>
     </div>
   </div>
   <div class="description-detail">
-  <h6 class="fw-bold fs-6">Information</h6>
-  <p class="fs-6">${detail.details.descriptionCompany.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+  <h6 tabindex= "0"  class="fw-bold fs-6">Information</h6>
+  <p tabindex= "0" class="fs-6">${detail.details.descriptionCompany.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
     <div class="work-detail">
       <div class="work-1">
-        <p class="fw-bold fs-6"> Salary</p>
-        <p class="fs-6"><i class="fa fa-usd" aria-hidden="true"></i> ${detail.details.salary} - ${detail.details.salary2} </p>
-        <p class="fw-bold fs-6 ">Level</p>
-        <p class="fs-6"><i class="fa fa-users" aria-hidden="true"></i> ${detail.details.level}</p>
+        <p tabindex= "0" class="fw-bold fs-6"> Salary</p>
+        <p tabindex= "0" class="fs-6"><i class="fa fa-usd" aria-hidden="true"></i> ${detail.details.salary} - ${detail.details.salary2} </p>
+        <p tabindex= "0" class="fw-bold fs-6 ">Level</p>
+        <p tabindex= "0" class="fs-6"><i class="fa fa-users" aria-hidden="true"></i> ${detail.details.level}</p>
       </div>
       <div class="work-2">
-        <p class="fw-bold fs-6">Work from</p>
-        <p class="fs-6"><i class="fa fa-briefcase" aria-hidden="true"></i> ${detail.details.workplace}</p>
-        <p class="fw-bold fs-6">Time</p>
-        <p class="fs-6"><i class="fa fa-clock-o" aria-hidden="true"></i> ${detail.details.timeWork}</p>
+        <p tabindex= "0" class="fw-bold fs-6">Work from</p>
+        <p tabindex= "0" class="fs-6"><i class="fa fa-briefcase" aria-hidden="true"></i> ${detail.details.workplace}</p>
+        <p tabindex= "0" class="fw-bold fs-6">Time</p>
+        <p tabindex= "0" class="fs-6"><i class="fa fa-clock-o" aria-hidden="true"></i> ${detail.details.timeWork}</p>
       </div>
     </div>
   </div>
   <div class="kualifikasi-detail">
-  <p class="fw-bold fs-6">Profession Description</p>
-  <p class="fs-6">${detail.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}}</p>
-  <h6 class="fs-6">Requirement</h6>
-  <p class="fs-6">${detail.details.qualification.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+  <p tabindex= "0" class="fw-bold fs-6">Profession Description</p>
+  <p tabindex= "0" class="fs-6">${detail.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}}</p>
+  <h6 tabindex= "0" class="fs-6">Requirement</h6>
+  <p tabindex= "0" class="fs-6">${detail.details.qualification.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
   </div>
   <a href="${detail.details.link}"><button type="button" class="detail-link btn btn-secondary btn-sm" style="background-color: #344D67">Apply</button></a>
 </div>
@@ -736,19 +737,19 @@ const createProfileTemplate = (user) => {
     <div class="container-profile">
       <div class="container-profile-main" tabindex="0">
         <div class="card profile" style="border-radius:5px; border:1px solid #c6c3be;">
-          <img src="${user.image}" class="card-img-top lazyload">
-          <div class="container-activity">
-              <p  class="text-muted fw-bold"  style="text-align:left; border-bottom:3px solid grey;">Activity </p>
-              <h6> Grade </h6>
-              <h2 class="grade-user fw-bold"></h2>
-              <h6> Your Discussion</h6>
-              <p class="length-disscussion-user"></p>
-              <h6> Your Answer Discussion</h6>
-              <p class="length-reply-user"></p>
+          <img tabindex= "0" src="${user.image}" class="card-img-top lazyload" alt="user-profile">
+          <div tabindex= "0" class="container-activity">
+              <p tabindex= "0" class="text-muted fw-bold"  style="text-align:left; border-bottom:3px solid grey;">Activity </p>
+              <h6 tabindex= "0"> Grade </h6>
+              <h2 tabindex= "0" class="grade-user fw-bold"></h2>
+              <h6 tabindex= "0" > Your Discussion</h6>
+              <p tabindex= "0" class="length-disscussion-user"></p>
+              <h6 tabindex= "0" > Your Answer Discussion</h6>
+              <p tabindex= "0" class="length-reply-user"></p>
           </div>
-          <div class="container-myskill" style="padding:10px;">
-          <p class="text-muted fw-bold" style="border-bottom:3px solid grey;"> My Skills </p>
-          <h6>${user.specialities.replace(/(?:\r\n|\r|\n)/g, '<br>')}</h6>
+          <div tabindex= "0" class="container-myskill" style="padding:10px;">
+          <p tabindex= "0" class="text-muted fw-bold" style="border-bottom:3px solid grey;"> My Skills </p>
+          <h6 tabindex= "0" >${user.specialities.replace(/(?:\r\n|\r|\n)/g, '<br>')}</h6>
           </div>
             <div class="card-body text-center">
             <button class=" btn btn-secondary text-light btn-sm" value="${user._id}" style="padding:11px; background-color:#344D67;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Change Profile</button>
@@ -757,22 +758,22 @@ const createProfileTemplate = (user) => {
         </div>
       </div>
       <div class="container-about-profile-user" tabindex="0" style="border-radius:5px; border:1px solid #c6c3be;">
-        <h2 class="fw-bold">${user.username}</h2>
-        <p class="fw-bold" style="color:#607EAA;">${user.profesi}</p>
-        <h6>Country</h6>
-        <p>${user.country}</p>
+        <h2 tabindex= "0" class="fw-bold">${user.username}</h2>
+        <p tabindex= "0"  class="fw-bold" style="color:#607EAA;">${user.profesi}</p>
+        <h6 tabindex= "0" >Country</h6>
+        <p tabindex= "0" >${user.country}</p>
         <div class="d-flex" style="border-bottom:3px solid grey; ">
           <button class="btn afterClick " id="buttonAboutProfile" style="margin-bottom:5px;"><i class="fa fa-user" aria-hidden="true"></i> About</button>
           <button class="btn " id="buttonDiscussionProfile" style="margin-bottom:5px;"><i class="fa fa-comments-o" aria-hidden="true"></i> Discussion</button>
           <button class="btn " id="buttonBookmarkProfile" style="margin-bottom:5px;"><i class="fa fa-bookmark" aria-hidden="true"></i> Bookmark</button>
         </div>
-        <div class="content-profile-user scroll-item">
-          <h6>Contact</h6>
-          <p>${user.contact}</p>
-          <h6> Email </h6>
-          <p>${user.email}</p>
-          <h6>About</h6>
-          <p style="text-align:justify;">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+        <div tabindex= "0" class="content-profile-user scroll-item">
+          <h6 tabindex= "0" >Contact</h6>
+          <p tabindex= "0" >${user.contact}</p>
+          <h6 tabindex= "0" > Email </h6>
+          <p tabindex= "0" >${user.email}</p>
+          <h6 tabindex= "0" >About</h6>
+          <p tabindex= "0" style="text-align:justify;">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
         </div>
       </div>
       <div class="p-3 footer-lite-profile" style="background-color:#f3f2ef;">
@@ -1283,9 +1284,6 @@ const createNavbarTemplateAfterLogin = () => `
         <a class="nav-link text-light " href="#/jobs">Jobs</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light " href="#/about">About</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link text-light " href="#" id="logout">Logout</a>
       </li>
     </ul>
@@ -1381,16 +1379,16 @@ const createSidebarCompany = () => `
 `;
 
 const createCardJobCompany = (job) => `
-<div class="card-job-company">
+<div tabindex="0" class="card-job-company">
   <div class="card-header" style="text-align:center;">
     <img src="${job.image}">
   </div>
-  <div class = "card-body">
-    <h6>${job.company}</h6>
-    <p>${truncateString(job?.details.descriptionCompany, 200)}
+  <div tabindex="0" class = "card-body">
+    <h6 tabindex="0" >${job.profession}</h6>
+    <p tabindex="0">${truncateString(job?.details.descriptionCompany, 200)}
   </div>
   <div class ="card-footer" style="border-top:1px solid gray; padding:5px;">
-    <button value="${job._id}" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit-job">Edit</button>
+    <button value="${job._id}" class="btn text-light" style=" background-color: #344D67;"  data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit-job">Edit</button>
     <button value="${job._id}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="delete-job">Delete</button>
   </div>
 </div>
@@ -1404,7 +1402,7 @@ const createCardJobCompany = (job) => `
         <div class="modal-body">
         Do you want to delete this job vacancy?
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer"> 
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-danger" id="delete-this-job" data-bs-dismiss="modal">Delete</button>
         </div>
@@ -1412,7 +1410,7 @@ const createCardJobCompany = (job) => `
   </div>
   </div>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" id="container-edit">
+  <div class="modal-dialog modal-dialog-scrollable  modal-xl" id="container-edit">
   </div>
 </div>
 `;
@@ -1438,14 +1436,19 @@ const createCardJobCompanySkeleton = (count) => {
 };
 const createFormEditJob = (job) => `
 <div class="modal-content">
-<div class="modal-header bg-primary">
+<div class="modal-header" style="background-color: #344D67;">
   <h5 class="modal-title text-light fw-bold" id="exampleModalLabel">Edit Job Vacancy</h5>
-  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <button type="button" class="btn-close" style="background-color:white;" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
-<img src="${job.image}" class="card-img-top">
+<div class="container-img" style="background-image:url('${job.image}'); width: 200px; height:200px; background-size:200px 200px; margin: 0 auto; border:2px solid grey;"> </div>
 <form id="form-edit-job">
-<h5>Job Vacancy Details</h5>
+<div class="mb-3 row">
+  <label for="exampleInputEmail1" class="col-form-label"><small>Company logo</small></label>
+    <div class="col">
+      <input type="file" class="form-control  form-control-sm" id="image-job" accept=".jpg, .jpeg, .png" >
+    </div>
+</div>
 <div class="mb-3 row">
   <label for="exampleInputEmail1" class="col-form-label"><small>Company name</small></label>
   <div class="col">
@@ -1465,31 +1468,24 @@ const createFormEditJob = (job) => `
   </div>
 </div>
 <div class="mb-3 row">
-  <label for="exampleInputEmail1" class="col-form-label"><small>Company logo</small></label>
-    <div class="col">
-      <input type="file" class="form-control  form-control-sm" id="image-job" >
-    </div>
-</div>
-<div class="mb-3 row">
 <label for="exampleInputEmail1" class="col-form-label"><small>Company description</small></label>
     <div class="col">
-        <textarea class="form-control" id="description-job" rows="4">${job.details.descriptionCompany}</textarea>
+        <textarea class="form-control" id="description-job" rows="7">${job.details.descriptionCompany}</textarea>
     </div>
 </div>
 <div class="mb-3 row">
 <label for="exampleInputEmail1" class="col-form-label"><small>Job description</small></label>
  <div class="col">
-     <textarea class="form-control" id="descriptionProfession-job" rows="4" >${job.details.descriptionProfession}</textarea>
+     <textarea class="form-control" id="descriptionProfession-job" rows="5" >${job.details.descriptionProfession}</textarea>
  </div>
 </div>
 <div class="mb-3 row">
  <label for="exampleInputEmail1" class="col-form-label"><small>Level</small></label>
     <div class="col-sm-5">
         <select class="form-select form-select-sm" aria-label="Default select example"  id="level-job">
-        <option selected value="${job.details.level}">${job.details.level}</option>
-            <option value="Entry">Entry</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="Expert">Expert</option>
+            <option  name="levelselect" value="Entry">Entry</option>
+            <option  name="levelselect" value="Intermediate">Intermediate</option>
+            <option  name="levelselect" value="Expert">Expert</option>
         </select>
     </div>
 </div>
@@ -1497,10 +1493,9 @@ const createFormEditJob = (job) => `
 <label for="exampleInputEmail1" class=" col-form-label"><small>Work from</small></label>
 <div class="col-sm-5">
     <select class="form-select form-select-sm" aria-label="Default select example"  id="place-job">
-    <option selected value="${job.details.workplace}">${job.details.workplace}</option>
-        <option value="Onsite">Onsite</option>
-        <option value="Remote">Remote</option>
-        <option value="Hybrid">Hybrid</option>
+        <option name="jobselect" value="Onsite">Onsite</option>
+        <option name="jobselect" value="Remote">Remote</option>
+        <option name="jobselect" value="Hybrid">Hybrid</option>
     </select>
 </div>
 </div>
@@ -1508,9 +1503,8 @@ const createFormEditJob = (job) => `
 <label for="exampleInputEmail1" class="col-form-label"><small>Time</small></label>
   <div class="col-sm-5">
     <select class="form-select form-select-sm" aria-label="Default select example" id="time-job">
-      <option selected value="${job.details.timeWork}">${job.details.timeWork}</option>
-      <option value="Full Time">Full Time</option>
-      <option value="Part Time">Part Time</option>
+      <option name="timeselect" value="Full Time">Full Time</option>
+      <option name="timeselect" value="Part Time">Part Time</option>
     </select>
   </div>
 </div>
@@ -1526,7 +1520,7 @@ const createFormEditJob = (job) => `
 <div class="mb-3 row">
 <label for="exampleInputEmail1" class="col-form-label"><small>Qualification</small></label>
 <div class="col">
-    <textarea class="form-control" id="qualification-job" rows="4">${job.details.qualification}</textarea>
+    <textarea class="form-control" id="qualification-job" rows="5">${job.details.qualification}</textarea>
 </div>
 </div>
 <div class="mb-3 row">
@@ -1577,30 +1571,30 @@ const createProfileCompany = (user) => {
   <div class="header-profile-company">
   <div class="square"></div>
     <div class="content-header-profile-company">
-    <img src="${user.image}" class="img-profile-company">
-      <div class="profile-company">
-        <p class="fw-bolder fs-2 my-0">${user.username}</p>
-        <p class="text-muted my-0" style="font-size:12px;">${user.specialities} | ${user.address}</p>
+    <img tabindex= "0" src="${user.image}" class="lazyload img-profile-company" alt="image profile company">
+      <div tabindex= "0" class="profile-company">
+        <p tabindex= "0" class="fw-bolder fs-2 my-0">${user.username}</p>
+        <p tabindex= "0" class="text-muted my-0" style="font-size:12px;">${user.specialities} | ${user.address}</p>
       </div>
     </div>
     </div>
-  <div class="body-profile-company">
-    <p class="fw-bold my-0"> Overview </p>
-    <p class="text-muted my-0">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
-    <p class="fw-bold my-0">Industry</p>
-    <p class="text-muted my-0">${user.industry}</p>
-    <p class="fw-bold my-0">Company size</p>
-    <p class="text-muted my-0">${user.employee} - ${user.employee2} Employee</p>
-    <p class="fw-bold my-0"> Location </p>
-    <p class="text-muted my-0">${user.address}</p>
-    <p class="fw-bold my-0">Founded</p>
-    <p class="text-muted my-0">${user.founded}</p>
-    <p class="fw-bold my-0">Specialities</p>
-    <p class="text-muted my-0">${user.specialities}</p>
-    <p class="fw-bold my-0">Website</p>
+  <div tabindex= "0" class="body-profile-company">
+    <p tabindex= "0" class="fw-bold my-0"> Overview </p>
+    <p tabindex= "0" class="text-muted my-0">${user.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+    <p tabindex= "0" class="fw-bold my-0">Industry</p>
+    <p tabindex= "0" class="text-muted my-0">${user.industry}</p>
+    <p tabindex= "0" class="fw-bold my-0">Company size</p>
+    <p tabindex= "0" class="text-muted my-0">${user.employee} - ${user.employee2} Employee</p>
+    <p tabindex= "0" class="fw-bold my-0"> Location </p>
+    <p tabindex= "0" class="text-muted my-0">${user.address}</p>
+    <p tabindex= "0" class="fw-bold my-0">Founded</p>
+    <p tabindex= "0" class="text-muted my-0">${user.founded}</p>
+    <p tabindex= "0" class="fw-bold my-0">Specialities</p>
+    <p tabindex= "0" class="text-muted my-0">${user.specialities}</p>
+    <p tabindex= "0" class="fw-bold my-0">Website</p>
     <a class="text-primay my-0" href="${user.website}">${user.website}</a>
     <div class="card-footer my-2">
-    <button value="${user._id}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="btn-edit-company"> Change Profile </button>
+    <button value="${user._id}" class="btn text-light" style=" background-color: #344D67;"  data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="btn-edit-company"> Change Profile </button>
     <button value="${user._id}" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btn-edit-pwd"> Change Password </button>
     </div>
     </div>
@@ -1608,9 +1602,9 @@ const createProfileCompany = (user) => {
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header bg-primary">
+      <div class="modal-header" style=" background-color: #344D67;">
         <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PASSWORD</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" style="background-color:white;" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
       <form id = "edit-password-company">
@@ -1630,7 +1624,7 @@ const createProfileCompany = (user) => {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" id="editPwdButton">Save</button>
+            <button type="submit" class="btn text-light" style=" background-color: #344D67;"  id="editPwdButton">Save</button>
           </div>
           </form>
       </div>
@@ -1638,15 +1632,21 @@ const createProfileCompany = (user) => {
 </div>
 </div>
 <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-xl">
     <div class="modal-content">
-      <div class="modal-header bg-primary">
+      <div class="modal-header" style=" background-color: #344D67;">
         <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PROFILE</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" style="background-color:white;" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+      <div class="container-img" style="background-image:url('${user.image}'); width: 200px; height:200px; background-size:200px 200px; margin: 0 auto; border:2px solid grey;"> </div>
+
       <form id = "edit-profile-company">
           <div class="mb-3 row">
+          <label for="exampleInputEmail1" class="form-label">Company Logo</label>
+          <div class="col">
+            <input type="file" class="form-control  form-control-sm" id="edit-logo-company" accept=".jpg, .jpeg, .png">
+          </div>
             <label for="exampleInputEmail1" class="form-label">Name Company</label>
             <div class="col">
               <input type="text" class="form-control  form-control-sm" id="edit-username" value="${user.username}">
@@ -1685,14 +1685,10 @@ const createProfileCompany = (user) => {
             <div class="col">
               <input type="text" class="form-control  form-control-sm" id="edit-specialities"value="${user.specialities}">
             </div>
-            <label for="exampleInputEmail1" class="form-label">Company Logo</label>
-            <div class="col">
-              <input type="file" class="form-control  form-control-sm" id="edit-logo-company">
-            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" id="editSaveButton">Save</button>
+            <button type="submit" class="btn text-light" style=" background-color: #344D67;" id="editSaveButton">Save</button>
           </div>
           </form>
       </div>
@@ -1734,10 +1730,10 @@ const createDetailCompanyTemplate = (company) => {
   <div class="header-profile-company-other">
   <div class="square"></div>
     <div class="content-header-profile-company">
-    <img src="${company.image}" class="img-profile-company">
+    <img tabindex= "0" src="${company.image}" class="img-profile-company lazyload" alt="image company">
       <div class="profile-company" tabindex="0">
-        <p class="fw-bolder fs-2 ">${company.username}</p>
-        <p class="text-muted " style="font-size:12px;">${company.specialities} | ${company.address}</p>
+        <p tabindex= "0" class="fw-bolder fs-2 ">${company.username}</p>
+        <p tabindex= "0" class="text-muted " style="font-size:12px;">${company.specialities} | ${company.address}</p>
       </div>
     </div>
     <div class="footer-profile-company">
@@ -1747,21 +1743,21 @@ const createDetailCompanyTemplate = (company) => {
     </div>
   <div class="body-profile-company-other" tabindex="0">
   <div class="company-overview">
-    <p class="fw-bold"> Overview </p>
-    <p class="text-muted">${company.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+    <p tabindex= "0" class="fw-bold"> Overview </p>
+    <p tabindex= "0" class="text-muted">${company.bio.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
   </div>
-    <p class="fw-bold ">Industry</p>
-    <p class="text-muted">${company.industry}</p>
-    <p class="fw-bold ">Company size</p>
-    <p class="text-muted">${company.employee} - ${company.employee2} Employee</p>
-    <p class="fw-bold "> Location </p>
-    <p class="text-muted">${company.address}</p>
-    <p class="fw-bold ">Founded</p>
-    <p class="text-muted">${company.founded}</p>
-    <p class="fw-bold ">Specialities</p>
-    <p class="text-muted">${company.specialities}</p>
-    <p class="fw-bold">Website</p>
-    <a class="text-primay " href="${company.website}">${company.website}</a>
+    <p tabindex= "0" class="fw-bold ">Industry</p>
+    <p tabindex= "0" class="text-muted">${company.industry}</p>
+    <p tabindex= "0" class="fw-bold ">Company size</p>
+    <p tabindex= "0" class="text-muted">${company.employee} - ${company.employee2} Employee</p>
+    <p tabindex= "0" class="fw-bold "> Location </p>
+    <p tabindex= "0" class="text-muted">${company.address}</p>
+    <p tabindex= "0" class="fw-bold ">Founded</p>
+    <p tabindex= "0" class="text-muted">${company.founded}</p>
+    <p tabindex= "0" class="fw-bold ">Specialities</p>
+    <p tabindex= "0" class="text-muted">${company.specialities}</p>
+    <p tabindex= "0" class="fw-bold">Website</p>
+    <a tabindex= "0" class="text-primay " href="${company.website}">${company.website}</a>
     </div>
 </div>`;
 };
@@ -1885,11 +1881,11 @@ const createDetailCompanySkeletonTemplate = () => `
 
 const createItemJobCompanyOther = (job) => `
   <div class="container-job-other" tabindex="0">
-  <img src="${job.image}" class="job-other-img">
+  <img tabindex= "0" src="${job.image}" class="job-other-img lazyload" alt="image profile company">
     <div class="text-job-other">
-    <h5>${job.company}</h5>
-    <h6>${job.profession}</h6>
-    <p class="text-muted">${showFormattedDate(job.createdAt)}</p>
+    <h5 tabindex= "0" >${job.company}</h5>
+    <h6 tabindex= "0" >${job.profession}</h6>
+    <p tabindex= "0" class="text-muted">${showFormattedDate(job.createdAt)}</p>
     <a class="btn btn-secondary btn-sm" style="background-color: #344D67;" href="#/detailjob/${job._id}"> VISIT </a>
     </div>
   </div>

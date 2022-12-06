@@ -14,7 +14,6 @@ const assetsToCache = [
   './assetpng/login.png',
   './assetpng/loker.png',
   './assetpng/picture.png',
-  // './icons/icon.png',
   './icons/icon-48x48.png',
   './icons/icon-72x72.png',
   './icons/icon-96x96.png',
@@ -30,16 +29,13 @@ const assetsToCache = [
 ];
 
 self.addEventListener('install', (event) => {
-  console.log('Installing Service Worker ...');
   event.waitUntil(CacheHelper.cachingAppShell([...assetsToCache]));
 });
 
 self.addEventListener('activate', (event) => {
-  console.log('Activating Service Worker ...');
   event.waitUntil(CacheHelper.deleteOldCache());
 });
 
 self.addEventListener('fetch', (event) => {
-  console.log('Ini revalidatecache');
   event.respondWith(CacheHelper.revalidateCache(event.request));
 });

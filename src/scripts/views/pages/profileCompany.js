@@ -73,12 +73,81 @@ const profileCompany = {
     });
     const btnEditCompany = document.querySelector('#btn-edit-company').value;
     const inputUsername = document.querySelector('#edit-username');
+    const inputBio = document.querySelector('#edit-about');
+    const inputAddress = document.querySelector('#edit-address');
+    const inputIndustry = document.querySelector('#edit-industry');
+    const inputEmploye = document.querySelector('#edit-employee');
+    const inputEmploye2 = document.querySelector('#edit-employee2');
+    const inputFounded = document.querySelector('#edit-founded');
+    const inputWebsite = document.querySelector('#edit-website');
+    const inputSpecialities = document.querySelector('#edit-specialities');
     inputUsername.value = data.username;
+    inputBio.value = data.bio;
+    inputAddress.value = data.address;
+    inputIndustry.value = data.industry;
+    inputEmploye.value = data.employee;
+    inputEmploye2.value = data.employee2;
+    inputFounded.value = data.founded;
+    inputWebsite.value = data.website;
+    inputSpecialities.value = data.specialities;
     const formEditProfile = document.querySelector('#edit-profile-company');
+    const containerImg = document.querySelector('.container-img');
+
+    document.querySelector('#edit-logo-company').addEventListener('change', () => {
+      const reader = new FileReader();
+      reader.addEventListener('load', () => {
+        const uploaded_image = reader.result;
+        containerImg.style.backgroundImage = `url(${uploaded_image})`;
+      });
+      reader.readAsDataURL(this.files[0]);
+    });
     formEditProfile.addEventListener('submit', async (event) => {
       event.preventDefault();
       const editSaveButton = document.querySelector('#editSaveButton');
-      if (inputUsername.value === '') {
+      if (inputUsername.value === ''
+      || inputBio.value === ''
+      || inputAddress.value === ''
+      || inputIndustry.value === ''
+      || inputEmploye.value === ''
+      || inputEmploye2.value === ''
+      || inputFounded.value === ''
+      || inputWebsite.value === ''
+      || inputSpecialities.value === '') {
+        if (inputUsername.value === '') {
+          messageText.innerHTML = 'Username can\'t null';
+          inputUsername.focus();
+        } else if (inputBio.value === '') {
+          messageText.innerHTML = 'Overview can\'t null';
+          inputBio.focus();
+        } else if (inputAddress.value === '') {
+          messageText.innerHTML = 'Overview can\'t null';
+          inputAddress.focus();
+        } else if (inputEmploye.value === '') {
+          messageText.innerHTML = 'Employe range can\'t null';
+          inputEmploye.focus();
+        } else if (inputEmploye2.value === '') {
+          messageText.innerHTML = 'Employe range can\'t null';
+          inputEmploye2.focus();
+        } else if (inputFounded.value === '') {
+          messageText.innerHTML = 'Date Founded can\'t null';
+          inputFounded.focus();
+        } else if (inputWebsite.value === '') {
+          messageText.innerHTML = 'Website company can\'t null';
+          inputWebsite.focus();
+        } else if (inputSpecialities.value === '') {
+          messageText.innerHTML = 'Specialities company can\'t null';
+          inputSpecialities.focus();
+        }
+        messageText.classList.remove('text-bg-success');
+        messageTitle.classList.remove('text-success');
+        messageText.classList.add('text-bg-warning');
+        messageTitle.classList.add('text-warning');
+        messageTitle.innerHTML = 'SUCCESS';
+        message.show();
+      } else {
+        const staticBackdropModal = document.querySelector('#staticBackdrop2');
+        staticBackdropModal.classList.add('cursor-progress');
+        editSaveButton.setAttribute('disabled', '');
         const data = await User.Edit(btnEditCompany, {
           username: document.querySelector('#edit-username').value,
           bio: document.querySelector('#edit-about').value,
@@ -92,6 +161,7 @@ const profileCompany = {
           image: document.querySelector('#edit-logo-company').files[0],
         });
         if (data.error) {
+          editModalContainer.classList.remove('cursor-progress');
           messageText.classList.remove('text-bg-success');
           messageTitle.classList.remove('text-success');
           messageText.classList.add('text-bg-warning');
@@ -99,34 +169,17 @@ const profileCompany = {
           messageText.innerHTML = 'Username can\'t null';
           messageTitle.innerHTML = 'WARNING';
           message.show();
+          console.log(data.error);
         } else {
-          editSaveButton.setAttribute('disabled', '');
-          const staticBackdropModal = document.querySelector('#staticBackdrop2');
-          staticBackdropModal.classList.add('cursor-progress');
-          const data = await User.Edit(btnEditCompany, {
-            username: inputUsername.value,
-            image: document.querySelector('#edit-logo-company').files[0],
-          });
-          if (data.error) {
-            staticBackdropModal.classList.remove('cursor-progress');
-            editSaveButton.removeAttribute('disabled');
-            messageText.classList.remove('text-bg-success');
-            messageTitle.classList.remove('text-success');
-            messageText.classList.add('text-bg-warning');
-            messageTitle.classList.add('text-warning');
-            messageText.innerHTML = data.error;
-            messageTitle.innerHTML = 'WARNING';
-            message.show();
-          } else {
-            messageText.classList.remove('text-bg-warning');
-            messageTitle.classList.remove('text-warning');
-            messageText.classList.add('text-bg-success');
-            messageTitle.classList.add('text-success');
-            messageText.innerHTML = data.data.message;
-            messageTitle.innerHTML = 'SUCCESS';
-            message.show();
-            setTimeout(() => document.location.reload(), 1000);
-          }
+          messageText.classList.remove('text-bg-warning');
+          messageTitle.classList.remove('text-warning');
+          messageText.classList.add('text-bg-success');
+          messageTitle.classList.add('text-success');
+          messageText.innerHTML = data.data.message;
+          messageTitle.innerHTML = 'SUCCESS';
+          message.show();
+          console.log(data);
+          setTimeout(() => document.location.reload(), 1000);
         }
       }
     });
