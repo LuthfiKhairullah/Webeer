@@ -56,7 +56,7 @@ const DetailProfilePage = {
     }
     lengthReply.innerHTML = userDiscussion.length;
     const lenDiscussion = userDiscussion.length;
-    const lenReply = userReply.length;
+    const lenReply = countReply.innerHTML;
     const sumDisRep = lenDiscussion + lenReply;
     const grade = document.querySelector('.grade-user');
     if (sumDisRep >= 0 && sumDisRep <= 20) {
