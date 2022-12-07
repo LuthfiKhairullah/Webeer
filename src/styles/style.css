@@ -6,6 +6,7 @@
     box-sizing: border-box;
     /* font-family: "Poppins"; */
 }
+
 /* 
 .skip-link {
     position: absolute;
@@ -22,21 +23,22 @@
 .skip-link:focus {
     top: 0;
 } */
-.skip-link{
+.skip-link {
     position: absolute;
     top: -100%;
     left: -100%;
     padding: 1rem;
-    background-color:#344D67;
-    color:white;
+    background-color: #344D67;
+    color: white;
     text-decoration: none;
     z-index: 100;
     font-size: 1.2rem;
 }
+
 .skip-link:focus {
     top: 0;
     left: 0;
-  }
+}
 
 /* main {
     height: 700px;
@@ -49,30 +51,40 @@ main,
 html {
     background-color: #f3f2ef;
 }
+
 input[type="file"] {
-    display:none;
-} 
-#label-image{
+    display: none;
+}
+
+#label-image {
     background-color: #dddddd;
     border-radius: 5px;
     border: 1px solid #cccccc;
     padding: 8px;
 }
-#label-image:hover{
+
+#label-image:hover {
     cursor: pointer;
-    color:white;
-    background-color:#344D67;
+    color: white;
+    background-color: #344D67;
 
 }
+
 #navbarNav .nav-link.actived {
     background-color: #1a2633 !important;
     border-radius: 15px;
     font-weight: bolder;
 }
-a,button,input,select,textarea{
+
+a,
+button,
+input,
+select,
+textarea {
     min-width: 44px;
     min-height: 44px;
 }
+
 .navbar {
     position: fixed;
     background-color: #344D67;
@@ -132,12 +144,16 @@ code.code-discussion-item {
 #footer .contact-person,
 #footer .footer-features,
 #footer .footer-about {
+    background-color: transparent;
+    border-color: transparent;
     text-decoration: none;
     color: white;
+    text-align: start;
 }
 
 #footer li:hover,
-#footer .contact-person:hover,
+#footer .btn.contact-person:hover,
+#footer .btn.footer-features:hover,
 #footer .footer-features:hover,
 #footer .footer-about:hover {
     background-color: white;

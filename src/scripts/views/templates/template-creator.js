@@ -71,6 +71,7 @@ const createDetailJobPageTemplate = (jobs) => `
 const createItemJob = (jobs) => `
 <div tabindex= "0" class = "card-item" tabindex="0">
 <img tabindex= "0" src="${jobs.image}" class="card-image lazyload" alt="job image">
+<p tabindex= "0">${jobs.details.level}</p>
 <h6 tabindex= "0" class="fw-bold fs-5">${jobs.company}</h6>
 <h6 tabindex= "0" class="fs-5">${jobs.profession}</h6>
 <p tabindex= "0" class="text-muted fs-6 fst-italic">${showFormattedDate(jobs.updatedAt)}</p>
@@ -386,7 +387,7 @@ const createDiscussionDetailTemplate = (discussion) => {
           <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn p-0 mx-2 border-0" title="Edit Discussion Button">
             <i class="fa fa-pencil-square-o fa-2x" style="color: #344D67;" aria-label="edit this discussion"></i>
           </button>
-          <button type="button" class="btn p-0 mx-2 border-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop" title="Delete Discussion Button">
+          <button type="button" class="btn p-0 mx-2 btn-secondary border-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop" title="Delete Discussion Button">
             <i class="fa fa-trash-o fa-2x" style="color: #880014;" aria-label="delete this discussion"></i>
           </button>
         </div>
@@ -537,7 +538,7 @@ const createDiscussionReplyTemplate = (discussion) => {
 
 const createAddDiscussionButtonTemplate = () => `
   <!--<button aria-label="Add Discussion" class="add btn bg-dark text-center text-white border-0 fw-bold" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><span>+</span></button>-->
-  <button type="button" aria-label="Add Discussion Button" title="Add Discussion Button" class="adddiscuss btn btn-secondary bg-white d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#modal-add-discussion" tabindex="0"><i class="fa fa-plus-circle" aria-hidden="true" style="color: #344D67"></i></button>
+  <button type="button" aria-label="Add Discussion Button" title="Add Discussion Button" class="adddiscuss btn btn-secondary bg-white d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#modal-add-discussion" tabindex="0"><i class="fa fa-plus-circle" aria-hidden="true" style="color: #344D67; min-width=44px; min-height=44px;"></i></button>
 `;
 
 const createAddDiscussionTemplate = () => `
@@ -792,7 +793,7 @@ const createProfileTemplate = (user) => {
     <div class="edit-profile" style="flex-wrap:wrap; justify-content:center;">
     <div class="header-edit-profile" style="position:relative;">
     <div class="square"></div>
-    <div class="container-img-profile" style="background-image:url('${user.image}'); width: 200px; height:200px; background-size:200px 200px; position:relative; z-index:1; margin:0 auto; border:5px solid white; top:10px;"></div>
+    <div class="container-img" style="background-image:url('${user.image}'); width: 200px; height:200px; background-size:200px 200px; position:relative; z-index:1; margin:0 auto; border:5px solid white; top:10px;"></div>
     </div>
             <div class="mb-4" style="display:flex; justify-content:center; margin-top:20px;">
             <label id="label-image">
@@ -1083,6 +1084,9 @@ const createProfileTemplate = (user) => {
         <div class="modal-body">
           <div class="container-change-page">
             <div class="change-page">
+              <div class="header-change-page">
+                <img class="lazyload" src="./assetpng/hero-changepwd.png">
+              </div>
               <div class="mb-3">
                 <input type="password"  minlength="8" maxlength="16" class="form-control " id="oldPwd" placeholder="Enter your old password" required>
               </div>
@@ -1252,7 +1256,7 @@ const createNavbarTemplateBeforeLogin = () => `
         <a class="nav-link text-light  mx-1" href="#/about">About</a>
       </li>
       <li class="nav-item">
-        <button class="btn mx-1 loginNav btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#FFE9B1; width:80px;">Login</button>
+        <button class="btn  mx-1 loginNav" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#FFE9B1; width:80px;">Login</button>
       </li>
       <li class="nav-item">
       <a class="btn btn-light mx-1" href="#/register">Register</a>
