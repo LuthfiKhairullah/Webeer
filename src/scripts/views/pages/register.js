@@ -48,7 +48,7 @@ const Register = {
                   <div class="input-group mb-3 password-container">
                       <span class="input-group-text text-light" style="background-color:#344D67; border:none;"><i class="fa fa-lock" aria-hidden="true"></i></span>
                         <div class="form-floating">
-                          <input style="border:none;" type="password" class="form-control" id="pwdUserRegister" placeholder="Enter your password" required>
+                          <input style="border:none;" type="password"  minlength="8" maxlength="16" class="form-control" id="pwdUserRegister" placeholder="Enter your password" required>
                           <label for="pwdUser">Password</label>
                         </div>
                   </div>

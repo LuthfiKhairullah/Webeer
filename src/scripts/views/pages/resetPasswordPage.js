@@ -10,14 +10,14 @@ const ResetPassword = {
       <div class="input-group mb-3 password-container">
       <span class="input-group-text text-light" style="background-color:#344D67;"><i class="fa fa-lock" aria-hidden="true"></i></span>
         <div class="form-floating">
-          <input type="password" class="form-control" id="inputPassword" placeholder="Enter your password" required>
+          <input type="password"  minlength="8" maxlength="16" class="form-control" id="inputPassword" placeholder="Enter your password" required>
           <label for="pwdUser"> New Password</label>
         </div>
       </div>
   <div class="input-group mb-3 password-container">
   <span class="input-group-text text-light" style="background-color:#344D67;"><i class="fa fa-lock" aria-hidden="true"></i></span>
     <div class="form-floating">
-      <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="Enter your password" required>
+      <input type="password"  minlength="8" maxlength="16" class="form-control" id="inputPasswordConfirm" placeholder="Enter your password" required>
       <label for="pwdUser">Confirm Password</label>
     </div>
   </div>
