@@ -40,10 +40,10 @@ class Footer extends HTMLElement {
     if (getToken === null) {
       linkto.innerHTML = `
         <div class="w-100">
-          <a class="d-block"><button class="btn footer-features w-100 text-start" data-bs-toggle="modal" data-bs-target="#exampleModal"><li>Forums</li></button></a>
+          <a class="d-block" tabindex="0"><button tabindex="-1" class="btn footer-features w-100 text-start" data-bs-toggle="modal" data-bs-target="#exampleModal"><li>Forums</li></button></a>
         </div>
         <div class="w-100">
-          <a class="d-block"><button class="btn footer-features w-100 text-start" data-bs-toggle="modal" data-bs-target="#exampleModal"><li>Jobs</li></button></a>
+          <a class="d-block" tabindex="0"><button tabindex="-1" class="btn footer-features w-100 text-start" data-bs-toggle="modal" data-bs-target="#exampleModal"><li>Jobs</li></button></a>
         </div>
       `;
       localStorage.setItem('login', 'false');
@@ -56,10 +56,10 @@ class Footer extends HTMLElement {
     } else {
       linkto.innerHTML = `
         <div class="w-100">
-          <a class="d-block"><button class="footer-features w-100" data-bs-toggle="modal" data-bs-target="#exampleModal"><li>Forums</li></button></a>
+          <a class="d-block" tabindex="0"><button tabindex="-1" class="footer-features w-100" data-bs-toggle="modal" data-bs-target="#exampleModal"><li>Forums</li></button></a>
         </div>
         <div class="w-100">
-          <a class="d-block"><button class="footer-features w-100" data-bs-toggle="modal" data-bs-target="#exampleModal"><li>Jobs</li></button></a>
+          <a class="d-block" tabindex="0"><button tabindex="-1" class="footer-features w-100" data-bs-toggle="modal" data-bs-target="#exampleModal"><li>Jobs</li></button></a>
         </div>
       `;
       localStorage.clear();

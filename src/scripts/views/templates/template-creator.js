@@ -387,7 +387,7 @@ const createDiscussionDetailTemplate = (discussion) => {
           <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn p-0 mx-2 border-0" title="Edit Discussion Button">
             <i class="fa fa-pencil-square-o fa-2x" style="color: #344D67;" aria-label="edit this discussion"></i>
           </button>
-          <button type="button" class="btn p-0 mx-2 btn-secondary border-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop" title="Delete Discussion Button">
+          <button type="button" class="btn p-0 mx-2 border-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop" title="Delete Discussion Button">
             <i class="fa fa-trash-o fa-2x" style="color: #880014;" aria-label="delete this discussion"></i>
           </button>
         </div>
@@ -1257,7 +1257,7 @@ const createNavbarTemplateBeforeLogin = () => `
         <a class="nav-link text-light  mx-1" href="#/about">About</a>
       </li>
       <li class="nav-item">
-        <button class="btn  mx-1 loginNav" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#FFE9B1; width:80px;">Login</button>
+        <button class="btn btn-light mx-1 loginNav" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#FFE9B1; width:80px;">Login</button>
       </li>
       <li class="nav-item">
       <a class="btn btn-light mx-1" href="#/register" style="width:80px;">Register</a>
