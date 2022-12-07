@@ -25,6 +25,7 @@ const ResetPassword = {
     </form>
     </div>
     <footer-lite class="p-3 footer-lite-profile" style="background-color:#f3f2ef;"></footer-lite>
+    <login-modal></login-modal>
     <message-container></message-container>`;
   },
   async afterRender() {
@@ -56,7 +57,7 @@ const ResetPassword = {
         messageText.innerHTML = reset.message;
         messageTitle.innerHTML = 'SUCCESS';
         message.show();
-        setTimeout(() => document.location = '#/login', 1500);
+        setTimeout(() => document.location = '#/', 1500);
       }
     });
   },

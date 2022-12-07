@@ -10,6 +10,8 @@ const AboutPage = {
       document.location = '#/dashboard';
       localStorage.setItem('login', 'true');
       window.reload();
+    } else {
+      document.location = '#/about';
     }
     return `
     <login-modal></login-modal>
