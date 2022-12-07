@@ -40,7 +40,7 @@ class Login extends HTMLElement {
                 </div>
                 <button type="submit" class="btn mb-3 w-100 text-light p-3" style="background-color:#344D67;">Login</button>
                 </form>
-                <a href="#/resetpwd" id="forget-pwd"><button class="text-primary" data-bs-dismiss="modal" style="background-color: transparent; border: transparent; text-decoration: underline;"> Forget Password </button></a>
+                <a href="#/resetpwd" id="forget-pwd"><button class="text-primary" tabindex="-1" data-bs-dismiss="modal" style="background-color: transparent; border: transparent; text-decoration: underline;"> Forget Password </button></a>
             </div>
         </div>
     </div>

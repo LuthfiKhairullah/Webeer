@@ -24,6 +24,11 @@ class Main {
     const page = routes[url];
     this._content.innerHTML = await page.render();
     await page.afterRender();
+    const skiplinkElement = document.querySelector('.skip-link');
+    skiplinkElement.addEventListener('click', (event) => {
+      event.preventDefault();
+      document.querySelector('#maincontent').focus();
+    });
   }
 }
 

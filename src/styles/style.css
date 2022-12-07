@@ -7,6 +7,22 @@
     /* font-family: "Poppins"; */
 }
 
+.skip-link {
+    position: absolute;
+    top: -44px;
+    left: 0;
+    min-width: 44px;
+    min-height: 44px;
+    background-color: #bf1722;
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
 /* main {
     height: 700px;
     background: linear-gradient(to left, #B2C4F1, #fff);
