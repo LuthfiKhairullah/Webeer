@@ -16,23 +16,30 @@ input[type=text] {
 #form-register{
     padding: 10px;
 }
-.container-login-main{
-    margin-top: 80px;
-}
 #container-register {
     display: flex;
     justify-content: center;
 }
-
+.container-register-main img{
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+.container-register-main{
+    max-width: 800px;
+    margin-top: 60px;
+}
 .container-login-main img {
-    width: 350px;
-    height: 350px;
+    width: 250px;
+    height: 250px;
 }
 
 #submit {
     margin-top: 15px;
 }
-
+.container-reset-main{
+    max-width: 800px;
+}
 @media screen and (max-width:700px) {
 
     #container-login,
@@ -44,6 +51,7 @@ input[type=text] {
 @media screen and (max-width:500px) {
     .container-login-main img {
         width: 200px;
+        height: 200px;
     }
 
     .hero-register {
@@ -59,7 +67,7 @@ input[type=text] {
 .container-resetpwd{
     max-width: 800px;
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 80px;
     height: 700px;
     padding: 5px;
 }

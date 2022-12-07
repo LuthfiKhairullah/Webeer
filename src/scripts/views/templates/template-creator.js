@@ -794,12 +794,11 @@ const createProfileTemplate = (user) => {
     <div class="square"></div>
     <div class="container-img-profile" style="background-image:url('${user.image}'); width: 200px; height:200px; background-size:200px 200px; position:relative; z-index:1; margin:0 auto; border:5px solid white; top:10px;"></div>
     </div>
-            <div class="mb-4">
-            <h5>Profile Picture</h5>
+            <div class="mb-4" style="display:flex; justify-content:center; margin-top:20px;">
             <label id="label-image">
             <input class="form-control" type="file" id="edit-photo"  accept=".jpg, .jpeg, .png"><span> Select a file</span>
             </label>
-          </div>
+            </div>
             <div class="mb-4">
               <h5>Username</h5>
               <input type="text" class="form-control" id="edit-username" placeholder="Type your username" value="${user.username}">
@@ -1256,7 +1255,7 @@ const createNavbarTemplateBeforeLogin = () => `
         <button class="btn mx-1 loginNav btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#FFE9B1; width:80px;">Login</button>
       </li>
       <li class="nav-item">
-      <a class="btn btn-light mx-1" href="#/register" style="width:80px;">Register</a>
+      <a class="btn btn-light mx-1" href="#/register">Register</a>
     </li>
     </ul>
   </div>
@@ -1325,8 +1324,8 @@ ${createAddDiscussionButtonTemplate()}
 `;
 
 const createSearchDiscussionEmpty = () => `
-<div class="container-fluid p-2" style="border:3px solid #ffc107; background-color:#FFF56D;">
-<h6 class="fw-bold p-2"> Oops, Discussion not found </h6>
+<div class="container-fluid p-2 bg-light">
+<h6 class="p-2"> Oops, Discussion not found </h6>
 </div>
 ${createAddDiscussionButtonTemplate()}
 `;
@@ -1442,8 +1441,7 @@ const createFormEditJob = (job) => `
 <div class="container-img" style="background-image:url('${job.image}'); width: 200px; height:200px; background-size:200px 200px; margin: 0 auto; border:2px solid grey;"> </div>
 <form id="form-edit-job">
 <div class="mb-3 row">
-  <label for="exampleInputEmail1" class="col-form-label"><small>Company logo</small></label>
-    <div class="col">
+    <div class="col" style="display:flex; justify-content:center; margin-top:10px;">
     <label id="label-image">
       <input type="file" class="form-control  " id="image-job" accept=".jpg, .jpeg, .png" ><span> Select a file</span>
       </label>
@@ -1643,8 +1641,7 @@ const createProfileCompany = (user) => {
           <div class="container-img" style="background-image:url('${user.image}'); width: 200px; height:200px; background-size:200px 200px; margin: 0 auto; border:2px solid grey;"> </div>
 
           <div class="mb-3 row">
-            <label for="exampleInputEmail1" class="form-label">Company Logo</label>
-            <div class="col">
+            <div class="col" style="display:flex; justify-content:center; margin-top:20px">
             <label id = "label-image">
               <input type="file" class="form-control  " id="edit-logo-company" accept=".jpg, .jpeg, .png"><span> Select a file</span>
               </label>
