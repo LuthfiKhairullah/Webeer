@@ -3,6 +3,20 @@ import User from '../../data/loginSource';
 
 const Register = {
   async render() {
+    const getToken = localStorage.getItem('token');
+    const getRole = localStorage.getItem('role');
+    if (getToken !== null && getRole.replaceAll('"', '') === 'Company') {
+      document.location = '#/dashboard';
+      localStorage.setItem('login', 'true');
+      window.reload();
+    } else if (getToken !== null && getRole.replaceAll('"', '') === 'Programmer') {
+      document.location = '#/forums';
+      localStorage.setItem('login', 'true');
+      window.reload();
+    } else {
+      document.location = '#/register';
+      localStorage.setItem('login', 'false');
+    }
     return `
     <login-modal></login-modal>
          <div id="container-register">
@@ -93,7 +107,7 @@ const Register = {
         messageTitle.classList.remove('text-warning');
         messageText.classList.add('text-bg-success');
         messageTitle.classList.add('text-success');
-        messageText.innerHTML = 'Selamat registrasi anda berhasil, silahkan verifikasi';
+        messageText.innerHTML = 'Congratulations, your registration was successful, please verify';
         messageTitle.innerHTML = 'SUCCESS';
         message.show();
         localStorage.setItem('email', JSON.stringify(data.email));

@@ -110,7 +110,7 @@ const addJobPage = {
                 <input type="file" class="form-control  form-control-md" id="image-job" >
                 </div>
              </div>
-           <button class="btn btn-primary" id="submitJobButton"> Submit </button>
+           <button class="btn btn-secondary" style="background-color: #344D67" id="submitJobButton"> Submit </button>
         </form>
     </div>
     </div>

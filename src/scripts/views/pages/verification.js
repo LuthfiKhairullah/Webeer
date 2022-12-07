@@ -15,6 +15,7 @@ const verificationPage = {
             <button class="btn w-100 text-light" id="submit" style="background-color:#344D67;">Submit</button>
           </form>
     </div>
+    <login-modal></login-modal>
     <message-container></message-container>
     <footer-lite class="p-3 footer-lite-profile" style="background-color:#f3f2ef;"></footer-lite>
     `;
@@ -93,7 +94,7 @@ const verificationPage = {
         message.show();
         localStorage.removeItem('idUser');
         localStorage.removeItem('email');
-        setTimeout(() => document.location = '#/login', 1500);
+        setTimeout(() => document.location = '#/register', 1500);
       }
     });
   },
