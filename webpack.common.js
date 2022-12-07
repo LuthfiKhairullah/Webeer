@@ -6,6 +6,7 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
 const imageminPngquant = require('imagemin-pngquant');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -89,6 +90,17 @@ module.exports = {
           progressive: true,
         }),
       ],
+    }),
+    new ImageminWebpWebpackPlugin({
+      config: [
+        {
+          test: /\.(jpe?g|png)/,
+          options: {
+            quality: 50,
+          },
+        },
+      ],
+      overrideExtension: true,
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',

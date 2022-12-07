@@ -92,7 +92,7 @@ const profileCompany = {
     inputSpecialities.value = data.specialities;
     const formEditProfile = document.querySelector('#edit-profile-company');
     const imageInput = document.querySelector('#edit-logo-company');
-    imageInput.addEventListener('change', function () {
+    imageInput.addEventListener('change', () => {
       const reader = new FileReader();
       reader.addEventListener('load', () => {
         const uploaded = reader.result;
