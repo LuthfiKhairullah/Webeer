@@ -104,14 +104,14 @@ const listJobPage = {
             times.setAttribute('selected', '');
           }
         });
-        const containerImg = document.querySelector('.container-img');
-        document.querySelector('#image-job').addEventListener('change', () => {
+        const imageInput = document.querySelector('#image-job');
+        imageInput.addEventListener('change', function () {
           const reader = new FileReader();
           reader.addEventListener('load', () => {
-            const uploaded_image = reader.result;
-            containerImg.style.backgroundImage = `url(${uploaded_image})`;
+            const uploaded = reader.result;
+            document.querySelector('.container-img').style.backgroundImage = `url(${uploaded})`;
           });
-          console.log(reader.readAsDataURL(this.files[0]));
+          reader.readAsDataURL(this.files[0]);
         });
         formEdit.addEventListener('submit', async (event) => {
           event.preventDefault();
