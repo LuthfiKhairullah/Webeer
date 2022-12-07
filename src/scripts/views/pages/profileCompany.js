@@ -91,13 +91,12 @@ const profileCompany = {
     inputWebsite.value = data.website;
     inputSpecialities.value = data.specialities;
     const formEditProfile = document.querySelector('#edit-profile-company');
-    const containerImg = document.querySelector('.container-img');
-
-    document.querySelector('#edit-logo-company').addEventListener('change', () => {
+    const imageInput = document.querySelector('#edit-logo-company');
+    imageInput.addEventListener('change', function () {
       const reader = new FileReader();
       reader.addEventListener('load', () => {
-        const uploaded_image = reader.result;
-        containerImg.style.backgroundImage = `url(${uploaded_image})`;
+        const uploaded = reader.result;
+        document.querySelector('.container-img').style.backgroundImage = `url(${uploaded})`;
       });
       reader.readAsDataURL(this.files[0]);
     });

@@ -135,13 +135,12 @@ const ProfilePage = {
         country.setAttribute('selected', '');
       }
     });
-    const containerImg = document.querySelector('.container-img');
-
-    document.querySelector('#edit-photo').addEventListener('change', () => {
+    const imageInput = document.querySelector('#edit-photo');
+    imageInput.addEventListener('change', function () {
       const reader = new FileReader();
       reader.addEventListener('load', () => {
-        const uploaded_image = reader.result;
-        containerImg.style.backgroundImage = `url(${uploaded_image})`;
+        const uploaded = reader.result;
+        document.querySelector('.container-img-profile').style.backgroundImage = `url(${uploaded})`;
       });
       reader.readAsDataURL(this.files[0]);
     });
