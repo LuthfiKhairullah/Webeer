@@ -83,7 +83,7 @@ const jobsPage = {
         } else {
           jobItemContainer.innerHTML = `<div class = "card-item text-center">
           <i class="fa fa-exclamation-triangle fa-4x my-5 text-secondary" aria-hidden="true"></i>
-          <p class="fw-bold fs-6 text-secondary"> Not Found </p>
+          <p class="fs-6 text-secondary"> Job vacancies not found</p>
           </div>`;
         }
       } else {
