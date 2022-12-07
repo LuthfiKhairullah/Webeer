@@ -62,7 +62,7 @@ const createDetailJobPageTemplate = (jobs) => `
     </div>
 <p tabindex="0"  class="fw-bold my-3"> Qualifications :</p>
 <p tabindex="0"  class="mx-3">${jobs.details.qualification.replace(/\n/g, '<br />')}</p>
-<a tabindex="0" href="${jobs.details.link}" class="btn btn-secondary" style="background-color: #344D67">Apply</a>
+<a tabindex="0" href="${jobs.details.link}" class="btn btn-secondary" style="background-color: #344D67" target="_blank">Apply</a>
 <a tabindex="0" href="#/profilecompany/${jobs.companyid}" class="btn btn-secondary">Profile Company</a>
 </div>
 </div>
@@ -114,11 +114,11 @@ const createDetailJob = (detail) => `
   </div>
   <div class="kualifikasi-detail">
   <p tabindex= "0" class="fw-bold fs-6">Profession Description</p>
-  <p tabindex= "0" class="fs-6">${detail.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}}</p>
+  <p tabindex= "0" class="fs-6">${detail.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
   <h6 tabindex= "0" class=" fw-bold fs-6">Qualifications</h6>
   <p tabindex= "0" class="fs-6">${detail.details.qualification.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
   </div>
-  <a href="${detail.details.link}"><button type="button" class="detail-link btn btn-secondary btn-sm" style="background-color: #344D67">Apply</button></a>
+  <a href="${detail.details.link}" target="_blank"><button type="button" class="detail-link btn btn-secondary btn-sm" style="background-color: #344D67">Apply</button></a>
 </div>
 `;
 
@@ -1757,7 +1757,7 @@ const createDetailCompanyTemplate = (company) => {
     <p tabindex= "0" class="fw-bold ">Specialities</p>
     <p tabindex= "0" class="text-muted">${company.specialities}</p>
     <p tabindex= "0" class="fw-bold">Website</p>
-    <a tabindex= "0" class="text-primay " href="${company.website}">${company.website}</a>
+    <a tabindex= "0" class="text-primay " href="${company.website}" target="_blank">${company.website}</a>
     </div>
 </div>`;
 };

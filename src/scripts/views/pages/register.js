@@ -107,7 +107,7 @@ const Register = {
         messageTitle.classList.remove('text-warning');
         messageText.classList.add('text-bg-success');
         messageTitle.classList.add('text-success');
-        messageText.innerHTML = 'Selamat registrasi anda berhasil, silahkan verifikasi';
+        messageText.innerHTML = 'Congratulations, your registration was successful, please verify';
         messageTitle.innerHTML = 'SUCCESS';
         message.show();
         localStorage.setItem('email', JSON.stringify(data.email));
