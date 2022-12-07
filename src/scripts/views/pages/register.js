@@ -20,7 +20,7 @@ const Register = {
     return `
     <login-modal></login-modal>
          <div id="container-register">
-          <div class ="container-login-main" id="card-login">
+          <div class ="container-register-main" id="card-login">
               <div>
               <picture>
               <source media="(max-width:600px)" srcset="./assetpng/hero-login-small.png">
@@ -30,23 +30,23 @@ const Register = {
             <div>  
             <p tabindex= "0">You already have an account? <span><button class="text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: transparent; border: transparent; text-decoration: underline;">Sign in</button></span> </p>
             <form id="form-register">
-              <h2 class="fw-bolder">REGISTER</h2>
+              <h2 class="fw-bolder text-center">REGISTER</h2>
                   <div class="input-group mb-3">
-                    <span class="input-group-text text-light" style="background-color:#344D67; border:none;"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+                    <span class="input-group-text text-light" style="background-color:#344D67; border:none; width:40px;"><i class="fa fa-user-o" aria-hidden="true"></i></span>
                     <div class="form-floating">
                       <input style="border:none;" type="text" class="form-control form" id="UsernameRegister" placeholder="Enter your username" required>
                       <label for="Username">Username</label>
                     </div>
                   </div>
                   <div class="input-group mb-3">
-                    <span class="input-group-text text-light" style="background-color:#344D67; border:none;"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                    <span class="input-group-text text-light" style="background-color:#344D67; border:none; width:40px;"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
                       <div class="form-floating">
                         <input style="border:none;" type="email" class="form-control" id="emailUserRegister" placeholder="Enter your email" required>
                         <label for="emailUser">Email Address</label>
                       </div>
                   </div>
                   <div class="input-group mb-3 password-container">
-                      <span class="input-group-text text-light" style="background-color:#344D67; border:none;"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                      <span class="input-group-text text-light" style="background-color:#344D67; border:none; width:40px;"><i class="fa fa-lock" aria-hidden="true"></i></span>
                         <div class="form-floating">
                           <input style="border:none;" type="password"  minlength="8" maxlength="16" class="form-control" id="pwdUserRegister" placeholder="Enter your password" required>
                           <label for="pwdUser">Password</label>
@@ -62,7 +62,6 @@ const Register = {
               </div>
             </div>
           </div>
-          <login-modal></login-modal>
          <message-container></message-container>
          <footer-lite class="p-3 footer-lite-profile" style="background-color:#f3f2ef;"></footer-lite>
           `;
