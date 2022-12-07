@@ -1,5 +1,6 @@
 import { Toast } from 'bootstrap/dist/js/bootstrap.bundle';
 import JobSource from '../../data/jobSource';
+import User from '../../data/loginSource';
 
 const addJobPage = {
   async render() {
@@ -118,6 +119,8 @@ const addJobPage = {
   },
 
   async afterRender() {
+    const data = await User.getUser();
+    console.log(data);
     const messageText = document.querySelector('.toast-body');
     const messageTitle = document.querySelector('.toast-title');
     const messageContainer = document.getElementById('liveToast');
@@ -128,6 +131,18 @@ const addJobPage = {
     const place = document.querySelector('#place-job');
     const companyContainer = document.querySelector('.container-company-add');
     const submitJobButton = document.querySelector('#submitJobButton');
+    const inputCompany = document.querySelector('#company-job');
+    const inputProfession = document.querySelector('#profession-job');
+    const inputAddress = document.querySelector('#address-job');
+    const inputDescriptionCompany = document.querySelector('#description-job');
+    const inputDescriptionProfession = document.querySelector('#descriptionProfession-job');
+    const inputSalary = document.querySelector('#salary-job');
+    const inputSalary2 = document.querySelector('#salary-job2');
+    const inputLink = document.querySelector('#link-job');
+    const inputQualification = document.querySelector('#qualification-job');
+    const inputImage = document.querySelector('#image-job');
+    inputCompany.value = data.username;
+    inputDescriptionCompany.value = data.bio;
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       submitJobButton.setAttribute('disabled', '');
@@ -135,16 +150,6 @@ const addJobPage = {
       const getLevel = level.value;
       const getTime = time.value;
       const getPlace = place.value;
-      const inputCompany = document.querySelector('#company-job');
-      const inputProfession = document.querySelector('#profession-job');
-      const inputAddress = document.querySelector('#address-job');
-      const inputDescriptionCompany = document.querySelector('#description-job');
-      const inputDescriptionProfession = document.querySelector('#descriptionProfession-job');
-      const inputSalary = document.querySelector('#salary-job');
-      const inputSalary2 = document.querySelector('#salary-job2');
-      const inputLink = document.querySelector('#link-job');
-      const inputQualification = document.querySelector('#qualification-job');
-      const inputImage = document.querySelector('#image-job');
       if (inputCompany.value === ''
            || inputProfession.value === ''
            || inputAddress.value === ''

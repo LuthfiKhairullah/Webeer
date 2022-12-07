@@ -71,7 +71,6 @@ const createDetailJobPageTemplate = (jobs) => `
 const createItemJob = (jobs) => `
 <div tabindex= "0" class = "card-item" tabindex="0">
 <img tabindex= "0" src="${jobs.image}" class="card-image lazyload" alt="job image">
-<p tabindex= "0">${jobs.details.level}</p>
 <h6 tabindex= "0" class="fw-bold fs-5">${jobs.company}</h6>
 <h6 tabindex= "0" class="fs-5">${jobs.profession}</h6>
 <p tabindex= "0" class="text-muted fs-6 fst-italic">${showFormattedDate(jobs.updatedAt)}</p>
@@ -793,7 +792,7 @@ const createProfileTemplate = (user) => {
     <div class="edit-profile" style="flex-wrap:wrap; justify-content:center;">
     <div class="header-edit-profile" style="position:relative;">
     <div class="square"></div>
-    <div class="container-img" style="background-image:url('${user.image}'); width: 200px; height:200px; background-size:200px 200px; position:relative; z-index:1; margin:0 auto; border:5px solid white; top:10px;"></div>
+    <div class="container-img-profile" style="background-image:url('${user.image}'); width: 200px; height:200px; background-size:200px 200px; position:relative; z-index:1; margin:0 auto; border:5px solid white; top:10px;"></div>
     </div>
             <div class="mb-4">
             <h5>Profile Picture</h5>
@@ -1083,9 +1082,6 @@ const createProfileTemplate = (user) => {
         <div class="modal-body">
           <div class="container-change-page">
             <div class="change-page">
-              <div class="header-change-page">
-                <img class="lazyload" src="./asset/hero-changepwd.png">
-              </div>
               <div class="mb-3">
                 <input type="password" class="form-control form-control-lg" id="oldPwd" placeholder="Enter your old password" required>
               </div>
