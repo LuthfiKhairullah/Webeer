@@ -370,7 +370,7 @@ const createDiscussionDetailTemplate = (discussion) => {
     .join('Dont Delete this~')
     .split('Dont Delete this~');
   for (let i = 0; i < discussionDetail.length; i++) {
-    if (i % 2 === 0) { discussionDetail[i] = `<p class="text-justify border-top border-bottom my-lg-2">${discussionDetail[i]}</p>`; } else { discussionDetail[i] = `<div class="bg-light"><pre><code class="text-break">${discussionDetail[i]}</code></pre></div>`; }
+    if (i % 2 === 0) { discussionDetail[i] = `<p class="text-justify border-top border-bottom my-lg-2" tabindex="0">${discussionDetail[i]}</p>`; } else { discussionDetail[i] = `<div class="bg-light" tabindex="0"><pre><code class="text-break">${discussionDetail[i]}</code></pre></div>`; }
   }
   return `
     <div class="container bg-white padding "> 
@@ -387,7 +387,7 @@ const createDiscussionDetailTemplate = (discussion) => {
           <button type="button" data-bs-toggle="modal" data-bs-target="#modal-edit" class="btn p-0 mx-2 border-0" title="Edit Discussion Button">
             <i class="fa fa-pencil-square-o fa-2x" style="color: #344D67;" aria-label="edit this discussion"></i>
           </button>
-          <button type="button" class="btn p-0 mx-2 border-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop" title="Delete Discussion Button">
+          <button type="button" class="btn p-0 mx-2 btn-secondary border-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop" title="Delete Discussion Button">
             <i class="fa fa-trash-o fa-2x" style="color: #880014;" aria-label="delete this discussion"></i>
           </button>
         </div>
@@ -1084,7 +1084,7 @@ const createProfileTemplate = (user) => {
           <div class="container-change-page">
             <div class="change-page">
               <div class="header-change-page">
-                <img class="lazyload" src="./asset/hero-changepwd.png">
+                <img class="lazyload" src="./assetpng/hero-changepwd.png">
               </div>
               <div class="mb-3">
                 <input type="password" class="form-control form-control-lg" id="oldPwd" placeholder="Enter your old password" required>
@@ -1388,7 +1388,7 @@ const createCardJobCompany = (job) => `
     <p tabindex="0">${truncateString(job?.details.descriptionCompany, 200)}
   </div>
   <div class ="card-footer" style="border-top:1px solid gray; padding:5px;">
-    <button value="${job._id}" class="btn text-light" style=" background-color: #344D67;"  data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit-job">Edit</button>
+    <button value="${job._id}" class="btn btn-secondary" style=" background-color: #344D67;"  data-bs-toggle="modal" data-bs-target="#exampleModal" id="edit-job">Edit</button>
     <button value="${job._id}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="delete-job">Delete</button>
   </div>
 </div>
@@ -1531,7 +1531,7 @@ const createFormEditJob = (job) => `
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-  <button type="submit" class="btn btn-primary" id="editJobButton">Save changes</button>
+  <button type="submit" class="btn btn-secondary" style="background-color: #344D67" id="editJobButton">Save changes</button>
 </div>
 </form>
 </div>
@@ -1599,15 +1599,15 @@ const createProfileCompany = (user) => {
     </div>
     </div>
 </div>
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header" style=" background-color: #344D67;">
-        <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PASSWORD</h5>
-        <button type="button" class="btn-close" style="background-color:white;" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form id = "edit-password-company">
+<form id = "edit-password-company">
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style=" background-color: #344D67;">
+          <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PASSWORD</h5>
+          <button type="reset" class="btn-close" style="background-color:white;" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
           <div class="mb-3 row">
             <label for="exampleInputEmail1" class="form-label">Old Password</label>
             <div class="col">
@@ -1623,30 +1623,30 @@ const createProfileCompany = (user) => {
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn text-light" style=" background-color: #344D67;"  id="editPwdButton">Save</button>
           </div>
-          </form>
+        </div>
       </div>
     </div>
-</div>
-</div>
-<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-xl">
-    <div class="modal-content">
-      <div class="modal-header" style=" background-color: #344D67;">
-        <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PROFILE</h5>
-        <button type="button" class="btn-close" style="background-color:white;" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <div class="container-img" style="background-image:url('${user.image}'); width: 200px; height:200px; background-size:200px 200px; margin: 0 auto; border:2px solid grey;"> </div>
-
-      <form id = "edit-profile-company">
+  </div>
+</form>
+<form id = "edit-profile-company">
+  <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style=" background-color: #344D67;">
+          <h5 class="modal-title text-light fw-bold" id="staticBackdropLabel">CHANGE PROFILE</h5>
+          <button type="reset" class="btn-close" style="background-color:white;" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container-img" style="background-image:url('${user.image}'); width: 200px; height:200px; background-size:200px 200px; margin: 0 auto; border:2px solid grey;"> </div>
+          
           <div class="mb-3 row">
-          <label for="exampleInputEmail1" class="form-label">Company Logo</label>
-          <div class="col">
-            <input type="file" class="form-control  form-control-sm" id="edit-logo-company" accept=".jpg, .jpeg, .png">
-          </div>
+            <label for="exampleInputEmail1" class="form-label">Company Logo</label>
+            <div class="col">
+              <input type="file" class="form-control  form-control-sm" id="edit-logo-company" accept=".jpg, .jpeg, .png">
+            </div>
             <label for="exampleInputEmail1" class="form-label">Name Company</label>
             <div class="col">
               <input type="text" class="form-control  form-control-sm" id="edit-username" value="${user.username}">
@@ -1661,12 +1661,12 @@ const createProfileCompany = (user) => {
             </div>
             <label for="exampleInputEmail1" class="form-label">Employee Range</label>
             <div class="mb-3 row">
-            <div class="col-sm-3">
-              <input type="text" class="form-control  form-control-sm" id="edit-employee"value="${user.employee}">
+              <div class="col-sm-3">
+                <input type="text" class="form-control  form-control-sm" id="edit-employee"value="${user.employee}">
               </div>
               -
               <div class="col-sm-3">
-              <input type="text" class="form-control  form-control-sm" id="edit-employee2"value="${user.employee2}">
+                <input type="text" class="form-control  form-control-sm" id="edit-employee2"value="${user.employee2}">
               </div>
             </div>
             <label for="exampleInputEmail1" class="form-label">Website</label>
@@ -1687,14 +1687,14 @@ const createProfileCompany = (user) => {
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn text-light" style=" background-color: #344D67;" id="editSaveButton">Save</button>
           </div>
-          </form>
+        </div>
       </div>
     </div>
-</div>
-</div>
+  </div>
+</form>
 `;
 };
 const createDetailCompanyTemplate = (company) => {
