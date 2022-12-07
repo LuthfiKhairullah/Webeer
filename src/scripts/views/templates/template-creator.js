@@ -30,40 +30,40 @@ const createDetailJobPageTemplate = (jobs) => `
 <div class="container-detail-jobspage">
   <div class="header-detailjob">
   <div class="d-flex" style="align-items:center;">
-  <img src="${jobs.image}" class="lazyload image-detailjob">
+  <img tabindex="0" src="${jobs.image}" class="lazyload image-detailjob" alt="image company">
       <div class="company-detailjob">
-        <h5 class="fw-bold fs-4">${jobs.company}</h5>
-        <h6 class="fw-bold fs-5">${jobs.profession}</h6>
-        <p class="fst-italic my-0">${jobs.address}</p>
-        <p class="text-muted my-0 fs-10">${showFormattedDate(jobs.updatedAt)}</p>
+        <h5 tabindex="0" class="fw-bold fs-4">${jobs.company}</h5>
+        <h6 tabindex="0" class="fw-bold fs-5">${jobs.profession}</h6>
+        <p  tabindex="0" class="fst-italic my-0">${jobs.address}</p>
+        <p tabindex="0" class="text-muted my-0 fs-10">${showFormattedDate(jobs.updatedAt)}</p>
       </div>
     </div>
-  <p class="fw-bold"> Description Company </p>
-  <p style="text-align:justify;">${jobs.details.descriptionCompany.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+  <p tabindex="0" class="fw-bold"> Description Company </p>
+  <p tabindex="0" style="text-align:justify;">${jobs.details.descriptionCompany.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
   </div>
 <div class="content-detailjob">
 <div class="description-detailjob">
-<p class="fw-bold"> Description Position </p>
-<p>${jobs.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
+<p tabindex="0" class="fw-bold"> Description Position </p>
+<p tabindex="0" >${jobs.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
 </div>
 <div class="work-detail">
       <div class="work-1">
-        <p class="fw-bold">Salary :</p>
-        <p>${jobs.details.salary} - ${jobs.details.salary2}</p>
-        <p class="fw-bold">Level :</p>
-        <p>${jobs.details.level}</p>
+        <p tabindex="0" class="fw-bold">Salary :</p>
+        <p tabindex="0">${jobs.details.salary} - ${jobs.details.salary2}</p>
+        <p tabindex="0" class="fw-bold">Level :</p>
+        <p tabindex="0">${jobs.details.level}</p>
       </div>
       <div class="work-2">
-        <p class="fw-bold">Work from :</p>
-        <p>${jobs.details.workplace}</p>
-        <p class="fw-bold">Time :</p>
-        <p>${jobs.details.timeWork}</p>
+        <p tabindex="0" class="fw-bold">Work from :</p>
+        <p tabindex="0" >${jobs.details.workplace}</p>
+        <p tabindex="0" class="fw-bold">Time :</p>
+        <p tabindex="0" >${jobs.details.timeWork}</p>
       </div>
     </div>
-<p class="fw-bold my-3"> Requirement :</p>
-<p class="mx-3">${jobs.details.qualification.replace(/\n/g, '<br />')}</p>
-<a href="${jobs.details.link}" class="btn btn-secondary" style="background-color: #344D67">Apply</a>
-<a href="#/profilecompany/${jobs.companyid}" class="btn btn-secondary">Profile Company</a>
+<p tabindex="0"  class="fw-bold my-3"> Qualifications :</p>
+<p tabindex="0"  class="mx-3">${jobs.details.qualification.replace(/\n/g, '<br />')}</p>
+<a tabindex="0" href="${jobs.details.link}" class="btn btn-secondary" style="background-color: #344D67">Apply</a>
+<a tabindex="0" href="#/profilecompany/${jobs.companyid}" class="btn btn-secondary">Profile Company</a>
 </div>
 </div>
 </div>
@@ -115,7 +115,7 @@ const createDetailJob = (detail) => `
   <div class="kualifikasi-detail">
   <p tabindex= "0" class="fw-bold fs-6">Profession Description</p>
   <p tabindex= "0" class="fs-6">${detail.details.descriptionProfession.replace(/(?:\r\n|\r|\n)/g, '<br>')}}</p>
-  <h6 tabindex= "0" class="fs-6">Requirement</h6>
+  <h6 tabindex= "0" class=" fw-bold fs-6">Qualifications</h6>
   <p tabindex= "0" class="fs-6">${detail.details.qualification.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
   </div>
   <a href="${detail.details.link}"><button type="button" class="detail-link btn btn-secondary btn-sm" style="background-color: #344D67">Apply</button></a>
