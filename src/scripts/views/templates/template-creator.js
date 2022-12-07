@@ -538,7 +538,7 @@ const createDiscussionReplyTemplate = (discussion) => {
 
 const createAddDiscussionButtonTemplate = () => `
   <!--<button aria-label="Add Discussion" class="add btn bg-dark text-center text-white border-0 fw-bold" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><span>+</span></button>-->
-  <button type="button" aria-label="Add Discussion Button" title="Add Discussion Button" class="adddiscuss btn btn-secondary bg-white d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#modal-add-discussion" tabindex="0"><i class="fa fa-plus-circle" aria-hidden="true" style="color: #344D67"></i></button>
+  <button type="button" aria-label="Add Discussion Button" title="Add Discussion Button" class="adddiscuss btn btn-secondary bg-white d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#modal-add-discussion" tabindex="0"><i class="fa fa-plus-circle" aria-hidden="true" style="color: #344D67; min-width=44px; min-height=44px;"></i></button>
 `;
 
 const createAddDiscussionTemplate = () => `
