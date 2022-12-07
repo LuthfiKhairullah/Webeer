@@ -34,7 +34,7 @@ class Login extends HTMLElement {
                 <div class="input-group mb-3" style="border-bottom:1px solid black;">
                     <span class="input-group-text" style="background-color:transparent; border:none;"><i class="fa fa-lock" aria-hidden="true"></i></span>
                         <div class="form-floating">
-                            <input style="border:none;" type="password" class="form-control form-control-lg" id="pwdUser" placeholder="Enter your password">
+                            <input style="border:none;" type="password"  minlength="8" maxlength="16" class="form-control form-control-lg" id="pwdUser" placeholder="Enter your password">
                             <label for="pwdUser">Password</label>
                         </div>
                 </div>

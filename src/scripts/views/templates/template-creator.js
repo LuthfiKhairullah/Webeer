@@ -91,7 +91,7 @@ const createDetailJob = (detail) => `
       <h4 tabindex= "0" class="fw-bold">${detail.company}</h4>
       <p tabindex= "0" class="text-muted fst-italic">${detail.address}</p>
       <p tabindex= "0" class="text-muted">${showFormattedDate(detail.updatedAt)}</p>
-      <a tabindex= "0" href="#/profilecompany/${detail.companyid}" class="btn btn-secondary btn-sm">Profile Company</a>
+      <a tabindex= "0" href="#/profilecompany/${detail.companyid}" class="btn btn-secondary btn-sm " style=" display:flex; align-items:center; width:150px; text-align:center; justify-content:center;">Profile Company</a>
     </div>
   </div>
   <div class="description-detail">
@@ -378,7 +378,7 @@ const createDiscussionDetailTemplate = (discussion) => {
         <div class="d-flex justify-content-start align-items-center flex-wrap">
           <div class="d-flex align-items-center flex-wrap">
             <img src="${discussion.userimage}" alt="Picture Profile" class="picture-profile-discussion lazyload">
-            <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;"><p class="ms-1 fw-bold m-0 text-body" aria-label="question from ${discussion.username}">${discussion.username}</p></a>
+            <a href="#/detailprofile/${discussion.userid}" style="text-decoration:none;  display:flex; align-items:center;" class="fw-bold text-body text-dark" aria-label="question from ${discussion.username}">${discussion.username}</a>
           </div>
           <p class="m-0">&nbsp;•&nbsp;</p>
           <p class="fw-light m-0" tabindex="0">${showFormattedDate(discussion.date)}</p>
@@ -797,7 +797,9 @@ const createProfileTemplate = (user) => {
     </div>
             <div class="mb-4">
             <h5>Profile Picture</h5>
-            <input class="form-control" type="file" id="edit-photo"  accept=".jpg, .jpeg, .png">
+            <label id="label-image">
+            <input class="form-control" type="file" id="edit-photo"  accept=".jpg, .jpeg, .png"><span> Select a file</span>
+            </label>
           </div>
             <div class="mb-4">
               <h5>Username</h5>
@@ -1087,13 +1089,13 @@ const createProfileTemplate = (user) => {
                 <img class="lazyload" src="./assetpng/hero-changepwd.png">
               </div>
               <div class="mb-3">
-                <input type="password" class="form-control form-control-lg" id="oldPwd" placeholder="Enter your old password" required>
+                <input type="password"  minlength="8" maxlength="16" class="form-control " id="oldPwd" placeholder="Enter your old password" required>
               </div>
               <div class="mb-3">
-                <input type="password" class="form-control" id="newPwd" placeholder="Enter your new password" required>
+                <input type="password"  minlength="8" maxlength="16" class="form-control" id="newPwd" placeholder="Enter your new password" required>
               </div>
               <div class="mb-3">
-                <input type="password" class="form-control" id="confirmPwd" placeholder="Confirm your new password" required>
+                <input type="password"  minlength="8" maxlength="16" class="form-control" id="confirmPwd" placeholder="Confirm your new password" required>
               </div>
               <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal"> Back </button>
               <button type="submit" class="btn btn-secondary" style="background-color: #344D67" id="editButton">Save</button>
@@ -1446,25 +1448,27 @@ const createFormEditJob = (job) => `
 <div class="mb-3 row">
   <label for="exampleInputEmail1" class="col-form-label"><small>Company logo</small></label>
     <div class="col">
-      <input type="file" class="form-control  form-control-sm" id="image-job" accept=".jpg, .jpeg, .png" >
+    <label id="label-image">
+      <input type="file" class="form-control  " id="image-job" accept=".jpg, .jpeg, .png" ><span> Select a file</span>
+      </label>
     </div>
 </div>
 <div class="mb-3 row">
   <label for="exampleInputEmail1" class="col-form-label"><small>Company name</small></label>
   <div class="col">
-    <input type="text" class="form-control  form-control-sm" id="company-job" value="${job.company}">
+    <input type="text" class="form-control  " id="company-job" value="${job.company}">
   </div>
 </div>
 <div class="mb-3 row">
   <label for="exampleInputEmail1" class="col-form-label"><small>Job position</small></label>
   <div class="col">
-    <input type="text" class="form-control  form-control-sm" id="profession-job" value="${job.profession}" >
+    <input type="text" class="form-control  " id="profession-job" value="${job.profession}" >
   </div>
 </div>
 <div class="mb-3 row">
   <label for="exampleInputEmail1" class="col-form-label"><small>Company's addressn</small></label>
   <div class="col">
-    <input type="text" class="form-control  form-control-sm" id="address-job"  value="${job.address}">
+    <input type="text" class="form-control  " id="address-job"  value="${job.address}">
   </div>
 </div>
 <div class="mb-3 row">
@@ -1511,10 +1515,10 @@ const createFormEditJob = (job) => `
 <div class="mb-3 row">
 <label for="exampleInputEmail1" class="col-form-label"><small>Range Salary</small></label>
 <div class="col-sm-3">
-    <input type="text" class="form-control  form-control-sm" id="salary-job" value="${job.details.salary}" >
+    <input type="text" class="form-control  " id="salary-job" value="${job.details.salary}" >
 </div>-
 <div class="col-sm-3">
-    <input type="text" class="form-control  form-control-sm" id="salary-job2" value="${job.details.salary2}" >
+    <input type="text" class="form-control  " id="salary-job2" value="${job.details.salary2}" >
 </div>
 </div>
 <div class="mb-3 row">
@@ -1526,7 +1530,7 @@ const createFormEditJob = (job) => `
 <div class="mb-3 row">
 <label for="exampleInputEmail1" class="col-form-label"><small>Company Links</small></label>
     <div class="col">
-        <input type="text" class="form-control  form-control-sm" id="link-job" value="${job.details.link}" >
+        <input type="text" class="form-control  " id="link-job" value="${job.details.link}" >
     </div>
 </div>
 <div class="modal-footer">
@@ -1611,15 +1615,15 @@ const createProfileCompany = (user) => {
           <div class="mb-3 row">
             <label for="exampleInputEmail1" class="form-label">Old Password</label>
             <div class="col">
-              <input type="password" class="form-control  form-control-sm" id="old-password">
+              <input type="password"  minlength="8" maxlength="16" class="form-control  " id="old-password">
             </div>
             <label for="exampleInputEmail1" class="form-label">New Password</label>
             <div class="col">
-              <input type="password" class="form-control  form-control-sm" id="new-password">
+              <input type="password"  minlength="8" maxlength="16" class="form-control  " id="new-password">
             </div>
             <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
             <div class="col">
-              <input type="password" class="form-control  form-control-sm" id="confirm-password">
+              <input type="password"  minlength="8" maxlength="16" class="form-control  " id="confirm-password">
             </div>
           </div>
           <div class="modal-footer">
@@ -1641,49 +1645,51 @@ const createProfileCompany = (user) => {
         </div>
         <div class="modal-body">
           <div class="container-img" style="background-image:url('${user.image}'); width: 200px; height:200px; background-size:200px 200px; margin: 0 auto; border:2px solid grey;"> </div>
-          
+
           <div class="mb-3 row">
             <label for="exampleInputEmail1" class="form-label">Company Logo</label>
             <div class="col">
-              <input type="file" class="form-control  form-control-sm" id="edit-logo-company" accept=".jpg, .jpeg, .png">
+            <label id = "label-image">
+              <input type="file" class="form-control  " id="edit-logo-company" accept=".jpg, .jpeg, .png"><span> Select a file</span>
+              </label>
             </div>
             <label for="exampleInputEmail1" class="form-label">Name Company</label>
             <div class="col">
-              <input type="text" class="form-control  form-control-sm" id="edit-username" value="${user.username}">
+              <input type="text" class="form-control  " id="edit-username" value="${user.username}">
             </div>
             <label for="exampleInputEmail1" class="form-label">Address Company</label>
             <div class="col">
-              <input type="text" class="form-control  form-control-sm" id="edit-address" value="${user.address}">
+              <input type="text" class="form-control  " id="edit-address" value="${user.address}">
             </div>
             <label for="exampleInputEmail1" class="form-label">About Company</label>
             <div class="col">
-              <textarea class="form-control  form-control-sm" id="edit-about" rows="10">${user.bio}</textarea>
+              <textarea class="form-control  " id="edit-about" rows="10">${user.bio}</textarea>
             </div>
             <label for="exampleInputEmail1" class="form-label">Employee Range</label>
             <div class="mb-3 row">
               <div class="col-sm-3">
-                <input type="text" class="form-control  form-control-sm" id="edit-employee"value="${user.employee}">
+                <input type="text" class="form-control  " id="edit-employee"value="${user.employee}">
               </div>
               -
               <div class="col-sm-3">
-                <input type="text" class="form-control  form-control-sm" id="edit-employee2"value="${user.employee2}">
+                <input type="text" class="form-control  " id="edit-employee2"value="${user.employee2}">
               </div>
             </div>
             <label for="exampleInputEmail1" class="form-label">Website</label>
             <div class="col">
-              <input type="text" class="form-control  form-control-sm" id="edit-website"value="${user.website}">
+              <input type="text" class="form-control  " id="edit-website"value="${user.website}">
             </div>
             <label for="exampleInputEmail1" class="form-label">Industry</label>
             <div class="col">
-              <input type="text" class="form-control  form-control-sm" id="edit-industry"value="${user.industry}">
+              <input type="text" class="form-control  " id="edit-industry"value="${user.industry}">
             </div>
             <label for="exampleInputEmail1" class="form-label">Founded</label>
             <div class="col">
-              <input type="text" class="form-control  form-control-sm" id="edit-founded"value="${user.founded}">
+              <input type="text" class="form-control" id="edit-founded"value="${user.founded}">
             </div>
             <label for="exampleInputEmail1" class="form-label">Specialities</label>
             <div class="col">
-              <input type="text" class="form-control  form-control-sm" id="edit-specialities"value="${user.specialities}">
+              <input type="text" class="form-control" id="edit-specialities"value="${user.specialities}">
             </div>
           </div>
           <div class="modal-footer">
@@ -1858,15 +1864,15 @@ const createDetailCompanySkeletonTemplate = () => `
           <div class="mb-3 row">
             <label for="exampleInputEmail1" class="form-label">Old Password</label>
             <div class="col">
-              <input type="password" class="form-control  form-control-sm" id="old-password">
+              <input type="password"  minlength="8" maxlength="16" class="form-control  " id="old-password">
             </div>
             <label for="exampleInputEmail1" class="form-label">New Password</label>
             <div class="col">
-              <input type="password" class="form-control  form-control-sm" id="new-password">
+              <input type="password"  minlength="8" maxlength="16" class="form-control  " id="new-password">
             </div>
             <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
             <div class="col">
-              <input type="password" class="form-control  form-control-sm" id="confirm-password">
+              <input type="password"  minlength="8" maxlength="16" class="form-control  " id="confirm-password">
             </div>
           </div>
           <div class="modal-footer">
@@ -1886,7 +1892,7 @@ const createItemJobCompanyOther = (job) => `
     <h5 tabindex= "0" >${job.company}</h5>
     <h6 tabindex= "0" >${job.profession}</h6>
     <p tabindex= "0" class="text-muted">${showFormattedDate(job.createdAt)}</p>
-    <a class="btn btn-secondary btn-sm" style="background-color: #344D67;" href="#/detailjob/${job._id}"> VISIT </a>
+    <a class="btn btn-secondary btn-sm" style="background-color: #344D67; display:flex; align-items:center; justify-content:center; width:80px" href="#/detailjob/${job._id}"> VISIT </a>
     </div>
   </div>
   `;

@@ -27,7 +27,7 @@ const AboutPage = {
           </div>
           <div class="container-about-img">
           <picture>
-          <source media="(max-width:600px)" srcset="./assetpng-herou-about-us-small.png">
+          <source media="(max-width:600px)" srcset="./assetpng-hero-about-us-small.png">
             <img tabindex= "0" class="w-100" src="./assetpng/hero-about-us-large.png" alt="image about us">
           </picture>
           </div>
