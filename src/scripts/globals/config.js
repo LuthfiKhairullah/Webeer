@@ -1,5 +1,5 @@
 const CONFIG = {
-  BASE_URL: 'http://localhost:3000/api',
+  BASE_URL: 'https://lonely-jersey-toad.cyclic.app/api',
   CACHE_NAME: new Date().toISOString(),
   DATABASE_NAME: 'BookmarkDiscussion',
   DATABASE_VERSION: 1,

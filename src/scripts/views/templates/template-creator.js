@@ -1084,9 +1084,6 @@ const createProfileTemplate = (user) => {
         <div class="modal-body">
           <div class="container-change-page">
             <div class="change-page">
-              <div class="header-change-page">
-                <img class="lazyload" src="./assetpng/hero-changepwd.png">
-              </div>
               <div class="mb-3">
                 <input type="password"  minlength="8" maxlength="16" class="form-control " id="oldPwd" placeholder="Enter your old password" required>
               </div>
