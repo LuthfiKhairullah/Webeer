@@ -136,7 +136,7 @@ const ProfilePage = {
       }
     });
     const imageInput = document.querySelector('#edit-photo');
-    imageInput.addEventListener('change', function () {
+    imageInput.addEventListener('change', () => {
       const reader = new FileReader();
       reader.addEventListener('load', () => {
         const uploaded = reader.result;
