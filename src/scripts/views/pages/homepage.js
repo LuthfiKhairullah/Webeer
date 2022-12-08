@@ -37,7 +37,7 @@ const HomePage = {
               <div class="container-about-card-homepage">
                 <div class="card" style="width: 18rem;">
                 <picture>
-                  <source media ="(max-width:600px)" srcset="./assetpns/fordis-small.png">
+                  <source media ="(max-width:600px)" srcset="./assetpng/fordis-small.png">
                   <img tabindex= "0" src="./assetpng/fordis-large.png"  style="width:200px;  height:200px; padding:20px; margin:0 auto;" alt="picture forum">
                  </picture> 
                   <h3 tabindex= "0" class="fw-bolder">Discussion Forum</h3>
