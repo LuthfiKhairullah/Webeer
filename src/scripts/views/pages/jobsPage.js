@@ -64,12 +64,10 @@ const jobsPage = {
       if (getInputSearch.length > 0) {
         const getSearch = await JobSource.getJobsSearch(getInputSearch);
         jobItemContainer.innerHTML = '';
-        console.log(getSearch.data.data.length);
         if (getSearch.data.data.length > 0) {
           getSearch.data.data.forEach((jobs) => {
             jobItemContainer.innerHTML += createItemJob(jobs);
             const btn = document.querySelectorAll('.btn-detail');
-            console.log(btn);
             for (let i = 0; i < btn.length; i++) {
               btn[i].addEventListener('click', async () => {
                 event.preventDefault();

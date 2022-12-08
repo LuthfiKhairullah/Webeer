@@ -122,7 +122,6 @@ const addJobPage = {
 
   async afterRender() {
     const data = await User.getUser();
-    console.log(data);
     const messageText = document.querySelector('.toast-body');
     const messageTitle = document.querySelector('.toast-title');
     const messageContainer = document.getElementById('liveToast');
@@ -218,7 +217,6 @@ const addJobPage = {
           qualification: inputQualification.value,
           image: document.querySelector('#image-job').files[0],
         });
-        console.log(data);
         if (data.error) {
           messageText.classList.remove('text-bg-success');
           messageTitle.classList.remove('text-success');

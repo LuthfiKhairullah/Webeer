@@ -168,7 +168,6 @@ const profileCompany = {
           messageText.innerHTML = 'Username can\'t null';
           messageTitle.innerHTML = 'WARNING';
           message.show();
-          console.log(data.error);
         } else {
           messageText.classList.remove('text-bg-warning');
           messageTitle.classList.remove('text-warning');
@@ -177,7 +176,6 @@ const profileCompany = {
           messageText.innerHTML = data.data.message;
           messageTitle.innerHTML = 'SUCCESS';
           message.show();
-          console.log(data);
           setTimeout(() => document.location.reload(), 1000);
         }
       }

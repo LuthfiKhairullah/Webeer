@@ -45,8 +45,6 @@ const DetailDiscussionPage = {
   },
 
   async afterRender() {
-    const test = document.querySelector('.picture-profile-reply');
-    console.log(test);
     const messageText = document.querySelector('.toast-body');
     const messageTitle = document.querySelector('.toast-title');
     const messageContainer = document.getElementById('liveToast');
@@ -56,8 +54,6 @@ const DetailDiscussionPage = {
     const discussionCategory = await DiscussionSource.getDiscussionCategory();
     const user = await User.getUser();
     const discussionReply = await DiscussionSource.getDiscussionReply(url.id);
-    console.log(discussions);
-    // test.innerText=discussions.discussion
     const discussionListElement = document.querySelector('discussion-detail');
     discussionListElement.discussion = discussions;
     const lengthReply = document.querySelector('.lengthReply');

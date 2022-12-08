@@ -15,7 +15,6 @@ const ProfilePage = {
   async render() {
     const getToken = localStorage.getItem('token');
     const getRole = localStorage.getItem('role');
-    console.log(getToken);
     if (getToken === null) {
       document.location = '/';
       localStorage.setItem('login', 'false');
