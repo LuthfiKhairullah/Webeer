@@ -44,7 +44,6 @@ const listJobPage = {
     for (let i = 0; i < btnDelete.length; i++) {
       btnDelete[i].addEventListener('click', (event) => {
         event.preventDefault();
-        console.log(btnDelete[i].value);
         const btnConfirmDelete = document.querySelector('#delete-this-job');
         btnConfirmDelete.addEventListener('click', async (event) => {
           event.preventDefault();
@@ -73,7 +72,6 @@ const listJobPage = {
     }
     const btnEdit = document.querySelectorAll('#edit-job');
     const containerEdit = document.querySelector('#container-edit');
-    console.log(btnEdit);
     for (let i = 0; i < btnDelete.length; i++) {
       btnEdit[i].addEventListener('click', async (event) => {
         event.preventDefault();
@@ -89,7 +87,6 @@ const listJobPage = {
         levelSelected.forEach((level) => {
           if (data.data.data.details.level === level.value) {
             level.setAttribute('selected', '');
-            console.log(level);
           }
         });
         const workSelected = document.getElementsByName('jobselect');
@@ -201,7 +198,6 @@ const listJobPage = {
               messageTitle.innerHTML = 'WARNING';
               message.show();
             } else {
-              console.log(dataEdit.data.message);
               messageText.classList.remove('text-bg-warning');
               messageTitle.classList.remove('text-warning');
               messageText.classList.add('text-bg-success');

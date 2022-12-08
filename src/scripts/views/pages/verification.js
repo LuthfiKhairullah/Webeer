@@ -30,8 +30,6 @@ const verificationPage = {
     const message = new Toast(messageContainer);
     const resendButton = document.querySelector('#resend');
     const submitButton = document.querySelector('#submit');
-    console.log(getEmail);
-    console.log('Get Item :', getId);
     // eslint-disable-next-line no-unused-expressions
     const verificationContainer = document.querySelector('.container-verification');
     resend.addEventListener('click', async (event) => {
@@ -53,7 +51,6 @@ const verificationPage = {
         message.show();
         resendButton.removeAttribute('disabled');
       } else {
-        console.log(data);
         verificationContainer.classList.remove('cursor-progress');
         messageText.classList.remove('text-bg-warning');
         messageTitle.classList.remove('text-warning');

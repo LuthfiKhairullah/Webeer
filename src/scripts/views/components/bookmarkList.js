@@ -17,9 +17,7 @@ class BookmarkList extends HTMLElement {
 
   render() {
     this.innerHTML = '';
-    console.log(this._bookmarks);
     this._bookmarks.forEach((bookmark) => {
-      console.log(bookmark);
       const bookmarkItemElement = document.createElement('bookmark-item');
       bookmarkItemElement.bookmark = bookmark;
       this.appendChild(bookmarkItemElement);

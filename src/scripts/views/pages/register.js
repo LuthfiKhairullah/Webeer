@@ -90,7 +90,6 @@ const Register = {
         role: text,
       });
       if (data.error) {
-        console.log(data.error);
         registerContainer.classList.remove('cursor-progress');
         messageText.classList.remove('text-bg-success');
         messageTitle.classList.remove('text-success');
@@ -101,7 +100,6 @@ const Register = {
         message.show();
         submitButton.removeAttribute('disabled');
       } else {
-        console.log(data);
         messageText.classList.remove('text-bg-warning');
         messageTitle.classList.remove('text-warning');
         messageText.classList.add('text-bg-success');

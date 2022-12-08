@@ -40,10 +40,8 @@ const DetailProfilePage = {
 
   async afterRender() {
     const url = UrlParser.parseActiveUrlWithoutCombiner();
-    console.log(url);
     const userProfile = await User.getDetailUser(url.id);
     const userReply = await DiscussionSource.getDiscussionReply(userProfile._id);
-    console.log(userProfile);
     const userProfileElement = document.querySelector('user-profile-other');
     userProfileElement.user = userProfile;
     const userDiscussion = await DiscussionSource.getUserOtherDisscussion(url.id);

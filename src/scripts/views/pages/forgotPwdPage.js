@@ -28,7 +28,6 @@ const resetPwdPage = {
     const formReset = document.getElementById('reset-password-user');
     formReset.addEventListener('submit', async (event) => {
       event.preventDefault();
-      console.log(document.getElementById('email-reset-password').value);
       const data = await User.EmailResetPassword({
         email: document.getElementById('email-reset-password').value,
       });

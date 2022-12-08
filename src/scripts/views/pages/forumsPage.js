@@ -72,7 +72,6 @@ const ForumsPage = {
     const discussions = await DiscussionSource.getAllDiscussion();
     const searchBarDiscussion = document.querySelector('#searchBarDiscussion');
     searchBarDiscussion.innerHTML = '<search-discussion></search-discussion>';
-    console.log(discussions);
     const content = document.querySelector('.list');
     content.innerHTML = '<discussion-list></discussion-list>';
     const discussionListElement = document.querySelector('discussion-list');

@@ -17,7 +17,6 @@ class User {
       if (response.status !== 200) {
         throw new Error(response.data.message);
       }
-      console.log(response);
       return response.data.data;
     } catch (err) {
       return { error: err.response.data.message || err.message };
@@ -35,10 +34,8 @@ class User {
       if (response.status !== 200) {
         throw new Error(response.data.message);
       }
-      console.log(response);
       const responseToken = response.data.token;
       const responseRole = response.data.user.role;
-      console.log(responseRole);
       localStorage.setItem(
         'token',
         JSON.stringify(responseToken),

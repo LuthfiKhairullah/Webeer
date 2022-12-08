@@ -71,7 +71,6 @@ const createDetailJobPageTemplate = (jobs) => `
 const createItemJob = (jobs) => `
 <div tabindex= "0" class = "card-item" tabindex="0">
 <img tabindex= "0" src="${jobs.image}" class="card-image lazyload" alt="job image">
-<p tabindex= "0">${jobs.details.level}</p>
 <h6 tabindex= "0" class="fw-bold fs-5">${jobs.company}</h6>
 <h6 tabindex= "0" class="fs-5">${jobs.profession}</h6>
 <p tabindex= "0" class="text-muted fs-6 fst-italic">${showFormattedDate(jobs.updatedAt)}</p>

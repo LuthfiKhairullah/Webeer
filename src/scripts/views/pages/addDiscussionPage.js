@@ -51,7 +51,6 @@ const AddDiscussionPage = {
     });
     const categorySelect = document.getElementsByName('categoryFilter');
     const categorySelectElement = document.querySelector('.categoryFilter');
-    console.log(categorySelect);
     const codeDiscussion = document.querySelector('#code');
     codeDiscussion.addEventListener('click', (event) => {
       event.preventDefault();
