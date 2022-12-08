@@ -58,28 +58,6 @@
     margin: 0 auto;
 }
 
-/* .container-item-discussion .main-container { */
-/* width: 350px; */
-/* width: 100%; */
-/* flex-grow: 0.3; */
-/* text-align: justify; */
-/* margin-right: 30px; */
-/* } */
-
-/* .container-item-discussion .sub-container { */
-/* width: 700px; */
-/* width: 100%;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.container-item-discussion .card-body {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-} */
-
 .username {
     font-size: 20px;
 }
@@ -105,23 +83,6 @@
     }
 }
 
-@media screen and (max-width: 600px) {
-    /* .discussion-item-dot-space {
-        display: none;
-    } */
-
-    /* .discussion-item-date {
-        margin-top: 4px;
-        padding-left: 8px;
-        width: auto;
-    } */
-}
-
-/* .container-reply {
-    margin-top: 10px;
-
-} */
-
 #form-searchDiscussion {
     margin-top: 80px;
 }
@@ -131,11 +92,7 @@
     border-radius: 20px;
 }
 
-.container-item-discussion .card {
-    border-radius: 0;
-}
-
-.container-item-discussion .card:hover {
+.container-discussion-item .card:hover {
     background-color: #EEEEEE;
 }
 

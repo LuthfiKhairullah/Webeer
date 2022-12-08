@@ -536,7 +536,6 @@ const createDiscussionReplyTemplate = (discussion) => {
 };
 
 const createAddDiscussionButtonTemplate = () => `
-  <!--<button aria-label="Add Discussion" class="add btn bg-dark text-center text-white border-0 fw-bold" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><span>+</span></button>-->
   <button type="button" aria-label="Add Discussion Button" title="Add Discussion Button" class="adddiscuss btn btn-secondary d-flex justify-content-center align-items-center" style="background-color: #344D67;" data-bs-toggle="modal" data-bs-target="#modal-add-discussion" tabindex="0">
     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M34.8332 23.8296H23.8332V34.8296H20.1665V23.8296H9.1665V20.163H20.1665V9.16296H23.8332V20.163H34.8332V23.8296Z" fill="white"/>

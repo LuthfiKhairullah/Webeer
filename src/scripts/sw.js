@@ -14,7 +14,6 @@ const assetsToCache = [
   './assetpng/hero-login.png',
   './assetpng/loker.png',
   './assetpng/picture.png',
-  // './icons/icon-48x48.png',
   './icons/icon-72x72.png',
   './icons/icon-96x96.png',
   './icons/icon-128x128.png',
@@ -23,7 +22,6 @@ const assetsToCache = [
   './icons/icon-512x512.png',
   './index.html',
   './favicon.png',
-  // './app.bundle.js',
   './app.webmanifest',
   './sw.bundle.js',
 ];

@@ -30,7 +30,6 @@ const verificationPage = {
     const message = new Toast(messageContainer);
     const resendButton = document.querySelector('#resend');
     const submitButton = document.querySelector('#submit');
-    // eslint-disable-next-line no-unused-expressions
     const verificationContainer = document.querySelector('.container-verification');
     resend.addEventListener('click', async (event) => {
       event.preventDefault();

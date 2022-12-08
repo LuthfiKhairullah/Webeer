@@ -47,12 +47,6 @@ class Login extends HTMLElement {
 </div>
 
 `;
-    // document.querySelector('#sign-up-link').addEventListener('click', () => {
-    //   setTimeout(() => document.location.reload('#/register'), 500);
-    // });
-    // document.querySelector('#forget-pwd').addEventListener('click', () => {
-    //   setTimeout(() => document.location.reload('#/resetpwd'), 500);
-    // });
   }
 }
 customElements.define('login-modal', Login);

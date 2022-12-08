@@ -1,17 +1,3 @@
-/* .About {
-    font-size: 50px;
-    margin-top: 80px;
-}
-
-.card.container-about {
-    width: auto;
-    margin: 50px;
-}
-
-.card.container-about img {
-    width: fit-content;
-} */
-
 .container-about-description,
 .container-about-img {
     width: 50%;
