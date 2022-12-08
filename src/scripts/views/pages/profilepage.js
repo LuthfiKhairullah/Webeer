@@ -140,7 +140,7 @@ const ProfilePage = {
       const reader = new FileReader();
       reader.addEventListener('load', () => {
         const uploaded = reader.result;
-        document.querySelector('.container-img-profile').style.backgroundImage = `url(${uploaded})`;
+        document.querySelector('.container-img').style.backgroundImage = `url(${uploaded})`;
       });
       reader.readAsDataURL(this.files[0]);
     });

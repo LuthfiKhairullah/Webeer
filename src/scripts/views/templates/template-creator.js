@@ -1,4 +1,4 @@
-import { showFormattedDate } from '../utils/formate-date';
+import showFormattedDate from '../utils/formate-date';
 import '../components/discussionList';
 
 const truncateString = (str, num) => {
@@ -311,9 +311,9 @@ const createDiscussionDetailTemplateSkeleton = () => `
       <div class="d-flex justify-content-start align-items-center flex-wrap">
         <div class="d-flex align-items-center flex-wrap">
           <img class="picture-profile-discussion placeholder">
-          <a><p class="ms-1 fw-bold m-0 text-body placeholder">Lorem ipsum dolor</p></a>
+          <p class="m-0"><span class="placeholder">Lorem ipsum dolor</span></p>
         </div>
-        <p class="m-0"><span class="placeholder">&nbsp;•&nbsp;</span></p>
+        <p class="m-0 ms-1"><span class="placeholder">&nbsp;•&nbsp;</span></p>
         <p class="fw-light ms-1 m-0"><span class="placeholder">31 Desember 2022</span></p>
       </div>
     </div>
@@ -424,8 +424,8 @@ const createDiscussionDetailTemplate = (discussion) => {
                   <button id="codeDiscussion" class="btn btn-light border-dark-blue m-0"><i class="fa fa-code" aria-hidden="true"></i></button>
                   <textarea name="inputDiscussion" id="inputDiscussion" cols="30" rows="10" class="form-control border-dark-blue my-2"
                   placeholder="Type your discussion here">${discussion.discussion}</textarea>
-                  <input class="form-check-input bg-dark-blue border-dark-blue" role="button" type="checkbox" id="issolved" value="solved">
-                  <label class="form-check-label" role="button" for="issolved">Solved</label>
+                  <input type="checkbox" class="btn-check category" id="issolved" value="solved">
+                  <label class="btn btn-outline-secondary btn-category" for="issolved">Solved</label>
                 </div>
                 <div class="modal-footer">
                   <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -538,7 +538,11 @@ const createDiscussionReplyTemplate = (discussion) => {
 
 const createAddDiscussionButtonTemplate = () => `
   <!--<button aria-label="Add Discussion" class="add btn bg-dark text-center text-white border-0 fw-bold" data-bs-toggle="modal" data-bs-target="#modal-add-discussion"><span>+</span></button>-->
-  <button type="button" aria-label="Add Discussion Button" title="Add Discussion Button" class="adddiscuss btn btn-secondary bg-white d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#modal-add-discussion" tabindex="0"><i class="fa fa-plus-circle" aria-hidden="true" style="color: #344D67; min-width=44px; min-height=44px;"></i></button>
+  <button type="button" aria-label="Add Discussion Button" title="Add Discussion Button" class="adddiscuss btn btn-secondary d-flex justify-content-center align-items-center" style="background-color: #344D67;" data-bs-toggle="modal" data-bs-target="#modal-add-discussion" tabindex="0">
+    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M34.8332 23.8296H23.8332V34.8296H20.1665V23.8296H9.1665V20.163H20.1665V9.16296H23.8332V20.163H34.8332V23.8296Z" fill="white"/>
+    </svg>
+  </button>
 `;
 
 const createAddDiscussionTemplate = () => `
@@ -1242,10 +1246,10 @@ const createNavbarTemplateBeforeLogin = () => `
 <div class="container-fluid">
   <a class="navbar-brand text-light fw-bold" href="#"><i class="fa fa-code fw-bold" aria-hidden="true"></i> WEBEER</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <i class="fa fa-bars text-white" aria-hidden="true"></i>
   </button>
   <div class="collapse navbar-collapse nav nav-responsive" id="navbarNav">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav text-center">
       <li class="nav-item">
         <a class="nav-link text-light mx-1" href="#">Home</a>
       </li>
@@ -1332,6 +1336,7 @@ ${createAddDiscussionButtonTemplate()}
 `;
 const createSidebarCompany = () => `
 <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" id="sidebar">
+<div class="navbar" style="display:none;"></div>
 <a href="#/list" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" id="button" class="company">
 <i class="fa fa-code fw-bold fa-2x" aria-hidden="true"></i>
   <span class="fs-4 fw-bold m-1 nav-text">Webeer</span>
