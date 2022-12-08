@@ -1341,7 +1341,7 @@ const createSidebarCompany = () => `
   <span class="fs-4 fw-bold m-1 nav-text">Webeer</span>
 </a>
 <hr>
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="display: none;">
 <span class="navbar-toggler-icon"></span>
 </button>
 <ul class="nav nav-pills flex-column mb-auto">
