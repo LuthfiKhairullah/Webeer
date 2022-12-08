@@ -108,7 +108,7 @@ const addJobPage = {
                 <label for="exampleInputEmail1" class=" col-form-label"><small>Company logo</small></label>
                 <div class="col-sm-6">
                 <label id="label-image">
-                <input type="file" class="form-control  form-control-md" id="image-job" ><span>Select a file</span>
+                <input type="file" class="form-control  form-control-md" id="image-job" accept=".jpg, .jpeg, .png"><span>Select a file</span>
                 </label>
                 </div>
              </div>

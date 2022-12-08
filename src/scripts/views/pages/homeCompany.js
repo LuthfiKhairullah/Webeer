@@ -31,7 +31,7 @@ const HomeCompany = {
     </div>
         <div class="image-container">
         <picture>
-        <source media="(max-width:600px)" srcset="./assetpng/hero-dashboard-company-small">
+        <source media="(max-width:600px)" srcset="./assetpng/hero-dashboard-company-small.png">
         <img tabindex= "0" src="./assetpng/hero-dashboard-company-large.png " alt="hero-dashboard-company">
         </picture>
         </div>
