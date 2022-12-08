@@ -5,8 +5,8 @@
     "short_name": "Webeer",
     "description": "Comunnity for Web Developer",
     "display": "standalone",
-    "background_color": "#607EAA",
-    "theme_color": "#1C3879",
+    "background_color": "#344D67",
+    "theme_color": "#344D67",
     "icons": [
         {
             "src": "/icons/icon-72x72.png",
