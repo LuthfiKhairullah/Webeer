@@ -1249,7 +1249,7 @@ const createNavbarTemplateBeforeLogin = () => `
     <i class="fa fa-bars text-white" aria-hidden="true"></i>
   </button>
   <div class="collapse navbar-collapse nav nav-responsive" id="navbarNav">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav text-center">
       <li class="nav-item">
         <a class="nav-link text-light mx-1" href="#">Home</a>
       </li>
