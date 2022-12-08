@@ -2,7 +2,6 @@ import HomePage from '../views/pages/homepage';
 import Register from '../views/pages/register';
 import jobsPage from '../views/pages/jobsPage';
 import ForumsPage from '../views/pages/forumsPage';
-import AddDiscussionPage from '../views/pages/addDiscussionPage';
 import ProfilePage from '../views/pages/profilepage';
 import addJobPage from '../views/pages/addJobPage';
 import DetailDiscussionPage from '../views/pages/detailDiscussionPage';
@@ -19,7 +18,6 @@ import resetPwdPage from '../views/pages/forgotPwdPage';
 
 const routes = {
   '/': HomePage,
-  '/adddiscussion': AddDiscussionPage,
   '/forums': ForumsPage,
   '/detaildiscussion/:id': DetailDiscussionPage,
   '/profile': ProfilePage,
