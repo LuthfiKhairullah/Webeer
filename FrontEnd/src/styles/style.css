@@ -1,0 +1,176 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    padding: 1rem;
+    background-color: #344D67;
+    color: white;
+    text-decoration: none;
+    z-index: 100;
+    font-size: 1.2rem;
+}
+
+.skip-link:focus {
+    top: 0;
+    left: 0;
+}
+
+main,
+html {
+    background-color: #f3f2ef;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#label-image {
+    background-color: #dddddd;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    padding: 8px;
+}
+
+#label-image:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #344D67;
+
+}
+
+#navbarNav .nav-link.actived {
+    background-color: #1a2633 !important;
+    border-radius: 15px;
+    font-weight: bolder;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.navbar {
+    position: fixed;
+    background-color: #344D67;
+    z-index: 2;
+}
+
+nav .nav.nav-responsive {
+    justify-content: end;
+}
+
+@media screen and (max-width: 991.9px) {
+    nav .nav.nav-responsive {
+        justify-content: center;
+    }
+}
+
+.btn.loginNav:hover {
+    background-color: #e5d19f !important;
+}
+
+#sidebar {
+    width: 200px;
+    height: 100%;
+}
+
+#item-sidebar a:hover {
+    background-color: #1C3879;
+    ;
+}
+
+.cursor-progress {
+    cursor: progress;
+}
+
+p {
+    word-break: break-word;
+}
+
+pre,
+code {
+    white-space: pre-wrap;
+}
+
+pre.pre-discussion-item,
+code.code-discussion-item {
+    white-space: normal;
+}
+
+#footer {
+    padding: 20px;
+    color: black;
+    font-weight: 500;
+    background-color: #344D67;
+    color: white;
+}
+
+#footer .contact-person,
+#footer .footer-features,
+#footer .footer-about {
+    background-color: transparent;
+    border-color: transparent;
+    text-decoration: none;
+    color: white;
+    text-align: start;
+}
+
+#footer li:hover,
+#footer .btn.contact-person:hover,
+#footer .btn.footer-features:hover,
+#footer .footer-features:hover,
+#footer .footer-about:hover {
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+}
+
+#footer .container-footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+#footer-lite {
+    display: flex;
+    background-color: #FFFFFF;
+    border-top: 1px solid rgba(0, 0, 0, 0.175);
+    padding: 10px;
+}
+
+#footer-lite a {
+    text-decoration: none;
+}
+
+.footer-lite-profile {
+    width: 1200px;
+}
+
+@media screen and (max-width: 695px) {
+    #footer .container-footer {
+        display: block
+    }
+
+    #footer .container-footer {
+        text-align: center;
+    }
+
+    #footer li {
+        list-style-type: none;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .footer-lite-profile {
+        width: 900px;
+    }
+}

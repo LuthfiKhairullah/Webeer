@@ -1,0 +1,24 @@
+
+.container-add-job form{
+    background-color: white;
+    padding: 10px;
+
+}
+.container-add-job input{
+    border-radius: 15px;
+}
+.container-add-job h3{
+    margin-bottom: 20px;
+}
+.container-add-job select{
+    border-radius: 15px;
+}
+.container-company-add{
+
+    margin-left: 200px;
+}
+@media screen and (max-width:800px) {
+    .container-company-add{
+        margin-left: 80px;
+    }
+}

@@ -1,0 +1,202 @@
+#container-page-jobs {
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 50px;
+}
+.header-detailjob{
+    max-width: 1200px; 
+    background-color: white;
+    margin-bottom: 20px;
+    margin-top: 60px;
+    padding: 15px;
+    border-radius: 5px;
+}
+.image-detailjob{
+    width: 200px;
+    height: 200px;
+}
+.hero-job{
+    width: 400px;
+    margin: 0 auto;
+}
+.company-detailjob{
+    padding: 10px;
+}
+.container-detail-jobspage,.container-detail-job-page{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
+.container-jobs {
+    display: flex;
+    justify-content: center;
+}
+.content-detailjob{
+    max-width: 1200px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.description-detailjob{
+    text-align: justify;
+}
+.item-jobs {
+    width: 500px;
+    height: 700px;
+    overflow-y: auto;
+    border-right: 1px solid black;
+}
+
+.scroll-item::-webkit-scrollbar {
+    width: 5px;
+}
+
+.scroll-item::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+    background-color: black;
+}
+
+.scroll-item::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+}
+
+
+.detail-jobs {
+    width: 1200px;
+    height: 700px;
+    background-color: white;
+    overflow-y: auto;
+}
+
+.detail-container {
+    padding: 5px
+}
+
+.header-detail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.body-detail{
+    background-color: white;
+}
+.description-detail,
+.kualifikasi-detail {
+    text-align: justify;
+    font-size: 12px;
+    padding: 10px;
+}
+
+.work-detail {
+    display: flex;
+}
+
+.work-detail p {
+    margin: 0;
+}
+
+.work-1 {
+    margin-right: 15px;
+}
+
+.footer-detail {
+    position: sticky;
+    bottom: 0;
+    background-color: gray;
+    text-align: center;
+}
+
+.detail-link {
+    margin: 5px;
+}
+
+.image-detail img {
+    width: 150px;
+    margin-right: 20px;
+}
+
+.title-detail {
+    width: 100%;
+}
+
+.title-detail p {
+    margin: 0;
+    font-size: 13px;
+}
+
+.card-item {
+    width: 100%;
+    height: 340px;
+    background-color: white;
+    border-bottom: 1px solid black;
+}
+
+.card-item:hover {
+    background-color: whitesmoke;
+}
+
+.card-item p {
+    font-size: 12px;
+    margin: 2px;
+}
+
+.detail-jobs .card {
+    margin: 50px auto;
+    text-align: center;
+    background-color: transparent;
+    border: 0px;
+}
+
+.search {
+    padding: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.search input,
+.search button {
+    border-radius: 20px;
+}
+
+.card-item {
+    padding: 15px;
+}
+
+.card-image {
+    width: 150px;
+}
+
+.btn-open-job {
+    margin-left: 100px;
+}
+#btnDetailJob{
+    display: block;
+}
+#btnDetailOpen{
+    display: none;
+}
+@media screen and (max-width:1200px) {
+    .detail-jobs{
+        display: none;                                                      
+    }
+    #btnDetailJob{
+        display: none;
+    }
+    #btnDetailOpen{
+        display: block;
+        width: 100px;
+    }
+    .container-jobs{
+        padding: 10px;
+    }
+}
+@media screen and (max-width:350px){
+    .image-detailjob{
+        width: 100px;
+        height: 100px;
+    }
+}

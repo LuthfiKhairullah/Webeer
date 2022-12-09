@@ -1,0 +1,76 @@
+.container-about-description,
+.container-about-img {
+    width: 50%;
+}
+
+.container-about-bg {
+    background-color: #344D67;
+    padding-top: 80px;
+}
+
+.container-about-features,
+.container-about-team {
+    padding: 20px 0;
+}
+
+.container-about-jobs,
+.container-about-forums {
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgb(0, 0, 0, 0.75);
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 5px 4px 5px -2px rgb(0, 0, 0, 0.75);
+    -webkit-box-shadow: 5px 4px 5px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 5px 4px 5px -2px rgba(0, 0, 0, 0.75);
+}
+
+.container-about-person {
+    border: 1px solid rgb(0, 0, 0, 0.75);
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 5px 4px 5px -2px rgb(0, 0, 0, 0.75);
+    -webkit-box-shadow: 5px 4px 5px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 5px 4px 5px -2px rgba(0, 0, 0, 0.75);
+}
+
+.container-about-person img {
+    height: calc((3/4)*100%);
+}
+
+.container-about-jobs:hover,
+.container-about-forums:hover,
+.container-about-person:hover {
+    background-color: #344D67;
+    color: white;
+}
+
+.container-about-forums-img {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    border: 1px solid black;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-about,
+.container-about-features,
+.container-about-team-person {
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 600px) {
+
+    .container-about-description {
+        width: 600px;
+    }
+
+    .container-about-img {
+        width: 80%;
+    }
+}

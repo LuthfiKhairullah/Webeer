@@ -1,0 +1,109 @@
+user-profile{
+    background-color: #f3f2ef;    
+}
+.container-profile {
+    display: flex;
+    justify-content: center;
+    margin: 0px auto;
+    margin-top: 80px;
+    max-width: 1360px;
+    flex-wrap: wrap;
+    z-index: 1;
+    padding: 10px;
+    background-color: #f3f2ef;
+}
+
+.card.profile img {
+    width: 200px;
+    margin: 10px auto;
+}
+
+.container-about-profile-user {
+    width: 900px;
+    padding: 10px;
+    background-color: white;
+    height: 830px;
+}
+
+.edit-profile {
+    background-color: #f8f9fa;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 15px;
+}
+.container-edit-profile .container-img{
+    width: 200px;
+    height: 200px;
+    border:1px solid black;
+    background-size: cover;
+}
+.container-activity{
+    text-align: center;
+    padding: 10px;
+}
+
+.content-profile-user {
+    height: 550px;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+
+.card.profile {
+    border-radius: 0px;
+    height: 830px;
+    width: 300px;
+}
+
+.container-myskill {
+    height: 250px;
+    overflow-y: auto;
+}
+
+.btn.afterClick {
+    color: #607EAA;
+    border-bottom: 4px solid #607EAA;
+    font-weight: bold;
+    border-radius: 0px;
+}
+
+@media screen and (max-width: 1240px) {
+    .card.profile {
+        width: 900px;
+    }
+}
+
+@media screen and (max-width:925px) {
+    .card.profile {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .card.profile {
+        margin-right: 0;
+        width: 320px;
+    }
+
+    .card.about {
+        margin-top: 20px;
+        width: 320px;
+    }
+
+    .card.activity {
+        width: 320px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .card.profile {
+        width: auto;
+        max-width: 320px;
+    }
+}
+
+@media screen and (max-width: 200px) {
+    .card.profile img {
+        width: 100%;
+    }
+}
