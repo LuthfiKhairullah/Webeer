@@ -53,13 +53,14 @@ const ProfilePage = {
     const countDiscussion = document.querySelector('.length-disscussion-user');
     const countReply = document.querySelector('.length-reply-user');
     countDiscussion.innerHTML = userDiscussion.length;
+    let lenReply = 0;
     if (userReply === undefined) {
       countReply.innerHTML = 0;
     } else {
       countReply.innerHTML = userReply.length;
+      lenReply = userReply.length;
     }
     const lenDiscussion = userDiscussion.length;
-    const lenReply = countReply.innerHTML;
     const sumDisRep = lenDiscussion + lenReply;
     const grade = document.querySelector('.grade-user');
     if (sumDisRep >= 0 && sumDisRep <= 20) {

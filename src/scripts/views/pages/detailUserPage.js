@@ -47,14 +47,15 @@ const DetailProfilePage = {
     const userDiscussion = await DiscussionSource.getUserOtherDisscussion(url.id);
     const lengthReply = document.querySelector('.length-disscussion-user');
     const countReply = document.querySelector('.length-reply-user');
+    let lenReply = 0;
     if (userReply === undefined) {
       countReply.innerHTML = 0;
     } else {
       countReply.innerHTML = userReply.length;
+      lenReply = userReply.length;
     }
     lengthReply.innerHTML = userDiscussion.length;
     const lenDiscussion = userDiscussion.length;
-    const lenReply = countReply.innerHTML;
     const sumDisRep = lenDiscussion + lenReply;
     const grade = document.querySelector('.grade-user');
     if (sumDisRep >= 0 && sumDisRep <= 20) {
