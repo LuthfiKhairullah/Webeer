@@ -62,6 +62,8 @@ const ResetPassword = {
     });
 
     const formLogin = document.querySelector('#form-login');
+    const idUser = document.querySelector('#emailUser');
+    const pwUser = document.querySelector('#pwdUser');
     formLogin.addEventListener('submit', async (event) => {
       const loginContainer = document.querySelector('#container-login');
       loginContainer.classList.add('cursor-progress');
