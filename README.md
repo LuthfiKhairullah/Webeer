@@ -1,5 +1,17 @@
 Dokumentasi Penggunaan Website Webeer
 
+Jika mengalami delay karena gmail silahkan pakai akun
+
+Company
+id :ukiramacompanywebeer@gmail.com
+pw :webeer123
+
+Programmer
+id :test@gmail.com
+pw: webeertest
+
+Programmer dapat melihat akun programmer lain dengan mengklik nama dari programmer tersebut
+
 Role Programmer
 - Registrasi : Memasukkan username, email dan password serta memilih role programmer kemudian menunggu kode otp pada email yang dimasukkan
 - Verification : Silahkan cek email, jika tidak muncul silahkan cek folder spam, kemudian masukkan kode OTP tersebut ( 5 menit Expired dan harus meregister ulang)
